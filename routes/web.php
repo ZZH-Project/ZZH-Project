@@ -17,5 +17,9 @@ Route::get('/', function () {
 
 //后台路由
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
+    Route::get('login', function () {
+        return view('admin.login.adminLogin');
+    });
 
 });
+

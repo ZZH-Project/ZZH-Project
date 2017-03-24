@@ -17,17 +17,13 @@ Route::get('/', function () {
 
 //后台路由
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
-<<<<<<< HEAD
+    //登录
+    Route::get('login', function () {
+        return view('admin.login.adminLogin');
+    });
     //后台用户组
     Route::group(['prefix' => 'user'], function () {
         Route::get('show', 'UserController@show');
     });
 });
-=======
-    Route::get('login', function () {
-        return view('admin.login.adminLogin');
-    });
 
-});
-
->>>>>>> fa4af9d4a81ef77444a941e0e3ce7b8e741d3798

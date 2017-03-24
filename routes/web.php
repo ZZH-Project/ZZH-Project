@@ -17,5 +17,8 @@ Route::get('/', function () {
 
 //后台路由
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
-
+    //后台用户组
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('show', 'UserController@show');
+    });
 });

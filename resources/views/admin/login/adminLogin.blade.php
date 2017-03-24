@@ -20,10 +20,20 @@
 					</div><!--ad_input_text-->
 				</li>
 				<li>
+					<div class="ad_error_bar">
+						<span>用户名或密码错误</span>
+					</div><!--ad_error_bar-->
+				</li>
+				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_password.png')}}" class="ad_login_icon" />
 						<input type="text" placeholder="请输入密码" class="ad_input_text" />
 					</div><!--ad_input_text-->
+				</li>
+				<li>
+					<div class="ad_error_bar">
+						<span>用户名或密码错误</span>
+					</div><!--ad_error_bar-->
 				</li>
 				<li>
 					<div class="ad_input_wrap">
@@ -33,17 +43,17 @@
 					</div><!--ad_input_text-->
 				</li>
 				<li>
-					<input type="checkbox" class="ad_input_checkbox" />
-					<span class="ad_span">记住密码</span>
-				</li>
-				<li><input type="submit" value="登    录" class="ad_input_submit" /></li>
-				<li>
 					<div class="ad_error_bar">
 						<span>用户名或密码错误</span>
 					</div><!--ad_error_bar-->
 				</li>
+				<li>
+					<input type="checkbox" class="ad_input_checkbox" />
+					<span class="ad_span">记住密码</span>
+				</li>
+				<li><input type="submit" value="登    录" class="ad_input_submit" /></li>
 			</ul>
 		</div><!--ad_login_wrap-->
-		<div class="ad_login_footer">Copyright © 2006-2017 .All rights reserved.</div><!--ad_login_footer-->
+		{{--<div class="ad_login_footer">Copyright © 2006-2017 .All rights reserved.</div><!--ad_login_footer-->--}}
 	</body>
 </html>

@@ -40,11 +40,16 @@
 	height: 52px;
 	line-height: 52px;
 	border-radius: 5px;
+	border: 1px solid rgba(255,255,255,0);
 	background-color: rgba(256, 256, 256, 0.6);
 	font-size: 16px;
 	color: #bfbebc;
-	margin-bottom: 18px;
+	margin-bottom: 10px;
 	overflow: hidden;
+	transition: border 0.3s linear;
+}
+.ad_input_wrap:hover{
+	border: 1px solid #3399ff;
 }
 .ad_input_text{
 	float: left;
@@ -75,6 +80,8 @@
 	border: none;
 	outline: none;
 	margin-top: 15px;
+	cursor: pointer;
+	transition: background-color 0.3s linear;
 }
 .ad_input_submit:hover{
 	background-color: #b81146;
@@ -103,11 +110,12 @@
     border-radius: 30px;
 }
 .ad_input_checkbox{
-	height: 22px;
-	width: 22px;
+	height: 18px;
+	width: 18px;
 	background-color: rgba(256, 256, 256, 0.6);
 	border-radius: 3px;
 	outline: none;
+	cursor: pointer;
 }
 .ad_error_bar{
 	display: none;
@@ -117,8 +125,8 @@
 	color: #e52641;
 	background-color: #fff;
 	border-radius: 5px;
-	margin-top: 10px;
-	background: url(../images/admin/icon_error.png) no-repeat 10px 8px #fff;
+	margin-bottom: 10px;
+	background: url('../../images/admin/icon_error.png') no-repeat 10px 8px #fff;
 }
 .ad_error_bar span{
 	margin-left: 40px;

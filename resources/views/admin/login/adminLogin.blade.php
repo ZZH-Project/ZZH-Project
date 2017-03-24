@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>美丽联合后台管理平台</title>
+		<title>美丽联合后台登录</title>
 		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet">
 		<link href="{{asset('css/admin/admin_base_zl.css')}}" type="text/css" rel="stylesheet">
 	</head>

@@ -21,7 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     Route::get('login', function () {
         return view('admin.login.adminLogin');
     });
-    //后台用户组
+    //用户组
     Route::group(['prefix' => 'user'], function () {
         Route::get('show', 'UserController@show');
     });

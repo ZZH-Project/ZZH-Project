@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//后台路由
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
+
+});

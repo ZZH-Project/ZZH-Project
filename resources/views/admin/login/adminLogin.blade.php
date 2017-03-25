@@ -16,29 +16,45 @@
 			<div class="ad_login_logo"><img src="{{asset('images/admin/admin_logo.png')}}" /></div>
 			<ul class="ad_login_ul">
 				<li>
-					<div class="ad_error_bar">
-						<span>用户名，密码和验证码不能为空</span>
-					</div><!--ad_error_bar-->
-				</li>
-				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_user.png')}}" class="ad_login_icon" />
-						<input type="text" placeholder="请输入用户名" class="ad_input_text" />
+						<input type="text" name="username" value="" placeholder="请输入用户名" class="ad_input_text" />
 					</div><!--ad_input_text-->
 				</li>
+				@if(!empty($errors->get('username')))
+				<li>
+					<div class="ad_error_bar">
+						<span>{{$errors->get('username')[0]}}</span>
+					</div><!--ad_error_bar-->
+				</li>
+				@endif
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_password.png')}}" class="ad_login_icon" />
-						<input type="text" placeholder="请输入密码" class="ad_input_text" />
+						<input type="password" name="password" value="" placeholder="请输入密码" class="ad_input_text" />
 					</div><!--ad_input_text-->
 				</li>
+				@if(!empty($errors->get('password')))
+					<li>
+						<div class="ad_error_bar">
+							<span>{{$errors->get('password')[0]}}</span>
+						</div><!--ad_error_bar-->
+					</li>
+				@endif
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_validate.png')}}" class="ad_login_icon" />
-						<input type="text" placeholder="请输入验证码" class="ad_input_text special" />
-						<div class="ad_validate"><img style="cursor:pointer;" src="{{asset('code/code.php')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
+						<input type="text" name="captcha" value="" placeholder="请输入验证码" class="ad_input_text special" />
+						<div class="ad_validate"><img style="cursor:pointer;" src="{{captcha_src('flat')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
 					</div><!--ad_input_text-->
 				</li>
+				@if(!empty($errors->get('captcha')))
+					<li>
+						<div class="ad_error_bar">
+							<span>{{$errors->get('captcha')[0]}}</span>
+						</div><!--ad_error_bar-->
+					</li>
+				@endif
 				<li>
 					<input type="checkbox" class="ad_input_checkbox" />
 					<span class="ad_span">记住密码</span>

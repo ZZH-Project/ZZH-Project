@@ -30,6 +30,7 @@
 	border-radius: 8px;
 	padding: 30px 30px;
 	margin-bottom: 60px;
+	transition: background-color 0.3s linear;
 }
 .ad_login_logo{
 	width: 150px;
@@ -44,7 +45,7 @@
 	background-color: rgba(256, 256, 256, 0.6);
 	font-size: 16px;
 	color: #bfbebc;
-	margin-bottom: 18px;
+	margin-bottom: 10px;
 	overflow: hidden;
 	transition: border 0.3s linear;
 }
@@ -125,7 +126,7 @@
 	color: #e52641;
 	background-color: #fff;
 	border-radius: 5px;
-	margin-bottom: 10px;
+	margin-bottom: 16px;
 	background: url('../../images/admin/icon_error.png') no-repeat 10px 8px #fff;
 }
 .ad_error_bar span{

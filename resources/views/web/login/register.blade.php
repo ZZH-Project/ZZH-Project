@@ -48,7 +48,7 @@
 					</li>
 				</ul>
 			</div><!--login_wrap-->
-			<a href="login" class="a_register special">已有账号？立即登录</a>
+			<a href="{{url('web/login')}}" class="a_register special">已有账号？立即登录</a>
 			<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>
 			<div class="login_error_bar">手机号或密码错误</div>
 		</div><!--body-->

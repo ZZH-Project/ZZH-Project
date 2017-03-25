@@ -40,7 +40,7 @@
 						<div class="checkbox_bar">
 							<input type="checkbox" class="checkbox" id="checkbox" /><label for="checkbox">记住密码</label>
 						</div>
-						<a href="forget" class="a_forget">忘记密码?</a>
+						<a href="{{url('web/forget')}}" class="a_forget">忘记密码?</a>
 					</li>
 					<li class="special">
 						<div class="login_bar">
@@ -49,7 +49,7 @@
 					</li>
 				</ul>
 			</div><!--login_wrap-->
-			<a href="register" class="a_register">立即注册</a>
+			<a href="{{url('web/register')}}" class="a_register">立即注册</a>
 			<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>
 			<div class="login_error_bar">手机号或密码错误</div>
 		</div><!--body-->

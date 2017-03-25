@@ -1,2 +1,2 @@
 @extends('admin.layouts.Index')
-@section('title','用户列表')
+@section('title','美丽联合-用户列表')

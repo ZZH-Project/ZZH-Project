@@ -16,7 +16,7 @@
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_user.png')}}" class="ad_login_icon" />
-						<input type="text" placeholder="请输入用户名" class="ad_input_text" />
+						<input type="text" name="user" value="" placeholder="请输入用户名" class="ad_input_text" />
 					</div><!--ad_input_text-->
 				</li>
 				<li>
@@ -27,7 +27,7 @@
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_password.png')}}" class="ad_login_icon" />
-						<input type="text" placeholder="请输入密码" class="ad_input_text" />
+						<input type="password" name="pass" value="" placeholder="请输入密码" class="ad_input_text" />
 					</div><!--ad_input_text-->
 				</li>
 				<li>
@@ -38,8 +38,8 @@
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_validate.png')}}" class="ad_login_icon" />
-						<input type="text" placeholder="请输入验证码" class="ad_input_text special" />
-						<div class="ad_validate"><img src="{{asset('images/admin/icon_code.png')}}" /></div>
+						<input type="text" name="code" value="" placeholder="请输入验证码" class="ad_input_text special" />
+						<div class="ad_validate"><img style="cursor:pointer;" src="{{asset('code/code.php')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
 					</div><!--ad_input_text-->
 				</li>
 				<li>

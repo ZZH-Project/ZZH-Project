@@ -44,7 +44,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="##" class="logo">
+    <a href="{{url('admin/index')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>美</b>丽</span>
       <!-- logo for regular state and mobile devices -->
@@ -198,7 +198,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="##"><i class="fa fa-circle-o"></i> 用户信息</a></li>
+            <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户信息</a></li>
             <li><a href="##"><i class="fa fa-circle-o"></i> 添加用户</a></li>
           </ul>
         </li>

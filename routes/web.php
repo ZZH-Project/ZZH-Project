@@ -19,6 +19,11 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     //登录
     Route::get('login','UserController@login');
+    //登录验证
+    Route::post('check','UserController@check');
+    //需要登录验证的
+    //后台主页
+    Route::get('index','UserController@index');
     //用户组
     Route::group(['prefix' => 'user'], function () {
         Route::get('show', 'UserController@show');

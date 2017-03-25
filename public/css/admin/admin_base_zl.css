@@ -119,7 +119,7 @@
 	cursor: pointer;
 }
 .ad_error_bar{
-	display: block;
+	display: none;
 	width: 100%;
 	height: 40px;
 	line-height: 40px;

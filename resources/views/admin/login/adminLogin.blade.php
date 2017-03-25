@@ -26,26 +26,22 @@
 						<input type="text" name="username" value="" placeholder="请输入用户名" class="ad_input_text" />
 					</div><!--ad_input_text-->
 				</li>
-				@if(!empty($errors->get('username')))
 				<li>
-					<div class="ad_error_bar">
-						<span>{{$errors->get('username')[0]}}</span>
+					<div id="error1" class="ad_error_bar">
+						<span></span>
 					</div><!--ad_error_bar-->
 				</li>
-				@endif
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_password.png')}}" class="ad_login_icon" />
 						<input type="password" name="password" value="" placeholder="请输入密码" class="ad_input_text" />
 					</div><!--ad_input_text-->
 				</li>
-				@if(!empty($errors->get('password')))
-					<li>
-						<div class="ad_error_bar">
-							<span>{{$errors->get('password')[0]}}</span>
-						</div><!--ad_error_bar-->
-					</li>
-				@endif
+				<li>
+					<div id="error2" class="ad_error_bar">
+						<span></span>
+					</div><!--ad_error_bar-->
+				</li>
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_validate.png')}}" class="ad_login_icon" />
@@ -53,13 +49,11 @@
 						<div class="ad_validate"><img style="cursor:pointer;" src="{{captcha_src('flat')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
 					</div><!--ad_input_text-->
 				</li>
-				@if(!empty($errors->get('captcha')))
-					<li>
-						<div class="ad_error_bar">
-							<span>{{$errors->get('captcha')[0]}}</span>
-						</div><!--ad_error_bar-->
-					</li>
-				@endif
+				<li>
+					<div id="error3" class="ad_error_bar">
+						<span></span>
+					</div><!--ad_error_bar-->
+				</li>
 				<li>
 					<input type="checkbox" class="ad_input_checkbox" />
 					<span class="ad_span">记住密码</span>
@@ -70,19 +64,42 @@
 		</form>
 		{{--<div class="ad_login_footer">Copyright © 2006-2017 .All rights reserved.</div><!--ad_login_footer-->--}}
 	</body>
-	@section('script')
-		<script>
-			$("login").submit(function () {
-				$.ajax({
-                    url:"admin/check",
-					type:"post",
-					data:"",
-					dataType:"json",
-					success:function(data){
+	<script src="{{asset('js/jQuery-1.8.3.min.js')}}"></script>
+	<script>
+		$("#login").submit(function () {
+			$.ajax({
+				url:"{{url('admin/check')}}",
+				type:"post",
+				data:$("#login").serialize(),
+				dataType:"json",
+				success:function(data){
 
-					}
-				});
+				},
+				error:function(msg){
+				    $flag = false;
+					var json = JSON.parse(msg.responseText);
+                    if(json.username != null){
+                        $("#error1 span").html(json.username);
+                        $("#error1").css({"display":"block"});
+                    } else if(json.username == null){
+
+                        $("#error1").css({"display":"none"});
+                    }
+                    if(json.password != null){
+                        $("#error2 span").html(json.password);
+                        $("#error2").css({"display":"block"});
+                    } else if(json.password == null){
+                        $("#error2").css({"display":"none"});
+                    }
+                    if(json.captcha != null){
+                        $("#error3 span").html(json.captcha);
+                        $("#error3").css({"display":"block"});
+                    } else if(json.captcha == null){
+                        $("#error3").css({"display":"none"});
+                    }
+				}
 			});
-		</script>
-	@endsection
+			return false;
+		});
+	</script>
 </html>

@@ -29,7 +29,8 @@ class UserController extends Controller
         ];
         //进行验证
         $this->validate($request,$roles,$msg);
-        return redirect('admin/user/show');
+        dd($request->all());
+        //return redirect('admin/user/show');
     }
     //后台主页
     public function index() {

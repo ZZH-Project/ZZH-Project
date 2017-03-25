@@ -34,7 +34,8 @@
 					<li>
 						<img src="{{asset('images/web/icon_validate.png')}}" class="login_icon"  />
 						<input type="text" placeholder="请输入验证码" class="input_text" />
-						<a href="#" class="validate_code">获取验证码</a>
+						<img src="{{Captcha::src()}}" onclick="this.src=this.src+'?'+(new Date()).getTime()" class="validate_code"  />
+						{{--<a href="#" class="validate_code">获取验证码</a>--}}
 					</li>
 					<li class="special login_tip">
 						<div class="checkbox_bar special">

@@ -246,6 +246,8 @@
 <!-- ./wrapper -->
 @section('script')
 @show
+<!--  jQuery 1.8.3 -->
+<script src="{{asset('js/jQuery-1.8.3.min.js')}}"></script>
 <!-- jQuery 2.2.3 -->
 <script src="{{asset('admin/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->

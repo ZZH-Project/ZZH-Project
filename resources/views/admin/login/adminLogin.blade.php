@@ -10,11 +10,16 @@
 		<div class="ad_login_bg">
 			<img src="{{asset('images/admin/admin_login.jpg')}}" />
 		</div><!--ad_login_bg-->
-		<form action="{{url('admin/check')}}" method="post">
+		<form id="login" action="{{url('admin/check')}}" method="post">
 			{{csrf_field()}}
 		<div class="ad_login_wrap">
 			<div class="ad_login_logo"><img src="{{asset('images/admin/admin_logo.png')}}" /></div>
 			<ul class="ad_login_ul">
+				<li>
+					<div class="ad_error_bar">
+						<span>用户名或密码错误！</span>
+					</div><!--ad_error_bar-->
+				</li>
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_user.png')}}" class="ad_login_icon" />
@@ -78,4 +83,19 @@
 		</form>
 		{{--<div class="ad_login_footer">Copyright © 2006-2017 .All rights reserved.</div><!--ad_login_footer-->--}}
 	</body>
+	@section('script')
+		<script>
+			$("login").submit(function () {
+				$.ajax({
+                    url:"admin/check",
+					type:"post",
+					data:"",
+					dataType:"json",
+					success:function(data){
+
+					}
+				});
+			});
+		</script>
+	@endsection
 </html>

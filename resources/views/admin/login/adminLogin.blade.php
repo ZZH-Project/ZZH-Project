@@ -46,7 +46,7 @@
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_validate.png')}}" class="ad_login_icon" />
 						<input type="text" name="captcha" value="" placeholder="请输入验证码" class="ad_input_text special" />
-						<div class="ad_validate"><img style="cursor:pointer;" src="{{captcha_src('flat')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
+						<div class="ad_validate"><img id="codeImg" style="cursor:pointer;" src="{{captcha_src('flat')}}" onclick="this.src=this.src+'?'+(new Date()).getTime();"/></div>
 					</div><!--ad_input_text-->
 				</li>
 				<li>
@@ -82,7 +82,6 @@
                         $("#error1 span").html(json.username);
                         $("#error1").css({"display":"block"});
                     } else if(json.username == null){
-
                         $("#error1").css({"display":"none"});
                     }
                     if(json.password != null){
@@ -91,10 +90,10 @@
                     } else if(json.password == null){
                         $("#error2").css({"display":"none"});
                     }
-                    
                     if(json.captcha != null){
                         $("#error3 span").html(json.captcha);
                         $("#error3").css({"display":"block"});
+						$("#codeImg").click();
                     } else if(json.captcha == null){
                         $("#error3").css({"display":"none"});
                     }

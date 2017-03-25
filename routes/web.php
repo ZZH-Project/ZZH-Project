@@ -38,5 +38,7 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
     Route::get('register','UserController@register');
     //忘记密码
     Route::get('forget','UserController@forgetPass');
+    //注册处理
+    Route::any('check','UserController@check');
 });
 

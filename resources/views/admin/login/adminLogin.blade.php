@@ -91,7 +91,7 @@
                     } else if(json.password == null){
                         $("#error2").css({"display":"none"});
                     }
-//                    有问题
+                    
                     if(json.captcha != null){
                         $("#error3 span").html(json.captcha);
                         $("#error3").css({"display":"block"});

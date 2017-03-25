@@ -18,7 +18,11 @@
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_user.png')}}" class="ad_login_icon" />
+<<<<<<< HEAD
 						<input type="text" name="username" value="" placeholder="请输入用户名" class="ad_input_text" />
+=======
+						<input type="text" name="user" value="" placeholder="请输入用户名" class="ad_input_text" />
+>>>>>>> 424c07ab5d308ec9162abd800867bba0136934c2
 					</div><!--ad_input_text-->
 				</li>
 				@if(!empty($errors->get('username')))
@@ -31,7 +35,11 @@
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_password.png')}}" class="ad_login_icon" />
+<<<<<<< HEAD
 						<input type="password" name="password" value="" placeholder="请输入密码" class="ad_input_text" />
+=======
+						<input type="password" name="pass" value="" placeholder="请输入密码" class="ad_input_text" />
+>>>>>>> 424c07ab5d308ec9162abd800867bba0136934c2
 					</div><!--ad_input_text-->
 				</li>
 				@if(!empty($errors->get('password')))
@@ -44,8 +52,13 @@
 				<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_validate.png')}}" class="ad_login_icon" />
+<<<<<<< HEAD
 						<input type="text" name="captcha" value="" placeholder="请输入验证码" class="ad_input_text special" />
 						<div class="ad_validate"><img style="cursor:pointer;" src="{{captcha_src('flat')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
+=======
+						<input type="text" name="code" value="" placeholder="请输入验证码" class="ad_input_text special" />
+						<div class="ad_validate"><img style="cursor:pointer;" src="{{asset('code/code.php')}}" onclick="this.src=this.src+'?'+(new Date()).getTime()"/></div>
+>>>>>>> 424c07ab5d308ec9162abd800867bba0136934c2
 					</div><!--ad_input_text-->
 				</li>
 				@if(!empty($errors->get('captcha')))

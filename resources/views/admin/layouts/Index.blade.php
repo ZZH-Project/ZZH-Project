@@ -192,26 +192,30 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>用户列表</span>
+            <span>用户管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
+<<<<<<< HEAD
             <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户信息</a></li>
+=======
+            <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+>>>>>>> 424c07ab5d308ec9162abd800867bba0136934c2
             <li><a href="##"><i class="fa fa-circle-o"></i> 添加用户</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>品牌列表</span>
+            <span>品牌管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="##"><i class="fa fa-circle-o"></i> 品牌信息</a></li>
+            <li><a href="##"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
             <li><a href="##"><i class="fa fa-circle-o"></i> 添加品牌</a></li>
           </ul>
         </li>

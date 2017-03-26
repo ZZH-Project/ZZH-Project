@@ -41,14 +41,14 @@
 						<input type="text" name="username" placeholder="请输入用户名" class="input_text" />
 					</li>
 					@if(count($errors)>0)
-						<div class="error-alert">{{$errors->first('username')}}</div>
+						<div class="error-alert"><span>* </span>{{$errors->first('username')}}</div>
 					@endif
 					<li>
 						<img src="{{asset('images/web/icon_password.png')}}" class="login_icon" />
 						<input type="text" name="password" placeholder="请输入6-20个字符的密码" class="input_text" />
 					</li>
 					@if(count($errors)>0)
-						<div class="error-alert">{{$errors->first('password')}}</div>
+						<div class="error-alert"><span>* </span>{{$errors->first('password')}}</div>
 					@endif
 					<li>
 						<img src="{{asset('images/web/icon_validate.png')}}" class="login_icon"  />
@@ -57,7 +57,7 @@
 						{{--<a href="#" class="validate_code">获取验证码</a>--}}
 					</li>
 					@if(count($errors)>0)
-						<div class="error-alert">{{$errors->first('captcha')}}</div>
+						<div class="error-alert"><span>* </span>{{$errors->first('captcha')}}</div>
 					@endif
 					<li class="special login_tip">
 						<div class="checkbox_bar special">

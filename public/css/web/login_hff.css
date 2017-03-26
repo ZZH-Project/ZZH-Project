@@ -14,5 +14,8 @@
 	cursor:pointer;
 }
 .error-alert{
-	color: darkred;
+	color: gray;
+}
+.error-alert span{
+	color: red;
 }

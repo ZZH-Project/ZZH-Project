@@ -21,14 +21,10 @@ class UserController extends Controller
     }
     //前台注册处理
     public function check(Request $request){
-        $username = $request->username;
-        $password = $request->password;
-        $captcha = $request->captcha;
-        var_dump($username,$password,$captcha);
         //验证规则
         $roles = [
-            'username' => 'required|between:6,12',
-            'password' => 'required',
+            'username' => 'required|between:6,12|alpha_dash',
+            'password' => 'required|alpha_dash',
             'captcha' => 'required|captcha',
         ];
         //自定义的错误信息
@@ -36,8 +32,13 @@ class UserController extends Controller
             'required' => ':Attribute不能为空',
             'between' => ':Attribute必须在:min和:max之间',
             'captcha' => '验证码不正确',
+            'alpha_dash' => ':Attribute必须是字母数字下划线'
 //            'confirmed' => '两次密码不一致',
         ];
         $this->validate($request,$roles,$msg);
+        $username = $request->username;
+        $password = $request->password;
+        $captcha = $request->captcha;
+        var_dump($username,$password,$captcha);
     }
 }

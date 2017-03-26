@@ -145,16 +145,15 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">username</span>
+              <span class="hidden-xs">{{session('auser')['username']}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-
-                <p>
+                <p style="color: black;">
                   Hello!
-                  <small>username</small>
+                  <small style="font-size: 20px;color: white;">{{session('auser')['username']}}</small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -182,7 +181,7 @@
           <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>username</p>
+          <p style="font-size: 18px;">{{session('auser')['username']}}</p>
           <i class="fa fa-circle text-success"></i> 在线
         </div>
       </div>
@@ -198,11 +197,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-<<<<<<< HEAD
-            <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户信息</a></li>
-=======
             <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户列表</a></li>
->>>>>>> 424c07ab5d308ec9162abd800867bba0136934c2
             <li><a href="##"><i class="fa fa-circle-o"></i> 添加用户</a></li>
           </ul>
         </li>

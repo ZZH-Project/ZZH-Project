@@ -10,13 +10,13 @@
 		<div class="ad_login_bg">
 			<img src="{{asset('images/admin/admin_login.jpg')}}" />
 		</div><!--ad_login_bg-->
-		<form id="login" action="{{url('admin/check')}}" method="post">
+		<form id="login" action="{{url('admin/go')}}" method="post">
 			{{csrf_field()}}
 		<div class="ad_login_wrap">
 			<div class="ad_login_logo"><img src="{{asset('images/admin/admin_logo.png')}}" /></div>
 			<ul class="ad_login_ul">
 				<li>
-					<div class="ad_error_bar">
+					<div id="error0" class="ad_error_bar">
 						<span>用户名或密码错误！</span>
 					</div><!--ad_error_bar-->
 				</li>
@@ -73,11 +73,20 @@
 				data:$("#login").serialize(),
 				dataType:"json",
 				success:function(data){
-
+				    var flag = data;
+                    if (flag.a == 1) {
+                        $("#error0").css({"display":"block"});
+                        $("#error1").css({"display":"none"});
+                        $("#error2").css({"display":"none"});
+                        $("#error3").css({"display":"none"});
+                        $("#codeImg").click();
+                    } else if (flag.a == 2) {
+						location.href='go';
+                    }
 				},
 				error:function(msg){
-				    $flag = false;
 					var json = JSON.parse(msg.responseText);
+                    $("#error0").css({"display":"none"});
                     if(json.username != null){
                         $("#error1 span").html(json.username);
                         $("#error1").css({"display":"block"});

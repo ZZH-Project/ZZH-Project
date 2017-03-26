@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Auser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class UserController extends Controller
     public function check(Request $request){
         //验证规则
         $roles = [
-            'username' => 'required|between:6,12',
+            'username' => 'required|between:3,12',
             'password' => 'required',
             'captcha' => 'required|captcha',
         ];
@@ -29,8 +30,25 @@ class UserController extends Controller
         ];
         //进行验证
         $this->validate($request,$roles,$msg);
-        dd($request->all());
-        //return redirect('admin/user/show');
+        //数据库验证
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+        $auser = new Auser();
+        $query = $auser->where([
+            ['username',$username],
+            ['password',$password],
+        ])->get()->toArray();
+        if ($query == null) {
+            return json_encode(['a' => 1]);
+        } elseif ($query != null) {
+            $auser = $query[0];
+            $request->session()->put('auser',$auser);
+            return json_encode(['a' => 2]);
+        }
+    }
+    //登录成功
+    public function go(){
+        return redirect('admin/index');
     }
     //后台主页
     public function index() {

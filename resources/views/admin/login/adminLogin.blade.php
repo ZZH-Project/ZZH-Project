@@ -97,20 +97,25 @@
                     if(json.username != null){
                         $("#error1 span").html(json.username);
                         $("#error1").css({"display":"block"});
+						//换掉验证码的图片
+                        $("#codeImg").click();
                     } else if(json.username == null){
                         $("#error1").css({"display":"none"});
                     }
-                    //显示用户名的错误框
+                    //显示密码的错误框
                     if(json.password != null){
                         $("#error2 span").html(json.password);
                         $("#error2").css({"display":"block"});
+                        //换掉验证码的图片
+                        $("#codeImg").click();
                     } else if(json.password == null){
                         $("#error2").css({"display":"none"});
                     }
-                    //显示用户名的错误框
+                    //显示验证码的错误框
                     if(json.captcha != null){
                         $("#error3 span").html(json.captcha);
                         $("#error3").css({"display":"block"});
+                        //换掉验证码的图片
 						$("#codeImg").click();
                     } else if(json.captcha == null){
                         $("#error3").css({"display":"none"});

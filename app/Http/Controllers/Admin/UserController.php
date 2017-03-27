@@ -52,6 +52,11 @@ class UserController extends Controller
     public function go(){
         return redirect('admin/index');
     }
+    //退出登录
+    public function logout(Request $request){
+        $request->session()->forget('auser');
+        return redirect('admin/login');
+    }
     //后台主页
     public function index() {
         return view('admin.index.index');

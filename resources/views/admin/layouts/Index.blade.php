@@ -162,7 +162,7 @@
                   <a href="##" class="btn btn-default btn-flat">详细信息</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出</a>
+                  <a href="{{url('admin/logout')}}" class="btn btn-default btn-flat">退出</a>
                 </div>
               </li>
             </ul>

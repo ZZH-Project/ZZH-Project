@@ -23,13 +23,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     Route::post('check','UserController@check');
     //登录成功
     Route::get('go','UserController@go');
+    //退出登录
+    Route::get('logout','UserController@logout');
     //需要验证登录才能显示的页面
-
-    //后台首页
-    Route::get('index','IndexController@index');
-    //用户组
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('show', 'UserController@show');
+    Route::group(['middleware' => 'adminLogin'], function () {
+        //后台首页
+        Route::get('index','IndexController@index');
+        //用户组
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('show', 'UserController@show');
+        });
     });
 });
 

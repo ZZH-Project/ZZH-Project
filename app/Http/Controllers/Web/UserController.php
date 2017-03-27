@@ -24,15 +24,15 @@ class UserController extends Controller
         //验证规则
         $roles = [
             'username' => 'required|between:6,12|alpha_dash',
-            'password' => 'required|alpha_dash',
+            'password' => 'required|between:6,12|alpha_dash',
             'captcha' => 'required|captcha',
         ];
         //自定义的错误信息
         $msg = [
-            'required' => ':Attribute不能为空',
-            'between' => ':Attribute必须在:min和:max之间',
-            'captcha' => '验证码不正确',
-            'alpha_dash' => ':Attribute必须是字母数字下划线'
+            'required' => '* :Attribute不能为空',
+            'between' => '* :Attribute必须在:min和:max之间',
+            'captcha' => '* 验证码不正确',
+            'alpha_dash' => '* :Attribute必须是字母数字下划线'
 //            'confirmed' => '两次密码不一致',
         ];
         $this->validate($request,$roles,$msg);

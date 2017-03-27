@@ -82,6 +82,10 @@
                         $("#error3").css({"display":"none"});
                         $("#codeImg").click();
                     } else if (flag.a == 2) {
+                        $("#error0").css({"display":"none"});
+                        $("#error1").css({"display":"none"});
+                        $("#error2").css({"display":"none"});
+                        $("#error3").css({"display":"none"});
 						location.href='go';
                     }
 				},

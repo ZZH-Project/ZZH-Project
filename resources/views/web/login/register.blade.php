@@ -91,11 +91,11 @@
 					var res = data;
 					//将json字符串转为对象
 					res = JSON.parse(res);
-					console.log(res);
+//					console.log(res);
 					if(res.a == 1){
 					    alert('用户名已存在！请重新输入！');
 					}else if(res.a == 2){
-					    alert('注册成功');
+					    alert('注册成功!');
 					}
                     $("#error1").css({"display":"none"});
                     $("#error2").css({"display":"none"});
@@ -105,7 +105,7 @@
 				error:function(msg){
 					//将返回错误的json字符串转换为对象
                     var json = JSON.parse(msg.responseText);
-                    console.log(json);
+//                    console.log(json);
 					//如果username的错误不为空的话显示错误提示
                     if(json.username != null){
                         $("#error1").html(json.username);

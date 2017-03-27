@@ -73,7 +73,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         开发团队
@@ -226,6 +226,17 @@
   <!-- 右侧主体，用于显示后台功能 -->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        @yield('title-first')
+        <small>@yield('title-second')</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="{{url('admin/index')}}" title="美丽后台"><i class="fa fa-dashboard"></i>美丽联合</a></li>
+        <li>@yield('title-first')</li>
+        <li class="active">@yield('title-second')</li>
+      </ol>
+    </section>
     <div style="padding:15px;">
       @section('main')
       @show
@@ -239,8 +250,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-@section('script')
-@show
+
 <!--  jQuery 1.8.3 -->
 <script src="{{asset('js/jQuery-1.8.3.min.js')}}"></script>
 <!-- jQuery 2.2.3 -->
@@ -255,7 +265,7 @@
 <script src="{{asset('admin/bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{asset('admin/plugins/morris/morris.min.js')}}"></script>
+{{--<script src="{{asset('admin/plugins/morris/morris.min.js')}}"></script>--}}
 <!-- Sparkline -->
 <script src="{{asset('admin/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->
@@ -277,8 +287,10 @@
 <!-- AdminLTE App -->
 <script src="{{asset('admin/dist/js/app.min.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
+{{--<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+@section('script')
+@show
 </body>
 </html>

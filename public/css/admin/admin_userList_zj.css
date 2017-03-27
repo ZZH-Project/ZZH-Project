@@ -1,0 +1,27 @@
+/*表格样式*/
+.tb{
+    width: 100%;
+    border: 1px solid black;
+}
+.tb tr th{
+    font-size: 22px;
+    color: white;
+    background: #3399ff;
+    padding: 5px;
+    text-align: center;
+}
+.tb tr td{
+    font-size: 18px;
+    word-wrap: break-word;
+    background: white;
+    padding: 5px;
+    text-align: center;
+}
+/*表单操作按钮样式*/
+.active i{
+    padding: 0 3px;
+    transition: all 0.3s linear;
+}
+.active i:hover{
+    transform: rotate(360deg) scale(1.2);
+}

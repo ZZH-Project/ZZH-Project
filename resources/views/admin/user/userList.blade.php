@@ -1,2 +1,48 @@
 @extends('admin.layouts.Index')
 @section('title','美丽联合-用户列表')
+@section('title-first','用户管理')
+@section('title-second','用户列表')
+@section('style')
+    <link rel="stylesheet" href="{{asset('css/admin/admin_userList_zj.css')}}">
+@endsection
+@section('main')
+    <table class="tb">
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>角色</th>
+            <th>电话</th>
+            <th>邮箱</th>
+            <th>注册时间</th>
+            <th>用户操作</th>
+        </tr>
+        @foreach($data as $v)
+        <tr class="trd">
+            <td>{{$v['id']}}</td>
+            <td>{{$v['username']}}</td>
+            <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
+            <td>{{$v['phone'] != null ? $v['phone'] : '无'}}</td>
+            <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
+            <td>{{$v['time'] != null ? $v['time'] : '无'}}</td>
+            <td>
+                <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}"><i class="fa fa-edit" title="修改信息"></i></a>
+                <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}"><i class="fa fa-trash-o" title="删除用户"></i></a>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+@endsection
+@section('script')
+    {{--实现隔行换色和鼠标移动变色--}}
+    <script>
+        $(".trd:odd").find("td").css({"background":"#A0BF7C"});
+        $(".trd:even").find("td").css({"background":"#f2fa7f"});
+        $(".trd").mouseover(function () {
+            $(this).find('td').css({"background":"white"});
+        });
+        $(".trd").mouseout(function () {
+            $(".trd:odd").find("td").css({"background":"#A0BF7C"});
+            $(".trd:even").find("td").css({"background":"#f2fa7f"});
+        });
+    </script>
+@endsection

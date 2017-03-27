@@ -38,10 +38,12 @@ class UserController extends Controller
             ['username',$username],
             ['password',$password],
         ])->get()->toArray();
+        //判断是否匹配到
         if ($query == null) {
             return json_encode(['a' => 1]);
         } elseif ($query != null) {
             $auser = $query[0];
+            //匹配到数据，存入session
             $request->session()->put('auser',$auser);
             return json_encode(['a' => 2]);
         }

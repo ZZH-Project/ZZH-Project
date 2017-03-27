@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     //登录成功
     Route::get('go','UserController@go');
     //需要验证登录才能显示的页面
+
     //后台首页
     Route::get('index','IndexController@index');
     //用户组

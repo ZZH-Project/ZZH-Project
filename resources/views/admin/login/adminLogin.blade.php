@@ -72,6 +72,7 @@
 				type:"post",
 				data:$("#login").serialize(),
 				dataType:"json",
+				//laravel自带验证成功进入此处
 				success:function(data){
 				    var flag = data;
                     if (flag.a == 1) {
@@ -84,21 +85,25 @@
 						location.href='go';
                     }
 				},
+				//laravel自带验证失败进入此处
 				error:function(msg){
 					var json = JSON.parse(msg.responseText);
                     $("#error0").css({"display":"none"});
+                    //显示用户名的错误框
                     if(json.username != null){
                         $("#error1 span").html(json.username);
                         $("#error1").css({"display":"block"});
                     } else if(json.username == null){
                         $("#error1").css({"display":"none"});
                     }
+                    //显示用户名的错误框
                     if(json.password != null){
                         $("#error2 span").html(json.password);
                         $("#error2").css({"display":"block"});
                     } else if(json.password == null){
                         $("#error2").css({"display":"none"});
                     }
+                    //显示用户名的错误框
                     if(json.captcha != null){
                         $("#error3 span").html(json.captcha);
                         $("#error3").css({"display":"block"});

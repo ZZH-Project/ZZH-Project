@@ -79,6 +79,24 @@
 		</div><!--body-->
 	</body>
 	<script>
-		console.log($('#register'));
+		$('#register').submit = function(){
+			$.ajax({
+			    url:'web/check',//请求的路由
+			    type:'post',//请求的方式
+                data:$("#register").serialize(),//请求的路由
+				datatype:"json",
+				//请求成功的方法
+				success:function(data){
+			        var flag = data;
+
+				},
+				//请求失败的方法
+				error:function(msg){
+                    var json = JSON.parse(msg.responseText);
+                    console.log(json);
+				}
+			});
+			return false;
+		}
 	</script>
 </html>

@@ -14,8 +14,10 @@
 	cursor:pointer;
 }
 .error-alert{
-	color: gray;
+	padding: 5px;
+	border-radius:3px;
+	background-color: pink;
+	color: darkred;
+	display: none;
 }
-.error-alert span{
-	color: red;
-}
+

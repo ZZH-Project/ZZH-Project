@@ -46,7 +46,7 @@
 					{{--@endif--}}
 					<li>
 						<img src="{{asset('images/web/icon_password.png')}}" class="login_icon" />
-						<input type="text" name="password" placeholder="请输入6-20个字符的密码" class="input_text" />
+						<input type="password" name="password" placeholder="请输入6-20个字符的密码" class="input_text" />
 					</li>
 					{{--@if(count($errors)>0)--}}
 						<div id="error2" class="error-alert"></div>
@@ -86,15 +86,26 @@
                 data:$("#register").serialize(),//请求表单中的数据
 				datatype:"json",
 				//请求成功的方法
+				//data是ajax请求传递过来的return信息
 				success:function(data){
-//			        var flag = data;
-			        console.log(1111);
-
+					var res = data;
+					//将json字符串转为对象
+					res = JSON.parse(res);
+					console.log(res);
+					if(res.a == 1){
+					    alert('用户名已存在！请重新输入！');
+					}else if(res.a == 2){
+					    alert('注册成功');
+					}
+                    $("#error1").css({"display":"none"});
+                    $("#error2").css({"display":"none"});
+                    $("#error3").css({"display":"none"});
 				},
 				//请求失败的方法
 				error:function(msg){
+					//将返回错误的json字符串转换为对象
                     var json = JSON.parse(msg.responseText);
-//                    console.log(json);
+                    console.log(json);
 					//如果username的错误不为空的话显示错误提示
                     if(json.username != null){
                         $("#error1").html(json.username);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Wuser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -33,12 +34,24 @@ class UserController extends Controller
             'between' => '* :Attribute必须在:min和:max之间',
             'captcha' => '* 验证码不正确',
             'alpha_dash' => '* :Attribute必须是字母数字下划线'
-//            'confirmed' => '两次密码不一致',
         ];
+        //验证数据
         $this->validate($request,$roles,$msg);
         $username = $request->username;
         $password = $request->password;
         $captcha = $request->captcha;
-        var_dump($username,$password,$captcha);
+//        var_dump($username,$password,$captcha);
+        $wuser = new Wuser();
+        $wuser->username = $username;
+        $wuser->password = md5($password);
+        $result = $wuser::select('username')->get()->toArray();
+        //如果用户名存在
+        if($result){
+            return json_encode(['a' => 1]);
+        }else{
+            $res = $wuser->save();
+            return json_encode(['a'=>2]);
+        }
+//        var_dump($result);
     }
 }

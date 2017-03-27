@@ -33,7 +33,7 @@
 		{{--@endif--}}
 		<div class="body">
 			<div class="login_logo"><img src="{{asset('images/web/login_logo.png')}}" /></div>
-			<form id="register" action="{{url('web/check')}}" method="post">
+			<form id="register" action="{{url('web/user/check')}}" method="post">
 				{{csrf_field()}}
 			<div class="login_wrap">
 				<ul class="login_ul">
@@ -73,7 +73,7 @@
 				</ul>
 			</div><!--login_wrap-->
 			</form>
-			<a href="{{url('web/login')}}" class="a_register special">已有账号？立即登录</a>
+			<a href="{{url('web/user/login')}}" class="a_register special">已有账号？立即登录</a>
 			<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
@@ -81,7 +81,7 @@
 	<script>
 		$('#register').submit(function(){
 			$.ajax({
-			    url:"{{url('web/check')}}",//请求的路由
+			    url:"{{url('web/user/check')}}",//请求的路由
 			    type:'post',//请求的方式
                 data:$("#register").serialize(),//请求表单中的数据
 				datatype:"json",

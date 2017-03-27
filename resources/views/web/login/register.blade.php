@@ -9,6 +9,7 @@
 		<link href="{{asset('css/web/login_hff.css')}}" rel="stylesheet" />
 {{--		<link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />--}}
 		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
+		<script src="{{asset('js/jquery-1.8.3.min.js')}}" type="text/javascript"></script>
 		<script type="text/javascript">
 			$(function(){
 				$('.checkbox').click(function(){
@@ -32,7 +33,7 @@
 		{{--@endif--}}
 		<div class="body">
 			<div class="login_logo"><img src="{{asset('images/web/login_logo.png')}}" /></div>
-			<form action="{{url('web/check')}}" method="post">
+			<form id="register" action="{{url('web/check')}}" method="post">
 				{{csrf_field()}}
 			<div class="login_wrap">
 				<ul class="login_ul">
@@ -77,4 +78,7 @@
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
 	</body>
+	<script>
+		console.log($('#register'));
+	</script>
 </html>

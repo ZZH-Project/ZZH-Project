@@ -9,8 +9,12 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     //用户登录
-    public function login(){
-        return view('admin.login.adminLogin');
+    public function login(Request $request){
+        if (!$request->session()->get('auser')) {
+            return view('admin.login.adminLogin');
+        } elseif ($request->session()->get('auser')) {
+            return redirect('admin/index');
+        }
     }
     //用户登录验证
     public function check(Request $request){
@@ -67,4 +71,51 @@ class UserController extends Controller
         $data = $auser->get()->toArray();
         return view('admin.user.userList', ['data' => $data]);
     }
+    //添加用户表单页
+    public function add() {
+        //if () {
+        //
+        //}
+        return view('admin.user.userAdd');
+    }
+    //验证添加用户其他数据
+    public function addCheck(Request $request) {
+        //验证规则
+        $roles = [
+            'password' => 'required',
+            'email' => 'required|email'
+        ];
+        //自定义的错误信息
+        $msg = [
+            'password.required' => '密码不能为空',
+            'email.required' => '邮箱不能为空',
+            'email.email' => '邮箱格式不正确',
+        ];
+        //进行验证
+        $this->validate($request,$roles,$msg);
+    }
+    //用户重复验证
+    public function userCheck(Request $request){
+        //验证规则
+        $roles = [
+            'username' => 'required|between:3,12',
+        ];
+        //自定义的错误信息
+        $msg = [
+            'username.required' => '用户名不能为空',
+            'username.between' => '用户名必须在:min到:max位之间'
+        ];
+        //进行验证
+        $this->validate($request,$roles,$msg);
+        //数据库验证
+        $username = $_GET['username'];
+        $query = Auser::where('username',$username)->get()->toArray();
+        //判断是否匹配到
+        if ($query == null) {
+            return json_encode(['a' => 1]);
+        } elseif ($query != null) {
+            return json_encode(['a' => 2]);
+        }
+    }
+
 }

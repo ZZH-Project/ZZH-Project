@@ -10,7 +10,7 @@
     <table class="tb">
         <caption><h3>用户列表</h3></caption>
         <caption>
-            <div class="find">搜索用户：</div><input id="uf" class="myinput-main" type="text">
+            <div class="find">用户搜索：</div><input id="uf" class="myinput-main" type="text">
             <a class="add" href="{{url('admin/user/add')}}"><i class="fa fa-user-plus" title="添加用户"></i></a>
             <div class="clear"></div>
         </caption>
@@ -18,7 +18,6 @@
             <th>ID</th>
             <th>用户名</th>
             <th>角色</th>
-            <th>电话</th>
             <th>邮箱</th>
             <th>注册时间</th>
             <th>用户操作</th>
@@ -28,7 +27,6 @@
             <td>{{$v['id']}}</td>
             <td>{{$v['username']}}</td>
             <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
-            <td>{{$v['phone'] != null ? $v['phone'] : '无'}}</td>
             <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
             <td>{{$v['time'] != null ? $v['time'] : '无'}}</td>
             <td>

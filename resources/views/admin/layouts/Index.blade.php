@@ -198,7 +198,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-            <li><a href="##"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+            <li><a href="{{url('admin/user/add')}}"><i class="fa fa-circle-o"></i> 添加用户</a></li>
           </ul>
         </li>
         <li class="treeview">

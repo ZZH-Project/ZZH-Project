@@ -72,11 +72,26 @@ class UserController extends Controller
         return view('admin.user.userList', ['data' => $data]);
     }
     //添加用户表单页
-    public function add() {
-        //if () {
-        //
-        //}
-        return view('admin.user.userAdd');
+    public function add(Request $request) {
+        if ($request->isMethod("post")) {
+            //获取数据
+            $username = $request->input('username');
+            $password = md5($request->input('password'));
+            $email = $request->input('email');
+            //将数据库存入
+            $auser = new Auser();
+            $auser->username = $username;
+            $auser->password = $password;
+            $auser->email = $email;
+            $result = $auser->save();
+            if ($result) {
+                return redirect('admin/user/show');
+            } else {
+                return view('admin.user.userAdd');
+            }
+        } else if($request->isMethod("get")) {
+            return view('admin.user.userAdd');
+        }
     }
     //验证添加用户其他数据
     public function addCheck(Request $request) {

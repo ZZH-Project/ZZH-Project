@@ -19,7 +19,6 @@
             <th>用户名</th>
             <th>角色</th>
             <th>邮箱</th>
-            <th>注册时间</th>
             <th>用户操作</th>
         </tr>
         @foreach($data as $v)
@@ -28,7 +27,6 @@
             <td>{{$v['username']}}</td>
             <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
             <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
-            <td>{{$v['time'] != null ? $v['time'] : '无'}}</td>
             <td>
                 <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}"><i class="fa fa-user-secret" title="修改信息"></i></a>
                 <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}"><i class="fa fa-user-times" title="删除用户"></i></a>

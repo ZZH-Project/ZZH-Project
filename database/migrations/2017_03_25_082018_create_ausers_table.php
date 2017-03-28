@@ -19,6 +19,7 @@ class CreateAusersTable extends Migration
             $table->string('password');
             $table->tinyInteger('role')->nullable();
             $table->string('email')->nullable();
+            $table->unique('username');
         });
     }
 

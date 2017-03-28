@@ -6,6 +6,20 @@
   <title>@yield('title','后台模板')</title>
   @section('style')
   @show
+  <style>
+    .alt{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 16px;
+      color: white;
+      border-radius: 10px;
+      background: black;
+      display: none;
+      opacity: 1;
+      padding: 15px;
+    }
+  </style>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -226,6 +240,7 @@
   <!-- 右侧主体，用于显示后台功能 -->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <div class="alt"></div>
     <section class="content-header">
       <h1>
         @yield('title-first')

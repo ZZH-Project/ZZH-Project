@@ -28,8 +28,12 @@
             <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
             <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
             <td>
-                <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}"><i class="fa fa-user-secret" title="修改信息"></i></a>
-                <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}"><i class="fa fa-user-times" title="删除用户"></i></a>
+                <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}">
+                    <i class="fa fa-user-secret" title="修改信息"></i>
+                </a>
+                <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}">
+                    <i class="fa fa-user-times" title="删除用户"></i>
+                </a>
             </td>
         </tr>
         @endforeach

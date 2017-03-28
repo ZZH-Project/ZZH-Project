@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('addCheck', 'UserController@addCheck');
             //添加用户时用户名重复检测
             Route::get('userCheck', 'UserController@userCheck');
+            //删除用户
+            Route::get('del/{id}', 'UserController@del');
         });
     });
 });

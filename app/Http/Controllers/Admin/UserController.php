@@ -132,5 +132,10 @@ class UserController extends Controller
             return json_encode(['a' => 2]);
         }
     }
-
+    //用户删除
+    public function del($id){
+        //删除数据
+        Auser::where('id',$id)->delete();
+        return redirect('admin/user/show');
+    }
 }

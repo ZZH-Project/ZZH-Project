@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //删除用户
             Route::get('del/{id}', 'UserController@del');
             //修改用户
-            Route::any('edit/{id}', 'UserController@edit');
+            Route::any('edit/{id}/{page}', 'UserController@edit');
         });
     });
 });

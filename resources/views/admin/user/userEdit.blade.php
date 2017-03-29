@@ -17,7 +17,7 @@
     </style>
 @endsection
 @section('main')
-    <form id="af" action="{{url('admin/user/edit')}}/{{$data['id']}}" method="post" style="text-align: center">
+    <form id="af" action="{{url('admin/user/edit')}}/{{$data['id']}}/{{$page}}" method="post" style="text-align: center">
         <h1 id="fh" style="text-align: center;padding-bottom: 5px;margin: 0 0 15px 0;color: #3399ff;border-bottom: 1px solid #e5e5e5">
             <span>修改用户</span>
             <a style="display: none;color:#ff890a;" href='{{url('admin/user/show')}}' title='用户列表'>用户列表</a>
@@ -90,6 +90,26 @@
         });
         //提交数据
         $("#af").submit(function () {
+            $.ajax({
+                url:"{{url('admin/user/addCheck')}}",
+                type:"get",
+                data:$("#et").serialize(),
+                async:false,
+                dataType:"json",
+                success:function(data) {},
+                error:function(msg){
+                    var json = JSON.parse(msg.responseText);
+                    if (json.email != null) {
+                        et = false;
+                        $("#ed").html(json.email+'！');
+                        $("#ed").css({"color":"red"});
+                    } else {
+                        et = true;
+                        $("#ed").html("邮箱格式可用！");
+                        $("#ed").css({"color":"green"});
+                    }
+                }
+            });
             if (et) {
                 return true;
             } else {

@@ -69,7 +69,7 @@ class UserController extends Controller
     public function show() {
         $auser = new Auser();
         $data = $auser->paginate(2);
-        return view('admin.user.userList', ['data' => $data]);
+        return view("admin.user.userList", ['data' => $data]);
     }
     //添加用户表单页
     public function add(Request $request) {
@@ -136,21 +136,21 @@ class UserController extends Controller
     public function del($id){
         //删除数据
         Auser::where('id',$id)->delete();
-        return redirect('admin/user/show');
+        return redirect("admin/user/show");
     }
     //用户修改
-    public function edit(Request $request,$id){
+    public function edit(Request $request,$id,$page){
         //判断是提交修改还是显示修改页面
         if ($request->isMethod("post")) {
             //获取修改的数据
             $email = $request->input('email');
             //修改数据
             Auser::where('id',$id)->update(['email'=>$email]);
-            return redirect('admin/user/show');
+            return redirect("admin/user/show?page=$page");
         } else if ($request->isMethod("get")) {
             //获取修改用户的数据
             $data = Auser::where('id',$id)->get()->toArray()[0];
-            return view('admin.user.userEdit',["data"=>$data]);
+            return view('admin.user.userEdit',["data"=>$data,"page"=>$page]);
         }
     }
 }

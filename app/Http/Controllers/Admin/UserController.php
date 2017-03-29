@@ -71,6 +71,13 @@ class UserController extends Controller
         $data = $auser->paginate(2);
         return view("admin.user.userList", ['data' => $data]);
     }
+    //搜索用户
+    public function find(Request $request){
+        //获取传递的值
+        $fv = $_GET['fv'];
+        $data = Auser::where('username','like','%'.$fv.'%')->paginate(2);
+        return response()->view('admin.user.miniUserTable', ['data' => $data,'fv' => $fv]);
+    }
     //添加用户表单页
     public function add(Request $request) {
         if ($request->isMethod("post")) {

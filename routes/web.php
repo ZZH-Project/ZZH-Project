@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::group(['prefix' => 'user'], function () {
             //用户显示
             Route::get('show', 'UserController@show');
+            //用户搜索
+            Route::get('find', 'UserController@find');
             //添加用户
             Route::any('add', 'UserController@add');
             //添加用户验证，修改用户验证也用这个

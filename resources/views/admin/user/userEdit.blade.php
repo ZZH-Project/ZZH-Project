@@ -20,7 +20,7 @@
     <form id="af" action="{{url('admin/user/edit')}}/{{$data['id']}}/{{$page}}" method="post" style="text-align: center">
         <h1 id="fh" style="text-align: center;padding-bottom: 5px;margin: 0 0 15px 0;color: #3399ff;border-bottom: 1px solid #e5e5e5">
             <span>修改用户</span>
-            <a style="display: none;color:#ff890a;" href='{{url('admin/user/show')}}' title='用户列表'>用户列表</a>
+            <a style="display: none;color:#ff890a;" href='{{url("admin/user/show?page=$page")}}' title='用户列表'>用户列表</a>
         </h1>
         {{csrf_field()}}
         <div id="ud" style="text-align: center;display: inline-block;margin: 0 auto;border-radius: 10px;background: #D5C59F;font-size: 28px;color: black;padding: 10px;">{{$data['username']}}</div>

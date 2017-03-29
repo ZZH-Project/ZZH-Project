@@ -6,43 +6,43 @@
     <link rel="stylesheet" href="{{asset('css/admin/admin_userList_zj.css')}}">
 @endsection
 @section('main')
-    <div style="background: white;padding: 0 10px;padding-bottom: 25px;">
-    <table class="tb">
-        <caption><h3>用户列表</h3></caption>
-        <caption>
+    <div style="background: white;padding: 0 10px 25px 10px;">
+        <h3 style="padding-top: 20px;color: #3399ff;">用户列表</h3>
+        <div style="padding:10px 0;">
             <div class="find">用户搜索：</div><input id="uf" class="myinput-main" type="text">
             <a class="add" href="{{url('admin/user/add')}}"><i class="fa fa-user-plus" title="添加用户"></i></a>
             <div class="clear"></div>
-        </caption>
-        <tr>
-            <th style="border-left: 1px solid #3399ff;">ID</th>
-            <th>用户名</th>
-            <th>角色</th>
-            <th>邮箱</th>
-            <th style="border-right: 1px solid #3399ff;">用户操作</th>
-        </tr>
-        @foreach($data as $v)
-        <tr class="trd">
-            <td style="border-left: 1px solid #e5e5e5;">{{$v['id']}}</td>
-            <td>{{$v['username']}}</td>
-            <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
-            <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
-            <td>
-                <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}">
-                    <i class="fa fa-user-secret" title="修改信息"></i>
-                </a>
-                <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}">
-                    <i class="fa fa-user-times" title="删除用户"></i>
-                </a>
-            </td>
-        </tr>
-        @endforeach
-        <tr>
-            <td colspan="5" style="border-left: 1px solid #e5e5e5;">
-                {{$data->links('public.zj_page')}}
-            </td>
-        </tr>
-    </table>
+        </div>
+        <table class="tb">
+            <tr>
+                <th style="border-left: 1px solid #3399ff;">ID</th>
+                <th>用户名</th>
+                <th>角色</th>
+                <th>邮箱</th>
+                <th style="border-right: 1px solid #3399ff;">用户操作</th>
+            </tr>
+            @foreach($data as $v)
+            <tr class="trd">
+                <td style="border-left: 1px solid #e5e5e5;">{{$v['id']}}</td>
+                <td>{{$v['username']}}</td>
+                <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
+                <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
+                <td>
+                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}">
+                        <i class="fa fa-user-secret" title="修改信息"></i>
+                    </a>
+                    <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}">
+                        <i class="fa fa-user-times" title="删除用户"></i>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+            <tr>
+                <td colspan="5" style="border-left: 1px solid #e5e5e5;">
+                    {{$data->links('public.zj_page')}}
+                </td>
+            </tr>
+        </table>
     </div>
 @endsection
 @section('script')
@@ -63,12 +63,19 @@
             $.ajax({
                 url:"{{url('admin/user/find')}}",
                 type:"get",
-                data:fv,
-                dataType:"json",
-                success:function(data){
-
-                },
+                data:{"fv":fv},
+                dataType:"string",
+                success:function(data){},
+                error:function (msg) {
+                    //迷你视图
+                    $tb = msg.responseText;
+                    $(".tb").html($tb);
+                }
             });
         });
+    </script>
+    {{--无刷新分页--}}
+    <script>
+
     </script>
 @endsection

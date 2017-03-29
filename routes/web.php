@@ -35,12 +35,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('show', 'UserController@show');
             //添加用户
             Route::any('add', 'UserController@add');
-            //添加用户验证
+            //添加用户验证，修改用户验证也用这个
             Route::get('addCheck', 'UserController@addCheck');
             //添加用户时用户名重复检测
             Route::get('userCheck', 'UserController@userCheck');
             //删除用户
             Route::get('del/{id}', 'UserController@del');
+            //修改用户
+            Route::any('edit/{id}', 'UserController@edit');
         });
     });
 });

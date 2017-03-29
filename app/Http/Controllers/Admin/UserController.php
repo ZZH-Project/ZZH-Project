@@ -138,4 +138,19 @@ class UserController extends Controller
         Auser::where('id',$id)->delete();
         return redirect('admin/user/show');
     }
+    //用户修改
+    public function edit(Request $request,$id){
+        //判断是提交修改还是显示修改页面
+        if ($request->isMethod("post")) {
+            //获取修改的数据
+            $email = $request->input('email');
+            //修改数据
+            Auser::where('id',$id)->update(['email'=>$email]);
+            return redirect('admin/user/show');
+        } else if ($request->isMethod("get")) {
+            //获取修改用户的数据
+            $data = Auser::where('id',$id)->get()->toArray()[0];
+            return view('admin.user.userEdit',["data"=>$data]);
+        }
+    }
 }

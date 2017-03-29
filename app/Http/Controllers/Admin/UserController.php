@@ -68,7 +68,7 @@ class UserController extends Controller
     //显示用户
     public function show() {
         $auser = new Auser();
-        $data = $auser->get()->toArray();
+        $data = $auser->paginate(2);
         return view('admin.user.userList', ['data' => $data]);
     }
     //添加用户表单页

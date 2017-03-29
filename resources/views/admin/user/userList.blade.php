@@ -37,6 +37,11 @@
             </td>
         </tr>
         @endforeach
+        <tr>
+            <td colspan="5" style="border-left: 1px solid #e5e5e5;">
+                {{$data->links('public.zj_page')}}
+            </td>
+        </tr>
     </table>
     </div>
 @endsection

@@ -62,7 +62,7 @@
             var fv = $("#uf").val();
             $.ajax({
                 url:"{{url('admin/user/find')}}",
-                type:"post",
+                type:"get",
                 data:fv,
                 dataType:"json",
                 success:function(data){

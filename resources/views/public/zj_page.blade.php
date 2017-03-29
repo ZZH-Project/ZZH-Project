@@ -40,4 +40,8 @@
         <li class="disabled"><span>&raquo;</span></li>
     </ul>
 @endif
+<div style="width: 300px;background: #f5f5f5;border-radius: 10px;margin: 0 auto;padding: 10px;border: 1px dashed #3399ff;">
+    <span>共 <span style="color: #3399ff;">{{$paginator->currentPage()}}</span> / <span style="color: #ff7000;">{{$paginator->lastPage()}}</span> 页</span><br>
+    <span>有 <span style="color: #3399ff;">{{$paginator->count()}}</span> / <span style="color: #ff7000;">{{$paginator->total()}}</span> 条数据</span>
+</div>
 

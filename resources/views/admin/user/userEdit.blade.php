@@ -28,7 +28,7 @@
         <div id="ed" style="text-align: center;font-size: 16px;margin-top: 15px;">邮箱</div>
         <input id="et" class="myinput-main" type="text" name="email" placeholder="请输入邮箱" value="{{$data['email']}}">
 
-        <input class="mysubmit-box1" type="submit" value="添加">
+        <input class="mysubmit-box1" type="submit" value="修改">
     </form>
 @endsection
 @section('script')

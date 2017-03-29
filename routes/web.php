@@ -59,8 +59,21 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('register','UserController@register');
         //忘记密码
         Route::get('forget','UserController@forgetPass');
-        //注册处理
-        Route::any('check','UserController@check');
+        //注册发送信息
+        Route::any('regsendSMS','UserController@regsendSMS');
+        //注册验证
+        Route::any('regcheck','UserController@regcheck');
+        //登录验证
+        Route::any('logincheck','UserController@logincheck');
+        //忘记密码发送信息
+        Route::get('sendSMS','UserController@sendSMS');
+        //忘记密码-》重置密码
+        Route::any('resetpass','UserController@resetpass');
+        //==需要登录的路由,中间件分组==
+        Route::group(['middleware'=>'webLogin'],function(){
+
+        });
+
     });
 });
 

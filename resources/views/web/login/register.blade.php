@@ -33,7 +33,7 @@
 		{{--@endif--}}
 		<div class="body">
 			<div class="login_logo"><img src="{{asset('images/web/login_logo.png')}}" /></div>
-			<form id="register" action="{{url('web/user/check')}}" method="post">
+			<form id="register" action="{{url('web/user/regcheck')}}" method="post">
 				{{csrf_field()}}
 			<div class="login_wrap">
 				<ul class="login_ul">
@@ -54,7 +54,8 @@
 					<li>
 						<img src="{{asset('images/web/icon_validate.png')}}" class="login_icon"  />
 						<input type="text" name="captcha" placeholder="请输入验证码" class="input_text" />
-						<img src="{{Captcha::src()}}" onclick="this.src=this.src+'?'+(new Date()).getTime()" class="validate_code"  />
+						<a id="send-code" href="#" class="validate_code">获取验证码</a>
+{{--						<img src="{{Captcha::src()}}" onclick="this.src=this.src+'?'+(new Date()).getTime()" class="validate_code"  />--}}
 						{{--<a href="#" class="validate_code">获取验证码</a>--}}
 					</li>
 {{--					@if(count($errors)>0)--}}
@@ -78,61 +79,152 @@
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
 	</body>
+	{{--手机注册--}}
 	<script>
-		$('#register').submit(function(){
-			$.ajax({
-			    url:"{{url('web/user/check')}}",//请求的路由
-			    type:'post',//请求的方式
-                data:$("#register").serialize(),//请求表单中的数据
-				datatype:"json",
-				//请求成功的方法
-				//data是ajax请求传递过来的return信息
-				success:function(data){
-					var res = data;
-					//将json字符串转为对象
-					res = JSON.parse(res);
-//					console.log(res);
-					if(res.a == 1){
-					    alert('用户名已存在！请重新输入！');
-					}else if(res.a == 2){
-					    alert('注册成功!');
-					}
-                    $("#error1").css({"display":"none"});
-                    $("#error2").css({"display":"none"});
-                    $("#error3").css({"display":"none"});
-				},
-				//请求失败的方法
-				error:function(msg){
-					//将返回错误的json字符串转换为对象
-                    var json = JSON.parse(msg.responseText);
-//                    console.log(json);
-					//如果username的错误不为空的话显示错误提示
-                    if(json.username != null){
-                        $("#error1").html(json.username);
-                        $("#error1").css({"display":"block"});
-					//如果username的错误为空的话隐藏错误提示
-                    } else if(json.username == null){
-                        $("#error1").css({"display":"none"});
+        //增加判断表示
+        var flag = true;
+        $("#send-code").click(function () {
+            if (flag == false) {
+                return;
+            }
+            //获取电话号码
+            var phone = $("input[name=username]").val();
+            //判断是否为空
+            if (!phone.match(/^1[3|4|5|7|8][0-9]{9}$/)) {
+                alert('手机号格式不正确');
+                return;
+            }
+            //将分支改为false防止再次触发点击事件
+            flag = false;
+            var num = 5;
+            //设置定时器并改变内容及CSS样式
+            var timer = setInterval(function () {
+                $("#send-code").html(num + 's后重新发送');
+                $("#send-code").css('color', '#E62842')
+                //当时间为零的时候将分支改为true可以再次点击并清除定时器并改变内容及CSS样式
+                if (num == 0) {
+                    flag = true;
+                    clearInterval(timer);
+                    $("#send-code").html('重新发送');
+                    $("#send-code").css('color', '#20A56E');
+                }
+                num--;
+            }, 1000);
+            $.ajax({
+                url:'{{url('web/user/regsendSMS')}}',
+                dataType:'json',
+                data:{phone:phone},
+                //ajax访问成功返回data数据
+                success:function (data) {
+                    if (data == null) {
+                        alert('服务器繁忙')
+                        return;
                     }
-                    //如果password的错误不为空的话显示错误提示
-                    if(json.password != null){
-                        $("#error2").html(json.password);
-                        $("#error2").css({"display":"block"});
-					//如果password的错误为空的话隐藏错误提示
-                    } else if(json.password == null){
-                        $("#error2").css({"display":"none"});
+                    if (data.status != 0) {
+                        alert(data.message);
+                        return;
                     }
-                    //如果captcha的错误不为空的话显示错误提示
-                    if(json.captcha != null){
-                        $("#error3").html(json.captcha);
-                        $("#error3").css({"display":"block"});
-					//如果captcha的错误为空的话隐藏错误提示
-                    } else if(json.captcha == null){
-                        $("#error3").css({"display":"none"});
+                    alert('发送验证码成功');
+                },
+                //ajax访问错误返回的错误方法
+                error:function (msg){
+                    if(msg != null){
+                        alert('发送失败,请确认您的号码');
                     }
-				}
-			});
-			return false;
-		});
+                }
+            })
+        });
+        //提交表单
+        $("#register").submit(function(){
+            //用ajax请求验证数据
+            $.ajax({
+                url:"{{url('web/user/regcheck')}}",//请求的路由
+                type:'post',//请求的类型
+                data:$("#register").serialize(),//序列化表单中的数据
+                datatype:'json',
+                //请求成功时的方法，data是请求返回的json字符串
+                success:function(data){
+
+//                    alert(1111);
+                    //将json字符串转换为对象
+                    $res = JSON.parse(data);
+                    //如果返回的信息为2说明用户名或者密码不正确
+                    if($res.a == 0){
+                        alert('注册成功!');
+                        //如果返回的信息为1说明用户名密码匹配成功
+                    }else if($res.e == 0){
+                        alert('验证码错误')
+                    }
+                },
+                //请求失败时的方法
+                //msg返回的错误信息
+                error:function(msg){
+                    //将返回错误的json字符串转换为对象
+//                        var json = JSON.parse(msg.responseText);
+                    console.log(msg);
+                }
+            });
+            return false;
+        });
 	</script>
+
+	{{--========================================================================================================================================--}}
+{{--验证码注册--}}
+	{{--<script>--}}
+		{{--$('#register').submit(function(){--}}
+			{{--$.ajax({--}}
+			    {{--url:"{{url('web/user/check')}}",//请求的路由--}}
+			    {{--type:'post',//请求的方式--}}
+                {{--data:$("#register").serialize(),//请求表单中的数据--}}
+				{{--datatype:"json",--}}
+				{{--//请求成功的方法--}}
+				{{--//data是ajax请求传递过来的return信息--}}
+				{{--success:function(data){--}}
+					{{--var res = data;--}}
+					{{--//将json字符串转为对象--}}
+					{{--res = JSON.parse(res);--}}
+{{--//					console.log(res);--}}
+					{{--if(res.a == 1){--}}
+					    {{--alert('用户名已存在！请重新输入！');--}}
+					{{--}else if(res.a == 2){--}}
+					    {{--alert('注册成功!');--}}
+					{{--}--}}
+                    {{--$("#error1").css({"display":"none"});--}}
+                    {{--$("#error2").css({"display":"none"});--}}
+                    {{--$("#error3").css({"display":"none"});--}}
+				{{--},--}}
+				{{--//请求失败的方法--}}
+				{{--error:function(msg){--}}
+					{{--//将返回错误的json字符串转换为对象--}}
+                    {{--var json = JSON.parse(msg.responseText);--}}
+{{--//                    console.log(json);--}}
+					{{--//如果username的错误不为空的话显示错误提示--}}
+                    {{--if(json.username != null){--}}
+                        {{--$("#error1").html(json.username);--}}
+                        {{--$("#error1").css({"display":"block"});--}}
+					{{--//如果username的错误为空的话隐藏错误提示--}}
+                    {{--} else if(json.username == null){--}}
+                        {{--$("#error1").css({"display":"none"});--}}
+                    {{--}--}}
+                    {{--//如果password的错误不为空的话显示错误提示--}}
+                    {{--if(json.password != null){--}}
+                        {{--$("#error2").html(json.password);--}}
+                        {{--$("#error2").css({"display":"block"});--}}
+					{{--//如果password的错误为空的话隐藏错误提示--}}
+                    {{--} else if(json.password == null){--}}
+                        {{--$("#error2").css({"display":"none"});--}}
+                    {{--}--}}
+                    {{--//如果captcha的错误不为空的话显示错误提示--}}
+                    {{--if(json.captcha != null){--}}
+                        {{--$("#error3").html(json.captcha);--}}
+                        {{--$("#error3").css({"display":"block"});--}}
+					{{--//如果captcha的错误为空的话隐藏错误提示--}}
+                    {{--} else if(json.captcha == null){--}}
+                        {{--$("#error3").css({"display":"none"});--}}
+                    {{--}--}}
+				{{--}--}}
+			{{--});--}}
+			{{--return false;--}}
+		{{--});--}}
+	{{--</script>--}}
 </html>

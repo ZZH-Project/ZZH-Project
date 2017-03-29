@@ -17,6 +17,8 @@ class CreateWusersTable extends Migration
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('deadline');
+            $table->string('captcha');
         });
     }
 

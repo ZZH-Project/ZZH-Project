@@ -50,7 +50,7 @@
 		</div><!--body-->
 		<script>
             //增加判断表示
-            var flag = true
+            var flag = true;
             $("#send-code").click(function () {
                 if (flag == false) {
                     return;
@@ -119,6 +119,7 @@
                         //如果返回的信息为2说明用户名或者密码不正确
                         if($res.a == 0){
                             alert('修改密码成功!');
+                            location.href = "{{url('web/user/login')}}";
                             //如果返回的信息为1说明用户名密码匹配成功
                         }else if($res.e == 0){
                             alert('验证码错误')

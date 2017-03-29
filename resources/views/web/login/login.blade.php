@@ -28,7 +28,7 @@
 				<ul class="login_ul">
 					<li>
 						<img src="{{asset('images/web/icon_phone.png')}}" class="login_icon" />
-						<input name="username" type="text" placeholder="请输入用户名" class="input_text" value="{{session('savewuser')['username']}}" />
+						<input name="username" type="text" placeholder="请输入手机号" class="input_text" value="{{session('savewuser')['username']}}" />
 					</li>
 					<div id="error1" class="error-alert"></div>
 					<li>

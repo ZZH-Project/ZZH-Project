@@ -70,11 +70,12 @@ class UserController extends Controller
         $phone = $request->username;
         $captcha = $request->captcha;
         $password = $request->password;
+        //如果手机号与验证码不匹配
         $res = Wuser::where('captcha',$captcha)
             ->where('username',$phone)
             ->get()->toArray();
 //        var_dump($res);
-        //如果没找到验证码不正确
+        //如果手机号与验证码不匹配
         if(!$res){
             return json_encode(['e'=> 0]);
         }
@@ -143,7 +144,7 @@ class UserController extends Controller
         $password = $request->password;
         $captcha = $request->captcha;
         $is_save = $request->is_save;
-        $session = session('savewuser');
+//        $session = session('savewuser');
 //        var_dump($session);
 //        var_dump($username,$password,$captcha,$is_save);die();
         //实例化前台用木模型对象
@@ -153,7 +154,9 @@ class UserController extends Controller
                 ->get()
                 ->toArray();
 //        var_dump($result);
+        //如果账号密码正确返回1
         if($result){
+            //如果多选框选中
             if($is_save == 1){
                 //将用户存进session中
                 session(
@@ -161,10 +164,12 @@ class UserController extends Controller
                                     'password'=>$password]],
                     ['weblogin' => 1]
                 );
+            //否则清除session
             }else{
                 $request->session()->forget('savewuser');
             }
             return json_encode(['a'=>1]);
+        //如果账号密码不正确返回2
         }else{
             return json_encode(['a'=>2]);
         }

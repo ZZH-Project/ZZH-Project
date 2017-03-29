@@ -39,7 +39,7 @@
 				<ul class="login_ul">
 					<li>
 						<img src="{{asset('images/web/icon_phone.png')}}" class="login_icon" />
-						<input type="text" name="username" placeholder="请输入用户名" class="input_text" />
+						<input type="text" name="username" placeholder="请输入手机号" class="input_text" />
 					</li>
 					{{--@if(count($errors)>0)--}}
 						<div id="error1" class="error-alert"></div>
@@ -151,6 +151,8 @@
                     //如果返回的信息为2说明用户名或者密码不正确
                     if($res.a == 0){
                         alert('注册成功!');
+						//跳转到登录页面
+                        location.href = "{{url('web/user/login')}}";
                         //如果返回的信息为1说明用户名密码匹配成功
                     }else if($res.e == 0){
                         alert('验证码错误')

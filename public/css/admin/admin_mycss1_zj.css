@@ -1,0 +1,160 @@
+html{
+    background:#e0e0e0;
+}
+/*         input输入框的样式          */
+
+.myinput-main {
+    width: 180px;
+    height: 45px;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 2px solid #3FB5DD;
+    border-radius: 10px;
+    background: #fafafa;
+    outline: none;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    transition: border 0.3s linear;
+}
+
+
+/*取消了input的小箭头*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.myinput-main:hover {
+    border: 2px dotted #8CD352;
+}
+
+.myinput-main:focus {
+    border: 2px dashed #ff6700;
+}
+
+
+/*         select输入框的样式          */
+
+.myselect-main {
+    margin: 10px auto;
+    font-size: 14px;
+    color: white;
+    background: #764D39;
+    border-radius: 5px;
+    padding: 5px 0px 5px 5px;
+    cursor: pointer;
+    display: block;
+    border: none;
+    outline: none;
+    transition: background 0.2s linear;
+}
+
+.myselect-main:hover {
+    background: #1E90FF;
+}
+
+.myselect-main>optgroup {
+    font-size: 14px;
+    color: black;
+    background: #AB5C24;
+}
+
+.myselect-main>option {
+    font-size: 14px;
+    color: #aa2116;
+    background: #E5BB81;
+}
+
+
+/*         submit提交按钮的样式          */
+
+/*圆形*/
+.mysubmit-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 16px;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 50px;
+    background: #ef4136;
+    margin: 10px auto;
+    outline: none;
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.mysubmit-circle:hover {
+    color: #464547;
+    background: #3DBAF8;
+    -webkit-transform: rotate(360deg);
+}
+
+/*半圆*/
+.mysubmit-moon {
+    width: 120px;
+    height: 50px;
+    background: #F3F3F3;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 0px 200px;
+    font-size: 16px;
+    color: black;
+    margin: 10px auto;
+    outline: none;
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.mysubmit-moon:hover {
+    background: black;
+    color: white;
+    border-radius: 200px 0px;
+}
+
+/*矩形1*/
+.mysubmit-box1{
+    width:120px;
+    height:50px;
+    font-size: 16px;
+    color:white;
+    border:2px solid rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    background: rgba(30, 30, 255, 0.8);
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s linear;
+}
+
+.mysubmit-box1:hover{
+    background: rgba(30, 30, 255, 0.5);
+}
+
+
+/*矩形2*/
+.mysubmit-box2{
+    width:120px;
+    height:50px;
+    font-size: 16px;
+    color:#72297E;
+    border:2px solid #72297E;
+    border-radius: 10px;
+    background: white;
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s linear;
+}
+
+.mysubmit-box2:hover{
+    color:white;
+    background: #72297E;
+}

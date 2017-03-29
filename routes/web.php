@@ -31,7 +31,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('index','IndexController@index');
         //用户组
         Route::group(['prefix' => 'user'], function () {
+            //用户显示
             Route::get('show', 'UserController@show');
+            //添加用户
+            Route::any('add', 'UserController@add');
+            //添加用户验证
+            Route::get('addCheck', 'UserController@addCheck');
+            //添加用户时用户名重复检测
+            Route::get('userCheck', 'UserController@userCheck');
+            //删除用户
+            Route::get('del/{id}', 'UserController@del');
         });
     });
 });

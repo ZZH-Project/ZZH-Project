@@ -1,11 +1,14 @@
 /*表格样式*/
 .tb{
     width: 100%;
-    border: 1px solid black;
+    border-top: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
 }
 .tb tr th{
     font-size: 22px;
     color: white;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
     background: #3399ff;
     padding: 5px;
     text-align: center;
@@ -13,6 +16,8 @@
 .tb tr td{
     font-size: 18px;
     word-wrap: break-word;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
     background: white;
     padding: 5px;
     text-align: center;
@@ -24,4 +29,43 @@
 }
 .active i:hover{
     transform: rotate(360deg) scale(1.2);
+}
+/*搜索样式*/
+/*         input输入框的样式          */
+
+.myinput-main {
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px 10px;
+    border: 2px solid #3FB5DD;
+    border-radius: 10px;
+    background: #fafafa;
+    outline: none;
+    transition: border 0.3s linear;
+}
+.myinput-main:hover {
+    border: 2px dotted #8CD352;
+}
+.myinput-main:focus {
+    border: 2px dashed #ff6700;
+}
+/*table头部排版*/
+.find{
+    height:30px;
+    line-height: 30px;
+    float: left;
+}
+.add{
+    font-size: 16px;
+    line-height: 30px;
+    float: right;
+    transition: all 0.3s linear;
+}
+.add:hover{
+    transform: rotate(360deg) scale(1.2);
+}
+.clear{
+    clear: both;
 }

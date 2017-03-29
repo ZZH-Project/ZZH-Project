@@ -65,6 +65,10 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('sendSMS','UserController@sendSMS');
         //忘记密码-》重置密码
         Route::any('resetpass','UserController@resetpass');
+        //==需要登录的路由,中间件分组==
+        Route::group(['middleware'=>'webLogin'],function(){
+
+        });
 
     });
 });

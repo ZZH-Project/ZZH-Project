@@ -140,17 +140,30 @@ class UserController extends Controller
         //验证数据
         $this->validate($request,$roles,$msg);
         $username = $request->username;
-        $password = md5($request->password);
+        $password = $request->password;
         $captcha = $request->captcha;
-//        var_dump($username,$password,$captcha);
+        $is_save = $request->is_save;
+        $session = session('savewuser');
+//        var_dump($session);
+//        var_dump($username,$password,$captcha,$is_save);die();
         //实例化前台用木模型对象
         $wuser = new Wuser();
         $result = $wuser::where('username',$username)
-                ->where('password',$password)
+                ->where('password',md5($password))
                 ->get()
                 ->toArray();
 //        var_dump($result);
         if($result){
+            if($is_save == 1){
+                //将用户存进session中
+                session(
+                    ['savewuser' =>['username'=>$username,
+                                    'password'=>$password]],
+                    ['weblogin' => 1]
+                );
+            }else{
+                $request->session()->forget('savewuser');
+            }
             return json_encode(['a'=>1]);
         }else{
             return json_encode(['a'=>2]);

@@ -29,7 +29,7 @@
                 <td>无</td>
                 <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
                 <td>
-                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}">
+                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}/{{$fv}}">
                         <i class="fa fa-user-secret" title="修改信息"></i>
                     </a>
                     <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}">

@@ -11,4 +11,22 @@ li{
 }
 a{
 	text-decoration: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0)
+}
+a:hover{
+	text-decoration: none;
+}
+img{
+	border: none;
+	vertical-align:initial;
+}
+.body{
+	width: 640px;
+	margin: 0 auto;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
 }

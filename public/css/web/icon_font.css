@@ -1,0 +1,24 @@
+.icon {
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+.icon_comment_good{
+	width: 1.7em;
+	height: 1.7em;
+}
+.icon_back{
+	width: 1.5em;
+	height: 1.5em;
+	color: #4b4b4b;
+}
+.icon_add_ask{
+	width: 1.8em;
+	height: 1.8em;
+	color: #ffffff;
+}
+.icon_menu_down{
+	width: 2.3em;
+	height: 2.3em;
+	color: #676767;
+}

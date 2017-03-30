@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //修改用户
             Route::any('edit/{id}/{page}/{fv?}', 'UserController@edit');
         });
+        //权限组
+        Route::group(['prefix' => 'permission'], function () {
+
+        });
         //评论组
         Route::group(['prefix'=>'comment'],function (){
              //分类显示
@@ -55,7 +59,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //添加问答分类数据验证
             Route::get('commentCheck','CommentController@check');
         });
-
     });
 });
 

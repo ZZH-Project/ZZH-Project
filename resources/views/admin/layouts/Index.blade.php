@@ -217,6 +217,19 @@
         </li>
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-unlock-alt"></i>
+            <span>权限管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{url('admin/permission/show')}}"><i class="fa fa-circle-o"></i> 权限列表</a></li>
+            <li><a href="{{url('admin/permission/add')}}"><i class="fa fa-circle-o"></i> 添加权限</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>品牌管理</span>
             <span class="pull-right-container">

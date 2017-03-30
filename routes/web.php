@@ -46,6 +46,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //修改用户
             Route::any('edit/{id}/{page}', 'UserController@edit');
         });
+        //评论组
+        Route::group(['prefix'=>'comment'],function (){
+        //评论显示
+        Route::get('show','CommentController@show');
+        });
+
     });
 });
 
@@ -71,7 +77,6 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::any('resetpass','UserController@resetpass');
         //==需要登录的路由,中间件分组==
         Route::group(['middleware'=>'webLogin'],function(){
-
         });
 
     });

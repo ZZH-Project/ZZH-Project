@@ -28,12 +28,12 @@
 				<ul class="login_ul">
 					<li>
 						<img src="{{asset('images/web/icon_phone.png')}}" class="login_icon" />
-						<input name="username" type="text" placeholder="请输入手机号" class="input_text" value="{{session('savewuser')['username']}}" />
+						<input name="username" type="text" placeholder="请输入手机号" class="input_text" value="{{Cache::get('savewuser')['username']}}" />
 					</li>
 					<div id="error1" class="error-alert"></div>
 					<li>
 						<img src="{{asset('images/web/icon_password.png')}}" class="login_icon" />
-						<input name="password" type="password" placeholder="请输入密码" class="input_text" value="{{session('savewuser')['password']}}"/>
+						<input name="password" type="password" placeholder="请输入密码" class="input_text" value="{{Cache::get('savewuser')['password']}}"/>
 					</li>
 					<div id="error2" class="error-alert"></div>
 					<li>
@@ -44,9 +44,9 @@
 					<div id="error3" class="error-alert"></div>
 					<li class="special login_tip">
 						{{--session中存有用户信息显示勾--}}
-						@if(!empty(session('savewuser')))<div class="checkbox_bar checkbox_bar_on">@else<div class="checkbox_bar">@endif
+						@if(!empty(Cache::get('savewuser')))<div class="checkbox_bar checkbox_bar_on">@else<div class="checkbox_bar">@endif
 						{{--session中存有用户信息默认选中--}}
-						@if(!empty(session('savewuser')))
+						@if(!empty(Cache::get('savewuser')))
 						<input name="is_save" type="checkbox" class="checkbox" id="checkbox" value="1" checked/><label for="checkbox">记住密码</label>
 						@else
 						<input name="is_save" type="checkbox" class="checkbox" id="checkbox" value="1" /><label for="checkbox">记住密码</label>

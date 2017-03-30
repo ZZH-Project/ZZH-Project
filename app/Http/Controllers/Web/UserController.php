@@ -7,6 +7,7 @@ use App\Models\Wuser;
 use App\Tool\SMS\SendTemplateSMS;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -144,8 +145,10 @@ class UserController extends Controller
         $password = $request->password;
         $captcha = $request->captcha;
         $is_save = $request->is_save;
-//        $session = session('savewuser');
-//        var_dump($session);
+        $session = session('weblogin');
+        $Cache = Cache::get('username');
+//        var_dump($Cache);die;
+        var_dump($session);
 //        var_dump($username,$password,$captcha,$is_save);die();
         //实例化前台用木模型对象
         $wuser = new Wuser();
@@ -158,15 +161,13 @@ class UserController extends Controller
         if($result){
             //如果多选框选中
             if($is_save == 1){
-                //将用户存进session中
-                session(
-                    ['savewuser' =>['username'=>$username,
-                                    'password'=>$password]],
-                    ['weblogin' => 1]
-                );
-            //否则清除session
+                //将用户存进缓存中
+                Cache::forever('savewuser',['username'=>$username,'password'=>$password]);
+                session(['weblogin' => 1]);
+            //否则清除缓存
             }else{
-                $request->session()->forget('savewuser');
+                Cache::forget('savewuser');
+                session(['weblogin' => 1]);
             }
             return json_encode(['a'=>1]);
         //如果账号密码不正确返回2

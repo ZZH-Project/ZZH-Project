@@ -48,8 +48,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //评论组
         Route::group(['prefix'=>'comment'],function (){
-        //评论显示
-        Route::get('show','CommentController@show');
+             //分类显示
+            Route::get('show','CommentController@show');
+            //添加分类
+            Route::get('add','CommentController@add');
+            //添加问答分类数据验证
+            Route::get('commentCheck','CommentController@check');
         });
 
     });

@@ -31,7 +31,7 @@
             @endforeach
             <tr>
                 <td colspan="5" style="border-left: 1px solid #e5e5e5;">
-{{--                    {{$data->links('public.zj_page')}}--}}
+                    {{$qalist->links('public.zj_page')}}
                 </td>
             </tr>
         </table>
@@ -68,6 +68,21 @@
     </script>
     {{--无刷新分页--}}
     <script>
-
+        $(".pagination a").click(function(){
+            $.ajax({
+                url:"{{url('admin/comment/show?$page')}}",
+                type:"get",
+                data:{},
+                dataType:"json",
+                success:function(data){
+                    console.log(data);
+                    alert(1111);
+                },
+                error:function (msg) {
+                    console.log(JSON.parse(msg));
+                    alert(2222);
+                }
+            });
+        });
     </script>
 @endsection

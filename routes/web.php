@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //添加分类
             Route::get('add','CommentController@add');
             //添加问答分类数据验证
-            Route::get('commentCheck','CommentController@check');
+            Route::any('commentCheck','CommentController@check');
         });
     });
 });

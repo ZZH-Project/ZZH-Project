@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //修改用户
             Route::any('edit/{id}/{page}/{fv?}', 'UserController@edit');
         });
+        //权限组
+        Route::group(['prefix' => 'permission'], function () {
+
+        });
     });
 });
 

@@ -48,7 +48,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //权限组
         Route::group(['prefix' => 'permission'], function () {
-
+            //显示权限
+            Route::get('show', 'PermissionController@show');
+            //添加权限
+            Route::any('add', 'PermissionController@add');
         });
         //评论组
         Route::group(['prefix'=>'comment'],function (){

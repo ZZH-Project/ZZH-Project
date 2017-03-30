@@ -9,7 +9,7 @@
     <tr class="trd">
         <td style="border-left: 1px solid #e5e5e5;">{{$v['id']}}</td>
         <td>{{$v['username']}}</td>
-        <td>{{$v['role'] != null ? $v['role'] : '无'}}</td>
+        <td>无</td>
         <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
         <td>
             <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}">

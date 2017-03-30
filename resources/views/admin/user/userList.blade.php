@@ -9,7 +9,8 @@
     <div style="background: white;padding: 0 10px 25px 10px;">
         <h3 style="padding-top: 20px;color: #3399ff;">用户列表</h3>
         <div style="padding:10px 0;">
-            <div class="find">用户搜索：</div><input id="uf" class="myinput-main" type="text">
+            <div class="find">用户搜索：</div><input id="uf" class="myinput-main" type="text" value="{{$fv}}">
+            <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
             <a class="add" href="{{url('admin/user/add')}}"><i class="fa fa-user-plus" title="添加用户"></i></a>
             <div class="clear"></div>
         </div>
@@ -39,7 +40,7 @@
             @endforeach
             <tr>
                 <td colspan="5" style="border-left: 1px solid #e5e5e5;">
-                    {{$data->links('public.zj_page')}}
+                    {{$data->appends(['fv' => $fv])->links('public.zj_page')}}
                 </td>
             </tr>
         </table>
@@ -60,10 +61,11 @@
         $("#uf").keyup(function () {
             //获取输入的值
             var fv = $("#uf").val();
+            var token = $(".token").val();
             $.ajax({
                 url:"{{url('admin/user/find')}}",
-                type:"get",
-                data:{"fv":fv},
+                type:"post",
+                data:{"fv":fv,"_token":token},
                 dataType:"string",
                 success:function(data){},
                 error:function (msg) {

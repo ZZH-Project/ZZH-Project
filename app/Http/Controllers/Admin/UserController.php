@@ -69,14 +69,23 @@ class UserController extends Controller
     public function show() {
         $auser = new Auser();
         $data = $auser->paginate(2);
-        return view("admin.user.userList", ['data' => $data]);
+        $fv = '';
+        return view("admin.user.userList", ['data' => $data, 'fv' => $fv]);
     }
     //搜索用户
     public function find(Request $request){
-        //获取传递的值
-        $fv = $_GET['fv'];
-        $data = Auser::where('username','like','%'.$fv.'%')->paginate(2);
-        return response()->view('admin.user.miniUserTable', ['data' => $data,'fv' => $fv]);
+        if ($request->isMethod("post")) {
+            //获取传递的值
+            $fv = $_POST['fv'];
+            $data = Auser::where('username','like','%'.$fv.'%')->paginate(2);
+            return response()->view('admin.user.miniUserTable', ['data' => $data,'fv' => $fv]);
+        } elseif ($request->isMethod("get")) {
+            //获取传递的值
+            $fv = $_GET['fv'];
+            $page = $_GET['page'];
+            $data = Auser::where('username','like','%'.$fv.'%')->paginate(2);
+            return view("admin.user.userList", ['data' => $data, 'fv' => $fv, 'page' => $page]);
+        }
     }
     //添加用户表单页
     public function add(Request $request) {

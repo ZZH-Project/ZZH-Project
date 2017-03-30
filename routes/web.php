@@ -48,7 +48,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //权限组
         Route::group(['prefix' => 'permission'], function () {
-
+            //显示权限
+            Route::get('show', 'PermissionController@show');
+            //添加权限
+            Route::any('add', 'PermissionController@add');
         });
         //评论组
         Route::group(['prefix'=>'comment'],function (){
@@ -57,7 +60,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //添加分类
             Route::get('add','CommentController@add');
             //添加问答分类数据验证
-            Route::get('commentCheck','CommentController@check');
+            Route::any('commentCheck','CommentController@check');
         });
     });
 });

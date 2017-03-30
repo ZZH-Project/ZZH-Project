@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //用户显示
             Route::get('show', 'UserController@show');
             //用户搜索
-            Route::get('find', 'UserController@find');
+            Route::any('find', 'UserController@find');
             //添加用户
             Route::any('add', 'UserController@add');
             //添加用户验证，修改用户验证也用这个
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //删除用户
             Route::get('del/{id}', 'UserController@del');
             //修改用户
-            Route::any('edit/{id}/{page}', 'UserController@edit');
+            Route::any('edit/{id}/{page}/{fv?}', 'UserController@edit');
         });
         //评论组
         Route::group(['prefix'=>'comment'],function (){

@@ -68,15 +68,24 @@ class UserController extends Controller
     //显示用户
     public function show() {
         $auser = new Auser();
-        $data = $auser->paginate(2);
-        return view("admin.user.userList", ['data' => $data]);
+        $data = $auser->paginate(5);
+        $fv = '';
+        return view("admin.user.userList", ['data' => $data, 'fv' => $fv]);
     }
     //搜索用户
     public function find(Request $request){
-        //获取传递的值
-        $fv = $_GET['fv'];
-        $data = Auser::where('username','like','%'.$fv.'%')->paginate(2);
-        return response()->view('admin.user.miniUserTable', ['data' => $data,'fv' => $fv]);
+        if ($request->isMethod("post")) {
+            //获取传递的值
+            $fv = $_POST['fv'];
+            $data = Auser::where('username','like','%'.$fv.'%')->paginate(5);
+            return response()->view('admin.user.miniUserTable', ['data' => $data,'fv' => $fv]);
+        } elseif ($request->isMethod("get")) {
+            //获取传递的值
+            $fv = $_GET['fv'];
+            $page = $_GET['page'];
+            $data = Auser::where('username','like','%'.$fv.'%')->paginate(5);
+            return view("admin.user.userList", ['data' => $data, 'fv' => $fv, 'page' => $page]);
+        }
     }
     //添加用户表单页
     public function add(Request $request) {
@@ -146,18 +155,18 @@ class UserController extends Controller
         return redirect("admin/user/show");
     }
     //用户修改
-    public function edit(Request $request,$id,$page){
+    public function edit(Request $request,$id,$page,$fv = ''){
         //判断是提交修改还是显示修改页面
         if ($request->isMethod("post")) {
             //获取修改的数据
             $email = $request->input('email');
             //修改数据
             Auser::where('id',$id)->update(['email'=>$email]);
-            return redirect("admin/user/show?page=$page");
+            return redirect("admin/user/find?fv=$fv&page=$page");
         } else if ($request->isMethod("get")) {
             //获取修改用户的数据
             $data = Auser::where('id',$id)->get()->toArray()[0];
-            return view('admin.user.userEdit',["data"=>$data,"page"=>$page]);
+            return view('admin.user.userEdit',["data"=>$data,"page"=>$page,'fv' => $fv]);
         }
     }
 }

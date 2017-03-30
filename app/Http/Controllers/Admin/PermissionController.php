@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\PermissionRole;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +12,8 @@ class PermissionController extends Controller
     public function show() {
         //获取数据
         $fv = '';
-        $data = PermissionRole::get()->toArray();
+        //查询所有权限
+        $data = Permission::get()->toArray();
         return view('admin.permission.permissionList', ['data' => $data, 'fv' => $fv]);
     }
     //添加权限

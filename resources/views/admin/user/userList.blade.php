@@ -55,7 +55,7 @@
             $(this).find('td').css({"background":"white"});
         });
     </script>
-    {{--用户搜索--}}
+    {{--用户无刷新搜索--}}
     <script>
         $("#uf").keyup(function () {
             //获取输入的值
@@ -76,6 +76,10 @@
     </script>
     {{--无刷新分页--}}
     <script>
-
+        /*$(".up").click(function () {
+            var page = $(this).html();
+            console.log(page);
+            return false;
+        });*/
     </script>
 @endsection

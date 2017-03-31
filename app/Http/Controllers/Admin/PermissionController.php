@@ -9,13 +9,26 @@ use App\Http\Controllers\Controller;
 class PermissionController extends Controller
 {
     //显示权限
-    public function show() {
-        //获取数据
-        $fv = '';
-        //查询所有权限
-        $data = Permission::get();
-        $data = (object)getTree($data);
-        return view('admin.permission.permissionList', ['data' => $data, 'fv' => $fv]);
+    public function show(Request $request,$fv = '') {
+        if ($request->isMethod('get')) {
+            //查询所有权限
+            $data = Permission::get();
+            $data = (object)getTree($data);
+            //查询顶级权限
+            $tdata = Permission::where('parent_id',0)->get();
+            return view('admin.permission.permissionList', ['data' => $data, 'fv' => $fv, 'tdata' => $tdata]);
+        } elseif ($request->isMethod('post')) {
+            if ($fv == 0) {
+                //查询所有权限
+                $data = Permission::get();
+                $data = (object)getTree($data);
+            } else {
+                //查询所有权限
+                $data = Permission::where('parent_id',$fv)->orWhere('id',$fv)->get();
+                $data = (object)getTree($data);
+            }
+            return response()->view('admin.permission.miniPermissionTable', ['data' => $data, 'fv' => $fv]);
+        }
     }
     //添加权限
     public function add(Request $request) {

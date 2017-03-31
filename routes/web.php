@@ -49,7 +49,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         //权限组
         Route::group(['prefix' => 'permission'], function () {
             //显示权限
-            Route::get('show', 'PermissionController@show');
+            Route::any('show/{fv?}', 'PermissionController@show');
             //添加权限
             Route::any('add', 'PermissionController@add');
             //修改权限

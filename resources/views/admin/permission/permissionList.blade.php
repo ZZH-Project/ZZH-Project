@@ -4,6 +4,7 @@
 @section('title-second','权限列表')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/admin/admin_userList_zj.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin/admin_mycss1_zj.css')}}">
     <style>
         .tb tr th{
             text-align: left;
@@ -17,7 +18,13 @@
     <div style="background: white;padding: 0 10px 25px 10px;">
         <h3 style="padding-top: 20px;color: #3399ff;">权限列表</h3>
         <div style="padding:10px 0;">
-            <div class="find">权限搜索：</div><input id="uf" class="myinput-main" type="text" value="{{$fv}}">
+            <div class="find">权限搜索：</div>
+            <select name="uf" class="myselect-main" id="uf" style="display: inline-block;margin: 0;">
+                <option value="0">顶级权限</option>
+                @foreach($tdata as $v)
+                    <option value="{{$v->id}}">{{$v->display_name}}</option>
+                @endforeach
+            </select>
             <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
             <a class="add" href="{{url('admin/permission/add')}}"><i class="fa fa-plus" title="添加权限"></i></a>
             <div class="clear"></div>
@@ -112,12 +119,12 @@
     </script>
     {{--权限无刷新搜索--}}
     <script>
-        $("#uf").keyup(function () {
+        $("#uf").change(function () {
             //获取输入的值
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/user/find')}}",
+                url:"{{url('admin/permission/show')}}/"+fv,
                 type:"post",
                 data:{"fv":fv,"_token":token},
                 dataType:"string",

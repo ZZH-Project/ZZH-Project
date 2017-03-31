@@ -26,3 +26,12 @@
         {{$data->appends(['fv' => $fv])->links('public.zj_page')}}
     </td>
 </tr>
+{{--实现隔行换色和鼠标移动变色--}}
+<script>
+    $(".trd").mouseover(function () {
+        $(this).find('td').css({"background":"#e5e5e5"});
+    });
+    $(".trd").mouseout(function () {
+        $(this).find('td').css({"background":"white"});
+    });
+</script>

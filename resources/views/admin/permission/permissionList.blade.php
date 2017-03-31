@@ -64,7 +64,7 @@
                         <td style="color: green;text-align: center;">是</td>
                     @endif
                     <td style="text-align: center">
-                        <a class="active" href="{{url('admin/permission/edit').'/'.$v['id']}}/{{$fv}}">
+                        <a class="active" href="{{url('admin/permission/edit').'/'.$v['id']}}">
                             <i class="fa fa-wrench" title="修改权限"></i>
                         </a>
                         <a class="active" href="{{url('admin/permission/del').'/'.$v['id']}}">

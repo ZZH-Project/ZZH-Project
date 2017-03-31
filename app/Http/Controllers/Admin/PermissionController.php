@@ -31,8 +31,26 @@ class PermissionController extends Controller
         }
     }
     //修改权限
-    public function edit(Request $request) {
-
+    public function edit(Request $request,$id) {
+        if ($request->isMethod('get')) {
+            //查询顶级权限
+            $data = Permission::where('parent_id',0)->get();
+            $pdata = Permission::where('id',$id)->get()[0];
+            return view('admin.permission.permissionEdit', ['data' => $data,'pdata' => $pdata]);
+        } elseif ($request->isMethod('post')) {
+            $name = $request->input('name');
+            $display_name = $request->input('display_name');
+            $description = $request->input('description');
+            $parent_id = $request->input('parent_id');
+            $result = Permission::where('id',$id)
+                ->update([
+                    'name' => $name,
+                    'display_name' => $display_name,
+                    'description' => $description,
+                    'parent_id' => $parent_id
+                ]);
+            return redirect('admin/permission/show');
+        }
     }
     //不为空验证
     public function check(Request $request) {
@@ -50,7 +68,7 @@ class PermissionController extends Controller
         $this->validate($request,$roles,$msg);
     }
     //重名验证
-    public function nameCheck(Request $request) {
+    public function nameCheck(Request $request,$id = 0) {
         //验证规则
         $roles = [
             'name' => 'required',
@@ -61,14 +79,42 @@ class PermissionController extends Controller
         ];
         //进行验证
         $this->validate($request,$roles,$msg);
-        //数据库验证
-        $name = $_GET['name'];
-        $query = Permission::where('name',$name)->get()->toArray();
-        //判断是否匹配到
-        if ($query == null) {
-            return json_encode(['a' => 1]);
-        } elseif ($query != null) {
-            return json_encode(['a' => 2]);
+        if ($id == 0) {
+            //数据库验证
+            $name = $_GET['name'];
+            if ($name != '#') {
+                $query = Permission::where('name',$name)->get()->toArray();
+            } else {
+                $query = '';
+            }
+            //判断是否匹配到
+            if ($query == null) {
+                return json_encode(['a' => 1]);
+            } elseif ($query != null) {
+                return json_encode(['a' => 2]);
+            }
+        } else {
+            //查询当前id的路由名称
+            $rname = Permission::where('id',$id)->get()[0];
+            $rname = $rname->name;
+            //数据库验证
+            $name = $_GET['name'];
+            //判断是否修改路由
+            if ($rname == $name) {
+                $query = '';
+            } else {
+                if ($name != '#') {
+                    $query = Permission::where('name',$name)->get()->toArray();
+                } else {
+                    $query = '';
+                }
+            }
+            //判断是否匹配到
+            if ($query == null) {
+                return json_encode(['a' => 1]);
+            } elseif ($query != null) {
+                return json_encode(['a' => 2]);
+            }
         }
     }
 }

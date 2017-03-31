@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //验证不为空
             Route::get('check', 'PermissionController@check');
             //路由重名验证
-            Route::get('nameCheck', 'PermissionController@nameCheck');
+            Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
         });
         //评论组
         Route::group(['prefix'=>'comment'],function (){

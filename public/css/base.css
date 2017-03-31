@@ -20,9 +20,8 @@ img{
 	border: none;
 	vertical-align:initial;
 }
-.body{
-	width: 640px;
-	margin: 0 auto;
+h1{
+	margin: 0;
 }
 .left{
 	float: left;

@@ -30,6 +30,10 @@ class PermissionController extends Controller
             }
         }
     }
+    //修改权限
+    public function edit(Request $request) {
+
+    }
     //不为空验证
     public function check(Request $request) {
         //验证规则

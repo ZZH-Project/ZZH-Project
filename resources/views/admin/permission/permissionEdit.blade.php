@@ -59,7 +59,7 @@
         var ut = false;
         var pt = false;
         var et = false;
-        //路由重复验证
+        //用户名重复验证
         $("#ut").blur(function () {
             $.ajax({
                 url:"{{url('admin/permission/nameCheck')}}",
@@ -212,4 +212,5 @@
         });
     </script>
 @endsection
+
 

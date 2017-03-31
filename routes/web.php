@@ -52,6 +52,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('show', 'PermissionController@show');
             //添加权限
             Route::any('add', 'PermissionController@add');
+            //修改权限
+            Route::any('edit/{id}', 'PermissionController@edit');
             //验证不为空
             Route::get('check', 'PermissionController@check');
             //路由重名验证

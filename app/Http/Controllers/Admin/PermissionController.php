@@ -52,6 +52,19 @@ class PermissionController extends Controller
             return redirect('admin/permission/show');
         }
     }
+    //删除权限
+    public function del(Request $request,$id) {
+        //判断当前id有没有子集
+        $data = Permission::where('parent_id',$id)->get()->toArray();
+        if ($data != null) {
+            //有子集
+            return 1;
+        } elseif ($data == null) {
+            //无子集，可以删除
+            Permission::where('id',$id)->delete();
+            return 2;
+        }
+    }
     //不为空验证
     public function check(Request $request) {
         //验证规则

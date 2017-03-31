@@ -44,10 +44,10 @@
                     <td style="color: green;text-align: center;">是</td>
                     @endif
                     <td style="text-align: center">
-                        <a class="active" href="{{url('admin/permission/edit').'/'.$v['id']}}">
+                        <a class="active" href="{{url('admin/permission/edit').'/'.$v->id}}">
                             <i class="fa fa-wrench" title="修改权限"></i>
                         </a>
-                        <a class="active" href="{{url('admin/permission/del').'/'.$v['id']}}">
+                        <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
                             <i class="fa fa-trash" title="删除权限"></i>
                         </a>
                     </td>
@@ -64,10 +64,10 @@
                         <td style="color: green;text-align: center;">是</td>
                     @endif
                     <td style="text-align: center">
-                        <a class="active" href="{{url('admin/permission/edit').'/'.$v['id']}}">
+                        <a class="active" href="{{url('admin/permission/edit').'/'.$v->id}}">
                             <i class="fa fa-wrench" title="修改权限"></i>
                         </a>
-                        <a class="active" href="{{url('admin/permission/del').'/'.$v['id']}}">
+                        <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
                             <i class="fa fa-trash" title="删除权限"></i>
                         </a>
                     </td>
@@ -78,6 +78,28 @@
     </div>
 @endsection
 @section('script')
+    {{--删除权限--}}
+    <script>
+        $(".del").click(function () {
+            //获取点击的id
+            var id = $(this).attr("name");
+            $.ajax({
+                url:"{{url('admin/permission/del')}}/"+id,
+                type:"get",
+                data:{"id":id},
+                dataType:"string",
+                success:function (data) {},
+                error:function (msg) {
+                    if (msg.responseText == 1) {
+                        $(".alt").html("该路由下面有子路由无法删除！").show().delay(500).fadeOut(500);
+                    } else if (msg.responseText == 2) {
+                        $(".del[name="+id+"]").parent('td').parent('tr').remove();
+                        $(".alt").html("路由删除成功！").show().delay(500).fadeOut(500);
+                    }
+                }
+            });
+        });
+    </script>
     {{--实现隔行换色和鼠标移动变色--}}
     <script>
         $(".ftrd").find('td').css({"background":"#faf094"});

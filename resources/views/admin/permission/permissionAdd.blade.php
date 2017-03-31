@@ -17,7 +17,7 @@
     </style>
 @endsection
 @section('main')
-    <form id="af" action="{{url('admin/user/add')}}" method="post">
+    <form id="af" action="{{url('admin/permission/add')}}" method="post">
         <h1 id="fh" style="text-align: center;padding-bottom: 5px;margin: 0 0 15px 0;color: #3399ff;border-bottom: 1px solid #e5e5e5">
             <span>添加权限</span>
             <a style="display: none;color:#ff890a;" href='{{url('admin/permission/show')}}' title='权限列表'>权限列表</a>
@@ -26,6 +26,9 @@
         <div style="text-align: center;font-size: 16px;">所属组权限</div>
         <select class="myselect-main" name="parent_id">
             <option value="0">顶级权限</option>
+            @foreach($data as $v)
+                <option value="{{$v->id}}">{{$v->display_name}}</option>
+            @endforeach
         </select>
 
         <div id="ud" style="text-align: center;font-size: 16px;">权限路由</div>
@@ -59,7 +62,7 @@
         //用户名重复验证
         $("#ut").blur(function () {
             $.ajax({
-                url:"{{url('admin/user/userCheck')}}",
+                url:"{{url('admin/permission/nameCheck')}}",
                 type:"get",
                 data:$("#ut").serialize(),
                 dataType:"json",
@@ -67,19 +70,19 @@
                     var data = data;
                     if (data.a == 1) {
                         ut = true;
-                        $("#ud").html("用户名可用！");
+                        $("#ud").html("路由可用！");
                         $("#ud").css({"color":"green"});
                     } else if (data.a == 2) {
                         ut = false;
-                        $("#ud").html("用户名已存在！");
+                        $("#ud").html("路由已存在！");
                         $("#ud").css({"color":"red"});
                     }
                 },
                 error:function(msg){
                     var json = JSON.parse(msg.responseText);
-                    if (json.username != null) {
+                    if (json.name != null) {
                         ut = false;
-                        $("#ud").html(json.username+'！');
+                        $("#ud").html(json.name+'！');
                         $("#ud").css({"color":"red"});
                     }
                 }
@@ -87,7 +90,7 @@
         });
         $("#ut").keyup(function () {
             $.ajax({
-                url:"{{url('admin/user/userCheck')}}",
+                url:"{{url('admin/permission/nameCheck')}}",
                 type:"get",
                 data:$("#ut").serialize(),
                 dataType:"json",
@@ -95,19 +98,19 @@
                     var data = data;
                     if (data.a == 1) {
                         ut = true;
-                        $("#ud").html("用户名可用！");
+                        $("#ud").html("路由可用！");
                         $("#ud").css({"color":"green"});
                     } else if (data.a == 2) {
                         ut = false;
-                        $("#ud").html("用户名已存在！");
+                        $("#ud").html("路由已存在！");
                         $("#ud").css({"color":"red"});
                     }
                 },
                 error:function(msg){
                     var json = JSON.parse(msg.responseText);
-                    if (json.username != null) {
+                    if (json.name != null) {
                         ut = false;
-                        $("#ud").html(json.username+'！');
+                        $("#ud").html(json.name+'！');
                         $("#ud").css({"color":"red"});
                     }
                 }
@@ -116,20 +119,20 @@
         //其他数据验证
         $("#pt").blur(function () {
             $.ajax({
-                url:"{{url('admin/user/addCheck')}}",
+                url:"{{url('admin/permission/check')}}",
                 type:"get",
                 data:$("#pt").serialize(),
                 dataType:"json",
                 success:function(data) {},
                 error:function(msg){
                     var json = JSON.parse(msg.responseText);
-                    if (json.password != null) {
+                    if (json.display_name != null) {
                         pt = false;
-                        $("#pd").html(json.password+'！');
+                        $("#pd").html(json.display_name+'！');
                         $("#pd").css({"color":"red"});
                     } else {
                         pt = true;
-                        $("#pd").html("密码格式可用！");
+                        $("#pd").html("路由名称格式可用！");
                         $("#pd").css({"color":"green"});
                     }
                 }
@@ -137,20 +140,20 @@
         });
         $("#pt").keyup(function () {
             $.ajax({
-                url:"{{url('admin/user/addCheck')}}",
+                url:"{{url('admin/permission/check')}}",
                 type:"get",
                 data:$("#pt").serialize(),
                 dataType:"json",
                 success:function(data) {},
                 error:function(msg){
                     var json = JSON.parse(msg.responseText);
-                    if (json.password != null) {
+                    if (json.display_name != null) {
                         pt = false;
-                        $("#pd").html(json.password+'！');
+                        $("#pd").html(json.display_name+'！');
                         $("#pd").css({"color":"red"});
                     } else {
                         pt = true;
-                        $("#pd").html("密码格式可用！");
+                        $("#pd").html("路由名称格式可用！");
                         $("#pd").css({"color":"green"});
                     }
                 }
@@ -158,20 +161,20 @@
         });
         $("#et").blur(function () {
             $.ajax({
-                url:"{{url('admin/user/addCheck')}}",
+                url:"{{url('admin/permission/check')}}",
                 type:"get",
                 data:$("#et").serialize(),
                 dataType:"json",
                 success:function(data) {},
                 error:function(msg){
                     var json = JSON.parse(msg.responseText);
-                    if (json.email != null) {
+                    if (json.description != null) {
                         et = false;
-                        $("#ed").html(json.email+'！');
+                        $("#ed").html(json.description+'！');
                         $("#ed").css({"color":"red"});
                     } else {
                         et = true;
-                        $("#ed").html("邮箱格式可用！");
+                        $("#ed").html("描述格式可用！");
                         $("#ed").css({"color":"green"});
                     }
                 }
@@ -179,20 +182,20 @@
         });
         $("#et").keyup(function () {
             $.ajax({
-                url:"{{url('admin/user/addCheck')}}",
+                url:"{{url('admin/permission/check')}}",
                 type:"get",
                 data:$("#et").serialize(),
                 dataType:"json",
                 success:function(data) {},
                 error:function(msg){
                     var json = JSON.parse(msg.responseText);
-                    if (json.email != null) {
+                    if (json.description != null) {
                         et = false;
-                        $("#ed").html(json.email+'！');
+                        $("#ed").html(json.description+'！');
                         $("#ed").css({"color":"red"});
                     } else {
                         et = true;
-                        $("#ed").html("邮箱格式可用！");
+                        $("#ed").html("描述格式可用！");
                         $("#ed").css({"color":"green"});
                     }
                 }

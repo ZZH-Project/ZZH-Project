@@ -32,15 +32,14 @@
                 <th style="border-right: 1px solid #3399ff;text-align: center;">权限操作</th>
             </tr>
             @foreach($data as $v)
-                @if($v['parent_id'] == 0)
                 <tr class="trd">
-                    <td style="border-left: 1px solid #e5e5e5;">{{$v['id']}}</td>
-                    <td>{{$v['display_name']}}</td>
-                    <td>{{$v['name']}}</td>
-                    <td>{{$v['description']}}</td>
-                    @if($v['is_menu'] == 0)
+                    <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
+                    <td>{{str_repeat('~', 3*$v->count).$v->display_name}}</td>
+                    <td>{{$v->name}}</td>
+                    <td>{{$v->description}}</td>
+                    @if($v->is_menu == 0)
                     <td style="color: red;text-align: center;">否</td>
-                    @elseif($v['is_menu'] ==1)
+                    @elseif($v->is_menu == 1)
                     <td style="color: green;text-align: center;">是</td>
                     @endif
                     <td style="text-align: center">
@@ -52,27 +51,6 @@
                         </a>
                     </td>
                 </tr>
-                @else
-                <tr class="trd">
-                    <td style="border-left: 1px solid #e5e5e5;">{{$v['id']}}</td>
-                    <td>---{{$v['display_name']}}</td>
-                    <td>{{$v['name']}}</td>
-                    <td>{{$v['description']}}</td>
-                    @if($v['is_menu'] == 0)
-                        <td style="color: red;text-align: center;">否</td>
-                    @elseif($v['is_menu'] ==1)
-                        <td style="color: green;text-align: center;">是</td>
-                    @endif
-                    <td style="text-align: center">
-                        <a class="active" href="{{url('admin/permission/edit').'/'.$v['id']}}/{{$fv}}">
-                            <i class="fa fa-wrench" title="修改权限"></i>
-                        </a>
-                        <a class="active" href="{{url('admin/permission/del').'/'.$v['id']}}">
-                            <i class="fa fa-trash" title="删除权限"></i>
-                        </a>
-                    </td>
-                </tr>
-                @endif
             @endforeach
         </table>
     </div>

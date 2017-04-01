@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //添加权限
             Route::any('add', 'PermissionController@add');
         });
-        //问答组
+        //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示
             Route::get('show','CommentController@show');
@@ -70,6 +70,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //删除问答分类
             Route::get('del/{id}','CommentController@del');
         });
+        //问答内容管理组
+        Route::group(['prefix'=>'qa'],function (){
+            Route::get('show','QaController@show');
+        });
+
     });
 });
 
@@ -93,19 +98,17 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('sendSMS','UserController@sendSMS');
         //忘记密码-》重置密码
         Route::any('resetpass','UserController@resetpass');
-        //==需要登录的路由,中间件分组==
-        Route::group(['middleware'=>'webLogin'],function(){
+    }); //==需要登录的路由,中间件分组==
+    //问答列表
+    Route::get('qa/index','QaController@qaList');
+    Route::group(['middleware'=>'webLogin'],function(){
+        //==============问答===================
+        Route::group(['prefix'=>'qa'],function(){
+            //问答提问
+            Route::get('ask','QaController@qaAsk');
+            //问答详情
+            Route::get('details','QaController@qaDetails');
         });
-
-    });
-    //==============问答===================
-    Route::group(['prefix'=>'qa'],function(){
-        //问答列表
-        Route::get('index','QaController@qaList');
-        //问答提问
-        Route::get('ask','QaController@qaAsk');
-        //问答详情
-        Route::get('details','QaController@qaDetails');
     });
 });
 

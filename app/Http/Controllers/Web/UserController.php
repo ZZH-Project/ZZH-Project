@@ -148,7 +148,7 @@ class UserController extends Controller
         $session = session('weblogin');
         $Cache = Cache::get('username');
 //        var_dump($Cache);die;
-        var_dump($session);
+//        var_dump($session);
 //        var_dump($username,$password,$captcha,$is_save);die();
         //实例化前台用木模型对象
         $wuser = new Wuser();

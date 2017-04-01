@@ -185,11 +185,32 @@ class UserController extends Controller
             $email = $request->input('email');
             //修改数据
             Auser::where('id',$id)->update(['email'=>$email]);
+            //修改权限
+            //现有的角色删除
+            AuserRole::where('auser_id',$id)->delete();
+            //循环添加权限
+            foreach ($request->get('role_id') as $value) {
+                AuserRole::insert(
+                    [
+                        'role_id' => $value,
+                        'auser_id' => $id
+                    ]
+                );
+            }
             return redirect("admin/user/find?fv=$fv&page=$page");
         } else if ($request->isMethod("get")) {
             //获取修改用户的数据
             $data = Auser::where('id',$id)->get()->toArray()[0];
-            return view('admin.user.userEdit',["data"=>$data,"page"=>$page,'fv' => $fv]);
+            //获取当前用户的角色的id
+            $role_id = AuserRole::select('role_id')->where('auser_id',$id)->get()->toArray();
+            //转为一维数组
+            $role_ids = array();
+            foreach ($role_id as $value) {
+                $role_ids[] = $value['role_id'];
+            }
+            //获取所有角色
+            $roles = Role::get()->toArray();
+            return view('admin.user.userEdit',["data"=>$data,"page"=>$page,'fv' => $fv,'roles' => $roles,'role_ids' => $role_ids]);
         }
     }
 }

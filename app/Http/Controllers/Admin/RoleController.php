@@ -30,11 +30,13 @@ class RoleController extends Controller
                 'description' => $request->get('description')
             ]);
             //给角色和权限中间表添加值
-            foreach ($request->get('permission_id') as $value) {
-                PermissionRole::insert([
-                    'permission_id' => $value,
-                    'role_id' => $id
-                ]);
+            if ($request->get('permission_id') != null) {
+                foreach ($request->get('permission_id') as $value) {
+                    PermissionRole::insert([
+                        'permission_id' => $value,
+                        'role_id' => $id
+                    ]);
+                }
             }
             return redirect('admin/role/show');
         }

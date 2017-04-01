@@ -108,6 +108,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::get('ask','QaController@qaAsk');
             //问答详情
             Route::get('details','QaController@qaDetails');
+            //验证问答内容
+            Route::any('check','QaController@check');
         });
     });
 });

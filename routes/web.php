@@ -46,12 +46,35 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //修改用户
             Route::any('edit/{id}/{page}/{fv?}', 'UserController@edit');
         });
+        //角色组
+        Route::group(['prefix' => 'role'], function () {
+            //显示角色
+            Route::any('show', 'RoleController@show');
+            //添加角色
+            Route::any('add', 'RoleController@add');
+            //修改角色
+            Route::any('edit/{id}', 'RoleController@edit');
+            //删除角色
+            Route::get('del/{id}', 'RoleController@del');
+            //验证不为空
+            Route::get('check', 'RoleController@check');
+            //角色重名验证
+            Route::get('nameCheck/{id?}', 'RoleController@nameCheck');
+        });
         //权限组
         Route::group(['prefix' => 'permission'], function () {
             //显示权限
-            Route::get('show', 'PermissionController@show');
+            Route::any('show', 'PermissionController@show');
             //添加权限
             Route::any('add', 'PermissionController@add');
+            //修改权限
+            Route::any('edit/{id}', 'PermissionController@edit');
+            //删除权限
+            Route::get('del/{id}', 'PermissionController@del');
+            //验证不为空
+            Route::get('check', 'PermissionController@check');
+            //路由重名验证
+            Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){

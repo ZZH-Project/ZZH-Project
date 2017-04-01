@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Auser;
+use App\Models\AuserRole;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -67,8 +70,11 @@ class UserController extends Controller
     }
     //显示用户
     public function show() {
-        $auser = new Auser();
-        $data = $auser->paginate(5);
+        $data = Auser::select(DB::Raw('ausers.*,GROUP_CONCAT(roles.display_name) as dname'))
+            ->leftjoin('auser_role','auser_role.auser_id','ausers.id')
+            ->leftjoin('roles','roles.id','auser_role.role_id')
+            ->groupBy('ausers.id')
+            ->paginate(5);
         $fv = '';
         return view("admin.user.userList", ['data' => $data, 'fv' => $fv]);
     }
@@ -77,36 +83,51 @@ class UserController extends Controller
         if ($request->isMethod("post")) {
             //获取传递的值
             $fv = $_POST['fv'];
-            $data = Auser::where('username','like','%'.$fv.'%')->paginate(5);
+            $data = Auser::select(DB::Raw('ausers.*,GROUP_CONCAT(roles.display_name) as dname'))
+                ->leftjoin('auser_role','auser_role.auser_id','ausers.id')
+                ->leftjoin('roles','roles.id','auser_role.role_id')
+                ->where('username','like','%'.$fv.'%')
+                ->groupBy('ausers.id')
+                ->paginate(5);
             return response()->view('admin.user.miniUserTable', ['data' => $data,'fv' => $fv]);
         } elseif ($request->isMethod("get")) {
             //获取传递的值
             $fv = $_GET['fv'];
             $page = $_GET['page'];
-            $data = Auser::where('username','like','%'.$fv.'%')->paginate(5);
+            $data = Auser::select(DB::Raw('ausers.*,GROUP_CONCAT(roles.display_name) as dname'))
+                ->leftjoin('auser_role','auser_role.auser_id','ausers.id')
+                ->leftjoin('roles','roles.id','auser_role.role_id')
+                ->where('username','like','%'.$fv.'%')
+                ->groupBy('ausers.id')
+                ->paginate(5);
             return view("admin.user.userList", ['data' => $data, 'fv' => $fv, 'page' => $page]);
         }
     }
     //添加用户表单页
     public function add(Request $request) {
         if ($request->isMethod("post")) {
-            //获取数据
-            $username = $request->input('username');
-            $password = md5($request->input('password'));
-            $email = $request->input('email');
-            //将数据库存入
-            $auser = new Auser();
-            $auser->username = $username;
-            $auser->password = $password;
-            $auser->email = $email;
-            $result = $auser->save();
-            if ($result) {
-                return redirect('admin/user/show');
-            } else {
-                return view('admin.user.userAdd');
+            //数据添加
+            $id = Auser::insertGetId(
+                [
+                    'username' => $request->get('username'),
+                    'email' => $request->get('email'),
+                    'password' => md5($request->get('password'))
+                ]
+            );
+            //添加角色
+            foreach ($request->role_id as $value) {
+                AuserRole::insert(
+                    [
+                        'role_id' => $value,
+                        'auser_id' => $id
+                    ]
+                );
             }
+            return redirect('admin/user/show');
         } else if($request->isMethod("get")) {
-            return view('admin.user.userAdd');
+            //查询所有角色
+            $roles = Role::get()->toArray();
+            return view('admin.user.userAdd', ['roles' => $roles]);
         }
     }
     //验证添加用户其他数据
@@ -152,6 +173,8 @@ class UserController extends Controller
     public function del($id){
         //删除数据
         Auser::where('id',$id)->delete();
+        //中间表的删除
+        AuserRole::where('auser_id',$id)->delete();
         return redirect("admin/user/show");
     }
     //用户修改
@@ -162,11 +185,32 @@ class UserController extends Controller
             $email = $request->input('email');
             //修改数据
             Auser::where('id',$id)->update(['email'=>$email]);
+            //修改权限
+            //现有的角色删除
+            AuserRole::where('auser_id',$id)->delete();
+            //循环添加权限
+            foreach ($request->get('role_id') as $value) {
+                AuserRole::insert(
+                    [
+                        'role_id' => $value,
+                        'auser_id' => $id
+                    ]
+                );
+            }
             return redirect("admin/user/find?fv=$fv&page=$page");
         } else if ($request->isMethod("get")) {
             //获取修改用户的数据
             $data = Auser::where('id',$id)->get()->toArray()[0];
-            return view('admin.user.userEdit',["data"=>$data,"page"=>$page,'fv' => $fv]);
+            //获取当前用户的角色的id
+            $role_id = AuserRole::select('role_id')->where('auser_id',$id)->get()->toArray();
+            //转为一维数组
+            $role_ids = array();
+            foreach ($role_id as $value) {
+                $role_ids[] = $value['role_id'];
+            }
+            //获取所有角色
+            $roles = Role::get()->toArray();
+            return view('admin.user.userEdit',["data"=>$data,"page"=>$page,'fv' => $fv,'roles' => $roles,'role_ids' => $role_ids]);
         }
     }
 }

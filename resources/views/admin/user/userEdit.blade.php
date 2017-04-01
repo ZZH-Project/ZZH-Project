@@ -28,6 +28,19 @@
         <div id="ed" style="text-align: center;font-size: 16px;margin-top: 15px;">邮箱</div>
         <input id="et" class="myinput-main" type="text" name="email" placeholder="请输入邮箱" value="{{$data['email']}}">
 
+        <div id="rd" style="text-align: center;font-size: 16px;">角色</div>
+        @foreach($roles as $v)
+            @if (in_array($v['id'],$role_ids))
+            <p style="margin:5px;font-size: 14px; color: #2ca02c;text-align: center;">
+                <lable><input style="cursor: pointer;" type="checkbox" name="role_id[]" value="{{$v['id']}}" checked>{{$v['display_name']}}</lable>
+            </p>
+            @else
+            <p style="margin:5px;font-size: 14px; color: #2ca02c;text-align: center;">
+                <lable><input style="cursor: pointer;" type="checkbox" name="role_id[]" value="{{$v['id']}}">{{$v['display_name']}}</lable>
+            </p>
+            @endif
+        @endforeach
+
         <input class="mysubmit-box1" type="submit" value="修改">
     </form>
 @endsection

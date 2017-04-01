@@ -53,14 +53,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //添加权限
             Route::any('add', 'PermissionController@add');
         });
-        //评论组
+        //问答组
         Route::group(['prefix'=>'comment'],function (){
-             //分类显示
+             //问答分类显示
             Route::get('show','CommentController@show');
-            //添加分类
+            //添加问答分类
             Route::get('add','CommentController@add');
             //添加问答分类数据验证
             Route::any('commentCheck','CommentController@check');
+            //问答分类搜索
+            Route::any('find','CommentController@find');
+            //修改问答分类
+            Route::any('edit/{id}/{cate_name}/{page}/{fv?}','CommentController@edit');
+            //修改问答分类验证
+            Route::any('commentEdit','CommentController@commentEdit');
+            //删除问答分类
+            Route::get('del/{id}','CommentController@del');
         });
     });
 });

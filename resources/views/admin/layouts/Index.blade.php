@@ -251,7 +251,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url('admin/comment/show')}}"><i class="fa fa-circle-o"></i> 分类列表</a></li>
-            <li><a href="##"><i class="fa fa-circle-o"></i> 添加分类</a></li>
+            <li><a href="{{url('admin/comment/add')}}"><i class="fa fa-circle-o"></i> 添加分类</a></li>
           </ul>
         </li>
         <li class="header">其他</li>

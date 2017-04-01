@@ -15,7 +15,7 @@ class CreateQaCateTable extends Migration
     {
         Schema::create('qa_cates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cate_name');
+            $table->string('cate_name')->unique();
             $table->integer('sort_id')->unique()->nullable();
         });
     }

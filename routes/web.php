@@ -98,5 +98,14 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         });
 
     });
+    //==============问答===================
+    Route::group(['prefix'=>'qa'],function(){
+        //问答列表
+        Route::get('index','QaController@qaList');
+        //问答提问
+        Route::get('ask','QaController@qaAsk');
+        //问答详情
+        Route::get('details','QaController@qaDetails');
+    });
 });
 

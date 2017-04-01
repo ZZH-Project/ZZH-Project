@@ -1,0 +1,90 @@
+/*----------公共属性----------*/
+.icon{
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+/*----------头部----------*/
+/*-页面返回-*/
+.icon_page_back{
+	width: 4em;
+	height: 4em;
+	color: #4b4b4b;
+}
+/*-菜单下拉-*/
+.icon_menu_down{
+	width: 2.3em;
+	height: 2.3em;
+	color: #676767;
+}
+/*-评论-*/
+.icon_comment{
+	width: 2.5em;
+	height: 2.5em;
+}
+/*-添加提问-*/
+.icon_add_ask{
+	width: 1.8em;
+	height: 1.8em;
+	color: #ffffff;
+}
+
+.icon_ask{
+	width: 2em;
+	height: 2em;
+	color: #ffffff;
+	vertical-align: -0.5em;
+}
+.icon_comment_h{
+	width: 2em;
+	height: 2em;
+	color: #3f3f3f;
+	vertical-align: -0.8em;
+}
+.icon_reply{
+	width: 2.7em;
+	height: 2.7em;
+}
+.icon_footer_back{
+	width: 4em;
+	height: 4em;
+	color: #353535;
+}
+.icon_footer_fav{
+	width: 4em;
+	height: 4em;
+}
+.icon_footer_good{
+	width: 4em;
+	height: 4em;
+}
+.icon_footer_share{
+	width: 3.6em;
+	height: 3.6em;
+	color: #4f4f4f;
+	margin-top: 3px;
+}
+.icon_share_weixin{
+	width: 5em;
+	height: 5em;
+}
+.icon_share_qq{
+	width: 5em;
+	height: 5em;
+}
+.icon_share_weibo{
+	width: 5em;
+	height: 5em;
+}
+.icon_share_qqweibo{
+	width: 5em;
+	height: 5em;
+}
+.icon_share_close{
+	width: 3.5em;
+	height: 3.5em;
+}
+.icon_pop_close{
+	width: 3em;
+	height: 3em;
+}

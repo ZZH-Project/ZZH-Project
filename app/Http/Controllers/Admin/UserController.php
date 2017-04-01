@@ -173,6 +173,8 @@ class UserController extends Controller
     public function del($id){
         //删除数据
         Auser::where('id',$id)->delete();
+        //中间表的删除
+        AuserRole::where('auser_id',$id)->delete();
         return redirect("admin/user/show");
     }
     //用户修改

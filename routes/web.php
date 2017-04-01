@@ -76,15 +76,28 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //路由重名验证
             Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
         });
-        //评论组
+        //问答分类组
         Route::group(['prefix'=>'comment'],function (){
-             //分类显示
+             //问答分类显示
             Route::get('show','CommentController@show');
-            //添加分类
+            //添加问答分类
             Route::get('add','CommentController@add');
             //添加问答分类数据验证
-            Route::get('commentCheck','CommentController@check');
+            Route::any('commentCheck','CommentController@check');
+            //问答分类搜索
+            Route::any('find','CommentController@find');
+            //修改问答分类
+            Route::any('edit/{id}/{cate_name}/{page}/{fv?}','CommentController@edit');
+            //修改问答分类验证
+            Route::any('commentEdit','CommentController@commentEdit');
+            //删除问答分类
+            Route::get('del/{id}','CommentController@del');
         });
+        //问答内容管理组
+        Route::group(['prefix'=>'qa'],function (){
+            Route::get('show','QaController@show');
+        });
+
     });
 });
 
@@ -108,10 +121,17 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('sendSMS','UserController@sendSMS');
         //忘记密码-》重置密码
         Route::any('resetpass','UserController@resetpass');
-        //==需要登录的路由,中间件分组==
-        Route::group(['middleware'=>'webLogin'],function(){
+    }); //==需要登录的路由,中间件分组==
+    //问答列表
+    Route::get('qa/index','QaController@qaList');
+    Route::group(['middleware'=>'webLogin'],function(){
+        //==============问答===================
+        Route::group(['prefix'=>'qa'],function(){
+            //问答提问
+            Route::get('ask','QaController@qaAsk');
+            //问答详情
+            Route::get('details','QaController@qaDetails');
         });
-
     });
 });
 

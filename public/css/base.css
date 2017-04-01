@@ -11,4 +11,21 @@ li{
 }
 a{
 	text-decoration: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0)
+}
+a:hover{
+	text-decoration: none;
+}
+img{
+	border: none;
+	vertical-align:initial;
+}
+h1{
+	margin: 0;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
 }

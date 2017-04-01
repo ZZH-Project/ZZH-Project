@@ -124,7 +124,7 @@
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/permission/show')}}/"+fv,
+                url:"{{url('admin/permission/show')}}",
                 type:"post",
                 data:{"fv":fv,"_token":token},
                 dataType:"string",

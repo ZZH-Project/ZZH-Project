@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 class PermissionController extends Controller
 {
     //显示权限
-    public function show(Request $request,$fv = '') {
+    public function show(Request $request) {
+        $fv = isset($_POST['fv']) ? $_POST['fv'] : '';
         if ($request->isMethod('get')) {
             //查询所有权限
             $data = Permission::get();

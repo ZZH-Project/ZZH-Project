@@ -135,5 +135,16 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('check','QaController@check');
         });
     });
+    //==============专题===================
+    Route::group(['prefix'=>'theme'],function(){
+        //专题主页
+        Route::get('index','ThemeController@index');
+        //专题分类列表
+        Route::get('list','ThemeController@list');
+        //专题详情
+        Route::get('details','ThemeController@details');
+        //专题评论
+        Route::any('comment','ThemeController@comment');
+    });
 });
 

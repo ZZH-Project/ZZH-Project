@@ -27,15 +27,15 @@
 			<div class="wrap">
 				<h1 class="page_title">提问</h1>
 				<a href="{{url('web/qa/index')}}" class="btn_page_back">
-					<svg class="icon icon_page_back" aria-hidden="true">
+					<svg class="icon icon_em_40" aria-hidden="true">
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>
 				</a>
 			</div><!--wrap-->
 		</div><!--head-->
 		
-		<div class="wrap">
-			<h2 class="title_h2 title_h2_ask">问答分类：</h2>
+		<div class="wrap ask_main_wrap">
+			<h2 class="title_h2">问答分类：</h2>
 			<div class="ask_cate_wrap">
 				<ul id="cate">
 					@foreach($qacates as $qacate)
@@ -54,11 +54,11 @@
 			<form id="form" action="{{url('web/qa/check')}}" method="post">
 				{{csrf_field()}}
 				<input type="hidden" value="{{session('wuid')}}" name="wuid">
-			<h2 id="ht" class="title_h2 title_h2_ask special">问答标题：</h2>
-			<input class="input ask_input" name="atitle" />
-			<h2 id="hc" class="title_h2 title_h2_ask">问答详情：</h2>
-			<textarea class="textarea ask_textarea" name="acontent"></textarea>
-			<input type="submit" class="btn_big btn_add_ask" value="提    交"/>
+			<h2 id="ht" class="title_h2 special">问答标题：</h2>
+			<input class="input" name="atitle" />
+			<h2 id="hc" class="title_h2">问答详情：</h2>
+			<textarea class="textarea" name="acontent"></textarea>
+			<input type="submit" class="btn_add_content" value="提    交" id="qa_submit"/>
 			</form>
 		</div><!--wrap-->
 		<div class="tip_bar">提交成功</div>

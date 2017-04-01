@@ -5,7 +5,7 @@
 		<title>问答</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
 		<link href="{{asset('admin/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
+		<link href="{{asset('css/base.css'}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/qa_zl.css')}}" type="text/css" rel="stylesheet" />
@@ -49,8 +49,8 @@
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">问答</h1>
-				<a href="#" class="btn_page_back">
-					<svg class="icon icon_page_back" aria-hidden="true">
+				<a href="index.html" class="btn_page_back">
+					<svg class="icon icon_em_40" aria-hidden="true">
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>
 				</a>
@@ -77,7 +77,7 @@
 				
 				<div class="sub_menu_down">
 					<a href="javascript:void(0);" class="btn_menu_down">
-						<svg class="icon icon_menu_down" aria-hidden="true">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-xiala"></use>
 	                    </svg>
 					</a>
@@ -102,41 +102,40 @@
 		
 		<div class="qa_wrap" id="qa_wrap">
 			<div class="wrap">
-				<div class="qa_wrap_head">
+				<div class="comment_head_wrap">
 					<div class="left">
-						<div class="user_img_bar user_img_middle left">
+						<div class="user_img_bar user_img_50 left">
 							<img src="{{asset('images/web/user_img.png')}}" />
-						</div><!--user_img_bar-->
-						<span class="qa_user_name">秋之雨</span>
-					</div><!--left-->
-					
-					<div class="right">
+						</div>
+						<span class="user_name">秋之雨</span>
+					</div>
+					<div class="right time_tip">
 						<span class="qa_status_bar status_green">已回答</span>
 						<!--<span class="qa_status_bar status_red">待回答</span>-->
-					</div><!--right-->
+					</div>
 					<div style="clear: both;"></div>
-				</div><!--qa_wrap_head-->
+				</div><!--comment_head_wrap-->
 				
 				<div class="qa_content_wrap">
-					<a href="{{url('web/qa/details')}}" class="qa_title title_h1">魔兽世界 15级去哪升级？</a>
-					<div class="qa_content content_p1">
+					<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>
+					<div class="content p1">
 						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
 					</div><!--qa_content-->
 				</div><!--qa_content_wrap-->
 				
-				<div class="qa_wrap_bottom">
+				<div class="fun_info_bar">
 					<div class="left">
 						<span class="cate_tip">游戏</span>
 						<span class="time_tip">2017-3-21  20:30:14</span>
 					</div><!--left-->
-					<a href="javascript:void(0);" class="btn_comment btn_good right">
-						<svg class="icon icon_comment" aria-hidden="true">
+					<a href="javascript:void(0);" class="right btn_comment_good">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
 	                    <span>14</span>
-                   </a>
-					<a href="javascript:void(0);" class="btn_comment right">
-						<svg class="icon icon_comment" aria-hidden="true">
+                   	</a>
+                   	<a href="javascript:void(0);" class="right">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
 						<span>20</span>
@@ -146,43 +145,42 @@
 			</div><!--wrap-->
 		</div><!--qa_wrap-->
 		
-		<div class="qa_wrap">
+		<div class="qa_wrap" id="qa_wrap">
 			<div class="wrap">
-				<div class="qa_wrap_head">
+				<div class="comment_head_wrap">
 					<div class="left">
-						<div class="user_img_bar user_img_middle left">
+						<div class="user_img_bar user_img_50 left">
 							<img src="{{asset('images/web/user_img.png')}}" />
-						</div><!--user_img_bar-->
-						<span class="qa_user_name">秋之雨</span>
-					</div><!--left-->
-					
-					<div class="right">
+						</div>
+						<span class="user_name">秋之雨</span>
+					</div>
+					<div class="right time_tip">
 						<span class="qa_status_bar status_green">已回答</span>
 						<!--<span class="qa_status_bar status_red">待回答</span>-->
-					</div><!--right-->
+					</div>
 					<div style="clear: both;"></div>
-				</div><!--qa_wrap_head-->
+				</div><!--comment_head_wrap-->
 				
 				<div class="qa_content_wrap">
-					<a href="{{url('web/qa/details')}}" class="qa_title title_h1">魔兽世界 15级去哪升级？</a>
-					<div class="qa_content content_p1">
+					<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>
+					<div class="content p1">
 						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
 					</div><!--qa_content-->
 				</div><!--qa_content_wrap-->
 				
-				<div class="qa_wrap_bottom">
+				<div class="fun_info_bar">
 					<div class="left">
 						<span class="cate_tip">游戏</span>
 						<span class="time_tip">2017-3-21  20:30:14</span>
 					</div><!--left-->
-					<a href="javascript:void(0);" class="btn_comment btn_good right">
-						<svg class="icon icon_comment" aria-hidden="true">
+					<a href="javascript:void(0);" class="right btn_comment_good">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
 	                    <span>14</span>
-                   </a>
-					<a href="javascript:void(0);" class="btn_comment right">
-						<svg class="icon icon_comment" aria-hidden="true">
+                   	</a>
+                   	<a href="javascript:void(0);" class="right">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
 						<span>20</span>
@@ -192,43 +190,42 @@
 			</div><!--wrap-->
 		</div><!--qa_wrap-->
 		
-		<div class="qa_wrap">
+		<div class="qa_wrap" id="qa_wrap">
 			<div class="wrap">
-				<div class="qa_wrap_head">
+				<div class="comment_head_wrap">
 					<div class="left">
-						<div class="user_img_bar user_img_middle left">
+						<div class="user_img_bar user_img_50 left">
 							<img src="{{asset('images/web/user_img.png')}}" />
-						</div><!--user_img_bar-->
-						<span class="qa_user_name">秋之雨</span>
-					</div><!--left-->
-					
-					<div class="right">
+						</div>
+						<span class="user_name">秋之雨</span>
+					</div>
+					<div class="right time_tip">
 						<span class="qa_status_bar status_green">已回答</span>
 						<!--<span class="qa_status_bar status_red">待回答</span>-->
-					</div><!--right-->
+					</div>
 					<div style="clear: both;"></div>
-				</div><!--qa_wrap_head-->
+				</div><!--comment_head_wrap-->
 				
 				<div class="qa_content_wrap">
-					<a href="{{url('web/qa/details')}}" class="qa_title title_h1">魔兽世界 15级去哪升级？</a>
-					<div class="qa_content content_p1">
+					<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>
+					<div class="content p1">
 						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
 					</div><!--qa_content-->
 				</div><!--qa_content_wrap-->
 				
-				<div class="qa_wrap_bottom">
+				<div class="fun_info_bar">
 					<div class="left">
 						<span class="cate_tip">游戏</span>
 						<span class="time_tip">2017-3-21  20:30:14</span>
 					</div><!--left-->
-					<a href="javascript:void(0);" class="btn_comment btn_good right">
-						<svg class="icon icon_comment" aria-hidden="true">
+					<a href="javascript:void(0);" class="right btn_comment_good">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
 	                    <span>14</span>
-                   </a>
-					<a href="javascript:void(0);" class="btn_comment right">
-						<svg class="icon icon_comment" aria-hidden="true">
+                   	</a>
+                   	<a href="javascript:void(0);" class="right">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
 						<span>20</span>
@@ -237,59 +234,13 @@
 				</div><!--qa_content_bottom-->
 			</div><!--wrap-->
 		</div><!--qa_wrap-->
+
+		<div class="footer_fun_bg"></div>
 		
-		<div class="qa_wrap">
-			<div class="wrap">
-				<div class="qa_wrap_head">
-					<div class="left">
-						<div class="user_img_bar user_img_middle left">
-							<img src="{{asset('images/web/user_img.png')}}" />
-						</div><!--user_img_bar-->
-						<span class="qa_user_name">秋之雨</span>
-					</div><!--left-->
-					
-					<div class="right">
-						<span class="qa_status_bar status_green">已回答</span>
-						<!--<span class="qa_status_bar status_red">待回答</span>-->
-					</div><!--right-->
-					<div style="clear: both;"></div>
-				</div><!--qa_wrap_head-->
-				
-				<div class="qa_content_wrap">
-					<a href="{{url('web/qa/details')}}" class="qa_title title_h1">魔兽世界 15级去哪升级？</a>
-					<div class="qa_content content_p1">
-						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
-					</div><!--qa_content-->
-				</div><!--qa_content_wrap-->
-				
-				<div class="qa_wrap_bottom">
-					<div class="left">
-						<span class="cate_tip">游戏</span>
-						<span class="time_tip">2017-3-21  20:30:14</span>
-					</div><!--left-->
-					<a href="javascript:void(0);" class="btn_comment btn_good right">
-						<svg class="icon icon_comment" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   </a>
-					<a href="javascript:void(0);" class="btn_comment right">
-						<svg class="icon icon_comment" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<div style="clear: both;"></div>
-				</div><!--qa_content_bottom-->
-			</div><!--wrap-->
-		</div><!--qa_wrap-->
-		
-		<div class="footer_bar"></div>
-		
-		<div class="footer_fixed">
-			<a href="{{url('web/qa/ask')}}" class="btn_ask btn_big">
+		<div class="footer_fun_wrap">
+			<a href="{{url('web/qa/ask')}}" class="btn_add_content btn_add_ask">
 				<div class="btn_bar">
-					<svg class="icon icon_add_ask" aria-hidden="true">
+					<svg class="icon icon_em_20" aria-hidden="true">
                         <use xlink:href="#front_icon-552cd4fd7aa13"></use>
                    </svg>
 					<span>我要提问</span>

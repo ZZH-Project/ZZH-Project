@@ -29,3 +29,6 @@ h1{
 .right{
 	float: right;
 }
+.hidden{
+	overflow: hidden;
+}

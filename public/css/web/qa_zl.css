@@ -48,6 +48,7 @@
 .btn_menu_down{
 	display: block;
 	margin-top: 28px;
+	color: #333333;
 }
 #menu_cate{
 	top: 168px;
@@ -85,81 +86,30 @@
 }
 
 /*--------问答列表内容框-------*/
-
 .qa_wrap{
 	width: 100%;
 	padding: 25px 0 20px 0;
 	border-bottom: 1px solid #e5e5e5;
 }
-.qa_wrap_head{
-	line-height: 49px;
-}
 .qa_content_wrap{
 	margin-left: 60px;
 	padding: 15px 0 0 0;
 }
-.qa_title{
+.qa_content_wrap .title_h1{
 	display: block;
 	margin-bottom: 20px;
 }
-.qa_content{
-	margin-right: 22px;
-}
-.qa_wrap_bottom{
+.qa_wrap .fun_info_bar{
 	margin-top: 35px;
-	line-height: 30px;
-}
-.qa_wrap_bottom .time_tip{
-	margin-left: 10px;
-}
-.btn_ask{
-	margin: 0 auto;
-	margin-top: 15px;
-}
-.icon_add_ask{
-	position: relative;
-	top: 11px;
-}
-
-/*----------------提问------------------*/
-.title_h2_ask{
-	margin: 40px auto 25px auto;
-}
-.title_h2_ask.special{
-	margin-top: 20px;
-}
-.ask_cate_wrap ul li{
-	float: left;
-	width: 25%;
-	margin-bottom: 20px;
-}
-.ask_cate_wrap ul li a{
-	display: block;
-	width: 80%;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
-	border-radius: 5px;
-	border: 1px solid #e2e1e1;
-	font-size: 24px;
-	color: #333333;
-}
-.ask_cate_select{
-	color: #ffffff !important;
-	background-color: #e44274;
-	border: 1px solid #e44274;
-}
-.ask_input,.ask_textarea{
-	width: 93%;
-}
-.ask_textarea{
-	height: 140px;
 }
 .btn_add_ask{
-	margin: 0 auto;
-	margin-top: 35px;
-	margin-bottom: 35px;
+	margin-top: 15px;
 }
+.btn_add_ask .icon{
+	position: relative;
+	top: 10px;
+}
+
 
 /*------------问答详情--------------*/
 .qa_head_d{
@@ -240,67 +190,35 @@
 	margin-right: 80px;
 }
 
-
-.comment_reply_wrap{
-	border-top: 1px solid #e5e5e5;
-	padding-top: 20px;
-	margin-top: 5px;
+/*----------------提问------------------*/
+.ask_main_wrap .title_h2{
+	margin: 40px auto 25px auto;
 }
-ul.comment_footer_d li{
-	float: left;
-	width: 25%;
-}
-ul.comment_footer_d li:first-child a{
-	margin-left: 22px;
-}
-ul.comment_footer_d li:last-child a{
-	margin-right: 22px;
-}
-ul.comment_footer_d li a{
-	display: block;
-	width: 65px;
-	margin: 0 auto;
+.ask_main_wrap .title_h2.special{
 	margin-top: 20px;
 }
-.btn_footer_fav,.btn_footer_good{
-	color: #4f4f4f;
-}
-.share_bar{
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	padding: 40px 0 40px 0;
-	background-color: #ffffff;
-}
-.share_bar a{
-	color: #333333;
-}
-ul.share_list li{
+.ask_cate_wrap ul li{
 	float: left;
 	width: 25%;
-	margin-bottom: 70px;
+	margin-bottom: 20px;
 }
-ul.share_list li a{
+.ask_cate_wrap ul li a{
 	display: block;
-	width: 100%;
+	width: 80%;
+	height: 50px;
+	color: #333333;
+	font-size: 24px;
+	line-height: 50px;
 	text-align: center;
+	border-radius: 5px;
+	border: 1px solid #e2e1e1;
 }
-ul.share_list li a p{
-	margin-top: 15px;
-	font-size: 26px;
+.ask_cate_select{
+	color: #ffffff !important;
+	background-color: #e44274;
+	border: 1px solid #e44274;
 }
-.btn_share_close{
-	display: block;
-	width: 56px;
-	margin: 0 auto;
+.ask_input,.ask_textarea{
+	width: 93%;
 }
-.btn_footer_good{
-	position: relative;
-}
-.btn_footer_good span{
-	position: absolute;
-	top: 20px;
-	right: -30px;
-	font-size: 22px;
-}
+/*241*/

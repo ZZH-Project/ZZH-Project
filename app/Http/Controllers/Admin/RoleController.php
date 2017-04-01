@@ -46,8 +46,43 @@ class RoleController extends Controller
         }
     }
     //修改角色
-    public function edit(Request $request) {
-        
+    public function edit(Request $request,$id) {
+        if ($request->isMethod('get')) {
+            //查询当前角色信息和当前用户的权限id
+            $data = Role::where('id',$id)->get()[0];
+            $permission_id = PermissionRole::select('permission_id')->where('role_id',$id)->get()->toArray();
+            //转为一维数组
+            $per_ids = array();
+            foreach ($permission_id as $v) {
+                $per_ids[] = $v['permission_id'];
+            }
+            //查询所有顶级权限
+            $permissions = Permission::where('parent_id',0)->get();
+            $permissions = (object)getTree($permissions);
+            return view('admin.role.roleEdit', ['data' => $data, 'permissions' => $permissions, 'per_ids' => $per_ids]);
+        } elseif ($request->isMethod('post')) {
+            //修改角色信息
+            $role = Role::find($id);
+            $role->name = $request->get('name');
+            $role->display_name = $request->get('display_name');
+            $role->description = $request->get('description');
+            $role->save();
+            //修改角色的权限
+            //将现有的权限删除
+            PermissionRole::where('role_id',$id)->delete();
+            //循环添加权限
+            if ($request->get('permission_id') != null) {
+                foreach ($request->get('permission_id') as $value) {
+                    PermissionRole::insert(
+                        [
+                            'permission_id' => $value,
+                            'role_id' => $id
+                        ]
+                    );
+                }
+            }
+            return redirect('admin/role/show');
+        }
     }
     //删除角色
     public function del(Request $request,$id) {
@@ -104,11 +139,7 @@ class RoleController extends Controller
             if ($rname == $name) {
                 $query = '';
             } else {
-                if ($name != '#') {
-                    $query = Role::where('name',$name)->get()->toArray();
-                } else {
-                    $query = '';
-                }
+                $query = Role::where('name',$name)->get()->toArray();
             }
             //判断是否匹配到
             if ($query == null) {

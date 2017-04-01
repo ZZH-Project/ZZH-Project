@@ -15,7 +15,7 @@
         <div style="padding:10px 0;">
             <div class="find">角色搜索：</div><input type="text">
             <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
-            <a class="add" href="{{url('admin/permission/add')}}"><i class="fa fa-plus" title="添加角色"></i></a>
+            <a class="add" href="{{url('admin/role/add')}}"><i class="fa fa-plus" title="添加角色"></i></a>
             <div class="clear"></div>
         </div>
         <table class="tb">
@@ -35,7 +35,7 @@
                     <td>{{$v->description}}</td>
                     <td>无</td>
                     <td style="text-align: center">
-                        <a class="active" href="{{url('admin/permission/edit').'/'.$v->id}}">
+                        <a class="active" href="{{url('admin/role/edit').'/'.$v->id}}">
                             <i class="fa fa-wrench" title="修改权限"></i>
                         </a>
                         <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
@@ -54,7 +54,7 @@
             //获取点击的id
             var id = $(this).attr("name");
             $.ajax({
-                url:"{{url('admin/permission/del')}}/"+id,
+                url:"{{url('admin/role/del')}}/"+id,
                 type:"get",
                 data:{"id":id},
                 dataType:"string",
@@ -87,7 +87,7 @@
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/permission/show')}}/"+fv,
+                url:"{{url('admin/role/show')}}/"+fv,
                 type:"post",
                 data:{"fv":fv,"_token":token},
                 dataType:"string",

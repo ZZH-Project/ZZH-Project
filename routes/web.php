@@ -48,7 +48,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //角色组
         Route::group(['prefix' => 'role'], function () {
+            //显示角色
             Route::any('show', 'RoleController@show');
+            //添加角色
+            Route::any('add', 'RoleController@add');
+            //验证不为空
+            Route::get('check', 'RoleController@check');
+            //角色重名验证
+            Route::get('nameCheck/{id?}', 'RoleController@nameCheck');
         });
         //权限组
         Route::group(['prefix' => 'permission'], function () {

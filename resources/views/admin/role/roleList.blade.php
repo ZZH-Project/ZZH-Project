@@ -93,14 +93,14 @@
     </script>
     {{--角色无刷新搜索--}}
     <script>
-        $("#uf").change(function () {
+        $("#uf").keyup(function () {
             //获取输入的值
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/role/show')}}/"+fv,
+                url:"{{url('admin/role/show')}}",
                 type:"post",
-                data:{"fv":fv,"_token":token},
+                data:{"fv":fv,"_token":token,'a':1},
                 dataType:"string",
                 success:function(data){},
                 error:function (msg) {

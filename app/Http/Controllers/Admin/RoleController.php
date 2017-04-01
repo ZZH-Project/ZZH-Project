@@ -13,12 +13,24 @@ class RoleController extends Controller
 {
     //显示角色列表
     public function show() {
-        //查询角色以及用户的权限
-        $data = Role::select(DB::Raw('roles.*,GROUP_CONCAT(permissions.display_name) as dname'))
-                        ->leftjoin('permission_role','permission_role.role_id','roles.id')
-                        ->leftjoin('permissions','permissions.id','permission_role.permission_id')
-                        ->groupBy('roles.id')->get();
-        return view('admin.role.roleList',['data' => $data]);
+        $a = isset($_POST['a']) ? $_POST['a'] : 2;
+        $fv = isset($_POST['fv']) ? $_POST['fv'] : '';
+        if ($fv == null && $a == 2) {
+            //查询角色以及用户的权限
+            $data = Role::select(DB::Raw('roles.*,GROUP_CONCAT(permissions.display_name) as dname'))
+                ->leftjoin('permission_role','permission_role.role_id','roles.id')
+                ->leftjoin('permissions','permissions.id','permission_role.permission_id')
+                ->groupBy('roles.id')->get();
+            return view('admin.role.roleList',['data' => $data]);
+        } else {
+            //查询角色以及用户的权限
+            $data = Role::select(DB::Raw('roles.*,GROUP_CONCAT(permissions.display_name) as dname'))
+                ->leftjoin('permission_role','permission_role.role_id','roles.id')
+                ->leftjoin('permissions','permissions.id','permission_role.permission_id')
+                ->where('roles.name','like','%'.$fv.'%')
+                ->groupBy('roles.id')->get();
+            return response()->view('admin.role.miniRoleTable', ['data' => $data]);
+        }
     }
     //添加角色
     public function add(Request $request) {

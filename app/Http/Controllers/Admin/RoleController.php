@@ -7,14 +7,18 @@ use App\Models\PermissionRole;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
     //显示角色列表
     public function show() {
         //查询角色以及用户的权限
-
-        return view('admin.role.roleList');
+        $data = Role::select(DB::Raw('roles.*,GROUP_CONCAT(permissions.display_name) as dname'))
+                        ->leftjoin('permission_role','permission_role.role_id','roles.id')
+                        ->leftjoin('permissions','permissions.id','permission_role.permission_id')
+                        ->groupBy('roles.id')->get();
+        return view('admin.role.roleList',['data' => $data]);
     }
     //添加角色
     public function add(Request $request) {
@@ -40,6 +44,18 @@ class RoleController extends Controller
             }
             return redirect('admin/role/show');
         }
+    }
+    //修改角色
+    public function edit(Request $request) {
+        
+    }
+    //删除角色
+    public function del(Request $request,$id) {
+        //角色表的删除
+        Role::where('id',$id)->delete();
+        //中间表的删除
+        PermissionRole::where('role_id',$id)->delete();
+        return 2;
     }
     //不为空验证
     public function check(Request $request) {

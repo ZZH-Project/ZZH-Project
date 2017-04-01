@@ -6,14 +6,27 @@
     <link rel="stylesheet" href="{{asset('css/admin/admin_userList_zj.css')}}">
     <link rel="stylesheet" href="{{asset('css/admin/admin_mycss1_zj.css')}}">
     <style>
-        
+        .myinput-main {
+            width: 150px;
+            height: 30px;
+            font-size: 14px;
+            text-align: center;
+            padding: 5px 10px;
+            border: 2px solid #3FB5DD;
+            border-radius: 10px;
+            background: #fafafa;
+            outline: none;
+            display: inline-block;
+            margin: 0;
+            transition: border 0.3s linear;
+        }
     </style>
 @endsection
 @section('main')
     <div style="background: white;padding: 0 10px 25px 10px;">
         <h3 style="padding-top: 20px;color: #3399ff;">角色列表</h3>
         <div style="padding:10px 0;">
-            <div class="find">角色搜索：</div><input type="text">
+            <div class="find">角色搜索：</div><input id="uf" class="myinput-main" type="text" value="">
             <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
             <a class="add" href="{{url('admin/role/add')}}"><i class="fa fa-plus" title="添加角色"></i></a>
             <div class="clear"></div>
@@ -27,13 +40,13 @@
                 <th>拥有权限</th>
                 <th style="border-right: 1px solid #3399ff;text-align: center;">角色操作</th>
             </tr>
-            {{--@foreach($data as $v)
-                <tr class="ftrd">
+            @foreach($data as $v)
+                <tr class="trd">
                     <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
-                    <td>{{$v->display_name}}</td>
                     <td>{{$v->name}}</td>
+                    <td>{{$v->display_name}}</td>
                     <td>{{$v->description}}</td>
-                    <td>无</td>
+                    <td>{{$v->dname}}</td>
                     <td style="text-align: center">
                         <a class="active" href="{{url('admin/role/edit').'/'.$v->id}}">
                             <i class="fa fa-wrench" title="修改权限"></i>
@@ -43,7 +56,7 @@
                         </a>
                     </td>
                 </tr>
-            @endforeach--}}
+            @endforeach
         </table>
     </div>
 @endsection
@@ -60,11 +73,9 @@
                 dataType:"string",
                 success:function (data) {},
                 error:function (msg) {
-                    if (msg.responseText == 1) {
-                        $(".alt").html("该路由下面有子路由无法删除！").show().delay(500).fadeOut(500);
-                    } else if (msg.responseText == 2) {
+                    if (msg.responseText == 2) {
                         $(".del[name="+id+"]").parent('td').parent('tr').remove();
-                        $(".alt").html("路由删除成功！").show().delay(500).fadeOut(500);
+                        $(".alt").html("角色删除成功！").show().delay(500).fadeOut(500);
                     }
                 }
             });

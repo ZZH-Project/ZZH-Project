@@ -52,6 +52,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::any('show', 'RoleController@show');
             //添加角色
             Route::any('add', 'RoleController@add');
+            //修改角色
+            Route::any('edit/{id}', 'RoleController@edit');
+            //删除角色
+            Route::get('del/{id}', 'RoleController@del');
             //验证不为空
             Route::get('check', 'RoleController@check');
             //角色重名验证

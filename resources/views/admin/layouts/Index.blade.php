@@ -202,45 +202,23 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">导航菜单:)</li>
+        @foreach($permissions as $v)
+          @if($v->auser_id == session('auser')['id'])
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>用户管理</span>
+            <span>{{$v->display_name}}管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-            <li><a href="{{url('admin/user/add')}}"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+            <li><a href="{{url($v->name.'/show')}}"><i class="fa fa-circle-o"></i> {{$v->display_name}}列表</a></li>
+            <li><a href="{{url($v->name.'/add')}}"><i class="fa fa-circle-o"></i> 添加{{$v->display_name}}</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>角色管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/role/show')}}"><i class="fa fa-circle-o"></i> 角色列表</a></li>
-            <li><a href="{{url('admin/role/add')}}"><i class="fa fa-circle-o"></i> 添加角色</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-unlock-alt"></i>
-            <span>权限管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/permission/show')}}"><i class="fa fa-circle-o"></i> 权限列表</a></li>
-            <li><a href="{{url('admin/permission/add')}}"><i class="fa fa-circle-o"></i> 添加权限</a></li>
-          </ul>
-        </li>
+          @endif
+        @endforeach
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>

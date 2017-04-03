@@ -8,8 +8,8 @@
   @show
   <style>
     .alt{
-      position: absolute;
-      top: 50%;
+      position: fixed;
+      top: 40%;
       left: 50%;
       font-size: 16px;
       color: white;
@@ -335,6 +335,7 @@
 {{--<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+
 @section('script')
 @show
 </body>

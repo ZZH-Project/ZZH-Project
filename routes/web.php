@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     //退出登录
     Route::get('logout','UserController@logout');
     //需要验证登录才能显示的页面
-    Route::group(['middleware' => 'adminLogin'], function () {
+    Route::group(['middleware' => ['adminLogin','rbac']], function () {
         //后台首页
         Route::get('index','IndexController@index');
         //用户组

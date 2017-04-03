@@ -46,13 +46,13 @@
                     <td>{{$v->name}}</td>
                     <td>{{$v->display_name}}</td>
                     <td>{{$v->description}}</td>
-                    <td>{{$v->dname}}</td>
+                    <td>{{$v->dname}}管理</td>
                     <td style="text-align: center">
                         <a class="active" href="{{url('admin/role/edit').'/'.$v->id}}">
-                            <i class="fa fa-wrench" title="修改权限"></i>
+                            <i class="fa fa-wrench" title="修改角色"></i>
                         </a>
                         <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
-                            <i class="fa fa-trash" title="删除权限"></i>
+                            <i class="fa fa-trash" title="删除角色"></i>
                         </a>
                     </td>
                 </tr>

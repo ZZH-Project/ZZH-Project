@@ -159,10 +159,15 @@ class UserController extends Controller
 //        var_dump($result);
         //如果账号密码正确返回1
         if($result){
+           $id =  $wuser::select('id')
+                ->where('username',$username)->get()->toArray();
+           $id = $id[0]['id'];
+//           dd($id);
             //如果多选框选中
             if($is_save == 1){
                 //将用户存进缓存中
                 Cache::forever('savewuser',['username'=>$username,'password'=>$password]);
+                session(['wuid' => $id]);
                 session(['weblogin' => 1]);
             //否则清除缓存
             }else{

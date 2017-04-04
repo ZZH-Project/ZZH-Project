@@ -2,46 +2,50 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>问答详情</title>
+		<title>详情</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css'}}" type="text/css" rel="stylesheet" />
+		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/qa_zl.css')}}" type="text/css" rel="stylesheet" />
+		<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
 		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('js/iconfont.js')}}" type="text/javascript"></script>
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
-		<div class="head head_white qa_head_d">
-			<div class="wrap">
-				<div class="user_img_bar user_img_70 left">
-					<img src="{{asset('images/web/user_img.png')}}"  />
-				</div><!--left-->
-				<div class="left qa_details_info">
-					<p class="user_name_d">秋之雨</p>
-					<p class="qa_details_time">2017-3-21 20:30:14</p>
-				</div><!--left-->
-				<div class="qa_status_bar status_green qa_status_d right">已回答</div><!--right-->
-				<!--<div class="qa_status_bar status_red qa_status_d right">待回答</div><!--right-->
-				<div style="clear: both;"></div>
-			</div><!--wrap-->
-		</div><!--head-->
+		<div class="head_img_wrap">
+			<img src="{{asset('images/web/theme_img.jpg')}}"  />
+			<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
+		</div><!--head_img_wrap-->
 		
-		<div class="qa_content_d">
-			<h1 class="title_h1">魔兽世界 15级去哪升级？</h1>
-			<p class="content p1">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</p>
-			<div class="cate_tip qa_tip_d">游戏</div>
-		</div><!--qa_content_d-->
+		<div class="wrap">
+			<div class="article_info_bar">
+				<h1 class="title_h4">恋恋粉色季 画个甜甜的妆容吧！</h1>
+				<div class="fun_info_bar">
+					<a href="javascript:void(0);" class="left">
+						<svg class="icon icon_em_25" aria-hidden="true">
+	                        <use xlink:href="#front_icon-pinglun"></use>
+	                   </svg>
+						<span>20</span>
+					</a>
+					<a href="javascript:void(0);" class="left">
+						<svg class="icon icon_em_25" aria-hidden="true">
+	                        <use xlink:href="#front_icon-icondianzan"></use>
+	                    </svg>
+	                    <span>14</span>
+                   	</a>
+					<div style="clear: both;"></div>
+				</div><!--fun_info_bar-->
+			</div><!--article_info_bar-->
+			
+			<div class="article_wrap">
+				<p>新闻讯 外貌也是展现实力的当今时代，人们对美的追求也是越来越不遗余力。瘦身与护肤早已成了毕生的功课，也有越来越多人对美妆技巧产生了极大的兴趣。</p>
+				<p>因此，各种美妆教程越来越多的出现在网络平台上。无论是YouTube还是美拍，这样现场美妆教程早已不鲜见，更有多位堪称权威的美妆达人们通过自己的博客或是微博将美妆技巧或是实用的美妆技护肤产品推荐给大众。</p>
+				<p>韩国是被公认的美妆发达国家，无论女生还是男生从小就有了对护肤重要性的认识。一升入大学甚至是高中时期就已经掌握了不少的美妆技巧。</p>
+			</div><!--article_wrap-->
+		</div><!--wrap-->
 		
-		<a href="javascript:void(0);" class="btn_add_content" id="btn_footer_comment">
-			<div class="btn_bar">
-				<svg class="icon icon_em_20 icon_add_answer" aria-hidden="true">
-                    <use xlink:href="#front_icon-xiepinglun"></use>
-                </svg>
-				<span>我要回答</span>
-			</div>
-		</a>
+		<div class="gray_bar"></div>
 		
 		<div class="comment_head">
 			<div class="wrap">
@@ -52,7 +56,7 @@
 	                <span>回答</span>
 				</div>
 				<div class="right">
-					<a href="{{url('web/qa/comment')}}" class="a_red">查看全部评论</a>
+					<a href="{{url('web/theme/comment')}}" class="a_red">查看全部评论</a>
 				</div>
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
@@ -156,9 +160,9 @@
 		<div class="footer_fun_bg"></div>
 		
 		<div class="footer_fun_wrap">
-			<ul class="fun_four">
+			<ul class="fun_five">
 				<li>
-					<a href="{{url('web/qa/index')}}">
+					<a href="{{url('web/theme/list')}}">
 						<svg class="icon" aria-hidden="true">
 		                    <use xlink:href="#front_icon-fanhui1"></use>
 		                </svg>
@@ -177,6 +181,13 @@
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
 	                    <span>234</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);" id="btn_footer_comment">
+						<svg class="icon" aria-hidden="true">
+	                        <use xlink:href="#front_icon-pinglun"></use>
+	                   </svg>
 					</a>
 				</li>
 				<li>
@@ -254,6 +265,5 @@
 		
 		<div class="tip_bar" id="tip_success">提交成功</div>
 		<div class="tip_bar" id="tip_fav">已收藏</div>
-		
 	</body>
 </html>

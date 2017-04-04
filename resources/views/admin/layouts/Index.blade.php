@@ -219,45 +219,7 @@
         </li>
           @endif
         @endforeach
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>品牌管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="##"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
-            <li><a href="##"><i class="fa fa-circle-o"></i> 添加品牌</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-comments"></i>
-            <span>问答分类</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/comment/show')}}"><i class="fa fa-circle-o"></i> 分类列表</a></li>
-            <li><a href="{{url('admin/comment/add')}}"><i class="fa fa-circle-o"></i> 添加分类</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-comments"></i>
-            <span>问答管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/qa/show')}}"><i class="fa fa-circle-o"></i> 问答列表</a></li>
-            {{--<li><a href="##--}}{{--{{url('')}}--}}{{--"><i class="fa fa-circle-o"></i> 添加分类</a></li>--}}
-          </ul>
-        </li>
+
         <li class="header">其他</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要信息</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>一般信息</span></a></li>

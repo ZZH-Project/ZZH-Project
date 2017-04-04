@@ -13,7 +13,7 @@ class CreateQaListTable extends Migration
      */
     public function up()
     {
-        Schema::create('qa_list', function (Blueprint $table) {
+        Schema::create('qa_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('content');

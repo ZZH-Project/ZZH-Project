@@ -5,7 +5,7 @@
 		<title>问答</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
 		<link href="{{asset('admin/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/base.css'}}" type="text/css" rel="stylesheet" />
+		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/qa_zl.css')}}" type="text/css" rel="stylesheet" />
@@ -56,20 +56,22 @@
 				</a>
 			</div><!--wrap-->
 		</div><!--head-->
-
 		<div class="sub_menu" id="sub_menu">
 			<div class="wrap">
 				<div class="sub_menu_wrap">
 					<div class="sub_menu_bar">
 						<ul>
-							<li><a href="javascript:void(0);" class="sub_menu_select">热门</a></li>
-							<li><a href="javascript:void(0);">最新</a></li>
-							<li><a href="javascript:void(0);">教育</a></li>
-							<li><a href="javascript:void(0);">生活</a></li>
-							<li><a href="javascript:void(0);">运动</a></li>
-							<li><a href="javascript:void(0);">教育</a></li>
-							<li><a href="javascript:void(0);">生活</a></li>
-							<li><a href="javascript:void(0);">运动</a></li>
+							@foreach($qacates as $qacate)
+							<li><a href="javascript:void(0);">{{$qacate['cate_name']}}</a></li>
+							@endforeach
+							{{--<li><a href="javascript:void(0);" class="sub_menu_select">热门</a></li>--}}
+							{{--<li><a href="javascript:void(0);">最新</a></li>--}}
+							{{--<li><a href="javascript:void(0);">教育</a></li>--}}
+							{{--<li><a href="javascript:void(0);">生活</a></li>--}}
+							{{--<li><a href="javascript:void(0);">运动</a></li>--}}
+							{{--<li><a href="javascript:void(0);">教育</a></li>--}}
+							{{--<li><a href="javascript:void(0);">生活</a></li>--}}
+							{{--<li><a href="javascript:void(0);">运动</a></li>--}}
 						</ul>
 						<div style="clear: both;"></div>
 					</div><!--sub_menu_bar-->
@@ -99,7 +101,8 @@
 				</div><!--qa_menu_more-->
 			</div><!--wrap-->
 		</div><!--sub_menu-->
-		
+
+		@foreach($qalists as $qalist)
 		<div class="qa_wrap" id="qa_wrap">
 			<div class="wrap">
 				<div class="comment_head_wrap">
@@ -117,7 +120,7 @@
 				</div><!--comment_head_wrap-->
 				
 				<div class="qa_content_wrap">
-					<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>
+					<a href="details.html" class="title_h1">{{$qalist['title']}}</a>
 					<div class="content p1">
 						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
 					</div><!--qa_content-->
@@ -144,96 +147,97 @@
 				</div><!--qa_content_bottom-->
 			</div><!--wrap-->
 		</div><!--qa_wrap-->
+		@endforeach
 		
-		<div class="qa_wrap" id="qa_wrap">
-			<div class="wrap">
-				<div class="comment_head_wrap">
-					<div class="left">
-						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
-						</div>
-						<span class="user_name">秋之雨</span>
-					</div>
-					<div class="right time_tip">
-						<span class="qa_status_bar status_green">已回答</span>
-						<!--<span class="qa_status_bar status_red">待回答</span>-->
-					</div>
-					<div style="clear: both;"></div>
-				</div><!--comment_head_wrap-->
-				
-				<div class="qa_content_wrap">
-					<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>
-					<div class="content p1">
-						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
-					</div><!--qa_content-->
-				</div><!--qa_content_wrap-->
-				
-				<div class="fun_info_bar">
-					<div class="left">
-						<span class="cate_tip">游戏</span>
-						<span class="time_tip">2017-3-21  20:30:14</span>
-					</div><!--left-->
-					<a href="javascript:void(0);" class="right btn_comment_good">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-                   	<a href="javascript:void(0);" class="right">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<div style="clear: both;"></div>
-				</div><!--qa_content_bottom-->
-			</div><!--wrap-->
-		</div><!--qa_wrap-->
-		
-		<div class="qa_wrap" id="qa_wrap">
-			<div class="wrap">
-				<div class="comment_head_wrap">
-					<div class="left">
-						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
-						</div>
-						<span class="user_name">秋之雨</span>
-					</div>
-					<div class="right time_tip">
-						<span class="qa_status_bar status_green">已回答</span>
-						<!--<span class="qa_status_bar status_red">待回答</span>-->
-					</div>
-					<div style="clear: both;"></div>
-				</div><!--comment_head_wrap-->
-				
-				<div class="qa_content_wrap">
-					<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>
-					<div class="content p1">
-						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
-					</div><!--qa_content-->
-				</div><!--qa_content_wrap-->
-				
-				<div class="fun_info_bar">
-					<div class="left">
-						<span class="cate_tip">游戏</span>
-						<span class="time_tip">2017-3-21  20:30:14</span>
-					</div><!--left-->
-					<a href="javascript:void(0);" class="right btn_comment_good">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-                   	<a href="javascript:void(0);" class="right">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<div style="clear: both;"></div>
-				</div><!--qa_content_bottom-->
-			</div><!--wrap-->
-		</div><!--qa_wrap-->
+		{{--<div class="qa_wrap" id="qa_wrap">--}}
+			{{--<div class="wrap">--}}
+				{{--<div class="comment_head_wrap">--}}
+					{{--<div class="left">--}}
+						{{--<div class="user_img_bar user_img_50 left">--}}
+							{{--<img src="{{asset('images/web/user_img.png')}}" />--}}
+						{{--</div>--}}
+						{{--<span class="user_name">秋之雨</span>--}}
+					{{--</div>--}}
+					{{--<div class="right time_tip">--}}
+						{{--<span class="qa_status_bar status_green">已回答</span>--}}
+						{{--<!--<span class="qa_status_bar status_red">待回答</span>-->--}}
+					{{--</div>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--comment_head_wrap-->--}}
+				{{----}}
+				{{--<div class="qa_content_wrap">--}}
+					{{--<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>--}}
+					{{--<div class="content p1">--}}
+						{{--联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。--}}
+					{{--</div><!--qa_content-->--}}
+				{{--</div><!--qa_content_wrap-->--}}
+				{{----}}
+				{{--<div class="fun_info_bar">--}}
+					{{--<div class="left">--}}
+						{{--<span class="cate_tip">游戏</span>--}}
+						{{--<span class="time_tip">2017-3-21  20:30:14</span>--}}
+					{{--</div><!--left-->--}}
+					{{--<a href="javascript:void(0);" class="right btn_comment_good">--}}
+						{{--<svg class="icon icon_em_25" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-icondianzan"></use>--}}
+	                    {{--</svg>--}}
+	                    {{--<span>14</span>--}}
+                   	{{--</a>--}}
+                   	{{--<a href="javascript:void(0);" class="right">--}}
+						{{--<svg class="icon icon_em_25" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-pinglun"></use>--}}
+	                   {{--</svg>--}}
+						{{--<span>20</span>--}}
+					{{--</a>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--qa_content_bottom-->--}}
+			{{--</div><!--wrap-->--}}
+		{{--</div><!--qa_wrap-->--}}
+		{{----}}
+		{{--<div class="qa_wrap" id="qa_wrap">--}}
+			{{--<div class="wrap">--}}
+				{{--<div class="comment_head_wrap">--}}
+					{{--<div class="left">--}}
+						{{--<div class="user_img_bar user_img_50 left">--}}
+							{{--<img src="{{asset('images/web/user_img.png')}}" />--}}
+						{{--</div>--}}
+						{{--<span class="user_name">秋之雨</span>--}}
+					{{--</div>--}}
+					{{--<div class="right time_tip">--}}
+						{{--<span class="qa_status_bar status_green">已回答</span>--}}
+						{{--<!--<span class="qa_status_bar status_red">待回答</span>-->--}}
+					{{--</div>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--comment_head_wrap-->--}}
+				{{----}}
+				{{--<div class="qa_content_wrap">--}}
+					{{--<a href="details.html" class="title_h1">魔兽世界 15级去哪升级？</a>--}}
+					{{--<div class="content p1">--}}
+						{{--联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。--}}
+					{{--</div><!--qa_content-->--}}
+				{{--</div><!--qa_content_wrap-->--}}
+				{{----}}
+				{{--<div class="fun_info_bar">--}}
+					{{--<div class="left">--}}
+						{{--<span class="cate_tip">游戏</span>--}}
+						{{--<span class="time_tip">2017-3-21  20:30:14</span>--}}
+					{{--</div><!--left-->--}}
+					{{--<a href="javascript:void(0);" class="right btn_comment_good">--}}
+						{{--<svg class="icon icon_em_25" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-icondianzan"></use>--}}
+	                    {{--</svg>--}}
+	                    {{--<span>14</span>--}}
+                   	{{--</a>--}}
+                   	{{--<a href="javascript:void(0);" class="right">--}}
+						{{--<svg class="icon icon_em_25" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-pinglun"></use>--}}
+	                   {{--</svg>--}}
+						{{--<span>20</span>--}}
+					{{--</a>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--qa_content_bottom-->--}}
+			{{--</div><!--wrap-->--}}
+		{{--</div><!--qa_wrap-->--}}
 
 		<div class="footer_fun_bg"></div>
 		

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>问答详情</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css'}}" type="text/css" rel="stylesheet" />
+		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/qa_zl.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\QaCate;
+use App\Models\QaList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +13,8 @@ class QaController extends Controller
     //==================问答首页==================
     public function qaList(){
         $qacates = QaCate::get()->toArray();
-        return view('web.qa.index',compact('qacates'));
+        $qalists = QaList::get()->toArray();
+        return view('web.qa.index',compact('qacates','qalists'));
     }
     //===================提问页面===================
     public function qaAsk(){
@@ -38,6 +40,20 @@ class QaController extends Controller
         $title = $request->atitle;
         $content = $request->acontent;
         $wuid = $request->wuid;
-        var_dump($title,$content,$wuid);
+        $ctid = $request->ctid;
+        $time = time();
+//        var_dump($title,$content,$wuid,$ctid,$time);
+        $res = QaList::create([
+            'title'=>$title,
+            'content'=>$content,
+            'user_id'=>$wuid,
+            'cate_id'=>$ctid,
+            'issue_time'=>$time
+        ]);
+        if($res){
+            return json_encode(['a'=>1]);
+        }else{
+            return json_encode(['a'=>2]);
+        }
     }
 }

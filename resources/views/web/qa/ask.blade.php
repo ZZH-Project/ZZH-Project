@@ -33,7 +33,7 @@
 				</a>
 			</div><!--wrap-->
 		</div><!--head-->
-		
+
 		<div class="wrap ask_main_wrap">
 			<h2 class="title_h2">问答分类：</h2>
 			<div class="ask_cate_wrap">
@@ -54,6 +54,7 @@
 			<form id="form" action="{{url('web/qa/check')}}" method="post">
 				{{csrf_field()}}
 				<input type="hidden" value="{{session('wuid')}}" name="wuid">
+				<input type="hidden" value="" name="ctid" id="ctid">
 			<h2 id="ht" class="title_h2 special">问答标题：</h2>
 			<input class="input" name="atitle" />
 			<h2 id="hc" class="title_h2">问答详情：</h2>
@@ -63,22 +64,30 @@
 		</div><!--wrap-->
 		<div class="tip_bar">提交成功</div>
 		<script>
-			console.log($("a[class=ask_cate_select]")[0]);
+//			console.log($("a[class=ask_cate_select]")[0]);
 			$("#form").submit(function(){
 			    if($("a[class=ask_cate_select]")[0] == undefined){
 					alert('请选择问答分类');
 				}else {
+			        var cateid = ($("a[class=ask_cate_select]")[0]).name;
+			        console.log(cateid);
+			        var ctid = $("#ctid").val(cateid);
                     $.ajax({
                         url:"{{url('web/qa/check')}}",
                         type:"post",
                         data:$("form").serialize(),
                         datatype:'json',
                         success:function(data){
+                            var data = JSON.parse(data)
                             $("#ht").html('问答标题：');
                             $("#ht").css({'color':'#333333'});
                             $("#hc").html('问答详情：');
                             $("#hc").css({'color':'#333333'});
-                            alert(1111);
+                            if(data.a==1){
+                                alert(1111);
+							}else if(data.a==2){
+                                alert(2222);
+							}
                         },
                         error:function(msg){
                             $msg = JSON.parse(msg.responseText);

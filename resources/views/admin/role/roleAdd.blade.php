@@ -36,7 +36,7 @@
         <div style="text-align: center;font-size: 16px;">权限</div>
         @foreach($permissions as $v)
             <p style="margin:5px;font-size: 14px; color: #2ca02c;text-align: center;">
-                <lable><input style="cursor: pointer;" type="checkbox" name="permission_id[]" value="{{$v->id}}">{{$v->display_name}}</lable>
+                <lable><input style="cursor: pointer;" type="checkbox" name="permission_id[]" value="{{$v->id}}">{{$v->display_name}}管理</lable>
             </p>
         @endforeach
         <input class="mysubmit-moon" type="submit" value="添加">

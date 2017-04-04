@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                <div class="title" onclick="history.go(-1)" style="cursor: pointer;">您在访问路由时出现了错误</div>
             </div>
         </div>
     </body>

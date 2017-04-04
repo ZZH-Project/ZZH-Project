@@ -39,7 +39,7 @@
         @foreach($permissions as $v)
             <p style="margin:5px;font-size: 14px; color: #2ca02c;text-align: center;">
                 <lable>
-                    <input style="cursor: pointer;" type="checkbox" name="permission_id[]" value="{{$v->id}}" {{in_array($v->id, $per_ids)? 'checked' :''}} >{{$v->display_name}}
+                    <input style="cursor: pointer;" type="checkbox" name="permission_id[]" value="{{$v->id}}" {{in_array($v->id, $per_ids)? 'checked' :''}} >{{$v->display_name}}管理
                 </lable>
             </p>
         @endforeach

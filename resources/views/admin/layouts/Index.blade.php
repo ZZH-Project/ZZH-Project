@@ -8,8 +8,8 @@
   @show
   <style>
     .alt{
-      position: absolute;
-      top: 50%;
+      position: fixed;
+      top: 40%;
       left: 50%;
       font-size: 16px;
       color: white;
@@ -202,84 +202,24 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">导航菜单:)</li>
+        @foreach($permissions as $v)
+          @if($v->auser_id == session('auser')['id'])
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>用户管理</span>
+            <span>{{$v->display_name}}管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('admin/user/show')}}"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-            <li><a href="{{url('admin/user/add')}}"><i class="fa fa-circle-o"></i> 添加用户</a></li>
+            <li><a href="{{url($v->name.'/show')}}"><i class="fa fa-circle-o"></i> {{$v->display_name}}列表</a></li>
+            <li><a href="{{url($v->name.'/add')}}"><i class="fa fa-circle-o"></i> 添加{{$v->display_name}}</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>角色管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/role/show')}}"><i class="fa fa-circle-o"></i> 角色列表</a></li>
-            <li><a href="{{url('admin/role/add')}}"><i class="fa fa-circle-o"></i> 添加角色</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-unlock-alt"></i>
-            <span>权限管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/permission/show')}}"><i class="fa fa-circle-o"></i> 权限列表</a></li>
-            <li><a href="{{url('admin/permission/add')}}"><i class="fa fa-circle-o"></i> 添加权限</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>品牌管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="##"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
-            <li><a href="##"><i class="fa fa-circle-o"></i> 添加品牌</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-comments"></i>
-            <span>问答分类</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/comment/show')}}"><i class="fa fa-circle-o"></i> 分类列表</a></li>
-            <li><a href="{{url('admin/comment/add')}}"><i class="fa fa-circle-o"></i> 添加分类</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-comments"></i>
-            <span>问答管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{url('admin/qa/show')}}"><i class="fa fa-circle-o"></i> 问答列表</a></li>
-            {{--<li><a href="##--}}{{--{{url('')}}--}}{{--"><i class="fa fa-circle-o"></i> 添加分类</a></li>--}}
-          </ul>
-        </li>
+          @endif
+        @endforeach
+
         <li class="header">其他</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要信息</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>一般信息</span></a></li>
@@ -357,6 +297,7 @@
 {{--<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+
 @section('script')
 @show
 </body>

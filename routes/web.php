@@ -76,6 +76,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //路由重名验证
             Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
         });
+        //专题分类组
+        Route::group(['prefix' => 'themeCate'], function () {
+            //显示专题分类
+            Route::any('show', 'ThemeCateController@show');
+            //添加专题分类
+            Route::any('add', 'ThemeCateController@add');
+            //删除专题分类
+            Route::get('del/{id}', 'ThemeCateController@del');
+            //修改专题分类
+            Route::any('edit/{id}', 'ThemeCateController@edit');
+            //不为空验证
+            Route::get('check', 'ThemeCateController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'ThemeCateController@nameCheck');
+        });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示
@@ -142,7 +157,7 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //专题主页
         Route::get('index','ThemeController@index');
         //专题分类列表
-        Route::get('list','ThemeController@list');
+        Route::get('show','ThemeController@show');
         //专题详情
         Route::get('details','ThemeController@details');
         //专题评论

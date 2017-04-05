@@ -10,9 +10,16 @@ class ThemeCateController extends Controller
 {
     //显示专题分类
     public function show() {
-        //查询出所有专题分类
-        $data = ThemeCate::orderBy('sort_id','asc')->get();
-        return view('admin.themeCate.cateList', ['data' => $data]);
+        $a = isset($_POST['a']) ? $_POST['a'] : 2;
+        $fv = isset($_POST['fv']) ? $_POST['fv'] : '';
+        if ($fv == null && $a == 2) {
+            //查询出所有专题分类
+            $data = ThemeCate::orderBy('sort_id','asc')->get();
+            return view('admin.themeCate.cateList', ['data' => $data]);
+        } else {
+            $data = ThemeCate::where('cate_name','like','%'.$fv.'%')->orderBy('sort_id','asc')->get();
+            return response()->view('admin.themeCate.miniCateTable', ['data' => $data]);
+        }
     }
     //添加专题分类
     public function add(Request $request) {

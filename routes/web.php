@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         //专题分类组
         Route::group(['prefix' => 'themeCate'], function () {
             //显示专题分类
-            Route::get('show', 'ThemeCateController@show');
+            Route::any('show', 'ThemeCateController@show');
             //添加专题分类
             Route::any('add', 'ThemeCateController@add');
             //删除专题分类

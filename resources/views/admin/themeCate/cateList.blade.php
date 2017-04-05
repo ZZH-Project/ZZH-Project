@@ -65,22 +65,22 @@
                 error:function (msg) {
                     if (msg.responseText == 2) {
                         $(".del[name="+id+"]").parent('td').parent('tr').remove();
-                        $(".alt").html("角色删除成功！").show().delay(500).fadeOut(500);
+                        $(".alt").html("分类删除成功！").show().delay(500).fadeOut(500);
                     }
                 }
             });
         });
     </script>
-    {{--用户无刷新搜索--}}
+    {{--分类无刷新搜索--}}
     <script>
         $("#uf").keyup(function () {
             //获取输入的值
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/user/find')}}",
+                url:"{{url('admin/themeCate/show')}}",
                 type:"post",
-                data:{"fv":fv,"_token":token},
+                data:{"fv":fv,"_token":token,'a':1},
                 dataType:"string",
                 success:function(data){},
                 error:function (msg) {

@@ -19,11 +19,11 @@ class ThemeCateController extends Controller
         if ($request->isMethod('get')) {
             return view('admin.themeCate.cateAdd');
         } elseif ($request->isMethod('post')) {
-            ThemeCate::insert([
-                'sort_id' => $request->get('sort_id'),
-                'cate_name' => $request->get('cate_name'),
-                'cate_img' => $request->get('cate_img')
-            ]);
+            $tc = new ThemeCate();
+            $tc->sort_id = $request->get('sort_id');
+            $tc->cate_name = $request->get('cate_name');
+            $tc->cate_img = $request->get('cate_img');
+            $tc->save();
             return redirect('admin/themeCate/show');
         }
     }

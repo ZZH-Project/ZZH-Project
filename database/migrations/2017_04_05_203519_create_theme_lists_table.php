@@ -13,7 +13,16 @@ class CreateThemeListsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('theme_lists', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('cate_id')->nullable();
+            $table->integer('auser_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('banner_img')->nullable();
+            $table->text('content')->nullable();
+            $table->integer('good_num')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

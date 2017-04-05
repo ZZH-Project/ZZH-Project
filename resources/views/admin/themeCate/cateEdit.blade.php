@@ -163,6 +163,7 @@
                 url:"{{url('admin/themeCate/nameCheck')}}/"+id,
                 type:"get",
                 data:$("#pt").serialize(),
+                async:false,
                 dataType:"json",
                 success:function(data) {
                     var data = data;
@@ -189,6 +190,7 @@
                 url:"{{url('admin/themeCate/check')}}",
                 type:"get",
                 data:$("#et").serialize(),
+                async:false,
                 dataType:"json",
                 success:function(data) {},
                 error:function(msg){

@@ -155,7 +155,7 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //专题主页
         Route::get('index','ThemeController@index');
         //专题分类列表
-        Route::get('list','ThemeController@list');
+        Route::get('show','ThemeController@show');
         //专题详情
         Route::get('details','ThemeController@details');
         //专题评论

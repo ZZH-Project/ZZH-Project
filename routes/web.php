@@ -84,10 +84,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::any('add', 'ThemeCateController@add');
             //删除专题分类
             Route::get('del/{id}', 'ThemeCateController@del');
+            //修改专题分类
+            Route::any('edit/{id}', 'ThemeCateController@edit');
             //不为空验证
             Route::get('check', 'ThemeCateController@check');
             //重名验证
-            Route::get('nameCheck', 'ThemeCateController@nameCheck');
+            Route::get('nameCheck/{id?}', 'ThemeCateController@nameCheck');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){

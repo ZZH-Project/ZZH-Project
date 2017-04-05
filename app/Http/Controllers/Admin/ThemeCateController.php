@@ -33,6 +33,22 @@ class ThemeCateController extends Controller
         ThemeCate::where('id',$id)->delete();
         return 2;
     }
+    //修改专题分类
+    public function edit(Request $request,$id) {
+        if ($request->isMethod('get')) {
+            //查询当前ID的数据
+            $data = ThemeCate::where('id',$id)->get()[0];
+            return view('admin.themeCate.cateEdit', ['data' => $data]);
+        } elseif ($request->isMethod('post')) {
+            //更新数据
+            ThemeCate::where('id',$id)->update([
+                'sort_id' => $request->get('sort_id'),
+                'cate_name' => $request->get('cate_name'),
+                'cate_img' => $request->get('cate_img')
+            ]);
+            return redirect('admin/themeCate/show');
+        }
+    }
     //重名验证
     public function nameCheck(Request $request,$id = 0) {
         //验证规则
@@ -65,7 +81,7 @@ class ThemeCateController extends Controller
             if ($rname == $name) {
                 $query = '';
             } else {
-                $query = Role::where('cate_name',$name)->get()->toArray();
+                $query = ThemeCate::where('cate_name',$name)->get()->toArray();
             }
             //判断是否匹配到
             if ($query == null) {

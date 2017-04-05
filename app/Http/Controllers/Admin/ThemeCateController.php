@@ -27,6 +27,12 @@ class ThemeCateController extends Controller
             return redirect('admin/themeCate/show');
         }
     }
+    //删除专题分类
+    public function del(Request $request,$id) {
+        //删除数据库的数据
+        ThemeCate::where('id',$id)->delete();
+        return 2;
+    }
     //重名验证
     public function nameCheck(Request $request,$id = 0) {
         //验证规则

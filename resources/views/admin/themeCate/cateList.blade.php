@@ -11,7 +11,7 @@
         <div style="padding:10px 0;">
             <div class="find">分类名称搜索：</div><input id="uf" class="myinput-main" type="text" value="">
             <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
-            <a class="add" href="{{url('admin/themeCate/add')}}"><i class="fa fa-user-plus" title="添加分类"></i></a>
+            <a class="add" href="{{url('admin/themeCate/add')}}"><i class="fa fa-plus" title="添加分类"></i></a>
             <div class="clear"></div>
         </div>
         <table class="tb">
@@ -29,11 +29,11 @@
                     <td>{{$v->cate_name}}</td>
                     <td>{{$v->cate_img}}</td>
                     <td>
-                        <a class="active" href="{{url('admin/themeCate/edit').'/'.$v['id']}}">
-                            <i class="fa fa-user-secret" title="修改分类"></i>
+                        <a class="active" href="{{url('admin/themeCate/edit').'/'.$v->id}}">
+                            <i class="fa fa-wrench" title="修改分类"></i>
                         </a>
-                        <a class="active" href="{{url('admin/themeCate/del').'/'.$v['id']}}">
-                            <i class="fa fa-user-times" title="删除分类"></i>
+                        <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
+                            <i class="fa fa-trash" title="删除分类"></i>
                         </a>
                     </td>
                 </tr>
@@ -49,6 +49,26 @@
         });
         $(".trd").mouseout(function () {
             $(this).find('td').css({"background":"white"});
+        });
+    </script>
+    {{--删除分类--}}
+    <script>
+        $(".del").click(function () {
+            //获取点击的id
+            var id = $(this).attr("name");
+            $.ajax({
+                url:"{{url('admin/themeCate/del')}}/"+id,
+                type:"get",
+                data:{"id":id},
+                dataType:"string",
+                success:function (data) {},
+                error:function (msg) {
+                    if (msg.responseText == 2) {
+                        $(".del[name="+id+"]").parent('td').parent('tr').remove();
+                        $(".alt").html("角色删除成功！").show().delay(500).fadeOut(500);
+                    }
+                }
+            });
         });
     </script>
     {{--用户无刷新搜索--}}

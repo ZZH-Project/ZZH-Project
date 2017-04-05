@@ -82,6 +82,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('show', 'ThemeCateController@show');
             //添加专题分类
             Route::any('add', 'ThemeCateController@add');
+            //删除专题分类
+            Route::get('del/{id}', 'ThemeCateController@del');
             //不为空验证
             Route::get('check', 'ThemeCateController@check');
             //重名验证

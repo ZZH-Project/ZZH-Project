@@ -91,6 +91,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //重名验证
             Route::get('nameCheck/{id?}', 'ThemeCateController@nameCheck');
         });
+        //专题组
+        Route::group(['prefix' => 'themeList'], function () {
+            //显示专题
+            Route::any('show', 'ThemeListController@show');
+        });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示

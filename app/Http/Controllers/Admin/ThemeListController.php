@@ -7,5 +7,8 @@ use App\Http\Controllers\Controller;
 
 class ThemeListController extends Controller
 {
-    //
+    //显示专题内容
+    public function show() {
+        return view('admin.themeList.listList');
+    }
 }

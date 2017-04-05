@@ -20,24 +20,24 @@
                 <th>分类排序编号</th>
                 <th>分类名称</th>
                 <th>分类图片</th>
-                <th style="border-right: 1px solid #3399ff;">用户操作</th>
+                <th style="border-right: 1px solid #3399ff;">操作</th>
             </tr>
-            {{--@foreach($data as $v)
+            @foreach($data as $v)
                 <tr class="trd">
-                    <td style="border-left: 1px solid #e5e5e5;">{{$v['id']}}</td>
-                    <td>{{$v['username']}}</td>
-                    <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
-                    <td>{{$v['dname']}}</td>
+                    <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
+                    <td>{{$v->sort_id}}</td>
+                    <td>{{$v->cate_name}}</td>
+                    <td>{{$v->cate_img}}</td>
                     <td>
-                        <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}/{{$fv}}">
-                            <i class="fa fa-user-secret" title="修改信息"></i>
+                        <a class="active" href="{{url('admin/themeCate/edit').'/'.$v['id']}}">
+                            <i class="fa fa-user-secret" title="修改分类"></i>
                         </a>
-                        <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}">
-                            <i class="fa fa-user-times" title="删除用户"></i>
+                        <a class="active" href="{{url('admin/themeCate/del').'/'.$v['id']}}">
+                            <i class="fa fa-user-times" title="删除分类"></i>
                         </a>
                     </td>
                 </tr>
-            @endforeach--}}
+            @endforeach
         </table>
     </div>
 @endsection

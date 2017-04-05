@@ -10,7 +10,9 @@ class ThemeCateController extends Controller
 {
     //显示专题分类
     public function show() {
-        return view('admin.themeCate.cateList');
+        //查询出所有专题分类
+        $data = ThemeCate::orderBy('sort_id','asc')->get();
+        return view('admin.themeCate.cateList', ['data' => $data]);
     }
     //添加专题分类
     public function add(Request $request) {

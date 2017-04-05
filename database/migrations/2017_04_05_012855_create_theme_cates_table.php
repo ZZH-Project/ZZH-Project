@@ -15,7 +15,7 @@ class CreateThemeCatesTable extends Migration
     {
         Schema::create('theme_cates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sort_id')->default(1);
+            $table->integer('sort_id')->default(1);
             $table->string('cate_name')->nullable();
             $table->string('cate_img')->nullable();
             $table->timestamps();

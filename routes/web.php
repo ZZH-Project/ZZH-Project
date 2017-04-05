@@ -123,16 +123,18 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::any('resetpass','UserController@resetpass');
     }); //==需要登录的路由,中间件分组==
     //问答列表
-    Route::get('qa/index','QaController@qaList');
+    Route::get('qa/index/{catename?}','QaController@qaList');
     Route::group(['middleware'=>'webLogin'],function(){
         //==============问答===================
         Route::group(['prefix'=>'qa'],function(){
             //问答提问
             Route::get('ask','QaController@qaAsk');
             //问答详情
-            Route::get('details','QaController@qaDetails');
-            //验证问答内容
+            Route::any('details/{qalistid?}','QaController@qaDetails');
+            //验证提问答内容
             Route::any('check','QaController@check');
+            //验证回答内容
+            Route::any('checkdetails','QaController@checkdetails');
         });
     });
     //==============专题===================

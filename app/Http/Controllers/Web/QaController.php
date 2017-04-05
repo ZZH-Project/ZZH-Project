@@ -11,8 +11,18 @@ use App\Http\Controllers\Controller;
 class QaController extends Controller
 {
     //==================问答首页==================
-    public function qaList(){
-        $qacates = QaCate::get()->toArray();
+    public function qaList(Request $request){
+        $catename = isset($request->catename)?$request->catename:'';
+        if($catename != ''){
+//            var_dump($catename);die;
+            $qacates = QaCate::orderBy('sort_id','asc')->get()->toArray();
+            $cid = Qacate::select('id')->where(['cate_name'=>$catename])->get()->toArray();
+//            var_dump($cid[0]['id']);
+            $qalists = QaList::where('cate_id',$cid)->get()->toArray();
+//            var_dump($qalists);
+            return view('web.qa.index',compact('qacates','qalists'));
+        }
+        $qacates = QaCate::orderBy('sort_id','asc')->get()->toArray();
         $qalists = QaList::get()->toArray();
         return view('web.qa.index',compact('qacates','qalists'));
     }
@@ -22,8 +32,13 @@ class QaController extends Controller
         return view('web.qa.ask',compact('qacates'));
     }
     //==================回答首页==================
-    public function qaDetails(){
-        return view('web.qa.details');
+    public function qaDetails(Request $request){
+        $qalistid = $request->qalistid;
+//        var_dump($qalistid);
+        $qa = QaList::where('id',$qalistid)->get()->toArray();
+        $qa = $qa[0];
+//        var_dump($qa);
+        return view('web.qa.details',compact('qa'));
     }
 
     //================验证提问信息================
@@ -55,5 +70,16 @@ class QaController extends Controller
         }else{
             return json_encode(['a'=>2]);
         }
+    }
+
+    //================验证回答信息================
+    public  function checkdetails(Request $request){
+        $role = [
+            'detail' => 'required',
+        ];
+        $msg =[
+            'detail.required' => '回答不能为空',
+        ];
+        $this->validate($request,$role,$msg);
     }
 }

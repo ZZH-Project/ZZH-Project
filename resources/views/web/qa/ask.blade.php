@@ -84,9 +84,11 @@
                             $("#hc").html('问答详情：');
                             $("#hc").css({'color':'#333333'});
                             if(data.a==1){
-                                alert(1111);
+								alert('提交成功');
+//                                $(".tip_bar").html('提交成功')
 							}else if(data.a==2){
-                                alert(2222);
+                                alert('提交失败');
+//                                $(".tip_bar").html('提交失败');
 							}
                         },
                         error:function(msg){

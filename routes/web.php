@@ -115,8 +115,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //问答内容管理组
         Route::group(['prefix'=>'qa'],function (){
+            //===============显示问答列表===============
             Route::get('show','QaController@show');
+            //================查看问答内容================
             Route::get('showcontent/{qalistid?}','QaController@showcontent');
+            //===============切换显示状态===============
+            Route::get('switch/{id}/{status}','QaController@switchshow');
+            //================搜索问题================
+            Route::any('find','QaController@find');
         });
 
     });

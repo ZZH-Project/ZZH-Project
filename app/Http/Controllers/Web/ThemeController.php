@@ -36,7 +36,7 @@ class ThemeController extends Controller
         //获取专题ID
         $id = $_GET['id'];
         //获取专题信息
-        $list = ThemeList::where('id',$id)->get()[0];
+        $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->get()[0];
         return view('web.theme.details', ['cate' => $cate,'list' => $list]);
     }
     //专题评论

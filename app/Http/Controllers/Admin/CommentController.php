@@ -12,7 +12,7 @@ class CommentController extends Controller
     public function show(){
         $page = isset($_GET['page'])?$_GET['page']:1;
 //        var_dump($page);
-        $qalist = QaCate::paginate(2);
+        $qalist = QaCate::orderBy('sort_id','asc')->paginate(5);
         $fv ='';
         return view('admin.comment.commentList',compact('qalist','fv','page'));
     }
@@ -81,14 +81,14 @@ class CommentController extends Controller
                 //获取传递的值
                 $fv = $_POST['fv'];
 //                var_dump($fv);
-                $data = QaCate::where('cate_name','like','%'.$fv.'%')->paginate(2);
+                $data = QaCate::where('cate_name','like','%'.$fv.'%')->paginate(5);
 //                var_dump($data);die;
                 return response()->view('admin.comment.miniCommentTable', ['qalist' => $data,'fv' => $fv]);
             } elseif ($request->isMethod("get")) {
                 //获取传递的值
                 $fv = $_GET['fv'];
                 $page = $_GET['page'];
-                $data = QaCate::where('cate_name','like','%'.$fv.'%')->paginate(2);
+                $data = QaCate::where('cate_name','like','%'.$fv.'%')->paginate(5);
                 return view("admin.comment.commentList", ['qalist' => $data, 'fv' => $fv, 'page' => $page]);
             }
     }

@@ -127,7 +127,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //问答内容管理组
         Route::group(['prefix'=>'qa'],function (){
+            //===============显示问答列表===============
             Route::get('show','QaController@show');
+            //================查看问答内容================
+            Route::get('showcontent/{qalistid?}','QaController@showcontent');
+            //===============切换显示状态===============
+            Route::get('switch/{id}/{status}','QaController@switchshow');
+            //================搜索问题================
+            Route::any('find','QaController@find');
         });
 
     });
@@ -179,6 +186,20 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('details','ThemeController@details');
         //专题评论
         Route::any('comment','ThemeController@comment');
+    });
+
+    //==============微圈===================
+    Route::group(['prefix'=>'wechat'],function(){
+        //微圈主页
+        Route::get('index','WeChatController@index');
+        //微圈分类列表
+        Route::get('list','WeChatController@list');
+        //微圈详情
+        Route::get('details','WeChatController@details');
+        //微圈评论
+        Route::any('comment','WeChatController@comment');
+        //加入微圈
+        Route::any('add','WeChatController@add');
     });
 });
 

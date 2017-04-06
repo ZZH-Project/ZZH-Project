@@ -1,0 +1,114 @@
+.chat_list{
+	margin-top: 30px;
+}
+ul.chat_list li{
+	display: block;
+	float: left;
+	width: 20%;
+}
+ul.chat_list li img{
+	display: block;
+	width: 90px;
+	margin: 0 auto;
+}
+.btn_online{
+	display: block;
+	width: 30%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 28px;
+	color: #e74478;
+	border: 1px solid #e74478;
+	border-radius: 100px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+.webchat_wrap{
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 20px;
+}
+.webchat_wrap .fun_info_bar{
+	margin-top: 20px;
+}
+.webchat_img_bar{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.webchat_img_bar img{
+	width: 120px;
+}
+.webchat_info_bar{
+	float: left;
+	margin-left: 150px;
+}
+.webchat_info_bar h1{
+	margin-bottom: 15px;
+}
+.webchat_head_d{
+	width: 100%;
+	padding: 20px 0;
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+}
+.webchat_head_d h1{
+	margin-bottom: 15px;
+}
+.webchat_head_d p{
+	color: #adadad;
+	font-size: 26px;
+}
+.webchat_img_head{
+	position:relative;
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+	margin-bottom: 15px;
+}
+.webchat_img_head img{
+	width: 120px;
+}
+.webchat_tip{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 35px;
+	height: 36px;
+	color: #fc721f;
+	font-size: 26px;
+	line-height: 36px;
+	border-radius: 100px;
+	text-align: center;
+	background-color: #fee6e1;
+	border: 1px solid #ffbd88;
+}
+.webchat_article_wrap{
+	padding: 30px 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+.crcode_wrap{
+	width: 230px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+.crcode_wrap img{
+	width: 230px;
+	height: 230px;
+}
+ul.webchat_img_list{
+	margin-top: 30px;
+}
+ul.webchat_img_list li{
+	float: left;
+	width: 25%;
+	text-indent: 0;
+}
+ul.webchat_img_list li img{
+	width: 140px;
+	margin: 0 auto;
+}

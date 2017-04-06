@@ -9,6 +9,7 @@
   <style>
     .alt{
       position: fixed;
+      z-index: 9999999999;
       top: 40%;
       left: 50%;
       font-size: 16px;

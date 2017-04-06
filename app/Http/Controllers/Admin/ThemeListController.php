@@ -20,7 +20,19 @@ class ThemeListController extends Controller
             $cate = ThemeCate::get();
             return view('admin.themeList.listAdd', ['cate' => $cate]);
         } elseif ($request->isMethod('post')) {
-
+            //处理图片
+            $pic = $request->banner_img;
+            $filename = mt_rand(100,999).time().'.'.$pic->getClientOriginalExtension();
+            $pic->move('upload/images',$filename);
+            //处理数据
+            $lists = new ThemeList();
+            $lists->cate_id = $request->get('cate_id');
+            $lists->auser_id = $request->session()->get('auser')['id'];
+            $lists->title = $request->get('title');
+            $lists->banner_img = $filename;
+            $lists->content = $request->get('content');
+            $lists->save();
+            return redirect('admin/themeList/show');
         }
     }
     //重名验证

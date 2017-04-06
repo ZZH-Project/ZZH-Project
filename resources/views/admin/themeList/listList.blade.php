@@ -17,9 +17,9 @@
         <table class="tb">
             <tr>
                 <th style="border-left: 1px solid #3399ff;">ID</th>
+                <th>专题标题</th>
                 <th>分类名称</th>
                 <th>用户ID</th>
-                <th>专题标题</th>
                 <th>专题大图片</th>
                 <th>专题文章内容</th>
                 <th>点赞数</th>

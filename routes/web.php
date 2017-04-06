@@ -95,6 +95,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::group(['prefix' => 'themeList'], function () {
             //显示专题
             Route::any('show', 'ThemeListController@show');
+            //添加专题
+            Route::any('add', 'ThemeListController@add');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){

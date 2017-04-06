@@ -97,6 +97,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::any('show', 'ThemeListController@show');
             //添加专题
             Route::any('add', 'ThemeListController@add');
+            //不为空验证
+            Route::get('check', 'ThemeListController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'ThemeListController@nameCheck');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){

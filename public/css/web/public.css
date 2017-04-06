@@ -64,7 +64,7 @@
 /*----------圆形菜单（默认五个）----------*/
 .menu_wrap{
 	padding: 46px 0 10px 0;
-	border-bottom: 12px solid #f2f2f2;
+	border-bottom: 12px solid #f6f6f6;
 }
 ul.menu_cirle li{
 	float: left;
@@ -183,9 +183,13 @@ a.btn_add_content:hover{
     padding-left: 5px;
     border-left: 3px solid #e44274;
 }
-
 .title_h4{
 	font-size: 32px;
+    color: #333333;
+    font-weight: bolder;
+}
+.title_h5{
+	font-size: 28px;
     color: #333333;
     font-weight: bolder;
 }
@@ -212,6 +216,7 @@ a.btn_add_content:hover{
 	padding: 5px 10px;
 	background-color: #FFFFFF;
 	margin: 0 auto;
+	font-weight: normal;
 }
 
 /*---------------------------------------------------------详情功能条-*/
@@ -523,3 +528,85 @@ ul.pop_share_list li a p{
 }
 
 /*479*/
+.contain_wrap{
+	border-bottom: 12px solid #f6f6f6;
+}
+/*---------------------------------------------------------信息提交-*/
+.submint_list{
+	
+}
+ul.submint_list li{
+	position: relative;
+	width: 100%;
+	height: 78px;
+	line-height: 78px;
+	border-radius: 5px;
+	border: 1px solid #e2e1e1;
+	margin-top: 15px;
+	overflow: hidden;
+}
+ul.submint_list li span{
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #333333;
+	font-size: 26px;
+	margin-left: 10px;
+}
+ul.submint_list li select,ul.submint_list li input{
+	position: relative;
+	left: 130px;
+	top: 0;
+	display: block;
+	width: 100%;
+	height: 76px;
+	line-height: 76px;
+	font-size: 26px;
+	color: #333333;
+	outline: none;
+	border: none;
+	padding: 0;
+	border-radius: 3px;
+	box-shadow: none;
+	margin-right: 130px;
+	padding-left: 10px;
+	
+}
+ul.submint_list li select option{
+	height: 78px;
+	line-height: 78px;
+	text-align: right;
+}
+.file_upload{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 90px;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 5px;
+	background-color: #e2e1e1;
+}
+.file_upload b{
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	color: #333333;
+    font-size: 26px;
+    font-weight: normal;
+    text-align: center;
+}
+ul.submint_list li .file_upload input{
+	left: 0;
+	opacity: 0;
+	z-index: 1000;
+}
+ul.submint_list li textarea{
+	height: 100px;
+	margin-top: 60px;
+}
+ul.submint_list li.textarea_li{
+	height: auto;
+}

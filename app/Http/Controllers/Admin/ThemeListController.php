@@ -39,6 +39,17 @@ class ThemeListController extends Controller
             return redirect('admin/themeList/show');
         }
     }
+    //删除专题内容
+    public function del(Request $request,$id) {
+        //获取图片名称
+        $pic = ThemeList::where('id',$id)->get()[0]->banner_img;
+        //拼接图片路径
+        $filepath = 'upload/images/'.$pic;
+        unlink($filepath);
+        //删除数据库数据
+        ThemeList::where('id',$id)->delete();
+        return 2;
+    }
     //重名验证
     public function nameCheck(Request $request,$id = 0) {
         //验证规则

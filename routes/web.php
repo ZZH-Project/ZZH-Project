@@ -97,6 +97,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::any('show', 'ThemeListController@show');
             //添加专题
             Route::any('add', 'ThemeListController@add');
+            //删除专题
+            Route::get('del/{id}', 'ThemeListController@del');
             //不为空验证
             Route::get('check', 'ThemeListController@check');
             //重名验证

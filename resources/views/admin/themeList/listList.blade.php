@@ -37,7 +37,7 @@
                     <td><img src='{{asset("upload/images/$v->banner_img")}}' width="100"></td>
                     <td></td>
                     <td>
-                        <a class="active" href="{{url('admin/themeCate/edit').'/'.$v->id}}">
+                        <a class="active" href="{{url('admin/themeList/edit').'/'.$v->id}}">
                             <i class="fa fa-wrench" title="修改专题"></i>
                         </a>
                         <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
@@ -65,7 +65,7 @@
             //获取点击的id
             var id = $(this).attr("name");
             $.ajax({
-                url:"{{url('admin/themeCate/del')}}/"+id,
+                url:"{{url('admin/themeList/del')}}/"+id,
                 type:"get",
                 data:{"id":id},
                 dataType:"string",
@@ -73,7 +73,7 @@
                 error:function (msg) {
                     if (msg.responseText == 2) {
                         $(".del[name="+id+"]").parent('td').parent('tr').remove();
-                        $(".alt").html("分类删除成功！").show().delay(500).fadeOut(500);
+                        $(".alt").html("专题删除成功！").show().delay(500).fadeOut(500);
                     }
                 }
             });

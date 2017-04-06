@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\ThemeCate;
+use App\Models\ThemeList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,11 +17,27 @@ class ThemeController extends Controller
     }
     //专题分类列表
     public function show(){
-        return view('web.theme.list');
+        //查询前5条专题分类
+        $data = ThemeCate::orderBy('sort_id','asc')->limit(5)->get();
+        //获取分类ID
+        $cate_id = $_GET['id'];
+        //查询此分类下的专题
+        $list = ThemeList::where('cate_id',$cate_id)->get();
+        //获取当前分类
+        $cate = ThemeCate::where('id',$cate_id)->get()[0];
+        return view('web.theme.list', ['data' => $data,'list' => $list,'cate' => $cate]);
     }
     //专题详情
     public function details(){
-        return view('web.theme.details');
+        //获取分类ID
+        $cate_id = $_GET['cate_id'];
+        //获取当前分类
+        $cate = ThemeCate::where('id',$cate_id)->get()[0];
+        //获取专题ID
+        $id = $_GET['id'];
+        //获取专题信息
+        $list = ThemeList::where('id',$id)->get()[0];
+        return view('web.theme.details', ['cate' => $cate,'list' => $list]);
     }
     //专题评论
     public function comment(){

@@ -11,7 +11,11 @@ class ThemeListController extends Controller
 {
     //显示专题内容
     public function show() {
-        return view('admin.themeList.listList');
+        //查询内容
+        $list = ThemeList::get();
+        //查询分类
+        $cate = ThemeCate::get();
+        return view('admin.themeList.listList', ['list' => $list, 'cate' => $cate]);
     }
     //添加专题内容
     public function add(Request $request) {

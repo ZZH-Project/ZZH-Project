@@ -21,26 +21,31 @@
                 <th>分类名称</th>
                 <th>用户ID</th>
                 <th>专题大图片</th>
-                <th>专题文章内容</th>
                 <th>点赞数</th>
                 <th style="border-right: 1px solid #3399ff;">操作</th>
             </tr>
-           {{-- @foreach($data as $v)
+            @foreach($list as $v)
                 <tr class="trd">
                     <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
-                    <td>{{$v->sort_id}}</td>
-                    <td>{{$v->cate_name}}</td>
-                    <td>{{$v->cate_img}}</td>
+                    <td>{{$v->title}}</td>
+                    @foreach($cate as $a)
+                        @if($a->id == $v->cate_id)
+                    <td>{{$a->cate_name}}</td>
+                        @endif
+                    @endforeach
+                    <td>{{$v->auser_id}}</td>
+                    <td><img src='{{asset("upload/images/$v->banner_img")}}' width="100"></td>
+                    <td></td>
                     <td>
                         <a class="active" href="{{url('admin/themeCate/edit').'/'.$v->id}}">
-                            <i class="fa fa-wrench" title="修改分类"></i>
+                            <i class="fa fa-wrench" title="修改专题"></i>
                         </a>
                         <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
-                            <i class="fa fa-trash" title="删除分类"></i>
+                            <i class="fa fa-trash" title="删除专题"></i>
                         </a>
                     </td>
                 </tr>
-            @endforeach--}}
+            @endforeach
         </table>
     </div>
 @endsection

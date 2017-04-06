@@ -27,13 +27,12 @@
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
 		</div><!--head-->
-		
+
 		<div class="qa_content_d">
-			<h1 class="title_h1">魔兽世界 15级去哪升级？</h1>
-			<p class="content p1">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</p>
+			<h1 class="title_h1">{{$qa['title']}}</h1>
+			<p class="content p1">{{$qa['content']}}</p>
 			<div class="cate_tip qa_tip_d">游戏</div>
 		</div><!--qa_content_d-->
-		
 		<a href="javascript:void(0);" class="btn_add_content" id="btn_footer_comment">
 			<div class="btn_bar">
 				<svg class="icon icon_em_20 icon_add_answer" aria-hidden="true">
@@ -42,7 +41,6 @@
 				<span>我要回答</span>
 			</div>
 		</a>
-		
 		<div class="comment_head">
 			<div class="wrap">
 				<div class="left">
@@ -233,16 +231,19 @@
 				</a>
 			</div><!--pop_bar_footer-->
 		</div><!--pop_wrap-->
-		
+
+		<form id="form" action="{{url('web/qa/checkdetails')}}" method="post">
+			{{csrf_field()}}
 		<div class="pop_wrap" id="add_comment_main">
 			<div class="pop_bar_footer">
 				<h1 class="pop_comment_title">评论</h1>
-				<a href="javascript:void(0);" class="pop_comment_send">提交</a>
+				<input type="submit" class="pop_comment_send" value="提交" style="background:none;border: none">
 				<a href="javascript:void(0);" class="pop_comment_close">取消</a>
-				<textarea class="input pop_comment_textarea" autofocus="autofocus"></textarea>
+				<textarea class="input pop_comment_textarea" autofocus="autofocus" name="detail"></textarea>
 			</div>
 		</div><!--pop_wrap-->
-		
+		</form>
+
 		<div class="pop_wrap" id="add_comment_sub">
 			<div class="pop_bar_footer">
 				<h1 class="pop_comment_title">评论</h1>
@@ -251,9 +252,27 @@
 				<textarea class="input pop_comment_textarea" autofocus="autofocus"></textarea>
 			</div>
 		</div><!--pop_wrap-->
-		
-		<div class="tip_bar" id="tip_success">提交成功</div>
+{{--		@if(empty($errors))--}}
+		<div class="tip_bar" id="tip_success"></div>
 		<div class="tip_bar" id="tip_fav">已收藏</div>
-		
 	</body>
+	<script>
+        $("#form").submit(function(){
+            $.ajax({
+                url:"{{url('web/qa/checkdetails')}}",
+				type:'get',
+				data:$("#form").serialize(),
+				datatype:'json',
+				success:function(){
+                    $("#tip_success").html('提交成功');
+				},
+				error:function(msg){
+//				    alert(222);
+				    var msg = JSON.parse(msg.responseText);
+                    $("#tip_success").html(msg.detail);
+				}
+			});
+			return false
+        });
+	</script>
 </html>

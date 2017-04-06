@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="html">
 	<head>
 		<meta charset="UTF-8">
 		<title>问答</title>
@@ -60,7 +60,7 @@
 			<div class="wrap">
 				<div class="sub_menu_wrap">
 					<div class="sub_menu_bar">
-						<ul>
+						<ul id="sc">
 							@foreach($qacates as $qacate)
 							<li><a href="javascript:void(0);">{{$qacate['cate_name']}}</a></li>
 							@endforeach
@@ -101,7 +101,9 @@
 				</div><!--qa_menu_more-->
 			</div><!--wrap-->
 		</div><!--sub_menu-->
-
+		@if(empty($qalists))
+			<div style="text-align: center;margin-top:100px;">当前分类还未有问题快去提问吧</div>
+		@else
 		@foreach($qalists as $qalist)
 		<div class="qa_wrap" id="qa_wrap">
 			<div class="wrap">
@@ -120,9 +122,9 @@
 				</div><!--comment_head_wrap-->
 				
 				<div class="qa_content_wrap">
-					<a href="details.html" class="title_h1">{{$qalist['title']}}</a>
+					<a href="{{url('web/qa/details').'/'.$qalist['id']}}" class="title_h1">{{$qalist['title']}}</a>
 					<div class="content p1">
-						联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫之地。
+						{{$qalist['content']}}
 					</div><!--qa_content-->
 				</div><!--qa_content_wrap-->
 				
@@ -148,6 +150,7 @@
 			</div><!--wrap-->
 		</div><!--qa_wrap-->
 		@endforeach
+		@endif
 		
 		{{--<div class="qa_wrap" id="qa_wrap">--}}
 			{{--<div class="wrap">--}}
@@ -258,6 +261,15 @@
 			$(document).ready( function() {
 				$('.sub_menu').stickUp();
 			});
+		});
+	</script>
+	<script>
+		$("#sc").click(function(){
+            if(($("a[class=sub_menu_select]")).text()){
+                var catename = ($("a[class=sub_menu_select]")).text();
+				console.log(catename);
+                location.href="{{url('web/qa/index')}}"+'/'+catename;
+			}
 		});
 	</script>
 </html>

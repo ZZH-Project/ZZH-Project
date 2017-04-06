@@ -32,56 +32,18 @@
 		<div class="menu_wrap">
 			<div class="wrap">
 				<ul class="menu_cirle">
+				@foreach($data as $v)
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}?id={{$v->id}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-weibiaoti2fuzhi12"></use>
+			                        <use xlink:href="{{$v->cate_img}}"></use>
 			                    </svg>
 							</div>
-							<p>个护</p>
+							<p>{{$v->cate_name}}</p>
 						</a>
 					</li>
-					<li>
-						<a href="{{url('web/theme/list')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-shenghuojiaju"></use>
-			                    </svg>
-							</div>
-							<p>家居</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/list')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-meishi"></use>
-			                    </svg>
-							</div>
-							<p>美食</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/list')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-caizhuangxiangfen"></use>
-			                    </svg>
-							</div>
-							<p>彩妆</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/list')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-yundong"></use>
-			                    </svg>
-							</div>
-							<p>运动</p>
-						</a>
-					</li>
+				@endforeach
 				</ul>
 				<div style="clear: both;"></div>
 			</div><!--wrap-->

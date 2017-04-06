@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQaCateTable extends Migration
+class CreateThemeCatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateQaCateTable extends Migration
      */
     public function up()
     {
-        Schema::create('qa_cates', function (Blueprint $table) {
+        Schema::create('theme_cates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cate_name')->unique();
-            $table->integer('sort_id')->default(9999)->nullable();
+            $table->integer('sort_id')->default(1);
+            $table->string('cate_name')->nullable();
+            $table->string('cate_img')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateQaCateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qa_cate');
+        Schema::dropIfExists('theme_cates');
     }
 }

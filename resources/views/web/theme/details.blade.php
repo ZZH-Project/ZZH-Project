@@ -162,7 +162,7 @@
 		<div class="footer_fun_wrap">
 			<ul class="fun_five">
 				<li>
-					<a href="{{url('web/theme/list')}}">
+					<a href="{{url('web/theme/show')}}">
 						<svg class="icon" aria-hidden="true">
 		                    <use xlink:href="#front_icon-fanhui1"></use>
 		                </svg>

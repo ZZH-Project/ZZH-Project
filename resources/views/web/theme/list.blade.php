@@ -167,7 +167,7 @@
 			<div class="pop_head_menu">
 				<ul class="menu_cirle">
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-weibiaoti2fuzhi12"></use>
@@ -177,7 +177,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-shenghuojiaju"></use>
@@ -187,7 +187,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-meishi"></use>
@@ -197,7 +197,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-caizhuangxiangfen"></use>
@@ -207,7 +207,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-yundong"></use>
@@ -217,7 +217,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-caizhuangxiangfen"></use>
@@ -227,7 +227,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="{{url('web/theme/list')}}">
+						<a href="{{url('web/theme/show')}}">
 							<div class="menu_cirle_bar">
 								<svg class="icon icon_em_18" aria-hidden="true">
 			                        <use xlink:href="#front_icon-yundong"></use>

@@ -76,6 +76,26 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //路由重名验证
             Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
         });
+        //专题分类组
+        Route::group(['prefix' => 'themeCate'], function () {
+            //显示专题分类
+            Route::any('show', 'ThemeCateController@show');
+            //添加专题分类
+            Route::any('add', 'ThemeCateController@add');
+            //删除专题分类
+            Route::get('del/{id}', 'ThemeCateController@del');
+            //修改专题分类
+            Route::any('edit/{id}', 'ThemeCateController@edit');
+            //不为空验证
+            Route::get('check', 'ThemeCateController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'ThemeCateController@nameCheck');
+        });
+        //专题组
+        Route::group(['prefix' => 'themeList'], function () {
+            //显示专题
+            Route::any('show', 'ThemeListController@show');
+        });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示
@@ -96,6 +116,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         //问答内容管理组
         Route::group(['prefix'=>'qa'],function (){
             Route::get('show','QaController@show');
+            Route::get('showcontent/{qalistid?}','QaController@showcontent');
         });
 
     });
@@ -123,16 +144,18 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::any('resetpass','UserController@resetpass');
     }); //==需要登录的路由,中间件分组==
     //问答列表
-    Route::get('qa/index','QaController@qaList');
+    Route::get('qa/index/{catename?}','QaController@qaList');
     Route::group(['middleware'=>'webLogin'],function(){
         //==============问答===================
         Route::group(['prefix'=>'qa'],function(){
             //问答提问
             Route::get('ask','QaController@qaAsk');
             //问答详情
-            Route::get('details','QaController@qaDetails');
-            //验证问答内容
+            Route::any('details/{qalistid?}','QaController@qaDetails');
+            //验证提问答内容
             Route::any('check','QaController@check');
+            //验证回答内容
+            Route::any('checkdetails','QaController@checkdetails');
         });
     });
     //==============专题===================
@@ -140,7 +163,7 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //专题主页
         Route::get('index','ThemeController@index');
         //专题分类列表
-        Route::get('list','ThemeController@list');
+        Route::get('show','ThemeController@show');
         //专题详情
         Route::get('details','ThemeController@details');
         //专题评论

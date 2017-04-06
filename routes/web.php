@@ -111,6 +111,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         //问答内容管理组
         Route::group(['prefix'=>'qa'],function (){
             Route::get('show','QaController@show');
+            Route::get('showcontent/{qalistid?}','QaController@showcontent');
         });
 
     });

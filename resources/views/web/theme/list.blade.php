@@ -53,7 +53,7 @@
 					<img src='{{asset("upload/images/$v->banner_img")}}'  />
 					<div class="theme_cate_tip">{{$cate->cate_name}}</div><!--theme_cate_tip-->
 				</a><!--theme_bar-->
-				<a href="{{url('web/theme/details')}}" class="title_h2">{{$v->title}}</a>
+				<a href="{{url("web/theme/details?id=$v->id&cate_id=$cate->id")}}" class="title_h2">{{$v->title}}</a>
 				<div class="fun_info_bar">
 					<a href="javascript:void(0);" class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">

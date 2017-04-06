@@ -38,7 +38,7 @@
                     <td><img src='{{asset("upload/images/$v->banner_img")}}' width="100"></td>
                     <td></td>
                     <td>
-                        <span id="show" style="cursor: pointer;" name="{{$v->id}}">
+                        <span class="show" style="cursor: pointer;" name="{{$v->id}}">
                             <svg class="icon icon_em_18" aria-hidden="true" style="color:{{$v->is_show == 1 ? 'green' : 'red'}};">
                                 <use xlink:href="#front_icon-yundong"></use>
                             </svg>
@@ -69,7 +69,7 @@
     </script>
     {{--点击显示--}}
     <script>
-        $("#show").click(function () {
+        $(".show").click(function () {
             var id = $(this).attr("name");
             $.ajax({
                 url:"{{url('admin/themeList/is')}}/"+id,
@@ -79,10 +79,10 @@
                 success:function (data) {},
                 error:function (msg) {
                     if (msg.responseText == 2) {
-                        $("#show[name="+id+"] svg").css({'color':'red'});
+                        $(".show[name="+id+"] svg").css({'color':'red'});
                         $(".alt").html("专题已下线！").show().delay(500).fadeOut(500);
                     } else if(msg.responseText == 1) {
-                        $("#show[name="+id+"] svg").css({'color':'green'});
+                        $(".show[name="+id+"] svg").css({'color':'green'});
                         $(".alt").html("专题已上线！").show().delay(500).fadeOut(500);
                     }
                 }

@@ -21,6 +21,7 @@ class CreateThemeListsTable extends Migration
             $table->string('banner_img')->nullable();
             $table->text('content')->nullable();
             $table->integer('good_num')->nullable();
+            $table->integer('is_show')->nullable();
             $table->timestamps();
         });
     }

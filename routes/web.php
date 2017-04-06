@@ -175,5 +175,19 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //专题评论
         Route::any('comment','ThemeController@comment');
     });
+
+    //==============微圈===================
+    Route::group(['prefix'=>'wechat'],function(){
+        //微圈主页
+        Route::get('index','WeChatController@index');
+        //微圈分类列表
+        Route::get('list','WeChatController@list');
+        //微圈详情
+        Route::get('details','WeChatController@details');
+        //微圈评论
+        Route::any('comment','WeChatController@comment');
+        //加入微圈
+        Route::any('add','WeChatController@add');
+    });
 });
 

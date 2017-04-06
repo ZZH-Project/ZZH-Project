@@ -35,6 +35,7 @@ class ThemeListController extends Controller
             $lists->title = $request->get('title');
             $lists->banner_img = $filename;
             $lists->content = $request->get('content');
+            $lists->is_show = 1;
             $lists->save();
             return redirect('admin/themeList/show');
         }
@@ -49,6 +50,24 @@ class ThemeListController extends Controller
         //删除数据库数据
         ThemeList::where('id',$id)->delete();
         return 2;
+    }
+    //是否显示专题
+    public function is(Request $request,$id) {
+        //获取专题的上线情况
+        $is_show = ThemeList::where('id',$id)->get()[0]->is_show;
+        if ($is_show == 1) {
+            //修改状态
+            ThemeList::where('id',$id)->update([
+                'is_show' => 2
+            ]);
+            return 2;
+        } elseif ($is_show == 2) {
+            //修改状态
+            ThemeList::where('id',$id)->update([
+                'is_show' => 1
+            ]);
+            return 1;
+        }
     }
     //重名验证
     public function nameCheck(Request $request,$id = 0) {

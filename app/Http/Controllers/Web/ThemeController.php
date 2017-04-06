@@ -22,7 +22,7 @@ class ThemeController extends Controller
         //获取分类ID
         $cate_id = $_GET['id'];
         //查询此分类下的专题
-        $list = ThemeList::where('cate_id',$cate_id)->get();
+        $list = ThemeList::where('cate_id',$cate_id)->where('is_show',1)->get();
         //获取当前分类
         $cate = ThemeCate::where('id',$cate_id)->get()[0];
         return view('web.theme.list', ['data' => $data,'list' => $list,'cate' => $cate]);
@@ -36,7 +36,7 @@ class ThemeController extends Controller
         //获取专题ID
         $id = $_GET['id'];
         //获取专题信息
-        $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->get()[0];
+        $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->where('is_show',1)->get()[0];
         return view('web.theme.details', ['cate' => $cate,'list' => $list]);
     }
     //专题评论

@@ -266,5 +266,11 @@
 	</body>
 	<script>
 		$(".article_wrap p span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h1 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h2 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h3 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h4 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h5 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h6 span").css({'word-break':'break-all','white-space':'inherit'});
 	</script>
 </html>

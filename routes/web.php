@@ -99,6 +99,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::any('add', 'ThemeListController@add');
             //删除专题
             Route::get('del/{id}', 'ThemeListController@del');
+            //修改专题
+            Route::any('edit/{id}', 'ThemeListController@edit');
             //是否显示专题
             Route::get('is/{id}', 'ThemeListController@is');
             //不为空验证

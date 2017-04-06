@@ -51,6 +51,47 @@ class ThemeListController extends Controller
         ThemeList::where('id',$id)->delete();
         return 2;
     }
+    //修改专题内容
+    public function edit(Request $request,$id) {
+        if ($request->isMethod('get')) {
+            //查询分类
+            $cate = ThemeCate::get();
+            //查询当前
+            $data = ThemeList::where('id',$id)->get()[0];
+            return view('admin.themeList.listEdit', ['cate' => $cate,'data' => $data]);
+        } elseif ($request->isMethod('post')) {
+            if ($request->banner_img == null) {
+                //更新数据
+                ThemeList::where('id',$id)->update([
+                    'title' => $request->get('title'),
+                    'cate_id' => $request->get('cate_id'),
+                    'content' => $request->get('content')
+                ]);
+                return redirect('admin/themeList/show');
+            } elseif ($request->banner_img != null) {
+                //处理图片
+                $pic = $request->banner_img;
+                $filename = mt_rand(100,999).time().'.'.$pic->getClientOriginalExtension();
+                //上传图片
+                $pic->move('upload/images',$filename);
+                //获取图片名称
+                $pic = ThemeList::where('id',$id)->get()[0]->banner_img;
+                //拼接图片路径
+                $filepath = 'upload/images/'.$pic;
+                //删除原图
+                unlink($filepath);
+                //更新数据
+                ThemeList::where('id',$id)->update([
+                    'title' => $request->get('title'),
+                    'cate_id' => $request->get('cate_id'),
+                    'banner_img' => $filename,
+                    'content' => $request->get('content')
+                ]);
+                return redirect('admin/themeList/show');
+            }
+            return;
+        }
+    }
     //是否显示专题
     public function is(Request $request,$id) {
         //获取专题的上线情况

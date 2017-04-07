@@ -119,7 +119,7 @@
 		<div class="footer_fun_wrap">
 			<ul class="fun_two">
 				<li>
-					<a href="{{url('web/theme/details')}}">
+					<a href="javascript:void(0);" onclick="history.go(-1)">
 						<svg class="icon" aria-hidden="true">
 		                    <use xlink:href="#front_icon-fanhui1"></use>
 		                </svg>

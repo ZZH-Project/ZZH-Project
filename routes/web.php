@@ -95,6 +95,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::group(['prefix' => 'themeList'], function () {
             //显示专题
             Route::any('show', 'ThemeListController@show');
+            //添加专题
+            Route::any('add', 'ThemeListController@add');
+            //删除专题
+            Route::get('del/{id}', 'ThemeListController@del');
+            //修改专题
+            Route::any('edit/{id}', 'ThemeListController@edit');
+            //是否显示专题
+            Route::get('is/{id}', 'ThemeListController@is');
+            //不为空验证
+            Route::get('check', 'ThemeListController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'ThemeListController@nameCheck');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){

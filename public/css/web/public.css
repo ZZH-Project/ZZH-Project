@@ -477,6 +477,16 @@ ul.pop_share_list li a p{
 	width: 4em;
 	height: 4em;
 }
+.footer_fun_wrap ul li span{
+	display: block;
+	width: 65px;
+	color: #4f4f4f;
+	margin: 0 auto;
+}
+.footer_fun_wrap ul li span svg{
+	width: 4em;
+	height: 4em;
+}
 #btn_footer_good{
 	position: relative;
 }
@@ -484,6 +494,15 @@ ul.pop_share_list li a p{
 	position: absolute;
 	top: 20px;
 	right: -30px;
+	font-size: 22px;
+}
+#btn_footer_good1{
+	position: relative;
+}
+#btn_footer_good1 span{
+	position: absolute;
+	top: 20px;
+	right: -60px;
 	font-size: 22px;
 }
 #btn_footer_share svg{

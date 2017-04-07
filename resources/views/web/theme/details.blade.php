@@ -174,12 +174,12 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);" id="btn_footer_good">
+					<span id="btn_footer_good1">
 						<svg class="icon" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
+	                        <use xlink:href="#front_icon-liulan1"></use>
 	                    </svg>
-	                    <span>234</span>
-					</a>
+	                    <span>{{$list->good_num == 0 ? 0 : $list->good_num}}</span>
+					</span>
 				</li>
 				<li>
 					<a href="javascript:void(0);" id="btn_footer_comment">

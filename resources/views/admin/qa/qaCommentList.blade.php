@@ -19,24 +19,30 @@
         <table class="tb">
             <tr>
                 <th style="border-left: 1px solid #3399ff;">ID</th>
-                <th>问答编号</th>
+                <th>问答标题</th>
                 <th>用户编号</th>
                 <th>评论编号</th>
                 <th>评论内容</th>
                 <th>点赞数</th>
                 <th>发布时间</th>
                 <th>是否显示</th>
+                <th>回答详情</th>
             </tr>
             @foreach($qacomment as $v)
                 <tr class="trd">
                     <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
-                    <td>{{$v->qa_id}}</td>
+                    <td>{{$v->title}}</td>
                     <td>{{$v->user_id}}</td>
+                    @if($v->comment_id ==0)
+                    <td style="background: darkgray">{{$v->comment_id}}</td>
+                    @else
                     <td>{{$v->comment_id}}</td>
-                    <td>{{$v->content}}</td>
+                    @endif
+                    <td>{{mb_substr($v->content,0,6,'utf-8')}}</td>
                     <td>{{$v->good_num}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->issue_time)}}</td>
                     <td>{{$v->is_show}}</td>
+                    <td><a href="{{url("admin/qacomment/showcomment").'/'.$v->id}}"><i class="fa fa-fw fa-align-justify"></i></a></td>
                 </tr>
             @endforeach
             <tr>
@@ -54,7 +60,7 @@
             var fv = $("#qf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/qa/find')}}",
+                url:"{{url('admin/qacomment/find')}}",
                 type:"post",
                 data:{"fv":fv,"_token":token},
                 dataType:"string",

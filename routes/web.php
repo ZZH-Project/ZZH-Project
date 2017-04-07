@@ -135,8 +135,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('switch/{id}/{status}','QaController@switchshow');
             //================搜索问题================
             Route::any('find','QaController@find');
+        });
+        //问答回复管理
+        Route::group(['prefix'=>'qacomment'],function(){
             //==============显示回答列表==============
-            Route::get('showcomment','QaController@showcomment');
+            Route::get('show','QaController@showcomment');
+            //==============显示回复内容==============
+            Route::get('showcomment/{qacommentid?}','QaController@showcomments');
+            //===============切换显示状态===============
+            Route::get('switch/{id}/{status}','QaController@switchshows');
+            //================搜索回答================
+            Route::any('find','QaController@finds');
         });
 
     });

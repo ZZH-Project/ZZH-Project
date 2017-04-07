@@ -7,6 +7,7 @@ use App\Models\QaComment;
 use App\Models\QaList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 //前台
 class QaController extends Controller
@@ -19,12 +20,19 @@ class QaController extends Controller
             $qacates = QaCate::orderBy('sort_id','asc')->get()->toArray();
             $cid = Qacate::select('id')->where(['cate_name'=>$catename])->get()->toArray();
 //            var_dump($cid[0]['id']);
-            $qalists = QaList::where('cate_id',$cid)->get()->toArray();
-//            var_dump($qalists);
+            $qalists = DB::table('qa_lists')
+                        ->select('qa_lists.id','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
+                        ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+                        ->where('qa_cates.id',$cid)
+                        ->get()->toArray();
+//            var_dump($qalists);die;
             return view('web.qa.index',compact('qacates','qalists'));
         }
         $qacates = QaCate::orderBy('sort_id','asc')->get()->toArray();
-        $qalists = QaList::get()->toArray();
+        $qalists = DB::table('qa_lists')
+                    ->select('qa_lists.id','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
+                    ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+                    ->get()->toArray();
         return view('web.qa.index',compact('qacates','qalists'));
     }
     //===================提问页面===================
@@ -36,8 +44,13 @@ class QaController extends Controller
     public function qaDetails(Request $request){
         $qalistid = $request->qalistid;
 //        var_dump($qalistid);
-        $qa = QaList::where('id',$qalistid)->get()->toArray();
+        $qa = DB::table('qa_lists')
+            ->select('qa_lists.id','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
+            ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+            ->where('qa_lists.id',$qalistid)
+            ->get()->toArray();
         $qa = $qa[0];
+//        var_dump($qa);die;
         $qacomment = QaComment::where('qa_id',$qalistid)->get();
         $qacomment = (object)Tree($qacomment);
         return view('web.qa.details',compact('qa','qacomment'));

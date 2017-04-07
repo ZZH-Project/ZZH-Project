@@ -20,7 +20,7 @@
 				</div><!--left-->
 				<div class="left qa_details_info">
 					<p class="user_name_d">秋之雨</p>
-					<p class="qa_details_time">2017-3-21 20:30:14</p>
+					<p class="qa_details_time">{{date('Y-m-d H:i:s',$qa->issue_time)}}</p>
 				</div><!--left-->
 				<div class="qa_status_bar status_green qa_status_d right">已回答</div><!--right-->
 				<!--<div class="qa_status_bar status_red qa_status_d right">待回答</div><!--right-->
@@ -28,11 +28,11 @@
 			</div><!--wrap-->
 		</div><!--head-->
 		{{--{{var_dump($qa)}}--}}
-{{--		{{print_r($qacomment)}}--}}
+		{{--{{var_dump($qacomment)}}--}}
 		<div class="qa_content_d">
-			<h1 class="title_h1">{{$qa['title']}}</h1>
-			<p class="content p1">{{$qa['content']}}</p>
-			<div class="cate_tip qa_tip_d">游戏</div>
+			<h1 class="title_h1">{{$qa->title}}</h1>
+			<p class="content p1">{{$qa->content}}</p>
+			<div class="cate_tip qa_tip_d">{{$qa->cate_name}}</div>
 		</div><!--qa_content_d-->
 		<a href="javascript:void(0);" class="btn_add_content" id="btn_footer_comment">
 			<div class="btn_bar">
@@ -51,12 +51,13 @@
 	                <span>回答</span>
 				</div>
 				<div class="right">
-					<a href="{{url('web/qa/comment')}}" class="a_red">查看全部评论</a>
+					<a href="{{url('web/qa/index')}}" class="a_red">查看全部问题</a>
 				</div>
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
 		</div><!--comment_head-->
 		@foreach($qacomment as $v)
+			@if($v['is_show'] == 1)
 				<div class="comment_wrap">
 				<div class="wrap">
 				<div class="comment_head_wrap">
@@ -66,7 +67,7 @@
 						</div>
 						<span class="user_name">秋之雨</span>
 					</div>
-					<div class="right time_tip">2017-3-21  20:30:14</div>
+					<div class="right time_tip">{{date('Y-m-d H:i:s',$v->issue_time)}}</div>
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->
 				@if($v['comment_id']!=0)
@@ -125,6 +126,7 @@
 				{{--</div><!--fun_info_bar-->--}}
 			{{--</div><!--wrap-->--}}
 		</div><!--comment_wrap-->
+			@endif
 		@endforeach
 
 
@@ -243,7 +245,7 @@
 
 		<form id="form" action="{{url('web/qa/checkdetails')}}" method="post">
 			{{csrf_field()}}
-			<input type="hidden" name="qlid" value="{{$qa['id']}}">
+			<input type="hidden" name="qlid" value="{{$qa->id}}">
 			<input type="hidden" name="wuid" value="{{session('wuid')}}">
 		<div class="pop_wrap" id="add_comment_main">
 			<div class="pop_bar_footer">
@@ -257,7 +259,7 @@
 
 		<form id="form1" action="{{url('web/qa/checkdetails')}}" method="post">
 			{{csrf_field()}}
-			<input type="hidden" name="qlid" value="{{$qa['id']}}">
+			<input type="hidden" name="qlid" value="{{$qa->id}}">
 			<input id="cid" type="hidden" name="cmid" value="">
 			<input type="hidden" name="wuid" value="{{session('wuid')}}">
 		<div class="pop_wrap" id="add_comment_sub">

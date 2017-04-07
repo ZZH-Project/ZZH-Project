@@ -164,6 +164,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
 
 //前台路由
 Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
+    //==============主页===================
+    Route::get('index','indexController@index');
+
     //==============用户组===================
     Route::group(['prefix'=>'user'],function(){
         //登录

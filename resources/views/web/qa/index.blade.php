@@ -49,11 +49,11 @@
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">问答</h1>
-				<a href="index.html" class="btn_page_back">
-					<svg class="icon icon_em_40" aria-hidden="true">
-	                    <use xlink:href="#front_icon-fanhui1"></use>
-	                </svg>
-				</a>
+				{{--<a href="index.html" class="btn_page_back">--}}
+					{{--<svg class="icon icon_em_40" aria-hidden="true">--}}
+	                    {{--<use xlink:href="#front_icon-fanhui1"></use>--}}
+	                {{--</svg>--}}
+				{{--</a>--}}
 			</div><!--wrap-->
 		</div><!--head-->
 		<div class="sub_menu" id="sub_menu">

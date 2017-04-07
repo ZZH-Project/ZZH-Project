@@ -63,7 +63,7 @@
 			</div><!--login_wrap-->
 			</form><!-- login -->
 			<a href="{{url('web/user/register')}}" class="a_register">立即注册</a>
-			<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>
+			{{--<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>--}}
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
 	</body>

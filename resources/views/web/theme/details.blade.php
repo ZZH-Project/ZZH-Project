@@ -76,12 +76,6 @@
 				<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>
 				
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-						<span>20</span>
-					</a>
 					<a href="javascript:void(0);" class="right btn_add_comment_sub" >
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-huifu"></use>
@@ -107,12 +101,6 @@
 				<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>
 				
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-						<span>20</span>
-					</a>
 					<a href="javascript:void(0);" class="right btn_add_comment_sub" >
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-huifu"></use>
@@ -139,12 +127,6 @@
 				<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>
 				
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-						<span>20</span>
-					</a>
 					<a href="javascript:void(0);" class="right btn_add_comment_sub" >
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-huifu"></use>
@@ -254,9 +236,11 @@
 		<div class="pop_wrap" id="add_comment_main">
 			<div class="pop_bar_footer">
 				<h1 class="pop_comment_title">评论</h1>
-				<a href="javascript:void(0);" class="pop_comment_send">提交</a>
-				<a href="javascript:void(0);" class="pop_comment_close">取消</a>
-				<textarea class="input pop_comment_textarea" autofocus="autofocus"></textarea>
+				<form id="f1" action="{{url("web/theme/submit").'/'.$_GET['id'].'/'.$_GET['cate_id']}}" method="get">
+					<input type="submit" style="cursor: pointer;background: rgba(0,0,0,0);border:0px solid white;" class="pop_comment_send" value="提交">
+					<a href="javascript:void(0);" class="pop_comment_close">返回</a>
+					<textarea class="input pop_comment_textarea" name="content" autofocus="autofocus"></textarea>
+				</form>
 			</div>
 		</div><!--pop_wrap-->
 		
@@ -264,7 +248,7 @@
 			<div class="pop_bar_footer">
 				<h1 class="pop_comment_title">评论</h1>
 				<a href="javascript:void(0);" class="pop_comment_send">提交</a>
-				<a href="javascript:void(0);" class="pop_comment_close">取消</a>
+				<a href="javascript:void(0);" class="pop_comment_close">返回</a>
 				<textarea class="input pop_comment_textarea" autofocus="autofocus"></textarea>
 			</div>
 		</div><!--pop_wrap-->
@@ -272,6 +256,19 @@
 		<div class="tip_bar" id="tip_success">提交成功</div>
 		<div class="tip_bar" id="tip_fav">已收藏</div>
 	</body>
+	<script>
+		//检测是否为空
+		$("#f1").submit(function () {
+			//获取提交的评论
+			var content = $("#f1 textarea").val();
+			if (!content) {
+			    $("#tip_success").html("请输入内容！");
+                return false;
+			} else {
+                $("#tip_success").html("提交成功！");
+			}
+        });
+	</script>
 	<script>
 		$(".article_wrap p span").css({'word-break':'break-all','white-space':'inherit'});
 		$(".article_wrap h1 span").css({'word-break':'break-all','white-space':'inherit'});

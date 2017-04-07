@@ -186,6 +186,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('details','ThemeController@details');
         //专题评论
         Route::any('comment','ThemeController@comment');
+        //提交评论
+        Route::get('submit/{th_id}/{cate_id}', 'ThemeController@submit');
     });
 
     //==============微圈===================

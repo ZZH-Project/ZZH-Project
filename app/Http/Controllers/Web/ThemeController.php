@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\ThemeCate;
+use App\Models\ThemeComment;
 use App\Models\ThemeList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,5 +49,19 @@ class ThemeController extends Controller
     //专题评论
     public function comment(){
         return view('web.theme.comment');
+    }
+    //提交专题评论
+    public function submit(Request $request,$th_id,$cate_id){
+        //获取分类ID
+        $cid = $cate_id;
+        //将信息插入数据库
+        $theme = new ThemeComment();
+        $theme->th_id = $th_id;
+        $theme->wuser_id = session('wuid');
+        $theme->comment_id = 0;
+        $theme->content = $request->get('content');
+        $theme->is_show = 1;
+        $theme->save();
+        return redirect("web/theme/details?id=$th_id&cate_id=$cid");
     }
 }

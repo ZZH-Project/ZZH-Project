@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\QaCate;
+use App\Models\QaComment;
 use App\Models\QaList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,8 +38,9 @@ class QaController extends Controller
 //        var_dump($qalistid);
         $qa = QaList::where('id',$qalistid)->get()->toArray();
         $qa = $qa[0];
-//        var_dump($qa);
-        return view('web.qa.details',compact('qa'));
+        $qacomment = QaComment::where('qa_id',$qalistid)->get();
+        $qacomment = (object)Tree($qacomment);
+        return view('web.qa.details',compact('qa','qacomment'));
     }
 
     //================验证提问信息================
@@ -81,5 +83,40 @@ class QaController extends Controller
             'detail.required' => '回答不能为空',
         ];
         $this->validate($request,$role,$msg);
+        $detail = $request->detail;
+        $qlid = $request->qlid;
+        $wuid = $request->wuid;
+        $time = time();
+        var_dump($detail,$qlid,$wuid);
+        QaComment::create([
+            'qa_id' => $qlid,
+            'user_id' => $wuid,
+            'content' => $detail,
+            'issue_time' => $time
+        ]);
+    }
+
+    //================验证子集回答信息================
+    public  function checkdetailsc(Request $request){
+        $role = [
+            'detail2' => 'required',
+        ];
+        $msg =[
+            'detail2.required' => '回答不能为空',
+        ];
+        $this->validate($request,$role,$msg);
+        $detail = $request->detail2;
+        $qlid = $request->qlid;
+        $cmid = $request->cmid;
+        $wuid = $request->wuid;
+        $time = time();
+//        var_dump($detail,$qlid,$wuid);die;
+        QaComment::create([
+            'qa_id' => $qlid,
+            'comment_id' => $cmid,
+            'user_id' => $wuid,
+            'content' => $detail,
+            'issue_time' => $time
+        ]);
     }
 }

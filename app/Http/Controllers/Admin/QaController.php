@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\QaCate;
+use App\Models\QaComment;
 use App\Models\QaList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,5 +49,13 @@ class QaController extends Controller
 //                var_dump($data);die;
             return response()->view('admin.qa.miniQaTable', ['qalists' => $data,'fv' => $fv]);
         }
+    }
+
+    //================显示回答内容================
+    public function showcomment(Request $request){
+       $qacomment = QaComment::get();
+       $qacomment = (object)Tree($qacomment);
+//       var_dump($qacomment);die;
+       return view('admin/qa/qaCommentList',compact('qacomment'));
     }
 }

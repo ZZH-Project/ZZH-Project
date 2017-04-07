@@ -117,12 +117,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::group(['prefix'=>'qa'],function (){
             //===============显示问答列表===============
             Route::get('show','QaController@show');
-            //================查看问答内容================
+            //================查看问答详情================
             Route::get('showcontent/{qalistid?}','QaController@showcontent');
             //===============切换显示状态===============
             Route::get('switch/{id}/{status}','QaController@switchshow');
             //================搜索问题================
             Route::any('find','QaController@find');
+            //==============显示回答列表==============
+            Route::get('showcomment','QaController@showcomment');
         });
 
     });
@@ -162,6 +164,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('check','QaController@check');
             //验证回答内容
             Route::any('checkdetails','QaController@checkdetails');
+            //验证子集回答内容
+            Route::any('checkdetailsc','QaController@checkdetailsc');
         });
     });
     //==============专题===================

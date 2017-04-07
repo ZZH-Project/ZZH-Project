@@ -76,7 +76,7 @@
 						<div style="clear: both;"></div>
 					</div><!--sub_menu_bar-->
 				</div><!--sub_menu_wrap-->
-				
+				{{--{{var_dump($qalists)}}--}}
 				<div class="sub_menu_down">
 					<a href="javascript:void(0);" class="btn_menu_down">
 						<svg class="icon icon_em_25" aria-hidden="true">
@@ -113,11 +113,11 @@
 						<div class="user_img_bar user_img_50 left">
 							<img src="{{asset('images/web/user_img.png')}}" />
 						</div>
-						<span class="user_name">秋之雨</span>
+						<span class="user_name">{{$qalist['user_id']}}</span>
 					</div>
 					<div class="right time_tip">
-						<span class="qa_status_bar status_green">已回答</span>
-						<!--<span class="qa_status_bar status_red">待回答</span>-->
+						{{--<span class="qa_status_bar status_green">已回答</span>--}}
+						<span class="qa_status_bar status_red">待回答</span>
 					</div>
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->

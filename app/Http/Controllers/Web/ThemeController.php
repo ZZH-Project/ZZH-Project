@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Models\ThemeCate;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;
+use App\Models\Wuser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -44,11 +45,28 @@ class ThemeController extends Controller
         ]);
         //获取专题信息
         $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->where('is_show',1)->get()[0];
-        return view('web.theme.details', ['cate' => $cate,'list' => $list]);
+        //获取次专题的评论
+        $comment = ThemeComment::select('theme_comments.*','wusers.username')
+            ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
+            ->where('th_id',$id)
+            ->limit(3)
+            ->get();
+        return view('web.theme.details', ['cate' => $cate,'list' => $list,'comment' => $comment]);
     }
     //专题评论
     public function comment(){
-        return view('web.theme.comment');
+        //获取分类ID
+        $cate_id = $_GET['cid'];
+        //获取专题ID
+        $id = $_GET['thid'];
+        //获取专题信息
+        $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->where('is_show',1)->get()[0];
+        //获取次专题的评论
+        $comment = ThemeComment::select('theme_comments.*','wusers.username')
+            ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
+            ->where('th_id',$id)
+            ->get();
+        return view('web.theme.comment',['list' => $list,'comment' => $comment]);
     }
     //提交专题评论
     public function submit(Request $request,$th_id,$cate_id){

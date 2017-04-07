@@ -26,7 +26,7 @@
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
-						<span>20(false)</span>
+						<span>{{$count}}</span>
 					</span>
 					<span class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">

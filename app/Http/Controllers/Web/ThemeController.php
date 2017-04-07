@@ -8,6 +8,7 @@ use App\Models\ThemeList;
 use App\Models\Wuser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ThemeController extends Controller
 {
@@ -27,7 +28,11 @@ class ThemeController extends Controller
         $list = ThemeList::where('cate_id',$cate_id)->where('is_show',1)->get();
         //获取当前分类
         $cate = ThemeCate::where('id',$cate_id)->get()[0];
-        return view('web.theme.list', ['data' => $data,'list' => $list,'cate' => $cate]);
+        //获取评论次数
+        $count = ThemeComment::select(DB::raw('count(*) as num,th_id'))
+            ->groupBy('th_id')
+            ->get();
+        return view('web.theme.list', ['data' => $data,'list' => $list,'cate' => $cate,'count' => $count]);
     }
     //专题详情
     public function details(){
@@ -51,7 +56,9 @@ class ThemeController extends Controller
             ->where('th_id',$id)
             ->limit(3)
             ->get();
-        return view('web.theme.details', ['cate' => $cate,'list' => $list,'comment' => $comment]);
+        //获取评论次数
+        $count = ThemeComment::where('th_id',$id)->count();
+        return view('web.theme.details', ['cate' => $cate,'list' => $list,'comment' => $comment,'count' => $count]);
     }
     //专题评论
     public function comment(){

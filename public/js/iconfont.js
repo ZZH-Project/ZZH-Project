@@ -196,6 +196,14 @@
     '' +
     '</symbol>' +
     '' +
+    '<symbol id="front_icon-fanhui1-copy" viewBox="0 0 1024 1024">' +
+    '' +
+    '<path d="M347.477 921.278l-13.407-13.407 417.185-417.185 13.407 13.407-417.185 417.185z"  ></path>' +
+    '' +
+    '<path d="M765.781 502.708l-13.141 13.634-415.516-399.967 13.179-13.653 415.479 399.986z"  ></path>' +
+    '' +
+    '</symbol>' +
+    '' +
     '</svg>'
   var script = function() {
     var scripts = document.getElementsByTagName('script')

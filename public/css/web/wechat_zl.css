@@ -47,8 +47,9 @@ ul.chat_list li img{
 	float: left;
 	margin-left: 150px;
 }
-.webchat_info_bar h1{
-	margin-bottom: 15px;
+.webchat_info_bar a{
+	display: block;
+	margin-bottom: 10px;
 }
 .webchat_head_d{
 	width: 100%;

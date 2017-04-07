@@ -37,6 +37,11 @@
 						<option>教育</option>
 						<option>培训</option>
 					</select>
+					<div class="icon_more">
+						<svg class="icon icon_em_25" aria-hidden="true">
+							<use xlink:href="#front_icon-fanhui1-copy"></use>
+						</svg>
+					</div><!--icon_more-->
 				</li>
 				<li>
 					<span>微信类别：</span>
@@ -44,6 +49,11 @@
 						<option>个人号</option>
 						<option>公众号</option>
 					</select>
+					<div class="icon_more">
+						<svg class="icon icon_em_25" aria-hidden="true">
+							<use xlink:href="#front_icon-fanhui1-copy"></use>
+						</svg>
+					</div><!--icon_more-->
 				</li>
 				<li>
 					<span>微信名：</span>

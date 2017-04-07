@@ -66,6 +66,8 @@
                     if (msg.responseText == 2) {
                         $(".del[name="+id+"]").parent('td').parent('tr').remove();
                         $(".alt").html("分类删除成功！").show().delay(500).fadeOut(500);
+                    } else if (msg.responseText == 1) {
+                        $(".alt").html("分类下有专题无法删除！").show().delay(500).fadeOut(500);
                     }
                 }
             });

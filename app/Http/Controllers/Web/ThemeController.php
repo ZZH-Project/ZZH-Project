@@ -35,6 +35,12 @@ class ThemeController extends Controller
         $cate = ThemeCate::where('id',$cate_id)->get()[0];
         //获取专题ID
         $id = $_GET['id'];
+        //获取当前专题的浏览次数
+        $num = ThemeList::where('id',$id)->get()[0]->good_num;
+        //当前专题的浏览次数+1
+        ThemeList::where('id',$id)->update([
+            'good_num' => $num + 1
+        ]);
         //获取专题信息
         $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->where('is_show',1)->get()[0];
         return view('web.theme.details', ['cate' => $cate,'list' => $list]);

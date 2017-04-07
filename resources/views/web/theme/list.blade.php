@@ -61,9 +61,9 @@
 	                   </svg>
 						<span>20(false)</span>
 					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
+					<a href="javascript:void(0);" class="left" style="cursor: default;">
+						<svg class="icon icon_em_25" aria-hidden="true" style="position: relative;top: 5px;">
+	                        <use xlink:href="#front_icon-liulan1"></use>
 	                    </svg>
 	                    <span>{{$v->good_num == 0 ? 0 : $v->good_num}}</span>
                    	</a>

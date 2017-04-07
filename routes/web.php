@@ -75,6 +75,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('check', 'PermissionController@check');
             //路由重名验证
             Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
+            //显示权限
+            Route::get('is/{id}', 'PermissionController@is');
         });
         //专题分类组
         Route::group(['prefix' => 'themeCate'], function () {

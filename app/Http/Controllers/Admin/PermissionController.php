@@ -144,4 +144,19 @@ class PermissionController extends Controller
             }
         }
     }
+    //是否显示权限栏
+    public function is(Request $request,$id) {
+        //获取当前信息
+        $is = Permission::where('id',$id)->get()[0]->is_menu;
+        if ($is == 1) {
+            Permission::where('id',$id)->update([
+                'is_menu' => 0
+            ]);
+        } elseif ($is == 0) {
+            Permission::where('id',$id)->update([
+                'is_menu' => 1
+            ]);
+        }
+        return redirect('admin/permission/show');
+    }
 }

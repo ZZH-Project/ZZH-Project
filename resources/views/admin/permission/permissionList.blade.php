@@ -46,9 +46,9 @@
                     <td>{{$v->name}}</td>
                     <td>{{$v->description}}</td>
                     @if($v->is_menu == 0)
-                    <td style="color: red;text-align: center;">否</td>
+                        <td style="text-align: center;"><a style="color: red;" href="{{url('admin/permission/is')}}/{{$v->id}}">否</a></td>
                     @elseif($v->is_menu == 1)
-                    <td style="color: green;text-align: center;">是</td>
+                        <td style="text-align: center;"><a style="color: green;" href="{{url('admin/permission/is')}}/{{$v->id}}">是</a></td>
                     @endif
                     <td style="text-align: center">
                         <a class="active" href="{{url('admin/permission/edit').'/'.$v->id}}">
@@ -66,9 +66,9 @@
                     <td>{{$v->name}}</td>
                     <td>{{$v->description}}</td>
                     @if($v->is_menu == 0)
-                        <td style="color: red;text-align: center;">否</td>
+                        <td style="text-align: center;"><a style="color: red;" href="{{url('admin/permission/is')}}/{{$v->id}}">否</a></td>
                     @elseif($v->is_menu == 1)
-                        <td style="color: green;text-align: center;">是</td>
+                        <td style="text-align: center;"><a style="color: green;" href="{{url('admin/permission/is')}}/{{$v->id}}">是</a></td>
                     @endif
                     <td style="text-align: center">
                         <a class="active" href="{{url('admin/permission/edit').'/'.$v->id}}">

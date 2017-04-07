@@ -23,6 +23,12 @@ img{
 h1{
 	margin: 0;
 }
+input,button,select,textarea{
+	outline:none;
+}
+textarea{
+	resize:none;
+}
 .left{
 	float: left;
 }

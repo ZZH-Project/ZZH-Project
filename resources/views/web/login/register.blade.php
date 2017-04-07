@@ -75,7 +75,7 @@
 			</div><!--login_wrap-->
 			</form>
 			<a href="{{url('web/user/login')}}" class="a_register special">已有账号？立即登录</a>
-			<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>
+			{{--<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>--}}
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
 	</body>

@@ -135,12 +135,43 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::group(['prefix'=>'qa'],function (){
             //===============显示问答列表===============
             Route::get('show','QaController@show');
-            //================查看问答内容================
+            //================查看问答详情================
             Route::get('showcontent/{qalistid?}','QaController@showcontent');
             //===============切换显示状态===============
             Route::get('switch/{id}/{status}','QaController@switchshow');
             //================搜索问题================
             Route::any('find','QaController@find');
+        });
+        //问答回复管理
+        Route::group(['prefix'=>'qacomment'],function(){
+            //==============显示回答列表==============
+            Route::get('show','QaController@showcomment');
+            //==============显示回复内容==============
+            Route::get('showcomment/{qacommentid?}','QaController@showcomments');
+            //===============切换显示状态===============
+            Route::get('switch/{id}/{status}','QaController@switchshows');
+            //================搜索回答================
+            Route::any('find','QaController@finds');
+        });
+        //微圈分类列表
+        Route::group(['prefix' => 'wechatCate'], function () {
+            //显示微圈分类
+            Route::any('show', 'WechatCateController@show');
+            //添加微圈分类
+            Route::any('add', 'WechatCateController@add');
+            //删除微圈分类
+            Route::get('del/{id}', 'WechatCateController@del');
+            //修改微圈分类
+            Route::any('edit/{id}', 'WechatCateController@edit');
+            //不为空验证
+            Route::get('check', 'WechatCateController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'WechatCateController@nameCheck');
+        });
+        //微圈内容列表
+        Route::group(['prefix' => 'wechatList'], function () {
+            //显示微圈内容列表
+            Route::any('show', 'WechatListController@show');
         });
 
     });
@@ -148,6 +179,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
 
 //前台路由
 Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
+    //==============主页===================
+    Route::get('index','indexController@index');
+
     //==============用户组===================
     Route::group(['prefix'=>'user'],function(){
         //登录
@@ -180,6 +214,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('check','QaController@check');
             //验证回答内容
             Route::any('checkdetails','QaController@checkdetails');
+            //验证子集回答内容
+            Route::any('checkdetailsc','QaController@checkdetailsc');
         });
     });
     //==============专题===================

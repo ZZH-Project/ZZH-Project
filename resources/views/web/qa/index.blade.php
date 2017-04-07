@@ -49,11 +49,11 @@
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">问答</h1>
-				<a href="index.html" class="btn_page_back">
-					<svg class="icon icon_em_40" aria-hidden="true">
-	                    <use xlink:href="#front_icon-fanhui1"></use>
-	                </svg>
-				</a>
+				{{--<a href="index.html" class="btn_page_back">--}}
+					{{--<svg class="icon icon_em_40" aria-hidden="true">--}}
+	                    {{--<use xlink:href="#front_icon-fanhui1"></use>--}}
+	                {{--</svg>--}}
+				{{--</a>--}}
 			</div><!--wrap-->
 		</div><!--head-->
 		<div class="sub_menu" id="sub_menu">
@@ -76,7 +76,7 @@
 						<div style="clear: both;"></div>
 					</div><!--sub_menu_bar-->
 				</div><!--sub_menu_wrap-->
-				
+				{{--{{var_dump($qalists)}}--}}
 				<div class="sub_menu_down">
 					<a href="javascript:void(0);" class="btn_menu_down">
 						<svg class="icon icon_em_25" aria-hidden="true">
@@ -105,7 +105,7 @@
 			<div style="text-align: center;margin-top:100px;">当前分类还未有问题快去提问吧</div>
 		@else
 		@foreach($qalists as $qalist)
-		@if($qalist['is_show'] == 1)
+		@if($qalist->is_show == 1)
 		<div class="qa_wrap" id="qa_wrap">
 			<div class="wrap">
 				<div class="comment_head_wrap">
@@ -113,26 +113,26 @@
 						<div class="user_img_bar user_img_50 left">
 							<img src="{{asset('images/web/user_img.png')}}" />
 						</div>
-						<span class="user_name">秋之雨</span>
+						<span class="user_name">{{$qalist->user_id}}</span>
 					</div>
 					<div class="right time_tip">
-						<span class="qa_status_bar status_green">已回答</span>
-						<!--<span class="qa_status_bar status_red">待回答</span>-->
+						{{--<span class="qa_status_bar status_green">已回答</span>--}}
+						<span class="qa_status_bar status_red">待回答</span>
 					</div>
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->
 				
 				<div class="qa_content_wrap">
-					<a href="{{url('web/qa/details').'/'.$qalist['id']}}" class="title_h1">{{$qalist['title']}}</a>
+					<a href="{{url('web/qa/details').'/'.$qalist->id}}" class="title_h1">{{$qalist->title}}</a>
 					<div class="content p1">
-						{{$qalist['content']}}
+						{{$qalist->content}}
 					</div><!--qa_content-->
 				</div><!--qa_content_wrap-->
 				
 				<div class="fun_info_bar">
 					<div class="left">
-						<span class="cate_tip">游戏</span>
-						<span class="time_tip">2017-3-21  20:30:14</span>
+						<span class="cate_tip">{{$qalist->cate_name}}</span>
+						<span class="time_tip">{{date('Y-m-d H:i:s',$qalist->issue_time)}}</span>
 					</div><!--left-->
 					<a href="javascript:void(0);" class="right btn_comment_good">
 						<svg class="icon icon_em_25" aria-hidden="true">

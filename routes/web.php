@@ -110,6 +110,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //重名验证
             Route::get('nameCheck/{id?}', 'ThemeListController@nameCheck');
         });
+        //专题评论组
+        Route::group(['prefix' => 'themeComment'], function () {
+            Route::any('show', 'ThemeCommentController@show');
+        });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示

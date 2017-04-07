@@ -22,18 +22,18 @@
 			<div class="article_info_bar">
 				<h1 class="title_h4">{{$list->title}}</h1>
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
+					<span class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
 						<span>20(false)</span>
-					</a>
-					<a href="javascript:void(0);" class="left" style="cursor: default;">
-						<svg class="icon icon_em_25" aria-hidden="true" style="position: relative;top: 5px;">
+					</span>
+					<span class="left">
+						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-liulan1"></use>
 	                    </svg>
 	                    <span>{{$list->good_num == 0 ? 0 : $list->good_num}}</span>
-                   	</a>
+                   	</span>
 					<div style="clear: both;"></div>
 				</div><!--fun_info_bar-->
 			</div><!--article_info_bar-->

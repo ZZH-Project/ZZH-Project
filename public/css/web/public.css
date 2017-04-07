@@ -235,7 +235,21 @@ a.btn_add_content:hover{
 	font-size: 22px;
 	margin-left: 5px;
 }
-
+.fun_info_bar span{
+	color: #adadad;
+}
+.fun_info_bar span.left{
+	margin-right: 60px;
+}
+.fun_info_bar span.right{
+	margin-left: 60px;
+}
+.fun_info_bar span span{
+	position: relative;
+	top: -5px;
+	font-size: 22px;
+	margin-left: 5px;
+}
 /*---------------------------------------------------------文章-*/
 .article_info_bar{
 	margin-top: 40px;

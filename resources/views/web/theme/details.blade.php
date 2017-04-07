@@ -51,7 +51,7 @@
 					<svg class="icon icon_em_35" aria-hidden="true">
 	                    <use xlink:href="#front_icon-pinglun"></use>
 	                </svg>
-	                <span>回答</span>
+	                <span>评论</span>
 				</div>
 				<div class="right">
 					<a href="{{url('web/theme/comment')}}" class="a_red">查看全部评论</a>
@@ -182,11 +182,19 @@
 					</span>
 				</li>
 				<li>
-					<a href="javascript:void(0);" id="btn_footer_comment">
+					@if(session('wuid') == null)
+					<a href="{{url('web/user/login')}}">
 						<svg class="icon" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
 					</a>
+					@else
+					<a href="javascript:void(0);" id="btn_footer_comment">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#front_icon-pinglun"></use>
+						</svg>
+					</a>
+					@endif
 				</li>
 				<li>
 					<a href="javascript:void(0);" id="btn_footer_share">

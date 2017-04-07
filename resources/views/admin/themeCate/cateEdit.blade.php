@@ -1,7 +1,7 @@
 @extends('admin.layouts.Index')
-@section('title','美丽联合-添加用户')
-@section('title-first','用户管理')
-@section('title-second','添加用户')
+@section('title','美丽联合-修改分类')
+@section('title-first','专题分类管理')
+@section('title-second','修改分类')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/admin/admin_mycss1_zj.css')}}">
     <style>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>详情</title>
+		<title>{{$list->title}}详情</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
 		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
@@ -14,34 +14,32 @@
 	</head>
 	<body class="body">
 		<div class="head_img_wrap">
-			<img src="{{asset('images/web/theme_img.jpg')}}"  />
-			<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
+			<img src="{{asset("upload/images/$list->banner_img")}}"  />
+			<div class="theme_cate_tip">{{$cate->cate_name}}</div><!--theme_cate_tip-->
 		</div><!--head_img_wrap-->
 		
 		<div class="wrap">
 			<div class="article_info_bar">
-				<h1 class="title_h4">恋恋粉色季 画个甜甜的妆容吧！</h1>
+				<h1 class="title_h4">{{$list->title}}</h1>
 				<div class="fun_info_bar">
 					<a href="javascript:void(0);" class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
-						<span>20</span>
+						<span>20(false)</span>
 					</a>
 					<a href="javascript:void(0);" class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
-	                    <span>14</span>
+	                    <span>{{$list->good_num == 0 ? 0 : $list->good_num}}</span>
                    	</a>
 					<div style="clear: both;"></div>
 				</div><!--fun_info_bar-->
 			</div><!--article_info_bar-->
 			
 			<div class="article_wrap">
-				<p>新闻讯 外貌也是展现实力的当今时代，人们对美的追求也是越来越不遗余力。瘦身与护肤早已成了毕生的功课，也有越来越多人对美妆技巧产生了极大的兴趣。</p>
-				<p>因此，各种美妆教程越来越多的出现在网络平台上。无论是YouTube还是美拍，这样现场美妆教程早已不鲜见，更有多位堪称权威的美妆达人们通过自己的博客或是微博将美妆技巧或是实用的美妆技护肤产品推荐给大众。</p>
-				<p>韩国是被公认的美妆发达国家，无论女生还是男生从小就有了对护肤重要性的认识。一升入大学甚至是高中时期就已经掌握了不少的美妆技巧。</p>
+				{!! $list->content !!}
 			</div><!--article_wrap-->
 		</div><!--wrap-->
 		
@@ -162,7 +160,7 @@
 		<div class="footer_fun_wrap">
 			<ul class="fun_five">
 				<li>
-					<a href="{{url('web/theme/show')}}">
+					<a href="javascript:void(0);" onclick="history.go(-1)">
 						<svg class="icon" aria-hidden="true">
 		                    <use xlink:href="#front_icon-fanhui1"></use>
 		                </svg>
@@ -266,4 +264,13 @@
 		<div class="tip_bar" id="tip_success">提交成功</div>
 		<div class="tip_bar" id="tip_fav">已收藏</div>
 	</body>
+	<script>
+		$(".article_wrap p span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h1 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h2 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h3 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h4 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h5 span").css({'word-break':'break-all','white-space':'inherit'});
+		$(".article_wrap h6 span").css({'word-break':'break-all','white-space':'inherit'});
+	</script>
 </html>

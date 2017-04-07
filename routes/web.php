@@ -95,6 +95,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::group(['prefix' => 'themeList'], function () {
             //显示专题
             Route::any('show', 'ThemeListController@show');
+            //添加专题
+            Route::any('add', 'ThemeListController@add');
+            //删除专题
+            Route::get('del/{id}', 'ThemeListController@del');
+            //修改专题
+            Route::any('edit/{id}', 'ThemeListController@edit');
+            //是否显示专题
+            Route::get('is/{id}', 'ThemeListController@is');
+            //不为空验证
+            Route::get('check', 'ThemeListController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'ThemeListController@nameCheck');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
@@ -115,8 +127,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //问答内容管理组
         Route::group(['prefix'=>'qa'],function (){
+            //===============显示问答列表===============
             Route::get('show','QaController@show');
+            //================查看问答详情================
             Route::get('showcontent/{qalistid?}','QaController@showcontent');
+            //===============切换显示状态===============
+            Route::get('switch/{id}/{status}','QaController@switchshow');
+            //================搜索问题================
+            Route::any('find','QaController@find');
+            //==============显示回答列表==============
+            Route::get('showcomment','QaController@showcomment');
         });
         //微圈分类列表
         Route::group(['prefix' => 'wechatCate'], function () {
@@ -176,6 +196,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('check','QaController@check');
             //验证回答内容
             Route::any('checkdetails','QaController@checkdetails');
+            //验证子集回答内容
+            Route::any('checkdetailsc','QaController@checkdetailsc');
         });
     });
     //==============专题===================

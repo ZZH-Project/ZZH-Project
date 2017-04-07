@@ -27,7 +27,8 @@
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
 		</div><!--head-->
-
+		{{--{{var_dump($qa)}}--}}
+{{--		{{print_r($qacomment)}}--}}
 		<div class="qa_content_d">
 			<h1 class="title_h1">{{$qa['title']}}</h1>
 			<p class="content p1">{{$qa['content']}}</p>
@@ -55,9 +56,9 @@
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
 		</div><!--comment_head-->
-		
-		<div class="comment_wrap">
-			<div class="wrap">
+		@foreach($qacomment as $v)
+				<div class="comment_wrap">
+				<div class="wrap">
 				<div class="comment_head_wrap">
 					<div class="left">
 						<div class="user_img_bar user_img_50 left">
@@ -68,88 +69,96 @@
 					<div class="right time_tip">2017-3-21  20:30:14</div>
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->
-				
-				<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>
+				@if($v['comment_id']!=0)
+						<div class="content p2"><span style="color: #AFAFAD;">回复<b>haha</b>:<span>{{$v['content']}}</div>
+				@else
+				<div class="content p2">{{$v['content']}}</div>
+				@endif
 				
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good" >
+					<a href="javascript:void(0);" class="right btn_comment_good">
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
 						<span>20</span>
 					</a>
-					<a href="javascript:void(0);" class="right btn_add_comment_sub" >
+					<a href="javascript:void(0);" class="right btn_add_comment_sub" onclick="cid(this)">
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-huifu"></use>
 	                   </svg>
+						<input type="hidden" value="{{$v['id']}}">
                    	</a>
 					<div style="clear: both;"></div>
 				</div><!--fun_info_bar-->
 			</div><!--wrap-->
-			
-			<!--回复评论-->
-			<div class="wrap comment_sub_wrap">
-				<div class="comment_head_wrap">
-					<div class="left">
-						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
-						</div>
-						<span class="user_name">秋之雨</span>
-					</div>
-					<div class="right time_tip">2017-3-21  20:30:14</div>
-					<div style="clear: both;"></div>
-				</div><!--comment_head_wrap-->
-				
-				<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>
-				
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="right btn_add_comment_sub" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-huifu"></use>
-	                   </svg>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--wrap-->
+
+
+
+		<!--回复评论-->
+				{{--<div class="wrap comment_sub_wrap">--}}
+				{{--<div class="comment_head_wrap">--}}
+					{{--<div class="left">--}}
+						{{--<div class="user_img_bar user_img_50 left">--}}
+							{{--<img src="{{asset('images/web/user_img.png')}}" />--}}
+						{{--</div>--}}
+						{{--<span class="user_name">秋之雨</span>--}}
+					{{--</div>--}}
+					{{--<div class="right time_tip">2017-3-21  20:30:14</div>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--comment_head_wrap-->--}}
+
+				{{--<div class="content p2"><span style="color: #C0BEBF;;">回复<b>雨之秋</b>:</span>联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>--}}
+
+				{{--<div class="fun_info_bar">--}}
+					{{--<a href="javascript:void(0);" class="right btn_comment_good" >--}}
+						{{--<svg class="icon icon_em_30" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-icondianzan"></use>--}}
+	                    {{--</svg>--}}
+						{{--<span>20</span>--}}
+					{{--</a>--}}
+					{{--<a href="javascript:void(0);" class="right btn_add_comment_sub" >--}}
+						{{--<svg class="icon icon_em_30" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-huifu"></use>--}}
+	                   {{--</svg>--}}
+                   	{{--</a>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--fun_info_bar-->--}}
+			{{--</div><!--wrap-->--}}
 		</div><!--comment_wrap-->
-		
-		<div class="comment_wrap">
-			<div class="wrap">
-				<div class="comment_head_wrap">
-					<div class="left">
-						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
-						</div>
-						<span class="user_name">秋之雨</span>
-					</div>
-					<div class="right time_tip">2017-3-21  20:30:14</div>
-					<div style="clear: both;"></div>
-				</div><!--comment_head_wrap-->
-				
-				<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>
-				
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="right btn_add_comment_sub" >
-						<svg class="icon icon_em_30" aria-hidden="true">
-	                        <use xlink:href="#front_icon-huifu"></use>
-	                   </svg>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--wrap-->
-		</div><!--comment_wrap-->
+		@endforeach
+
+
+		{{--<div class="comment_wrap">--}}
+			{{--<div class="wrap">--}}
+				{{--<div class="comment_head_wrap">--}}
+					{{--<div class="left">--}}
+						{{--<div class="user_img_bar user_img_50 left">--}}
+							{{--<img src="{{asset('images/web/user_img.png')}}" />--}}
+						{{--</div>--}}
+						{{--<span class="user_name">秋之雨</span>--}}
+					{{--</div>--}}
+					{{--<div class="right time_tip">2017-3-21  20:30:14</div>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--comment_head_wrap-->--}}
+
+				{{--<div class="content p2">联盟去西部荒野或者黑海岸做任务，推荐西部荒野；部落去希尔斯布莱德丘陵、北贫瘠之地。</div>--}}
+
+				{{--<div class="fun_info_bar">--}}
+					{{--<a href="javascript:void(0);" class="right btn_comment_good" >--}}
+						{{--<svg class="icon icon_em_30" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-icondianzan"></use>--}}
+	                    {{--</svg>--}}
+						{{--<span>20</span>--}}
+					{{--</a>--}}
+					{{--<a href="javascript:void(0);" class="right btn_add_comment_sub" >--}}
+						{{--<svg class="icon icon_em_30" aria-hidden="true">--}}
+	                        {{--<use xlink:href="#front_icon-huifu"></use>--}}
+	                   {{--</svg>--}}
+                   	{{--</a>--}}
+					{{--<div style="clear: both;"></div>--}}
+				{{--</div><!--fun_info_bar-->--}}
+			{{--</div><!--wrap-->--}}
+		{{--</div><!--comment_wrap-->--}}
 		
 		<div class="footer_fun_bg"></div>
 		
@@ -234,6 +243,8 @@
 
 		<form id="form" action="{{url('web/qa/checkdetails')}}" method="post">
 			{{csrf_field()}}
+			<input type="hidden" name="qlid" value="{{$qa['id']}}">
+			<input type="hidden" name="wuid" value="{{session('wuid')}}">
 		<div class="pop_wrap" id="add_comment_main">
 			<div class="pop_bar_footer">
 				<h1 class="pop_comment_title">评论</h1>
@@ -244,14 +255,20 @@
 		</div><!--pop_wrap-->
 		</form>
 
+		<form id="form1" action="{{url('web/qa/checkdetails')}}" method="post">
+			{{csrf_field()}}
+			<input type="hidden" name="qlid" value="{{$qa['id']}}">
+			<input id="cid" type="hidden" name="cmid" value="">
+			<input type="hidden" name="wuid" value="{{session('wuid')}}">
 		<div class="pop_wrap" id="add_comment_sub">
 			<div class="pop_bar_footer">
 				<h1 class="pop_comment_title">评论</h1>
-				<a href="javascript:void(0);" class="pop_comment_send">提交</a>
+				<input type="submit" class="pop_comment_send" value="提交" style="background:none;border: none">
 				<a href="javascript:void(0);" class="pop_comment_close">取消</a>
-				<textarea class="input pop_comment_textarea" autofocus="autofocus"></textarea>
+				<textarea class="input pop_comment_textarea" autofocus="autofocus" name="detail2"></textarea>
 			</div>
 		</div><!--pop_wrap-->
+		</form>
 {{--		@if(empty($errors))--}}
 		<div class="tip_bar" id="tip_success"></div>
 		<div class="tip_bar" id="tip_fav">已收藏</div>
@@ -263,7 +280,8 @@
 				type:'get',
 				data:$("#form").serialize(),
 				datatype:'json',
-				success:function(){
+				success:function(data){
+                    console.log(data);
                     $("#tip_success").html('提交成功');
 				},
 				error:function(msg){
@@ -274,5 +292,28 @@
 			});
 			return false
         });
+        $("#form1").submit(function(){
+            $.ajax({
+                url:"{{url('web/qa/checkdetailsc')}}",
+                type:'get',
+                data:$("#form1").serialize(),
+                datatype:'json',
+                success:function(data){
+                    console.log(data);
+                    $("#tip_success").html('提交成功');
+                },
+                error:function(msg){
+//				    alert(222);
+                    var msg = JSON.parse(msg.responseText);
+                    $("#tip_success").html(msg.detail);
+                }
+            });
+            return false
+        });
+	</script>
+	<script>
+		function cid(cid){
+		    $("#cid").val(cid.childNodes[3].value);
+		}
 	</script>
 </html>

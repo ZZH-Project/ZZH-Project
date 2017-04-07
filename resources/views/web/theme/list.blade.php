@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>个护</title>
+		<title>{{$cate->cate_name}}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
 		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
@@ -32,7 +32,7 @@
 		
 		<div class="head">
 			<div class="wrap">
-				<h1 class="page_title">个护</h1>
+				<h1 class="page_title">{{$cate->cate_name}}</h1>
 				<a href="{{url('web/theme/index')}}" class="btn_page_back">
 					<svg class="icon icon_em_40" aria-hidden="true">
 	                    <use xlink:href="#front_icon-fanhui1"></use>
@@ -47,195 +47,47 @@
 		</div><!--head-->
 		
 		<div class="wrap">
+			@foreach($list as $v)
 			<div class="theme_wrap">
-				<a href="{{url('web/theme/details')}}" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
+				<a href="{{url("web/theme/details?id=$v->id&cate_id=$cate->id")}}" class="theme_img_bar">
+					<img src='{{asset("upload/images/$v->banner_img")}}'  />
+					<div class="theme_cate_tip">{{$cate->cate_name}}</div><!--theme_cate_tip-->
 				</a><!--theme_bar-->
-				<a href="{{url('web/theme/details')}}" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
+				<a href="{{url("web/theme/details?id=$v->id&cate_id=$cate->id")}}" class="title_h2">{{$v->title}}</a>
 				<div class="fun_info_bar">
 					<a href="javascript:void(0);" class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
-						<span>20</span>
+						<span>20(false)</span>
 					</a>
 					<a href="javascript:void(0);" class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
-	                    <span>14</span>
+	                    <span>{{$v->good_num == 0 ? 0 : $v->good_num}}</span>
                    	</a>
 					<div style="clear: both;"></div>
 				</div><!--fun_info_bar-->
 			</div><!--theme_wrap-->
-			
-			<div class="theme_wrap">
-				<a href="{{url('web/theme/details')}}" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="{{url('web/theme/details')}}" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
-			
-			<div class="theme_wrap">
-				<a href="{{url('web/theme/details')}}" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="{{url('web/theme/details')}}" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
-			
-			<div class="theme_wrap">
-				<a href="{{url('web/theme/details')}}" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="{{url('web/theme/details')}}" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
-			
-			<div class="theme_wrap">
-				<a href="{{url('web/theme/details')}}" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="{{url('web/theme/details')}}" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
+			@endforeach
 		</div><!--wrap-->
 		
 		<div class="pop_wrap pop_head_top" id="pop_theme_menu">
 			<div class="pop_head_menu">
 				<ul class="menu_cirle">
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-weibiaoti2fuzhi12"></use>
-			                    </svg>
-							</div>
-							<p>个护</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-shenghuojiaju"></use>
-			                    </svg>
-							</div>
-							<p>家居</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-meishi"></use>
-			                    </svg>
-							</div>
-							<p>美食</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-caizhuangxiangfen"></use>
-			                    </svg>
-							</div>
-							<p>彩妆</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-yundong"></use>
-			                    </svg>
-							</div>
-							<p>运动</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-caizhuangxiangfen"></use>
-			                    </svg>
-							</div>
-							<p>彩妆</p>
-						</a>
-					</li>
-					<li>
-						<a href="{{url('web/theme/show')}}">
-							<div class="menu_cirle_bar">
-								<svg class="icon icon_em_18" aria-hidden="true">
-			                        <use xlink:href="#front_icon-yundong"></use>
-			                    </svg>
-							</div>
-							<p>运动</p>
-						</a>
-					</li>
+					@foreach($data as $v)
+						<li>
+							<a href="{{url('web/theme/show')}}?id={{$v->id}}">
+								<div class="menu_cirle_bar">
+									<svg class="icon icon_em_18" aria-hidden="true">
+										<use xlink:href="{{$v->cate_img}}"></use>
+									</svg>
+								</div>
+								<p>{{$v->cate_name}}</p>
+							</a>
+						</li>
+					@endforeach
 				</ul>
 				<div style="clear: both;"></div>
 			</div><!--pop_head_menu-->

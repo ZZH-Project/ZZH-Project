@@ -117,7 +117,7 @@
 					</div>
 					<div class="right time_tip">
 						{{--<span class="qa_status_bar status_green">已回答</span>--}}
-						<span class="qa_status_bar status_red">待回答</span>
+						{{--<span class="qa_status_bar status_red">待回答</span>--}}
 					</div>
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->
@@ -134,17 +134,18 @@
 						<span class="cate_tip">{{$qalist->cate_name}}</span>
 						<span class="time_tip">{{date('Y-m-d H:i:s',$qalist->issue_time)}}</span>
 					</div><!--left-->
-					<a href="javascript:void(0);" class="right btn_comment_good">
+					<a id="good" href="javascript:void(0);" class="right btn_comment_good" onclick="good(this)">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
-	                    <span>14</span>
+	                    <span>{{$qalist->good_num}}</span>
+						<input type="hidden" name="qa_id" value="{{$qalist->id}}">
                    	</a>
                    	<a href="javascript:void(0);" class="right">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
-						<span>20</span>
+						{{--<span>20</span>--}}
 					</a>
 					<div style="clear: both;"></div>
 				</div><!--qa_content_bottom-->
@@ -221,7 +222,9 @@
 			});
 		});
 	</script>
+
 	<script>
+        //选择分类
 		$("#sc").click(function(){
             if(($("a[class=sub_menu_select]")).text()){
                 var catename = ($("a[class=sub_menu_select]")).text();
@@ -229,5 +232,41 @@
                 location.href="{{url('web/qa/index')}}"+'/'+catename;
 			}
 		});
+	</script>
+	<script>
+		//点赞
+		function good(a){
+//            console.log(a.attributes[2].value);
+            console.log(a.childNodes[3].innerHTML);
+			var qaid =a.childNodes[5].value;
+            if("{{session('weblogin')==null}}"){
+                alert('请先登录');
+                a.attributes[2].value = 'right btn_comment_good good_red';
+			}else {
+                if(a.attributes[2].value == 'right btn_comment_good'){
+                    $.ajax({
+                        url:"{{url('web/qa/goodadd')}}",
+                        type:'get',
+                        data:{qaid:qaid},
+                        datatype:'json',
+                        success:function(data){
+                            a.childNodes[3].innerHTML = data;
+                        },
+                        error:function(){}
+                    });
+                }else if(a.attributes[2].value == 'right btn_comment_good good_red'){
+                    $.ajax({
+                        url:"{{url('web/qa/goodmin')}}",
+                        type:'get',
+                        data:{qaid:qaid},
+                        datatype:'json',
+                        success:function(data){
+                            a.childNodes[3].innerHTML = data;
+						},
+                        error:function(){}
+                    });
+                }
+			}
+		}
 	</script>
 </html>

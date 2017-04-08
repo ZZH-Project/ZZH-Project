@@ -132,4 +132,48 @@ class QaController extends Controller
             'issue_time' => $time
         ]);
     }
+
+    //=====================问答主页点赞=====================
+    public function goodadd(Request $request){
+        $qaid = $request->qaid;
+//        var_dump($qaid);die;
+        $goodnum = QaList::select('good_num')->where('id',$qaid)->get()->toArray();
+        $goodnum = $goodnum[0]['good_num']+1;
+        QaList::where('id',$qaid)->update(['good_num'=>$goodnum]);
+//        var_dump($qaid,$goodnum);
+        return $goodnum;
+    }
+
+    //=====================问答主页取消赞=====================
+    public function goodmin(Request $request){
+        $qaid = $request->qaid;
+//        var_dump($qaid);die;
+        $goodnum = QaList::select('good_num')->where('id',$qaid)->get()->toArray();
+        $goodnum = $goodnum[0]['good_num']-1;
+        QaList::where('id',$qaid)->update(['good_num'=>$goodnum]);
+//        var_dump($qaid,$goodnum);
+        return $goodnum;
+    }
+
+    //=====================回答点赞=====================
+    public function cdgoodadd(Request $request){
+        $qaid = $request->qaid;
+//        var_dump($qaid);die;
+        $goodnum = QaComment::select('good_num')->where('id',$qaid)->get()->toArray();
+        $goodnum = $goodnum[0]['good_num']+1;
+        QaComment::where('id',$qaid)->update(['good_num'=>$goodnum]);
+//        var_dump($qaid,$goodnum);die;
+        return $goodnum;
+    }
+
+    //=====================回答取消赞=====================
+    public function cdgoodmin(Request $request){
+        $qaid = $request->qaid;
+//        var_dump($qaid);die;
+        $goodnum = QaComment::select('good_num')->where('id',$qaid)->get()->toArray();
+        $goodnum = $goodnum[0]['good_num']-1;
+        QaComment::where('id',$qaid)->update(['good_num'=>$goodnum]);
+//        var_dump($qaid,$goodnum);die;
+        return $goodnum;
+    }
 }

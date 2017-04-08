@@ -19,7 +19,7 @@ class CreateQaCommentTable extends Migration
             $table->integer('user_id');
             $table->integer('comment_id')->default(0)->nullable();
             $table->string('content');
-            $table->integer('good_num')->nullable();
+            $table->integer('good_num')->default(0)->nullable();
             $table->tinyInteger('is_show')->default(1)->nullable();
             $table->bigInteger('issue_time')->nullable();
         });

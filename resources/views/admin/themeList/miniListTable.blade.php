@@ -4,7 +4,7 @@
     <th>分类名称</th>
     <th>用户ID</th>
     <th>专题大图片</th>
-    <th>点赞数</th>
+    <th>浏览数</th>
     <th>是否上线</th>
     <th style="border-right: 1px solid #3399ff;">操作</th>
 </tr>
@@ -19,7 +19,7 @@
         @endforeach
         <td>{{$v->auser_id}}</td>
         <td><img src='{{asset("upload/images/$v->banner_img")}}' width="100"></td>
-        <td></td>
+        <td>{{$v->good_num == 0 ? 0 : $v->good_num}}</td>
         <td>
                         <span class="show" style="cursor: pointer;" name="{{$v->id}}">
                             <svg class="icon icon_em_18" aria-hidden="true" style="color:{{$v->is_show == 1 ? 'green' : 'red'}};">

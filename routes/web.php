@@ -112,7 +112,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         });
         //专题评论组
         Route::group(['prefix' => 'themeComment'], function () {
+            //显示专题评论
             Route::any('show', 'ThemeCommentController@show');
+            //专题评论是否下线
+            Route::get('is/{id}', 'ThemeCommentController@is');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){

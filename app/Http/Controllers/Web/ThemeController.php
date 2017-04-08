@@ -64,6 +64,7 @@ class ThemeController extends Controller
         //获取次专题的评论
         $comment = ThemeComment::select('theme_comments.*','wusers.username')
             ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
+            ->where('is_show',1)
             ->where('th_id',$id)
             ->limit(3)
             ->get();
@@ -82,6 +83,7 @@ class ThemeController extends Controller
         //获取次专题的评论
         $comment = ThemeComment::select('theme_comments.*','wusers.username')
             ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
+            ->where('is_show',1)
             ->where('th_id',$id)
             ->get();
         return view('web.theme.comment',['list' => $list,'comment' => $comment]);

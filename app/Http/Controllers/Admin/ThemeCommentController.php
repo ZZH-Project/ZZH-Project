@@ -14,7 +14,7 @@ class ThemeCommentController extends Controller
         $data = ThemeComment::select('theme_comments.*','wusers.username','theme_lists.title')
             ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
             ->leftjoin('theme_lists','theme_lists.id','theme_comments.th_id')
-            ->get();
+            ->paginate(5);
         return view('admin.themeComment.commentList', ['data' => $data]);
     }
     //是否显示专题

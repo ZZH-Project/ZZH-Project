@@ -8,11 +8,6 @@
 @section('main')
     <div style="background: white;padding: 0 10px 25px 10px;">
         <h3 style="padding-top: 20px;color: #3399ff;">专题评论列表</h3>
-        <div style="padding:10px 0;">
-            <div class="find">专题标题搜索：</div><input id="uf" class="myinput-main" type="text" value="">
-            <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
-            <div class="clear"></div>
-        </div>
         <table class="tb">
             <tr>
                 <th style="border-left: 1px solid #3399ff;">ID</th>
@@ -38,6 +33,11 @@
                     </td>
                 </tr>
             @endforeach
+            <tr>
+                <td colspan="5" style="border-left: 1px solid #e5e5e5;">
+                    {{$data->links('public.zj_page')}}
+                </td>
+            </tr>
         </table>
     </div>
 @endsection

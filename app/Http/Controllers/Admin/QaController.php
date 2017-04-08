@@ -17,7 +17,7 @@ class QaController extends Controller
         $qalists = DB::table('qa_lists')
                         ->select('qa_lists.id','title','user_id','cate_name','good_num','good_num','issue_time','is_show')
                         ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
-                        ->get()->toArray();
+                        ->paginate(5);
         return view('admin/qa/qaList',compact('qalists'));
     }
 

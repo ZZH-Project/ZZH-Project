@@ -19,7 +19,7 @@ class CreateQaListTable extends Migration
             $table->string('content');
             $table->integer('user_id')->nullable();
             $table->integer('cate_id')->nullable();
-            $table->integer('good_num')->nullable();
+            $table->integer('good_num')->default(0)->nullable();
             $table->tinyInteger('is_show')->default(1)->nullable();
             $table->bigInteger('issue_time')->nullable();
         });

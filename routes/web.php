@@ -219,6 +219,14 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('checkdetails','QaController@checkdetails');
             //验证子集回答内容
             Route::any('checkdetailsc','QaController@checkdetailsc');
+            //问题主页点赞
+            Route::any('goodadd','QaController@goodadd');
+            //问题主页取消赞
+            Route::any('goodmin','QaController@goodmin');
+            //子回答点赞
+            Route::any('cdgoodadd','QaController@cdgoodadd');
+            //子回答取消赞
+            Route::any('cdgoodmin','QaController@cdgoodmin');
         });
     });
     //==============专题===================

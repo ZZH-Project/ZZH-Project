@@ -22,7 +22,7 @@
 					<p class="user_name_d">秋之雨</p>
 					<p class="qa_details_time">{{date('Y-m-d H:i:s',$qa->issue_time)}}</p>
 				</div><!--left-->
-				<div class="qa_status_bar status_green qa_status_d right">已回答</div><!--right-->
+				{{--<div class="qa_status_bar status_green qa_status_d right">已回答</div><!--right-->--}}
 				<!--<div class="qa_status_bar status_red qa_status_d right">待回答</div><!--right-->
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
@@ -77,11 +77,12 @@
 				@endif
 				
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="right btn_comment_good">
+					<a id="good" href="javascript:void(0);" class="right btn_comment_good" onclick="good(this)">
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
-						<span>20</span>
+						<span>{{$v->good_num}}</span>
+						<input type="hidden" name="qa_id" value="{{$v->id}}">
 					</a>
 					<a href="javascript:void(0);" class="right btn_add_comment_sub" onclick="cid(this)">
 						<svg class="icon icon_em_30" aria-hidden="true">
@@ -181,11 +182,12 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);" id="btn_footer_good">
+					<a href="javascript:void(0);" id="btn_footer_good" class="" onclick="mgood(this)">
 						<svg class="icon" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
-	                    <span>234</span>
+	                    <span>{{$qa->good_num}}</span>
+						<input type="hidden" value="{{$qa->id}}">
 					</a>
 				</li>
 				<li>
@@ -276,6 +278,7 @@
 		<div class="tip_bar" id="tip_fav">已收藏</div>
 	</body>
 	<script>
+		//回复
         $("#form").submit(function(){
             $.ajax({
                 url:"{{url('web/qa/checkdetails')}}",
@@ -294,6 +297,7 @@
 			});
 			return false
         });
+        //子评论回复
         $("#form1").submit(function(){
             $.ajax({
                 url:"{{url('web/qa/checkdetailsc')}}",
@@ -314,8 +318,77 @@
         });
 	</script>
 	<script>
+		//获取评论id
 		function cid(cid){
 		    $("#cid").val(cid.childNodes[3].value);
 		}
 	</script>
+	<script>
+        //点赞
+        function good(a){
+//            console.log(a.attributes[2].value);
+            console.log(a.childNodes[3].innerHTML);
+            var qaid =a.childNodes[5].value;
+            if("{{session('weblogin')==null}}"){
+                alert('请先登录');
+                a.attributes[2].value = 'right btn_comment_good good_red';
+            }else {
+                if(a.attributes[2].value == 'right btn_comment_good'){
+                    $.ajax({
+                        url:"{{url('web/qa/cdgoodadd')}}",
+                        type:'get',
+                        data:{qaid:qaid},
+                        datatype:'json',
+                        success:function(data){
+                            a.childNodes[3].innerHTML = data;
+                        },
+                        error:function(){}
+                    });
+                }else if(a.attributes[2].value == 'right btn_comment_good good_red'){
+                    $.ajax({
+                        url:"{{url('web/qa/cdgoodmin')}}",
+                        type:'get',
+                        data:{qaid:qaid},
+                        datatype:'json',
+                        success:function(data){
+                            a.childNodes[3].innerHTML = data;
+                        },
+                        error:function(){}
+                    });
+                }
+            }
+        }
+	</script>
+	<script>
+	//问题点赞
+	function mgood(a){
+//         console.log(a.childNodes[3].innerHTML);
+//		console.log(a.attributes[2]);
+//		console.log(a.childNodes[5].value);
+		var qaid =a.childNodes[5].value;
+		if(a.attributes[2].value == ''){
+			$.ajax({
+				url:"{{url('web/qa/goodadd')}}",
+				type:'get',
+				data:{qaid:qaid},
+				datatype:'json',
+				success:function(data){
+					a.childNodes[3].innerHTML = data;
+				},
+				error:function(){}
+			});
+		}else if(a.attributes[2].value == 'good_red'){
+			$.ajax({
+				url:"{{url('web/qa/goodmin')}}",
+				type:'get',
+				data:{qaid:qaid},
+				datatype:'json',
+				success:function(data){
+				a.childNodes[3].innerHTML = data;
+				},
+				error:function(){}
+			});
+		}
+	}
+</script>
 </html>

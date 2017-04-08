@@ -102,4 +102,8 @@ class ThemeController extends Controller
         $theme->save();
         return redirect("web/theme/details?id=$th_id&cate_id=$cid");
     }
+    //收藏专题
+    public function sc(Request $request) {
+        var_dump($request->all());
+    }
 }

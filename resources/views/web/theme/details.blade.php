@@ -92,10 +92,12 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);" id="btn_footer_fav">
+					<a href="javascript:void(0);" id="sc">
 						<svg class="icon icon_em_38" aria-hidden="true">
 	                        <use xlink:href="#front_icon-shouc01"></use>
 	                    </svg>
+						<input type="hidden" class="th_id" value="{{$_GET['id']}}">
+						<input type="hidden" class="cate_id" value="{{$_GET['cate_id']}}">
 					</a>
 				</li>
 				<li>
@@ -192,6 +194,22 @@
 		<div class="tip_bar" id="tip_fav">已收藏</div>
 	</body>
 	<script>
+		//收藏
+		$("#sc").click(function () {
+		    //获取专题ID和专题分类ID
+			var th_id = $(".th_id").val();
+			var cate_id = $(".cate_id").val();
+			$.ajax({
+			    url:"{{url('web/theme/sc')}}",
+				type:'get',
+				data:{"th_id":th_id,"cate_id":cate_id},
+                dataType:"string",
+				success:function (data) {
+
+				},
+				error:function (msg) {}
+			});
+        });
 		//检测是否为空
 		$("#f1").submit(function () {
 			//获取提交的评论

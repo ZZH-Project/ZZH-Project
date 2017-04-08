@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ThemeCate;
+use App\Models\ThemeList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -36,9 +37,14 @@ class ThemeCateController extends Controller
     }
     //删除专题分类
     public function del(Request $request,$id) {
-        //删除数据库的数据
-        ThemeCate::where('id',$id)->delete();
-        return 2;
+        //判断是否有专题
+        if (ThemeList::where('cate_id',$id)->get()->toArray()) {
+            return 1;
+        } else {
+            //删除数据库的数据
+            ThemeCate::where('id',$id)->delete();
+            return 2;
+        }
     }
     //修改专题分类
     public function edit(Request $request,$id) {

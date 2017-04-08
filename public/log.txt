@@ -1451,3 +1451,16 @@ response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <statusMsg>【短信】您正在使用云通讯测试模板且短信接收者不是注册的测试号码</statusMsg>
 </Response>
 
+request body = <TemplateSMS>
+                    <to>18766668888</to> 
+                    <appId>8aaf0708592adca60159448996e7101e</appId>
+                    <templateId>1</templateId>
+                    <datas><data>36sk</data><data>5</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/8aaf0708592adca6015944899695101a/SMS/TemplateSMS?sig=1C1667EB6F20FFF079EC3CF9F69809F7
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>113302</statusCode>
+    <statusMsg>【短信】您正在使用云通讯测试模板且短信接收者不是注册的测试号码</statusMsg>
+</Response>
+

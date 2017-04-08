@@ -75,6 +75,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('check', 'PermissionController@check');
             //路由重名验证
             Route::get('nameCheck/{id?}', 'PermissionController@nameCheck');
+            //显示权限
+            Route::get('is/{id}', 'PermissionController@is');
         });
         //专题分类组
         Route::group(['prefix' => 'themeCate'], function () {
@@ -107,6 +109,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('check', 'ThemeListController@check');
             //重名验证
             Route::get('nameCheck/{id?}', 'ThemeListController@nameCheck');
+        });
+        //专题评论组
+        Route::group(['prefix' => 'themeComment'], function () {
+            Route::any('show', 'ThemeCommentController@show');
         });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
@@ -230,6 +236,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('details','ThemeController@details');
         //专题评论
         Route::any('comment','ThemeController@comment');
+        //提交评论
+        Route::get('submit/{th_id}/{cate_id}', 'ThemeController@submit');
     });
 
     //==============微圈===================

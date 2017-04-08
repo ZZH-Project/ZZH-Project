@@ -55,18 +55,22 @@
 				</a><!--theme_bar-->
 				<a href="{{url("web/theme/details?id=$v->id&cate_id=$cate->id")}}" class="title_h2">{{$v->title}}</a>
 				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
+					<span class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
-						<span>20(false)</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
+						@foreach($count as $a)
+							@if($v->id == $a->th_id)
+						<span>{{$a->num == 0 ? 0 : $a->num}}</span>
+							@endif
+						@endforeach
+					</span>
+					<span class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
+	                        <use xlink:href="#front_icon-liulan1"></use>
 	                    </svg>
 	                    <span>{{$v->good_num == 0 ? 0 : $v->good_num}}</span>
-                   	</a>
+                   	</span>
 					<div style="clear: both;"></div>
 				</div><!--fun_info_bar-->
 			</div><!--theme_wrap-->

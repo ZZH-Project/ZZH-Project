@@ -1,43 +1,58 @@
 @extends('admin.layouts.Index')
-@section('title','美丽联合-分类列表')
-@section('title-first','专题分类管理')
-@section('title-second','分类列表')
+@section('title','美丽联合-专题评论')
+@section('title-first','专题评论管理')
+@section('title-second','专题评论')
 @section('style')
     <link rel="stylesheet" href="{{asset('css/admin/admin_userList_zj.css')}}">
 @endsection
 @section('main')
     <div style="background: white;padding: 0 10px 25px 10px;">
-        <h3 style="padding-top: 20px;color: #3399ff;">专题分类列表</h3>
+        <h3 style="padding-top: 20px;color: #3399ff;">专题评论列表</h3>
         <div style="padding:10px 0;">
-            <div class="find">分类名称搜索：</div><input id="uf" class="myinput-main" type="text" value="">
+            <div class="find">专题标题搜索：</div><input id="uf" class="myinput-main" type="text" value="">
             <input class="token" type="hidden" name="_token" value="{{csrf_token()}}">
-            <a class="add" href="{{url('admin/themeCate/add')}}"><i class="fa fa-plus" title="添加分类"></i></a>
             <div class="clear"></div>
         </div>
         <table class="tb">
             <tr>
                 <th style="border-left: 1px solid #3399ff;">ID</th>
-                <th>分类排序编号</th>
+                <th>专题标题</th>
                 <th>分类名称</th>
-                <th>分类图片</th>
+                <th>用户ID</th>
+                <th>专题大图片</th>
+                <th>点赞数</th>
+                <th>是否上线</th>
                 <th style="border-right: 1px solid #3399ff;">操作</th>
             </tr>
-            @foreach($data as $v)
+            {{--@foreach($list as $v)
                 <tr class="trd">
                     <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
-                    <td>{{$v->sort_id}}</td>
-                    <td>{{$v->cate_name}}</td>
-                    <td>{{$v->cate_img}}</td>
+                    <td>{{$v->title}}</td>
+                    @foreach($cate as $a)
+                        @if($a->id == $v->cate_id)
+                            <td>{{$a->cate_name}}</td>
+                        @endif
+                    @endforeach
+                    <td>{{$v->auser_id}}</td>
+                    <td><img src='{{asset("upload/images/$v->banner_img")}}' width="100"></td>
+                    <td></td>
                     <td>
-                        <a class="active" href="{{url('admin/themeCate/edit').'/'.$v->id}}">
-                            <i class="fa fa-wrench" title="修改分类"></i>
+                        <span class="show" style="cursor: pointer;" name="{{$v->id}}">
+                            <svg class="icon icon_em_18" aria-hidden="true" style="color:{{$v->is_show == 1 ? 'green' : 'red'}};">
+                                <use xlink:href="#front_icon-yundong"></use>
+                            </svg>
+                        </span>
+                    </td>
+                    <td>
+                        <a class="active" href="{{url('admin/themeList/edit').'/'.$v->id}}">
+                            <i class="fa fa-wrench" title="修改专题"></i>
                         </a>
                         <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
-                            <i class="fa fa-trash" title="删除分类"></i>
+                            <i class="fa fa-trash" title="删除专题"></i>
                         </a>
                     </td>
                 </tr>
-            @endforeach
+            @endforeach--}}
         </table>
     </div>
 @endsection
@@ -51,23 +66,23 @@
             $(this).find('td').css({"background":"white"});
         });
     </script>
-    {{--删除分类--}}
+    {{--点击显示--}}
     <script>
-        $(".del").click(function () {
-            //获取点击的id
+        $(".show").click(function () {
             var id = $(this).attr("name");
             $.ajax({
-                url:"{{url('admin/themeCate/del')}}/"+id,
+                url:"{{url('admin/themeList/is')}}/"+id,
                 type:"get",
                 data:{"id":id},
                 dataType:"string",
                 success:function (data) {},
                 error:function (msg) {
                     if (msg.responseText == 2) {
-                        $(".del[name="+id+"]").parent('td').parent('tr').remove();
-                        $(".alt").html("分类删除成功！").show().delay(500).fadeOut(500);
-                    } else if (msg.responseText == 1) {
-                        $(".alt").html("分类下有专题无法删除！").show().delay(500).fadeOut(500);
+                        $(".show[name="+id+"] svg").css({'color':'red'});
+                        $(".alt").html("专题已下线！").show().delay(500).fadeOut(500);
+                    } else if(msg.responseText == 1) {
+                        $(".show[name="+id+"] svg").css({'color':'green'});
+                        $(".alt").html("专题已上线！").show().delay(500).fadeOut(500);
                     }
                 }
             });
@@ -80,7 +95,7 @@
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/themeCate/show')}}",
+                url:"{{url('admin/themeList/show')}}",
                 type:"post",
                 data:{"fv":fv,"_token":token,'a':1},
                 dataType:"string",
@@ -94,4 +109,6 @@
         });
     </script>
 @endsection
+
+
 

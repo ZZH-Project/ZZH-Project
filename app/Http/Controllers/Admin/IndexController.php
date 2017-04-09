@@ -11,4 +11,8 @@ class IndexController extends Controller
     public function index() {
         return view('admin.index.index');
     }
+    //实时消息
+    public function info() {
+
+    }
 }

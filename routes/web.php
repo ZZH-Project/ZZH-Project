@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
     Route::group(['middleware' => ['adminLogin','rbac']], function () {
         //后台首页
         Route::get('index','IndexController@index');
+        //后台实时消息
+        Route::get('info', 'IndexController@info');
         //用户组
         Route::group(['prefix' => 'user'], function () {
             //用户显示

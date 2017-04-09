@@ -224,9 +224,9 @@
         @endforeach
 
         <li class="header">其他</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要信息</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>一般信息</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>普通信息</span></a></li>
+        {{--<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要信息</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>一般信息</span></a></li>--}}
+        <li><a href="{{url('admin/info')}}"><i class="fa fa-circle-o text-aqua"></i> <span>实时消息</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

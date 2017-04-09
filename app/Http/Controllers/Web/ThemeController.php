@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Models\ThemeCate;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;
+use App\Models\ThemeSc;
 use App\Models\Wuser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,7 +71,9 @@ class ThemeController extends Controller
             ->get();
         //获取评论次数
         $count = ThemeComment::where('th_id',$id)->count();
-        return view('web.theme.details', ['cate' => $cate,'list' => $list,'comment' => $comment,'count' => $count]);
+        //获取是否已经收藏
+        $sc = ThemeSc::where('th_id',$id)->where('cate_id',$cate_id)->where('wuser_id',session('wuid'))->get()->toArray();
+        return view('web.theme.details', ['cate' => $cate,'list' => $list,'comment' => $comment,'count' => $count,'sc' => $sc]);
     }
     //专题评论
     public function comment(){
@@ -104,6 +107,27 @@ class ThemeController extends Controller
     }
     //收藏专题
     public function sc(Request $request) {
-        var_dump($request->all());
+        //查询当前点赞情况
+        $result = ThemeSc::where('th_id',$request->get('th_id'))
+            ->where('cate_id',$request->get('cate_id'))
+            ->where('wuser_id',session('wuid'))
+            ->get()
+            ->toArray();
+        if ($result) {
+            //删除收藏
+            ThemeSc::where('th_id',$request->get('th_id'))
+                ->where('cate_id',$request->get('cate_id'))
+                ->where('wuser_id',session('wuid'))
+                ->delete();
+            return 1;
+        } else {
+            //收藏专题
+            $tsc = new ThemeSc();
+            $tsc->th_id = $request->get('th_id');
+            $tsc->cate_id = $request->get('cate_id');
+            $tsc->wuser_id = session('wuid');
+            $tsc->save();
+            return 2;
+        }
     }
 }

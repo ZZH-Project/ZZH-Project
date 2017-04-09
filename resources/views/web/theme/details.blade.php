@@ -92,13 +92,23 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);" id="sc">
+					@if(session('wuid') == null)
+					<a href="{{url('web/user/login')}}">
 						<svg class="icon icon_em_38" aria-hidden="true">
 	                        <use xlink:href="#front_icon-shouc01"></use>
 	                    </svg>
 						<input type="hidden" class="th_id" value="{{$_GET['id']}}">
 						<input type="hidden" class="cate_id" value="{{$_GET['cate_id']}}">
 					</a>
+					@else
+					<a href="javascript:void(0);" id="sc">
+						<svg class="icon icon_em_38" aria-hidden="true" id="scsvg" style="color:{{$sc == null ? '#4F4F4F' : 'orange'}};">
+							<use xlink:href="#front_icon-shouc01"></use>
+						</svg>
+						<input type="hidden" class="th_id" value="{{$_GET['id']}}">
+						<input type="hidden" class="cate_id" value="{{$_GET['cate_id']}}">
+					</a>
+					@endif
 				</li>
 				<li>
 					<span id="btn_footer_good1">
@@ -203,11 +213,19 @@
 			    url:"{{url('web/theme/sc')}}",
 				type:'get',
 				data:{"th_id":th_id,"cate_id":cate_id},
-                dataType:"string",
+                dataType:"json",
 				success:function (data) {
-
+                    if (data == 1) {
+                        $("#tip_fav").html("取消收藏！").show().delay(500).fadeOut(500);
+                        $("#scsvg").css({'color':'#4F4F4F'});
+                    } else if (data == 2) {
+                        $("#tip_fav").html("收藏成功！").show().delay(500).fadeOut(500);
+                        $("#scsvg").css({'color':'orange'});
+                    }
 				},
-				error:function (msg) {}
+				error:function (msg) {
+
+				}
 			});
         });
 		//检测是否为空

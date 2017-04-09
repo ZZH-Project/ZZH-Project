@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Permission;
+use App\Models\PermissionRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -76,6 +77,8 @@ class PermissionController extends Controller
         } elseif ($data == null) {
             //无子集，可以删除
             Permission::where('id',$id)->delete();
+            //删除中间表
+            PermissionRole::where('permission_id',$id)->delete();
             return 2;
         }
     }

@@ -13,6 +13,6 @@ class IndexController extends Controller
     }
     //实时消息
     public function info() {
-
+        return view('admin.index.info');
     }
 }

@@ -469,7 +469,7 @@ ul.pop_share_list li a p{
 /*---------------------------------------------------------弹出层-网站导航按钮-*/
 .website_menu{
 	position: fixed;
-	left: 22px;
+	right: 22px;
 	bottom: 140px;
 	width: 65px;
 	height: 65px;

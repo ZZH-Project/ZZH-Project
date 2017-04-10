@@ -1,3 +1,4 @@
+<div id="count" style="height: 0;">{{$count->num}}</div>
 @foreach($data as $v)
 <div id="top" style="overflow: hidden;">
     <div id="aname" style="float: left;">{{$v->username}}</div>

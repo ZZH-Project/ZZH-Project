@@ -40,6 +40,7 @@
         {{--<div style="font-size: 24px;text-align: center;color: black;">实时消息</div>--}}
         <div id="info">
             <div id="say">
+                <div id="count" style="height: 0;">{{$count->num}}</div>
                 @foreach($data as $v)
                     <div id="top" style="overflow: hidden;">
                         <div id="aname" style="float: left;">{{$v->username}}</div>
@@ -78,9 +79,6 @@
                     if (data == 1) {
                         //清空消息
                         $("#uf").val('');
-                        infos();
-                        //保持滚动条在最低端
-                        $('#say').scrollTop($('#say')[0].scrollHeight);
                     }
                 },
                 error:function (msg) {
@@ -95,15 +93,23 @@
         //保持滚动条在最低端
         $('#say').scrollTop($('#say')[0].scrollHeight);
         function infos() {
+            //获取总条数
+            var count = $("#count").html();
             $.ajax({
                 url:"{{url("admin/info")}}",
                 type:"get",
                 async:false,
-                data:{'a':1},
+                data:{'a':1,'count':count},
                 success:function (data) {
-                    //获取mini视图
-                    var infos = data;
-                    $("#say").html(infos);
+                    if (data == 5) {
+                        return;
+                    } else {
+                        //获取mini视图
+                        var infos = data;
+                        $("#say").html(infos);
+                        //保持滚动条在最低端
+                        $('#say').scrollTop($('#say')[0].scrollHeight);
+                    }
                 }
             });
         }

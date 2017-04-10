@@ -16,8 +16,7 @@
             max-height:400px;
             padding:10px;
             margin:5px 0px;
-            border:2px solid orange;
-            border-radius: 5px;
+            border:1px solid orange;
         }
         #top{
             font-size: 16px;
@@ -38,7 +37,7 @@
 @endsection
 @section('main')
     <div style="background: white;padding: 0 10px 25px 10px;">
-        <div style="font-size: 26px;text-align: center;color: black;">实时消息</div>
+        <div style="font-size: 24px;text-align: center;color: black;">实时消息</div>
         <div id="info">
             <div id="say">
                 @foreach($data as $v)
@@ -63,6 +62,8 @@
 @section('script')
     {{--遍历消息--}}
     <script>
+        //保持滚动条在最低端
+        $('#say').scrollTop($('#say')[0].scrollHeight);
         function infos() {
             $.ajax({
                 url:"{{url("admin/info")}}",

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\QaList;
+use App\Models\ThemeComment;
+use App\Models\ThemeList;
 use App\Models\WuserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -42,8 +44,18 @@ class CenterController extends Controller
     }
     //我的收藏
     public function favTheme(){
-        $status = '';
-        return view('web.userCenter.favTheme',compact('status'));
+        $wuid = session('wuid');
+        $list = ThemeList::select('theme_lists.*','theme_cates.cate_name')
+            ->leftjoin('theme_scs','theme_scs.th_id','theme_lists.id')
+            ->leftjoin('theme_cates','theme_cates.id','theme_lists.cate_id')
+            ->where('theme_scs.wuser_id',$wuid)
+            ->get();
+        //获取评论次数
+        $count = ThemeComment::select(DB::raw('count(*) as num,th_id'))
+            ->groupBy('th_id')
+            ->get();
+        $status = 'tm';
+        return view('web.userCenter.favTheme',compact('list','status','count'));
     }
 
     //个人信息修改验证
@@ -85,6 +97,7 @@ class CenterController extends Controller
 //        return view('web.user.login');
     }
 
+    //问答收藏
     public function myfav(){
         $wuid = session('wuid');
         $favqas = DB::table('qa_collects')
@@ -97,5 +110,20 @@ class CenterController extends Controller
 
         $status = 'qa';
         return view('web.userCenter.favTheme',compact('favqas','status'));
+    }
+    //专题收藏
+    public function tmsc() {
+        $wuid = session('wuid');
+        $list = ThemeList::select('theme_lists.*','theme_cates.cate_name')
+            ->leftjoin('theme_scs','theme_scs.th_id','theme_lists.id')
+            ->leftjoin('theme_cates','theme_cates.id','theme_lists.cate_id')
+            ->where('theme_scs.wuser_id',$wuid)
+            ->get();
+        //获取评论次数
+        $count = ThemeComment::select(DB::raw('count(*) as num,th_id'))
+            ->groupBy('th_id')
+            ->get();
+        $status = 'tm';
+        return view('web.userCenter.favTheme',compact('list','status','count'));
     }
 }

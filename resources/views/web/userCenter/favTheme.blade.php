@@ -31,7 +31,11 @@
 		
 		<div class="fav_list_wrap">
 			<ul class="fav_list">
-				<li><a href="#" {{--class="fav_list_select"--}}>专题</a></li>
+				@if($status == 'tm')
+				<li><a href="{{url('web/center/tmsc')}}" class="fav_list_select">专题</a></li>
+				@else
+				<li><a href="{{url('web/center/tmsc')}}">专题</a></li>
+				@endif
 				@if($status == 'qa')
 				<li><a href="{{url('web/center/myfav')}}" class="fav_list_select" id="qa">问答</a></li>
 				@else
@@ -89,77 +93,37 @@
 					</div><!--wrap-->
 				</div><!--qa_wrap-->
 			@endforeach
-		@else
-		<div class="wrap">
-			<div class="theme_wrap">
-				<a href="details.html" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="details.html" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
+		@elseif($status == 'tm')
+			<div class="wrap">
+				@foreach($list as $v)
+					<div class="theme_wrap">
+						<a href="{{url("web/theme/details?id=$v->id&cate_id=$v->cate_id")}}" class="theme_img_bar">
+							<img src='{{asset("upload/images/$v->banner_img")}}'  />
+							<div class="theme_cate_tip">{{$v->cate_name}}</div><!--theme_cate_tip-->
+						</a><!--theme_bar-->
+						<a href="{{url("web/theme/details?id=$v->id&cate_id=$v->cate_id")}}" class="title_h2">{{$v->title}}</a>
+						<div class="fun_info_bar">
+					<span class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
 	                        <use xlink:href="#front_icon-pinglun"></use>
 	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
+						@foreach($count as $a)
+							@if($v->id == $a->th_id)
+								<span>{{$a->num == 0 ? 0 : $a->num}}</span>
+							@endif
+						@endforeach
+					</span>
+							<span class="left">
 						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
+	                        <use xlink:href="#front_icon-liulan1"></use>
 	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
-			
-			<div class="theme_wrap">
-				<a href="details.html" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="details.html" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
-			
-			<div class="theme_wrap">
-				<a href="details.html" class="theme_img_bar">
-					<img src="{{asset('images/web/theme_img.jpg')}}"  />
-					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
-				</a><!--theme_bar-->
-				<a href="details.html" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
-				<div class="fun_info_bar">
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-pinglun"></use>
-	                   </svg>
-						<span>20</span>
-					</a>
-					<a href="javascript:void(0);" class="left">
-						<svg class="icon icon_em_25" aria-hidden="true">
-	                        <use xlink:href="#front_icon-icondianzan"></use>
-	                    </svg>
-	                    <span>14</span>
-                   	</a>
-					<div style="clear: both;"></div>
-				</div><!--fun_info_bar-->
-			</div><!--theme_wrap-->
-		</div><!--wrap-->
+	                    <span>{{$v->good_num == 0 ? 0 : $v->good_num}}</span>
+                   	</span>
+							<div style="clear: both;"></div>
+						</div><!--fun_info_bar-->
+					</div><!--theme_wrap-->
+				@endforeach
+			</div><!--wrap-->
 		@endif
 	</body>
 	<script>

@@ -48,7 +48,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{{url('web/usercenter/index')}}">
+					<a href="{{url('web/center/index')}}">
 						<div class="menu_cirle_bar">
 							<svg class="icon icon_em_18" aria-hidden="true">
 								<use xlink:href="#front_icon-yonghu"></use>

@@ -17,7 +17,7 @@
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
-		
+	<form action="{{url('web/center/passEditval')}}">
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">修改密码</h1>
@@ -26,7 +26,7 @@
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>
 				</a>
-				<a href="#" class="btn_head_submit">保存</a>
+				<a href="#" class="btn_head_submit"><input type="submit" value="保存"></a>
 			</div><!--wrap-->
 		</div><!--head-->
 		
@@ -46,5 +46,6 @@
 				</li>
 			</ul>
 		</div><!--wrap-->
+	</form>
 	</body>
 </html>

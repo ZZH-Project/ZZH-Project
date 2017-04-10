@@ -17,7 +17,8 @@
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
-		
+	<form action="{{url('web/center/imgEditval')}}" method="post" enctype="multipart/form-data">
+		{{csrf_field()}}
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">修改个人头像</h1>
@@ -26,7 +27,7 @@
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>
 				</a>
-				<a href="#" class="btn_head_submit">保存</a>
+				<a href="#" class="btn_head_submit"><input type="submit" value="保存" style="background: none;border: none"></a>
 			</div><!--wrap-->
 		</div><!--head-->
 		
@@ -35,11 +36,16 @@
 				<li>
 					<span>我的头像：</span>
 					<div class="file_upload">
-						<input type="file" />
+						<input type="file" name="pic" value=""/>
 						<b>上传</b>
 					</div><!--file_upload-->
 				</li>
+				@if($errors->first() != '')
+					<li style="background: pink;height: 40px; text-align: center;line-height: 18px;color: darkred">{{$errors->first()}}</li>
+				@else
+				@endif
 			</ul>
 		</div><!--wrap-->
+	</form>
 	</body>
 </html>

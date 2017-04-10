@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>用户登录</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css')}}" rel="stylesheet" />
-		<link href="{{asset('css/web/login_zl.css')}}" rel="stylesheet" />
-		<link href="{{asset('css/web/login_hff.css')}}" rel="stylesheet" />
-		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(function(){
-				$('.checkbox').click(function(){
-					$(this).parent().toggleClass('checkbox_bar_on');
-				});
-				$(".btn_login").click(function(){
-					$(".login_error_bar").slideToggle();
-				});
-			});
-		</script>
-	</head>
+@extends('web.layouts.index')
+@section('title','登录')
+@section('style')
+	<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
+	<link href="{{asset('css/web/wechat_zl.css')}}" type="text/css" rel="stylesheet" />
+	<link href="{{asset('css/base.css')}}" rel="stylesheet" />
+	<link href="{{asset('css/web/login_zl.css')}}" rel="stylesheet" />
+	<link href="{{asset('css/web/login_hff.css')}}" rel="stylesheet" />
+	<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
+	<script type="text/javascript">
+        $(function(){
+            $('.checkbox').click(function(){
+                $(this).parent().toggleClass('checkbox_bar_on');
+            });
+            $(".btn_login").click(function(){
+                $(".login_error_bar").slideToggle();
+            });
+        });
+	</script>
+@endsection
+@section('body')
+
 	<body>
 		<div class="body">
 			<div class="login_logo"><img src="{{asset('images/web/login_logo.png')}}" /></div>
@@ -63,10 +64,9 @@
 			</div><!--login_wrap-->
 			</form><!-- login -->
 			<a href="{{url('web/user/register')}}" class="a_register">立即注册</a>
-			{{--<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>--}}
+			<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
-	</body>
 	<script src="{{asset('js/jquery-1.8.3.min.js')}}" type="text/javascript"></script>
 	<script>
 		//给form表单绑定提交事件
@@ -87,10 +87,11 @@
                     $res = JSON.parse(data);
 					//如果返回的信息为2说明用户名或者密码不正确
                     if($res.a == 2){
-						alert('用户名密码错误！');
+                        $("#error2").css({'display':'block'});
+                        $("#error2").html('用户名密码错误');
 					//如果返回的信息为1说明用户名密码匹配成功
 					}else if($res.a == 1){
-                        alert('登录成功！')
+                        location.href="{{url("web/index")}}";
 					}
 				},
 				//请求失败时的方法
@@ -128,4 +129,4 @@
 		    return false;
 		});
 	</script>
-</html>
+@endsection

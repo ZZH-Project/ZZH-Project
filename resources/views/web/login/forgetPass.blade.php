@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>密码重置</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css')}}" rel="stylesheet" />
-		<link href="{{asset('css/web/login_zl.css')}}" rel="stylesheet" />
-		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/jquery-1.8.3.min.js')}}" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(function(){
-				$(".btn_login").click(function(){
-					$(".login_error_bar").slideToggle();
-				});
-			});
-		</script>
-	</head>
-	<body>
+@extends('web.layouts.index')
+@section('title','微圈')
+@section('style')
+	<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
+	<link href="{{asset('css/web/wechat_zl.css')}}" type="text/css" rel="stylesheet" />
+	<link href="{{asset('css/base.css')}}" rel="stylesheet" />
+	<link href="{{asset('css/web/login_zl.css')}}" rel="stylesheet" />
+	<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('js/jquery-1.8.3.min.js')}}" type="text/javascript"></script>
+	<script type="text/javascript">
+        $(function(){
+            $(".btn_login").click(function(){
+                $(".login_error_bar").slideToggle();
+            });
+        });
+	</script>
+@endsection
+@section('body')
 		<div class="body">
 			<div class="login_logo"><img src="{{asset('images/web/login_logo.png')}}" /></div>
 			<form id="forget" action="{{url('web/user/resetpass')}}" method="post">
@@ -136,5 +135,4 @@
                 return false;
 			});
 		</script>
-	</body>
-</html>
+@endsection

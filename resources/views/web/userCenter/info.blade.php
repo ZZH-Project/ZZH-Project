@@ -22,7 +22,7 @@
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>
 				</a>
-				<a href="{{url('web/center/infoEdit')}}" id="btn_head_menu">
+				<a href="{{url('web/center/infoEdit').'/'.$wuinfo->wuid}}" id="btn_head_menu">
 					<svg class="icon icon_em_40" aria-hidden="true">
 	                    <use xlink:href="#front_icon-pinglun2"></use>
 	                </svg>
@@ -41,15 +41,16 @@
 			                </svg>
 						</div>
 						<div class="right">
-							<svg class="icon icon_em_20" aria-hidden="true">
-			                    <use xlink:href="#front_icon-yonghu"></use>
-			                </svg>
+							<img src="{{$wuinfo->pic}}" width="56px" height="56px" >
+							{{--<svg class="icon icon_em_20" aria-hidden="true">--}}
+			                    {{--<use xlink:href="#front_icon-yonghu"></use>--}}
+			                {{--</svg>--}}
 						</div>
 					</a>
 				</li>
-				<li>用户名<span>美丽联合</span></li>
-				<li>手机号<span>17757831991</span></li>
-				<li>性别<span>男</span></li>
+				<li>用户名<span>{{$wuinfo->wusername}}</span></li>
+				<li>手机号<span>{{$wuinfo->username}}</span></li>
+				<li>性别<span>{{$wuinfo->sex}}</span></li>
 			</ul>
 		</div><!--wrap-->
 	</body>

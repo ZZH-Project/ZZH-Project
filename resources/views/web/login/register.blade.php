@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>用户注册</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css')}}" rel="stylesheet" />
-		<link href="{{asset('css/web/login_zl.css')}}" rel="stylesheet" />
-		<link href="{{asset('css/web/login_hff.css')}}" rel="stylesheet" />
-{{--		<link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />--}}
-		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/jquery-1.8.3.min.js')}}" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(function(){
-				$('.checkbox').click(function(){
-					$(this).parent().toggleClass('checkbox_bar_on');
-				});
-				$(".btn_login").click(function(){
-					$(".login_error_bar").slideToggle();
-				});
-			});
-		</script>
-	</head>
-	<body>
+@extends('web.layouts.index')
+@section('title','注册')
+@section('style')
+	<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
+	<link href="{{asset('css/web/wechat_zl.css')}}" type="text/css" rel="stylesheet" />
+	<link href="{{asset('css/base.css')}}" rel="stylesheet" />
+	<link href="{{asset('css/web/login_zl.css')}}" rel="stylesheet" />
+	<link href="{{asset('css/web/login_hff.css')}}" rel="stylesheet" />
+	{{--		<link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />--}}
+	<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('js/jquery-1.8.3.min.js')}}" type="text/javascript"></script>
+	<script type="text/javascript">
+        $(function(){
+            $('.checkbox').click(function(){
+                $(this).parent().toggleClass('checkbox_bar_on');
+            });
+            $(".btn_login").click(function(){
+                $(".login_error_bar").slideToggle();
+            });
+        });
+	</script>
+@endsection
+@section('body')
 		{{--@if(count($errors)>0)--}}
 			{{--<div class="alert alert-danger">--}}
 				{{--<ul>--}}
@@ -78,7 +77,6 @@
 			{{--<a href="#" class="btn_close"><img src="{{asset('images/web/icon_close.png')}}" /></a>--}}
 			{{--<div class="login_error_bar">手机号或密码错误</div>--}}
 		</div><!--body-->
-	</body>
 	{{--手机注册--}}
 	<script>
         //增加判断表示
@@ -229,4 +227,4 @@
 			{{--return false;--}}
 		{{--});--}}
 	{{--</script>--}}
-</html>
+@endsection

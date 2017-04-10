@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Models\QaList;
 use App\Models\WuserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,7 +42,8 @@ class CenterController extends Controller
     }
     //我的收藏
     public function favTheme(){
-        return view('web.userCenter.favTheme');
+        $status = '';
+        return view('web.userCenter.favTheme',compact('status'));
     }
 
     //个人信息修改验证
@@ -83,4 +85,17 @@ class CenterController extends Controller
 //        return view('web.user.login');
     }
 
+    public function myfav(){
+        $wuid = session('wuid');
+        $favqas = DB::table('qa_collects')
+            ->select('qa_lists.id','qa_lists.title','qa_lists.content','qa_lists.user_id','qa_lists.cate_id','good_num','qa_lists.issue_time','qa_cates.cate_name','wuser_infos.wusername')
+            ->leftJoin('qa_lists','qa_collects.qa_id','=','qa_lists.id')
+            ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+            ->leftJoin('wuser_infos','wuser_infos.wuid','=','qa_collects.wuser_id')
+            ->where('qa_collects.wuser_id',$wuid)
+            ->get();
+
+        $status = 'qa';
+        return view('web.userCenter.favTheme',compact('favqas','status'));
+    }
 }

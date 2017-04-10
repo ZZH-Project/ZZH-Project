@@ -229,8 +229,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::any('imgEditval','CenterController@imgEditval');
         //修改密码验证
         Route::get('passEditval','CenterController@passEditval');
-
-
+        //我的收藏
+        Route::get('myfav','CenterController@myfav');
     });
 
     //问答列表

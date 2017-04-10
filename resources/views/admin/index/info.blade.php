@@ -40,7 +40,7 @@
         {{--<div style="font-size: 24px;text-align: center;color: black;">实时消息</div>--}}
         <div id="info">
             <div id="say">
-                <div id="count" style="height: 0;">{{$count->num}}</div>
+                <div id="count" style="height: 0;color: rgba(0,0,0,0);">{{$count->num}}</div>
                 @foreach($data as $v)
                     <div id="top" style="overflow: hidden;">
                         <div id="aname" style="float: left;">{{$v->username}}</div>

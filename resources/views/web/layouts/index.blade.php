@@ -42,14 +42,15 @@
         </svg>
     </a>
 </div><!--website_menu-->
-
 <div class="pop_wrap pop_wrap_white" id="pop_website_menu">
     <div class="pop_user_img_wrap">
         <img src="{{asset('images/web/login_logo.png')}}" />
     </div><!--pop_user_img_wrap-->
     <ul class="pop_user_btn">
+        @if(session('weblogin')!=1)
         <li><a href="{{url('web/user/login')}}">登录</a></li>
         <li><a href="{{url('web/user/register')}}">注册</a></li>
+        @endif
     </ul>
     <div style="clear: both;"></div>
     <ul class="pop_menu_wrap">

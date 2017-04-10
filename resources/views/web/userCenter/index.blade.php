@@ -7,16 +7,20 @@
 	<div class="center_head">
 		<div class="user_img_wrap">
 			<div class="user_img">
-				<svg class="icon icon_em_60" aria-hidden="true">
-					<use xlink:href="#front_icon-yonghu"></use>
-				</svg>
+				<img src="{{$wuinfo['pic']}}" width="125px" height="125px" >
+				{{--<svg class="icon icon_em_60" aria-hidden="true">--}}
+					{{--<use xlink:href="#front_icon-yonghu"></use>--}}
+				{{--</svg>--}}
 			</div><!--user_img-->
 		</div><!--user_img_wrap-->
 		<!--<a class="user_name">蜡笔小新</a>-->
+		@if(session('weblogin')==1)
+		@else
 		<ul class="login_bar_ul">
 			<li><a href="{{url('web/user/login')}}">登录</a></li>
 			<li><a href="{{url('web/user/register')}}">注册</a></li>
 		</ul>
+		@endif
 		<div style="clear: both;"></div>
 	</div><!--center_head-->
 	<div class="user_c_list">
@@ -144,11 +148,4 @@
 			</li>
 		</ul>
 	</div><!--user_c_list-->
-	<div class="website_menu" >
-		<a href="#" id="website_menu">
-			<svg class="icon icon_em_30" aria-hidden="true">
-				<use xlink:href="#front_icon-11"></use>
-			</svg>
-		</a>
-	</div><!--website_menu-->
 @endsection

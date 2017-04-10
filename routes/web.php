@@ -216,13 +216,21 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //个人信息
         Route::get('info','CenterController@info');
         //个人信息修改
-        Route::get('infoEdit','CenterController@infoEdit');
+        Route::get('infoEdit/{wuid}','CenterController@infoEdit');
         //个人头像修改
         Route::get('imgEdit','CenterController@imgEdit');
         //密码修改
         Route::get('passEdit','CenterController@passEdit');
         //我的收藏
         Route::get('favTheme','CenterController@favTheme');
+        //个人信息修改验证
+        Route::get('infoEditval','CenterController@infoEditval');
+        //个人头像修改验证
+        Route::any('imgEditval','CenterController@imgEditval');
+        //修改密码验证
+        Route::get('passEditval','CenterController@passEditval');
+
+
     });
 
     //问答列表

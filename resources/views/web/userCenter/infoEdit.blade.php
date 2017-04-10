@@ -17,7 +17,8 @@
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
-		
+	<form action="{{url('web/center/infoEditval')}}">
+		{{csrf_field()}}
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">修改个人信息</h1>
@@ -26,7 +27,7 @@
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>
 				</a>
-				<a href="#" class="btn_head_submit">保存</a>
+				<a href="#" class="btn_head_submit"><input type="submit" value="保存" style="background: none;border: none"></a>
 			</div><!--wrap-->
 		</div><!--head-->
 		
@@ -34,13 +35,13 @@
 			<ul class="submint_list useredit_list">
 				<li>
 					<span>用户名：</span>
-					<input  class="form-control"/>
+					<input type="text" name="wusername"  class="form-control" value="{{$wuinfo['wusername']}}"/>
 				</li>
 				<li>
 					<span>性别：</span>
-					<select class="form-control">
-						<option>男</option>
-						<option>女</option>
+					<select class="form-control" name="sex">
+						<option {{$wuinfo['sex']=='男'?'selected':''}}>男</option>
+						<option {{$wuinfo['sex']=='女'?'selected':''}}>女</option>
 					</select>
 					<div class="icon_more">
 						<svg class="icon icon_em_25" aria-hidden="true">
@@ -48,7 +49,12 @@
 		                </svg>
 					</div><!--icon_more-->
 				</li>
+				@if($errors->first() != '')
+				<li style="background: pink;height: 40px; text-align: center;line-height: 18px;color: darkred">{{$errors->first()}}</li>
+				@else
+				@endif
 			</ul>
 		</div><!--wrap-->
+	</form>
 	</body>
 </html>

@@ -36,8 +36,8 @@
     </style>
 @endsection
 @section('main')
-    <div style="background: white;padding: 0 10px 25px 10px;">
-        <div style="font-size: 24px;text-align: center;color: black;">实时消息</div>
+    <div style="background: white;padding: 25px 10px 25px 10px;">
+        {{--<div style="font-size: 24px;text-align: center;color: black;">实时消息</div>--}}
         <div id="info">
             <div id="say">
                 @foreach($data as $v)
@@ -60,24 +60,6 @@
     </div>
 @endsection
 @section('script')
-    {{--遍历消息--}}
-    <script>
-        //保持滚动条在最低端
-        $('#say').scrollTop($('#say')[0].scrollHeight);
-        function infos() {
-            $.ajax({
-                url:"{{url("admin/info")}}",
-                type:"get",
-                data:{'a':1},
-                success:function (data) {
-                    //获取mini视图
-                    var infos = data;
-                    $("#say").html(infos);
-                }
-            });
-        }
-        setInterval(infos,1000);
-    </script>
     {{--发送消息--}}
     <script>
         $("#iff").submit(function () {
@@ -90,12 +72,15 @@
             $.ajax({
                 url:"{{url("admin/send")}}",
                 type:"get",
-                ansyc:false,
+                async:false,
                 data:{'content':content},
                 success:function (data) {
                     if (data == 1) {
                         //清空消息
                         $("#uf").val('');
+                        infos();
+                        //保持滚动条在最低端
+                        $('#say').scrollTop($('#say')[0].scrollHeight);
                     }
                 },
                 error:function (msg) {
@@ -104,5 +89,24 @@
             });
             return false;
         });
+    </script>
+    {{--遍历消息--}}
+    <script>
+        //保持滚动条在最低端
+        $('#say').scrollTop($('#say')[0].scrollHeight);
+        function infos() {
+            $.ajax({
+                url:"{{url("admin/info")}}",
+                type:"get",
+                async:false,
+                data:{'a':1},
+                success:function (data) {
+                    //获取mini视图
+                    var infos = data;
+                    $("#say").html(infos);
+                }
+            });
+        }
+        setInterval(infos,1000);
     </script>
 @endsection

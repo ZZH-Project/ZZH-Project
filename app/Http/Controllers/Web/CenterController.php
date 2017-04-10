@@ -27,8 +27,8 @@ class CenterController extends Controller
     public function passEdit(){
         return view('web.userCenter.passEdit');
     }
-    //密码修改
-    public function passEdit(){
+    //我的收藏
+    public function favTheme(){
         return view('web.userCenter.favTheme');
     }
 }

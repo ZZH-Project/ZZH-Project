@@ -7,14 +7,14 @@
 		<link href="{{asset('admin/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/theme.css')}}" type="text/css" rel="stylesheet" />
+		<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/wechat_zl.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/user_zl.css')}}" type="text/css" rel="stylesheet" />
 		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
 		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('admin/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('js/iconfont.js')}}" type="text/javascript"></script>
-		<script src="{{asset(js/public_zl.js)}}" type="text/javascript"></script>
+		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
 		
@@ -41,7 +41,7 @@
 		<div class="wrap">
 			<div class="theme_wrap">
 				<a href="details.html" class="theme_img_bar">
-					<img src="../images/theme_img.jpg"  />
+					<img src="{{asset('images/web/theme_img.jpg')}}"  />
 					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
 				</a><!--theme_bar-->
 				<a href="details.html" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
@@ -64,7 +64,7 @@
 			
 			<div class="theme_wrap">
 				<a href="details.html" class="theme_img_bar">
-					<img src="../images/theme_img.jpg"  />
+					<img src="{{asset('images/web/theme_img.jpg')}}"  />
 					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
 				</a><!--theme_bar-->
 				<a href="details.html" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>
@@ -87,7 +87,7 @@
 			
 			<div class="theme_wrap">
 				<a href="details.html" class="theme_img_bar">
-					<img src="../images/theme_img.jpg"  />
+					<img src="{{asset('images/web/theme_img.jpg')}}"  />
 					<div class="theme_cate_tip">美妆</div><!--theme_cate_tip-->
 				</a><!--theme_bar-->
 				<a href="details.html" class="title_h2">恋恋粉色季 画个甜甜的妆容吧！</a>

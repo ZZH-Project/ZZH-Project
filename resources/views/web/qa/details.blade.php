@@ -13,6 +13,7 @@
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
+{{--	{{var_dump($qacollect)}}--}}
 		<div class="head head_white qa_head_d">
 			<div class="wrap">
 				<div class="user_img_bar user_img_70 left">
@@ -71,7 +72,7 @@
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->
 				@if($v['comment_id']!=0)
-						<div class="content p2"><span style="color: #AFAFAD;">回复<b>haha</b>:<span>{{$v['content']}}</div>
+						<div class="content p2"><span style="color: #AFAFAD;">回复<b>haha</b>:{{$v['content']}}</div>
 				@else
 				<div class="content p2">{{$v['content']}}</div>
 				@endif
@@ -175,18 +176,30 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);" id="btn_footer_fav">
+					@if($qacollect == '')
+					<a href="javascript:void(0);" id="btn_footer_fav" class="" onclick="fav(this)">
 						<svg class="icon icon_em_38" aria-hidden="true">
 	                        <use xlink:href="#front_icon-shouc01"></use>
 	                    </svg>
+						<input type="hidden" value="{{$qa->id}}">
+						<input type="hidden" value="{{session('wuid')}}">
 					</a>
+					@elseif($qacollect != '')
+						<a href="javascript:void(0);" id="btn_footer_fav" class="good_red" onclick="fav(this)">
+							<svg class="icon icon_em_38" aria-hidden="true">
+								<use xlink:href="#front_icon-shouc01"></use>
+							</svg>
+							<input type="hidden" value="{{$qa->id}}">
+							<input type="hidden" value="{{session('wuid')}}">
+						</a>
+					@endif
 				</li>
 				<li>
 					<a href="javascript:void(0);" id="btn_footer_good" class="" onclick="mgood(this)">
 						<svg class="icon" aria-hidden="true">
 	                        <use xlink:href="#front_icon-icondianzan"></use>
 	                    </svg>
-	                    <span>{{$qa->good_num}}</span>
+	                    <span style="text-align:right;">{{$qa->good_num}}</span>
 						<input type="hidden" value="{{$qa->id}}">
 					</a>
 				</li>
@@ -275,7 +288,7 @@
 		</form>
 {{--		@if(empty($errors))--}}
 		<div class="tip_bar" id="tip_success"></div>
-		<div class="tip_bar" id="tip_fav">已收藏</div>
+		<div class="tip_bar" id="tip_fav"></div>
 	</body>
 	<script>
 		//回复
@@ -390,5 +403,46 @@
 			});
 		}
 	}
+
+	//收藏
+	function fav(a) {
+        var qaid = a.childNodes[3].value;
+        var wuid = a.childNodes[5].value;
+//        console.log(a.childNodes[5].value);
+        if (a.attributes[2].value == '') {
+            $.ajax({
+                url: "{{url('web/qa/collectadd')}}",
+                type: 'get',
+                data: {qaid: qaid, wuid: wuid},
+                datatype: 'json',
+                success: function (data) {
+                    data = JSON.parse(data);
+                    if (data.a == 1) {
+                        $("#tip_fav").html('已收藏');
+                    } else {
+                        $("#tip_fav").html('收藏失败');
+                        a.attributes[2].value == 'good_red';
+                    }
+                },
+                error: function () {
+                }
+            });
+        } else if (a.attributes[2].value == 'good_red') {
+            var qaid = a.childNodes[3].value;
+            var wuid = a.childNodes[5].value;
+//        console.log(a.childNodes[5].value);
+            $.ajax({
+                url: "{{url('web/qa/collectmin')}}",
+                type: 'get',
+                data: {qaid: qaid, wuid: wuid},
+                datatype: 'json',
+                success: function (data) {
+                    data = JSON.parse(data);
+                },
+                error: function () {
+                }
+            });
+        }
+    }
 </script>
 </html>

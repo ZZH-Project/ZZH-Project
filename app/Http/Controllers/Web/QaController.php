@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\QaCate;
+use App\Models\QaCollect;
 use App\Models\QaComment;
 use App\Models\QaList;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class QaController extends Controller
     }
     //==================回答首页==================
     public function qaDetails(Request $request){
+        $wuid = session('wuid');
         $qalistid = $request->qalistid;
 //        var_dump($qalistid);
         $qa = DB::table('qa_lists')
@@ -53,7 +55,17 @@ class QaController extends Controller
 //        var_dump($qa);die;
         $qacomment = QaComment::where('qa_id',$qalistid)->get();
         $qacomment = (object)Tree($qacomment);
-        return view('web.qa.details',compact('qa','qacomment'));
+        $qacollect = QaCollect::where(["wuser_id"=>$wuid,"qa_id"=>$qalistid])->get()->toArray();
+        if(!empty($qacollect)){
+            $qacollect = $qacollect[0];
+            return view('web.qa.details',compact('qa','qacomment','qacollect'));
+        }else{
+            $qacollect = [''];
+            $qacollect = $qacollect[0];
+//        var_dump($qacollect);die;
+            return view('web.qa.details',compact('qa','qacomment','qacollect'));
+        }
+
     }
 
     //================验证提问信息================
@@ -175,5 +187,27 @@ class QaController extends Controller
         QaComment::where('id',$qaid)->update(['good_num'=>$goodnum]);
 //        var_dump($qaid,$goodnum);die;
         return $goodnum;
+    }
+
+    //=====================问答收藏=====================
+    public function collectadd(Request $request){
+        $qaid = $request->qaid;
+        $wuid = $request->wuid;
+//        var_dump($qaid,$wuid);
+        $res = QaCollect::create(['qa_id'=>$qaid,'wuser_id'=>$wuid]);
+        if($res){
+            return json_encode(['a'=>1]);
+        }
+    }
+
+    //=====================问答收藏=====================
+    public function collectmin(Request $request){
+        $qaid = $request->qaid;
+        $wuid = $request->wuid;
+//        var_dump($qaid,$wuid);
+        $res = QaCollect::where(['qa_id'=>$qaid,'wuser_id'=>$wuid])->delete();
+        if($res){
+            return json_encode(['a'=>1]);
+        }
     }
 }

@@ -15,6 +15,14 @@
 }
 
 /*-118-*/
+.icon_em_15{
+	width: 1.5em !important;
+	height: 1.5em !important;
+}
+.icon_em_16{
+	width: 1.6em !important;
+	height: 1.6em !important;
+}
 .icon_em_17{
 	width: 1.7em !important;
 	height: 1.7em !important;
@@ -46,6 +54,10 @@
 .icon_em_40{
 	width: 4em !important;
 	height: 4em !important;
+}
+.icon_em_60{
+	width: 6em !important;
+	height: 6em !important;
 }
 .icon_em_80{
 	width: 8em !important;

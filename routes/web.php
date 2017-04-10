@@ -206,6 +206,23 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //忘记密码-》重置密码
         Route::any('resetpass','UserController@resetpass');
     }); //==需要登录的路由,中间件分组==
+
+    //==============个人中心===================
+    Route::group(['prefix'=>'center'],function(){
+        //个人中心主页
+        Route::get('index','CenterController@index');
+        //个人信息
+        Route::get('info','CenterController@info');
+        //个人信息修改
+        Route::get('infoEdit','CenterController@infoEdit');
+        //个人头像修改
+        Route::get('imgEdit','CenterController@imgEdit');
+        //密码修改
+        Route::get('passEdit','CenterController@passEdit');
+        //我的收藏
+        Route::get('favTheme','CenterController@favTheme');
+    });
+
     //问答列表
     Route::get('qa/index/{catename?}','QaController@qaList');
     Route::group(['middleware'=>'webLogin'],function(){

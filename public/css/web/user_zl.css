@@ -1,0 +1,162 @@
+.center_head{
+	width: 100%;
+	background: linear-gradient(150deg,#e44274 40%,#e44274);
+	padding: 50px 0;
+}
+.user_img_wrap{
+	width: 125px;
+	height: 125px;
+	margin: 0 auto;
+	border-radius: 160px;
+	border: 8px solid rgba(255, 255, 255, 0.4);
+	box-shadow: 0 2px 3px #F6232C;
+	margin-bottom: 30px;
+}
+.user_img{
+	width: 125px;
+	height: 125px;
+	border-radius: 160px;
+	margin: 0 auto;
+	overflow: hidden;
+	background-color: #fff;
+}
+.user_img svg{
+	display: block;
+	width: 84px;
+	margin: 0 auto;
+	margin-top: 15px;
+	color: #999999;
+}
+ul.login_bar_ul{
+	width: 50%;
+	margin: 0 auto;
+}
+ul.login_bar_ul li:first-child{
+	border-right: 2px solid #ffffff;
+}
+ul.login_bar_ul li{
+	float: left;
+	width: 49.5%;
+	margin: 0 auto;
+}
+ul.login_bar_ul li a{
+	display: block;
+	width: 100%;
+	font-size: 28px;
+	color: #ffffff;
+	text-align: center;
+}
+
+
+
+
+.user_c_list{
+	padding: 0 22px;
+	background-color: #fff;
+	border-top: 15px solid rgb(247, 247, 247);
+}
+.user_c_list.special{
+	border-bottom: 15px solid rgb(247, 247, 247);
+	margin-bottom: 60px;
+}
+.user_c_list ul li{
+	width: 100%;
+	border-bottom: 1px dashed #E7E7E7;
+}
+.user_c_list ul li:last-child{
+	border: none;
+}
+.user_c_list ul li a{
+	position: relative;
+	display: block;
+	height: 88px;
+	line-height: 88px;
+	font-size: 26px;
+	color: #4a4a4a;
+}
+.user_c_list ul li a.logout{
+	text-align: center;
+}
+.user_c_list ul li a:hover{
+	color: #e44274;
+}
+.user_c_list ul li a span{
+	margin-left: 15px;
+}
+.icon_arrow{
+	position: absolute;
+	right: 0;
+	top: 10px;
+	color: #999999;
+}
+.user_c_icon{
+	display: inline-block;
+	position: relative;
+	top: 10px;
+	width: 45px;
+	color: #888888;
+	text-align: center;
+}
+
+ul.info_list li{
+	height: 100px;
+	line-height: 100px;
+	font-size: 26px;
+	color: #333333;
+	padding-left: 22px;
+	padding-right: 22px;
+	border-bottom: 1px solid #d7d7d7;
+}
+ul.info_list li span,ul.info_list li span a{
+	float: right;
+	color: #aaa;
+}
+.btn_user_img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 28px;
+	color: #333333;
+}
+.btn_user_img .right{
+	position: relative;
+	top: 12px;
+	color: #aaa;
+}
+.btn_user_img .right.icon_user_arrow{
+	top: 13px;
+}
+ul.submint_list.useredit_list li{
+	height: 100px;
+	line-height: 100px;
+	margin-top: 40px;
+}
+ul.submint_list.useredit_list li input,ul.submint_list.useredit_list li select{
+	height: 80px;
+	line-height: 80px;
+	font-size: 28px;
+}
+ul.useredit_list li span{
+	font-size: 28px;
+}
+
+.fav_list_wrap{
+	width: 100%;
+	border-bottom: 1px solid #d7d7d7;
+}
+ul.fav_list li{
+	float: left;
+	width: 33%;
+}
+ul.fav_list li a{
+	display: block;
+	width: 100%;
+	height: 80px;
+	line-height: 80px;
+	font-size: 26px;
+	color: #333333;
+	text-align: center;
+}
+.fav_list_select{
+	border-bottom: 2px solid #e44274;
+}

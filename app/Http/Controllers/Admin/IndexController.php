@@ -24,6 +24,7 @@ class IndexController extends Controller
             //查询数据
             $data = Info::select('infos.*','ausers.username')
                 ->leftjoin('ausers','ausers.id','infos.auser_id')
+                ->orderBy('infos.created_at','asc')
                 ->get();
             return response()->view('admin.index.miniInfo', ['data' => $data,'count' => $count]);
         }
@@ -32,6 +33,7 @@ class IndexController extends Controller
         //查询数据
         $data = Info::select('infos.*','ausers.username')
             ->leftjoin('ausers','ausers.id','infos.auser_id')
+            ->orderBy('infos.created_at','asc')
             ->get();
         return view('admin.index.info', ['data' => $data,'count' => $count]);
     }

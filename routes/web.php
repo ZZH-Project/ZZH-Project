@@ -246,6 +246,10 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('cdgoodadd','QaController@cdgoodadd');
             //子回答取消赞
             Route::any('cdgoodmin','QaController@cdgoodmin');
+            //问答收藏
+            Route::any('collectadd','QaController@collectadd');
+            //取消问答收藏
+            Route::any('collectmin','QaController@collectmin');
         });
     });
     //==============专题===================

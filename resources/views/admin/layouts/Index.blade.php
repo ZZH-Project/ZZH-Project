@@ -20,6 +20,23 @@
       opacity: 1;
       padding: 15px;
     }
+    #show{
+      position: absolute;
+      text-indent: 20px;
+      margin: auto;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      width:400px;
+      max-height:280px;
+      padding:10px;
+      overflow-y: auto;
+      display: none;
+      font-size: 16px;
+      color: white;
+      background: #9cbf91;
+    }
   </style>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -234,8 +251,9 @@
 
   <!-- 右侧主体，用于显示后台功能 -->
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="position: relative">
     <div class="alt"></div>
+    <div id="show"></div>
     <section class="content-header">
       <h1>
         @yield('title-first')

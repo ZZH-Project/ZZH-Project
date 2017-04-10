@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Info;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -12,7 +14,37 @@ class IndexController extends Controller
         return view('admin.index.index');
     }
     //实时消息
-    public function info() {
-        return view('admin.index.info');
+    public function info(Request $request) {
+        if ($request->get('a') == 1) {
+            //查询总条数
+            $count = Info::select(DB::raw('count(*) as num'))->get()[0];
+            if ($count->num == $request->get('count')) {
+                return 5;
+            }
+            //查询数据
+            $data = Info::select('infos.*','ausers.username')
+                ->leftjoin('ausers','ausers.id','infos.auser_id')
+                ->orderBy('infos.created_at','asc')
+                ->get();
+            return response()->view('admin.index.miniInfo', ['data' => $data,'count' => $count]);
+        }
+        //查询总条数
+        $count = Info::select(DB::raw('count(*) as num'))->get()[0];
+        //查询数据
+        $data = Info::select('infos.*','ausers.username')
+            ->leftjoin('ausers','ausers.id','infos.auser_id')
+            ->orderBy('infos.created_at','asc')
+            ->get();
+        return view('admin.index.info', ['data' => $data,'count' => $count]);
+    }
+    //发送消息
+    public function send(Request $request) {
+        $content = $request->get('content');
+        //存入数据
+        $info = new Info();
+        $info->auser_id = session('auser')['id'];
+        $info->content = $request->get('content');
+        $info->save();
+        return 1;
     }
 }

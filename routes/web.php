@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('index','IndexController@index');
         //后台实时消息
         Route::get('info', 'IndexController@info');
+        //发送实时消息
+        Route::get('send', 'IndexController@send');
         //用户组
         Route::group(['prefix' => 'user'], function () {
             //用户显示

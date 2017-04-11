@@ -4,10 +4,11 @@
 	<link href="{{asset('css/web/user_zl.css')}}" type="text/css" rel="stylesheet"  />
 @endsection
 @section('body')
+	{{--{{var_dump($wuinfo)}}--}}
 	<div class="center_head">
 		<div class="user_img_wrap">
 			<div class="user_img">
-				<img src="{{$wuinfo['pic']}}" width="125px" height="125px" >
+				<img src="{{$wuinfo['pic']==null?'':url($wuinfo['pic'])}}" width="125px" height="125px" >
 				{{--<svg class="icon icon_em_60" aria-hidden="true">--}}
 					{{--<use xlink:href="#front_icon-yonghu"></use>--}}
 				{{--</svg>--}}
@@ -26,7 +27,7 @@
 	<div class="user_c_list">
 		<ul>
 			<li>
-				<a href="{{url('web/center/info')}}">
+				<a href="{{url('web/center/info').'/'.$wuinfo['wuid']}}">
 					<div class="user_c_icon">
 						<svg class="icon icon_em_18" aria-hidden="true">
 							<use xlink:href="#front_icon-information"></use>

@@ -214,11 +214,11 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         //个人中心主页
         Route::get('index','CenterController@index');
         //个人信息
-        Route::get('info','CenterController@info');
+        Route::get('info/{wuid}','CenterController@info');
         //个人信息修改
         Route::get('infoEdit/{wuid}','CenterController@infoEdit');
         //个人头像修改
-        Route::get('imgEdit','CenterController@imgEdit');
+        Route::get('imgEdit/{wuid}','CenterController@imgEdit');
         //密码修改
         Route::get('passEdit','CenterController@passEdit');
         //我的收藏

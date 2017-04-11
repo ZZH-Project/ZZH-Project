@@ -13,7 +13,7 @@
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
-		
+		{{--{{var_dump($wuinfo)}}--}}
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">个人信息</h1>
@@ -33,7 +33,7 @@
 		<div class="wrap">
 			<ul class="info_list">
 				<li>
-					<a href="{{url('web/center/imgEdit')}}" class="btn_user_img">
+					<a href="{{url('web/center/imgEdit').'/'.$wuinfo->wuid}}" class="btn_user_img">
 						我的头像
 						<div class="right icon_user_arrow">
 							<svg class="icon icon_em_17" aria-hidden="true">
@@ -41,7 +41,7 @@
 			                </svg>
 						</div>
 						<div class="right">
-							<img src="{{$wuinfo->pic}}" width="56px" height="56px" >
+							<img src="{{$wuinfo->pic == null ? '' : url($wuinfo->pic)}}" width="56px" height="56px" >
 							{{--<svg class="icon icon_em_20" aria-hidden="true">--}}
 			                    {{--<use xlink:href="#front_icon-yonghu"></use>--}}
 			                {{--</svg>--}}

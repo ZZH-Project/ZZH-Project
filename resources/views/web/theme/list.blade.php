@@ -1,34 +1,28 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>{{$cate->cate_name}}</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
-		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/iconfont.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(function(){
-				$("#btn_head_menu").click(function(){
-					$("#pop_theme_menu").slideToggle();
-					$('body').toggleClass("hidden");
-					//禁止页面在手机上滑动
-					$('.pop_wrap').bind("touchmove",function(e){
-						e.preventDefault();
-					});
-				});
-				$(".head_menu_bar ul.menu_cirle li a,#pop_theme_menu").click(function(){
-					$('body').css('overflow', 'auto');
-					$("#pop_theme_menu").slideUp();
-				});
-			});
-		</script>
-	</head>
-	<body class="body">
+@extends('web.layouts.index')
+@section('title',"{$cate->cate_name}")
+@section('style')
+	<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
+@endsection
+
+@section('script')
+	<script type="text/javascript">
+        $(function(){
+            $("#btn_head_menu").click(function(){
+                $("#pop_theme_menu").slideToggle();
+                $('body').toggleClass("hidden");
+                //禁止页面在手机上滑动
+                $('.pop_wrap').bind("touchmove",function(e){
+                    e.preventDefault();
+                });
+            });
+            $(".head_menu_bar ul.menu_cirle li a,#pop_theme_menu").click(function(){
+                $('body').css('overflow', 'auto');
+                $("#pop_theme_menu").slideUp();
+            });
+        });
+	</script>
+@endsection
+@section('body')
 		
 		<div class="head">
 			<div class="wrap">
@@ -96,5 +90,4 @@
 				<div style="clear: both;"></div>
 			</div><!--pop_head_menu-->
 		</div>
-	</body>
-</html>
+@endsection

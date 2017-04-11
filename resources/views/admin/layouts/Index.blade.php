@@ -36,6 +36,8 @@
       font-size: 16px;
       color: white;
       background: #9cbf91;
+      box-shadow: 0px 0px 5px 1px #9cbf91;
+      z-index: 9999999;
     }
   </style>
   <!-- Tell the browser to be responsive to screen width -->

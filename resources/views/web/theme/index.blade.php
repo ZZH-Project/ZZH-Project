@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>专题</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
-		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/iconfont.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
-	</head>
-	<body class="body">
-		
+@extends('web.layouts.index')
+@section('title','专题')
+@section('style')
+	<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
+@endsection
+@section('body')
+
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">专题</h1>
@@ -84,5 +75,4 @@
 				</div><!--theme_wrap-->
 			@endforeach
 		</div><!--wrap-->
-	</body>
-</html>
+@endsection

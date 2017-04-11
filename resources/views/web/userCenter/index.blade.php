@@ -60,21 +60,21 @@
 	</div><!--user_c_list-->
 	<div class="user_c_list">
 		<ul>
-			{{--<li>--}}
-				{{--<a href="#">--}}
-					{{--<div class="user_c_icon">--}}
-						{{--<svg class="icon icon_em_16" aria-hidden="true">--}}
-							{{--<use xlink:href="#front_icon-wenda1"></use>--}}
-						{{--</svg>--}}
-					{{--</div>--}}
-					{{--<span>我的问答</span>--}}
-					{{--<div class="icon_arrow">--}}
-						{{--<svg class="icon icon_em_18" aria-hidden="true">--}}
-							{{--<use xlink:href="#front_icon-fanhui1-copy"></use>--}}
-						{{--</svg>--}}
-					{{--</div><!--icon_arrow-->--}}
-				{{--</a>--}}
-			{{--</li>--}}
+			<li>
+				<a href="{{url('web/center/qaforget').'/'.$wuinfo['wuid']}}">
+					<div class="user_c_icon">
+						<svg class="icon icon_em_16" aria-hidden="true">
+							<use xlink:href="#front_icon-wenda1"></use>
+						</svg>
+					</div>
+					<span>设置密保问题</span>
+					<div class="icon_arrow">
+						<svg class="icon icon_em_18" aria-hidden="true">
+							<use xlink:href="#front_icon-fanhui1-copy"></use>
+						</svg>
+					</div><!--icon_arrow-->
+				</a>
+			</li>
 			{{--<li>--}}
 				{{--<a href="#">--}}
 					{{--<div class="user_c_icon">--}}

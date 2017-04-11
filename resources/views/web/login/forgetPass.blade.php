@@ -1,5 +1,5 @@
 @extends('web.layouts.index')
-@section('title','微圈')
+@section('title','忘记密码')
 @section('style')
 	<link href="{{asset('css/web/theme_zl.css')}}" type="text/css" rel="stylesheet" />
 	<link href="{{asset('css/web/wechat_zl.css')}}" type="text/css" rel="stylesheet" />
@@ -35,6 +35,9 @@
 						<img src="{{asset('images/web/icon_password.png')}}" class="login_icon" />
 						<input name="password" type="password" placeholder="请输入6-20个字符的密码" class="input_text" />
 					</li>
+                    <li class="special login_tip">
+                            <a href="{{url('web/user/question')}}" class="a_forget">密保问题找回密码</a>
+                    </li>
 					<li class="special">
 						<div class="login_bar">
 							<input type="submit" value="重置密码" class="btn_login"/>

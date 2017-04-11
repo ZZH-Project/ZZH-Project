@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\MyQuestion;
 use App\Models\RTResule;
 use App\Models\Wuser;
 use App\Tool\SMS\SendTemplateSMS;
@@ -254,6 +255,63 @@ class UserController extends Controller
                         ->where('username',$phone)
                         ->update(['password'=>md5($password)]);
             return json_encode(['a'=> 0]);
+        }
+    }
+
+    //密码问题找回密码
+    public function question(){
+        $status = '';
+        return view('web/login/question',compact('status'));
+    }
+
+    //获取问题
+    public function getquestion(Request $request){
+        $username = $request->username;
+        $uid = Wuser::select('id')->where('username',$username)->get()->toArray();
+        if(empty($uid)){
+            $status = 0;
+            return view('web/login/question',compact('status'));
+        }else{
+            $status = '';
+            $uid = $uid[0]['id'];
+//            var_dump($uid);die;
+            $question = MyQuestion::where('wuid',$uid)->get()->toArray();
+            if(empty($question)){
+                $status = 1;
+                return view('web/login/question',compact('status'));
+            }
+            $question = $question[0];
+//            var_dump($question);
+            return view('web/login/answer',compact('question','status'));
+        }
+    }
+
+    //回答问题页面
+    public function answerval(Request $request){
+        $questions = $request->question;
+        $uid = $request->wuid;
+        $question = MyQuestion::where('wuid',$uid)->get()->toArray();
+        $question = $question[0];
+        $answer = $request->answer;
+        $password = $request->password;
+        if($password == '' || $answer == ''){
+            $status = 1;
+            return view('web/login/answer',compact('status','question'));
+        }
+//        var_dump($questions,$answer);die;
+        $res = MyQuestion::where('question',$questions)
+            ->where('answer',$answer)
+            ->get()->toArray();
+//        var_dump($res);die;
+        if(empty($res)){
+            $status = 2;
+            return view('web/login/answer',compact('status','question'));
+        }else{
+            $res = $res[0];
+            $uid = $res['wuid'];
+            Wuser::where('id',$uid)->update(['password'=>md5($password)]);
+//            var_dump($uid);die;
+            return redirect('web/user/login');
         }
     }
 }

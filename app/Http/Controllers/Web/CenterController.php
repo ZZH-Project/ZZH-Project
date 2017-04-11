@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Models\MyQuestion;
 use App\Models\QaList;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;
@@ -184,5 +185,54 @@ class CenterController extends Controller
     public function logout(Request $request){
         $request->session()->flush();
         return redirect('web/user/login');
+    }
+
+    //密保问题
+    public function qaforgetPass(Request $request){
+        $uid = $request->uid;
+        return view('web/userCenter/qaforgetPass',compact('uid'));
+    }
+
+    //提交密保问题
+    public function checkqa(Request $request){
+        $rule = [
+            'question' => 'required',
+            'answer' => 'required',
+        ];
+        $msg =[
+            'question.required' => '问题不能为空',
+            'answer.required' => '回答不能为空'
+        ];
+        $this->validate($request,$rule,$msg);
+        $uid = $request->uid;
+        $question = $request->question;
+        $answer = $request->answer;
+//        var_dump($uid,$question,$answer);
+        $res = MyQuestion::where('wuid',$uid)->get()->toArray();
+        if(empty($res)){
+            MyQuestion::create([
+                'wuid'=>$uid,
+                'question'=>$question,
+                'answer'=>$answer
+            ]);
+            return redirect('web/center/index');
+        }else{
+            MyQuestion::where('wuid',$uid)->update([
+                'question'=>$question,
+                'answer'=>$answer
+            ]);
+            return redirect('web/center/index');
+        }
+    }
+
+    //我的密保问题
+    public function myquestion(Request $request){
+        $uid = $request->uid;
+        $question = MyQuestion::where('wuid',$uid)->get()->toArray();
+        if(empty($question)){
+            return redirect('web/center/qaforget'.'/'.$uid);
+        }
+        $question = $question[0];
+        return view('web/userCenter/myquestion',compact('uid','question'));
     }
 }

@@ -142,11 +142,13 @@
 			</li>
 		</ul>
 	</div><!--user_c_list-->
+	@if(session('weblogin')==1)
 	<div class="user_c_list special">
 		<ul>
 			<li>
-				<a href="#" class="logout">退出当前账号</a>
+				<a href="{{url('web/center/logout')}}" class="logout">退出当前账号</a>
 			</li>
 		</ul>
 	</div><!--user_c_list-->
+	@endif
 @endsection

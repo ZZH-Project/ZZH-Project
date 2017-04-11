@@ -162,4 +162,10 @@ class CenterController extends Controller
         $status = 'tm';
         return view('web.userCenter.favTheme',compact('list','status','count'));
     }
+
+        //退出登录
+    public function logout(Request $request){
+        $request->session()->flush();
+        return redirect('web/user/login');
+    }
 }

@@ -66,7 +66,11 @@
 				<div class="comment_head_wrap">
 					<div class="left">
 						<div class="user_img_bar user_img_50 left">
+							@if($v->pic != null)
+							<img src="{{asset("$v->pic")}}" />
+							@else
 							<img src="{{asset('images/web/user_img.png')}}" />
+							@endif
 						</div>
 						<span class="user_name">{{str_replace(substr($v->username,3,4),'****',$v->username)}}</span>
 					</div>

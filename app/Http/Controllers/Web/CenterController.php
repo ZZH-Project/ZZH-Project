@@ -14,25 +14,53 @@ class CenterController extends Controller
 {
     //个人中心主页
     public function index(){
-        $wuinfo = WuserInfo::get()->toArray();
-        $wuinfo = $wuinfo[0];
-        return view('web.userCenter.index',compact('wuinfo'));
+        $wuid = session('wuid');
+        $wuinfo = WuserInfo::where('wuid',$wuid)->get()->toArray();
+//        var_dump($wuinfo);die;
+        if(empty($wuinfo)){
+            $wuinfo = ['pic'=>'','wuid'=>$wuid,'wusername'=>'','username'=>'','sex'=>''];
+            return view('web.userCenter.index',compact('wuinfo'));
+        }else{
+            $wuinfo = $wuinfo[0];
+//            var_dump($wuinfo);die;
+            return view('web.userCenter.index',compact('wuinfo'));
+        }
+
     }
     //个人信息展示
-    public function info(){
+    public function info(Request $request){
+        $wuid = $request->wuid;
+//        var_dump($wuid);die;
         $wuinfo = DB::table('wuser_infos')
+                    ->where('wuid',$wuid)
                     ->select('wuser_infos.id','wuser_infos.pic','wuser_infos.sex','wuser_infos.wuid','wuser_infos.wusername','wusers.username')
                     ->leftJoin('wusers','wusers.id','=','wuser_infos.wuid')->get()->toArray();
-        $wuinfo = $wuinfo[0];
 //        var_dump($wuinfo);
-        return view('web.userCenter.info',compact('wuinfo'));
+        if(empty($wuinfo)){
+            $wuinfo = ['pic'=>'','wuid'=>$wuid,'wusername'=>'','username'=>'','sex'=>''];
+//        var_dump($wuinfo);
+            $wuinfo = (object)$wuinfo;
+            return view('web.userCenter.info',compact('wuinfo'));
+        }else{
+            $wuinfo = $wuinfo[0];
+//        var_dump($wuinfo);
+            return view('web.userCenter.info',compact('wuinfo'));
+        }
+
     }
     //个人信息修改
     public function infoEdit(Request $request){
         $wuid = $request->wuid;
         $wuinfo = WuserInfo::select('wusername','sex')->where('wuid',$wuid)->get()->toArray();
-        $wuinfo = $wuinfo[0];
-        return view('web.userCenter.infoEdit',compact('wuinfo'));
+        if(empty($wuinfo)){
+            $wuinfo = ['pic'=>'','wuid'=>$wuid,'wusername'=>'','username'=>'','sex'=>''];
+//        var_dump($wuinfo);
+            return view('web.userCenter.infoEdit',compact('wuinfo'));
+        }else{
+            $wuinfo = $wuinfo[0];
+            return view('web.userCenter.infoEdit',compact('wuinfo'));
+        }
+
     }
     //个人头像修改
     public function imgEdit(){
@@ -65,30 +93,38 @@ class CenterController extends Controller
         $wusername = $request->wusername;
         $sex = $request->sex;
         $wuid = session('wuid');
+//        var_dump($wusername);die;
         $res = WuserInfo::where('wuid', $wuid)->get()->toArray();
         if (empty($res)) {
             $res = WuserInfo::create(['wusername' => $wusername, 'sex' => $sex, 'wuid' => $wuid]);
             if ($res) {
-                return redirect('web/center/info');
+                return redirect('web/center/info'.'/'.$wuid);
             }
         } else {
             $ress = WuserInfo::where('wuid', $wuid)->update(['wusername' => $wusername, 'sex' => $sex]);
-            if ($ress) {
-                return redirect('web/center/info');
-            }
+                return redirect('web/center/info'.'/'.$wuid);
         }
     }
 
-        //个人信息修改验证
+        //头像修改信息验证
         public function imgEditval(Request $request)
         {
             $this->validate($request, ['pic' => 'required'], ['pic.required' => '图片不能为空']);
             $pic = $request->pic->move(public_path().'\wuserupload','headimg.jpg');
-            $path = url('wuserupload/headimg.jpg');
+            $path = 'wuserupload/headimg.jpg';
+//            var_dump($path);die;
             $wuid = session('wuid');
 //            var_dump($pics);die;
-            WuserInfo::where('wuid',$wuid)->update(['pic' => $path]);
-            return redirect('web/center/index');
+           $res = WuserInfo::where('wuid', $wuid)->get()->toArray();
+//           var_dump($res);die;
+            if (empty($res)) {
+                $res = WuserInfo::create(['pic' => $path,'wuid' => $wuid]);
+                return redirect('web/center/info'.'/'.$wuid);
+            } else {
+                $ress = WuserInfo::where('wuid', $wuid)->update(['pic' => $path]);
+//                var_dump($ress);
+                return redirect('web/center/info'.'/'.$wuid);
+            }
         }
 
     //密码修改信息验证
@@ -125,5 +161,11 @@ class CenterController extends Controller
             ->get();
         $status = 'tm';
         return view('web.userCenter.favTheme',compact('list','status','count'));
+    }
+
+        //退出登录
+    public function logout(Request $request){
+        $request->session()->flush();
+        return redirect('web/user/login');
     }
 }

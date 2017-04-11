@@ -8,7 +8,7 @@
 	<div class="center_head">
 		<div class="user_img_wrap">
 			<div class="user_img">
-				<img src="{{$wuinfo['pic']==null?'':url($wuinfo['pic'])}}" width="125px" height="125px" >
+				<img src="{{$wuinfo['pic']==null ? asset('images/web/user_img.png') :asset($wuinfo['pic'])}}" width="125px" height="125px" >
 				{{--<svg class="icon icon_em_60" aria-hidden="true">--}}
 					{{--<use xlink:href="#front_icon-yonghu"></use>--}}
 				{{--</svg>--}}

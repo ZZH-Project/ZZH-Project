@@ -68,6 +68,7 @@ class ThemeController extends Controller
             ->leftjoin('wuser_infos','wuser_infos.wuid','wusers.id')
             ->where('is_show',1)
             ->where('th_id',$id)
+            ->orderBy('created_at','desc')
             ->limit(3)
             ->get();
         //获取评论次数
@@ -90,6 +91,7 @@ class ThemeController extends Controller
             ->leftjoin('wuser_infos','wuser_infos.wuid','wusers.id')
             ->where('is_show',1)
             ->where('th_id',$id)
+            ->orderBy('created_at','desc')
             ->get();
         return view('web.theme.comment',['list' => $list,'comment' => $comment]);
     }

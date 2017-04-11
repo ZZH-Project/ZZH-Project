@@ -92,6 +92,9 @@
 					//如果返回的信息为1说明用户名密码匹配成功
 					}else if($res.a == 1){
                         location.href="{{url("web/index")}}";
+					}else if($res.a == 9){
+                        $("#error3").css({'display':'block'});
+                        $("#error3").html('您被禁止登录');
 					}
 				},
 				//请求失败时的方法

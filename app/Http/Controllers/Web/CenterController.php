@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Models\QaList;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;
+use App\Models\Wuser;
 use App\Models\WuserInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -110,10 +111,13 @@ class CenterController extends Controller
         public function imgEditval(Request $request)
         {
             $this->validate($request, ['pic' => 'required'], ['pic.required' => '图片不能为空']);
-            $pic = $request->pic->move(public_path().'\wuserupload','headimg.jpg');
-            $path = 'wuserupload/headimg.jpg';
-//            var_dump($path);die;
             $wuid = session('wuid');
+            $wz = $request->pic->getClientOriginalExtension();
+//            var_dump($wz);die;
+            $pic = $wuid.'-head'.$wz;
+            $path = 'wuserupload'.'/'.$pic;
+            $request->pic->move(public_path().'\wuserupload',$pic);
+//            var_dump($path);die;
 //            var_dump($pics);die;
            $res = WuserInfo::where('wuid', $wuid)->get()->toArray();
 //           var_dump($res);die;
@@ -128,9 +132,22 @@ class CenterController extends Controller
         }
 
     //密码修改信息验证
-    public function passEditval(){
-        return 111;
-//        return view('web.user.login');
+    public function passEditval(Request $request){
+        $role = [
+            'oldpassword'=>'required',
+            'password'=>'required|confirmed'
+        ];
+        $msg = [
+            'oldpassword.required'=>'原密码不能为空',
+            'password.required'=>'新密码不能为空',
+            'password.confirmed'=>'两次输入的密码不同'
+        ];
+        $this->validate($request,$role,$msg);
+        $oldpass = $request->oldpassword;
+        $password = $request->password;
+        $wuid = $request->wuid;
+        $wuser = Wuser::where('id',$wuid)->update(['password'=>md5($password)]);
+        return redirect('web/user/login');
     }
 
     //问答收藏

@@ -121,6 +121,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //专题评论是否下线
             Route::get('is/{id}', 'ThemeCommentController@is');
         });
+        //会员管理组
+        Route::group(['prefix' => 'member'],function(){
+            //显示会员列表
+            Route::any('show','MemberController@show');
+            //禁止会员登录
+            Route::any('isLoad/{wuid}/{isload}','MemberController@isload');
+        });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示

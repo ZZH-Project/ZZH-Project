@@ -13,14 +13,19 @@
 		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
 	</head>
 	<body class="body">
-{{--	{{var_dump($qacollect)}}--}}
+	{{--{{var_dump($qacollect)}}--}}
+	{{--{{var_dump($qa)}}--}}
 		<div class="head head_white qa_head_d">
 			<div class="wrap">
 				<div class="user_img_bar user_img_70 left">
-					<img src="{{asset('images/web/user_img.png')}}"  />
+					<img src="{{url($qa->pic)}}"  />
 				</div><!--left-->
 				<div class="left qa_details_info">
-					<p class="user_name_d">秋之雨</p>
+					@if($qa->wusername == null)
+					<p class="user_name_d">{{$qa->username}}</p>
+					@else
+					<p class="user_name_d">{{$qa->wusername}}</p>
+					@endif
 					<p class="qa_details_time">{{date('Y-m-d H:i:s',$qa->issue_time)}}</p>
 				</div><!--left-->
 				{{--<div class="qa_status_bar status_green qa_status_d right">已回答</div><!--right-->--}}
@@ -58,23 +63,27 @@
 			</div><!--wrap-->
 		</div><!--comment_head-->
 		@foreach($qacomment as $v)
-			@if($v['is_show'] == 1)
+			@if($v->is_show == 1)
 				<div class="comment_wrap">
 				<div class="wrap">
 				<div class="comment_head_wrap">
 					<div class="left">
 						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
+							<img src="{{$v->pic == null ? '' : url($v->pic)}}" width="50px" height="50px"/>
 						</div>
-						<span class="user_name">秋之雨</span>
+						@if($v->wusername == null)
+						<span class="user_name">{{$v->username}}</span>
+						@else
+						<span class="user_name">{{$v->wusername}}</span>
+						@endif
 					</div>
 					<div class="right time_tip">{{date('Y-m-d H:i:s',$v->issue_time)}}</div>
 					<div style="clear: both;"></div>
 				</div><!--comment_head_wrap-->
-				@if($v['comment_id']!=0)
-						<div class="content p2"><span style="color: #AFAFAD;">回复<b>haha</b>:{{$v['content']}}</div>
+				@if($v->comment_id != 0)
+						<div class="content p2"><span style="color: #AFAFAD;">回复<b></b>:{{$v->content}}</div>
 				@else
-				<div class="content p2">{{$v['content']}}</div>
+				<div class="content p2">{{$v->content}}</div>
 				@endif
 				
 				<div class="fun_info_bar">
@@ -89,7 +98,7 @@
 						<svg class="icon icon_em_30" aria-hidden="true">
 	                        <use xlink:href="#front_icon-huifu"></use>
 	                   </svg>
-						<input type="hidden" value="{{$v['id']}}">
+						<input type="hidden" value="{{$v->id}}">
                    	</a>
 					<div style="clear: both;"></div>
 				</div><!--fun_info_bar-->
@@ -301,6 +310,7 @@
 				success:function(data){
                     console.log(data);
                     $("#tip_success").html('提交成功');
+                    location.href = "{{url('web/qa/details').'/'.$qa->id}}";
 				},
 				error:function(msg){
 //				    alert(222);
@@ -320,6 +330,7 @@
                 success:function(data){
                     console.log(data);
                     $("#tip_success").html('提交成功');
+                    location.href = "{{url('web/qa/details').'/'.$qa->id}}";
                 },
                 error:function(msg){
 //				    alert(222);

@@ -51,7 +51,7 @@
 @endforeach
 {{--实现隔行换色和鼠标移动变色--}}
 <script>
-    $(".ftrd").find('td').css({"background":"#faf094"});
+    $(".ftrd").find('td').css({"background":"#a3bf80"});
     $(".trd").mouseover(function () {
         $(this).find('td').css({"background":"#e5e5e5"});
     });

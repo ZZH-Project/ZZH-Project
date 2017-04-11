@@ -63,8 +63,9 @@ class ThemeController extends Controller
         //获取专题信息
         $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->where('is_show',1)->get()[0];
         //获取次专题的评论
-        $comment = ThemeComment::select('theme_comments.*','wusers.username')
+        $comment = ThemeComment::select('theme_comments.*','wusers.username','wuser_infos.pic')
             ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
+            ->leftjoin('wuser_infos','wuser_infos.wuid','wusers.id')
             ->where('is_show',1)
             ->where('th_id',$id)
             ->limit(3)
@@ -84,8 +85,9 @@ class ThemeController extends Controller
         //获取专题信息
         $list = ThemeList::where('id',$id)->where('cate_id',$cate_id)->where('is_show',1)->get()[0];
         //获取次专题的评论
-        $comment = ThemeComment::select('theme_comments.*','wusers.username')
+        $comment = ThemeComment::select('theme_comments.*','wusers.username','wuser_infos.pic')
             ->leftjoin('wusers','wusers.id','theme_comments.wuser_id')
+            ->leftjoin('wuser_infos','wuser_infos.wuid','wusers.id')
             ->where('is_show',1)
             ->where('th_id',$id)
             ->get();

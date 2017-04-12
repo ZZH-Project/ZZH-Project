@@ -22,7 +22,7 @@
 		<div class="head">
 			<div class="wrap">
 				<h1 class="page_title">修改个人信息</h1>
-				<a href="{{url('web/center/info')}}" class="btn_page_back">
+				<a href="{{url('web/center/info').'/'.session('wuid')}}" class="btn_page_back">
 					<svg class="icon icon_em_40" aria-hidden="true">
 	                    <use xlink:href="#front_icon-fanhui1"></use>
 	                </svg>

@@ -117,15 +117,18 @@ class CenterController extends Controller
 //            var_dump($wz);die;
             $pic = $wuid.'-head.'.$wz;
             $path = 'wuserupload'.'/'.$pic;
-            $request->pic->move(public_path().'/wuserupload',$pic);
 //            var_dump($path);die;
 //            var_dump($pics);die;
            $res = WuserInfo::where('wuid', $wuid)->get()->toArray();
 //           var_dump($res);die;
             if (empty($res)) {
+	       $request->pic->move(public_path().'/wuserupload',$pic);
                 $res = WuserInfo::create(['pic' => $path,'wuid' => $wuid]);
                 return redirect('web/center/info'.'/'.$wuid);
             } else {
+		unlink("wuserupload/".$pic);
+		$request->pic->move(public_path().'/wuserupload',$pic);
+
                 $ress = WuserInfo::where('wuid', $wuid)->update(['pic' => $path]);
 //                var_dump($ress);die;
                 return redirect('web/center/info'.'/'.$wuid);

@@ -37,11 +37,11 @@
 						<input name="password" type="password" placeholder="请输入密码" class="input_text" value="{{Cache::get('savewuser')['password']}}"/>
 					</li>
 					<div id="error2" class="error-alert"></div>
-					<li>
-						<img src="{{asset('images/web/icon_validate.png')}}" class="login_icon"  />
-						<input name="captcha" type="text" placeholder="请输入验证码" class="input_text" />
-						<img src="{{captcha_src()}}" onclick="this.src=this.src+'?'+(new Date()).getTime()" class="validate_code" />
-					</li>
+					{{--<li>--}}
+						{{--<img src="{{asset('images/web/icon_validate.png')}}" class="login_icon"  />--}}
+						{{--<input name="captcha" type="text" placeholder="请输入验证码" class="input_text" />--}}
+						{{--<img src="{{captcha_src()}}" onclick="this.src=this.src+'?'+(new Date()).getTime()" class="validate_code" />--}}
+					{{--</li>--}}
 					<div id="error3" class="error-alert"></div>
 					<li class="special login_tip">
 						{{--session中存有用户信息显示勾--}}

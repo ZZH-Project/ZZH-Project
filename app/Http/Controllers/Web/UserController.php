@@ -130,14 +130,14 @@ class UserController extends Controller
         $roles = [
             'username' => 'required|digits_between:11,11',
             'password' => 'required|between:6,12|alpha_dash',
-            'captcha' => 'required|captcha',
+//            'captcha' => 'required|captcha',
         ];
         //自定义的错误信息
         $msg = [
             'required' => '* :Attribute不能为空',
             'digits_between'=>'* :Attribute必须是数字并且在:min和:max之间',
             'between' => '* :Attribute必须在:min和:max之间',
-            'captcha' => '* 验证码不正确',
+//            'captcha' => '* 验证码不正确',
             'alpha_dash' => '* :Attribute必须是字母数字下划线'
         ];
         //验证数据

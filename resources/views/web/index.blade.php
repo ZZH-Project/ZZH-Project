@@ -17,8 +17,6 @@
 	<div class="menu_wrap">
 		<div class="wrap">
 			<ul class="menu_cirle">
-<<<<<<< HEAD
-
                 @foreach($data as $v)
                     <li>
                         <a href="{{url($v->routes)}}">
@@ -31,100 +29,6 @@
                         </a>
                     </li>
                 @endforeach
-
-				{{--<li>--}}
-					{{--<a href="{{url('web/theme/index')}}">--}}
-						{{--<div class="menu_cirle_bar">--}}
-							{{--<svg class="icon icon_em_17" aria-hidden="true">--}}
-								{{--<use xlink:href="#front_icon-boxingtu"></use>--}}
-							{{--</svg>--}}
-						{{--</div>--}}
-						{{--<p>专题</p>--}}
-					{{--</a>--}}
-				{{--</li>--}}
-				{{--<li>--}}
-					{{--<a href="{{url('web/wechat/index')}}">--}}
-						{{--<div class="menu_cirle_bar">--}}
-							{{--<svg class="icon icon_em_18" aria-hidden="true">--}}
-								{{--<use xlink:href="#front_icon-weixin"></use>--}}
-							{{--</svg>--}}
-						{{--</div>--}}
-						{{--<p>微圈</p>--}}
-					{{--</a>--}}
-				{{--</li>--}}
-				{{--<li>--}}
-					{{--<a href="{{url('web/qa/index')}}">--}}
-						{{--<div class="menu_cirle_bar">--}}
-							{{--<svg class="icon icon_em_17" aria-hidden="true">--}}
-								{{--<use xlink:href="#front_icon-wenda1"></use>--}}
-							{{--</svg>--}}
-						{{--</div>--}}
-						{{--<p>问答</p>--}}
-					{{--</a>--}}
-				{{--</li>--}}
-				{{--<li>--}}
-					{{--<a href="{{url('web/center/index')}}">--}}
-						{{--<div class="menu_cirle_bar">--}}
-							{{--<svg class="icon icon_em_18" aria-hidden="true">--}}
-								{{--<use xlink:href="#front_icon-yonghu"></use>--}}
-							{{--</svg>--}}
-						{{--</div>--}}
-						{{--<p>我的</p>--}}
-					{{--</a>--}}
-				{{--</li>--}}
-
-=======
-				<li>
-					<a href="{{url('web/theme/index')}}">
-						<div class="menu_cirle_bar">
-							<svg class="icon icon_em_17" aria-hidden="true">
-								<use xlink:href="#front_icon-boxingtu"></use>
-							</svg>
-						</div>
-						<p>专题</p>
-					</a>
-				</li>
-				<li>
-					<a href="{{url('web/wechat/index')}}">
-						<div class="menu_cirle_bar">
-							<svg class="icon icon_em_18" aria-hidden="true">
-								<use xlink:href="#front_icon-weixin"></use>
-							</svg>
-						</div>
-						<p>微圈</p>
-					</a>
-				</li>
-				<li>
-					<a href="{{url('web/qa/index')}}">
-						<div class="menu_cirle_bar">
-							<svg class="icon icon_em_17" aria-hidden="true">
-								<use xlink:href="#front_icon-wenda1"></use>
-							</svg>
-						</div>
-						<p>问答</p>
-					</a>
-				</li>
-				<li>
-					<a href="{{url('web/center/index')}}">
-						<div class="menu_cirle_bar">
-							<svg class="icon icon_em_18" aria-hidden="true">
-								<use xlink:href="#front_icon-yonghu"></use>
-							</svg>
-						</div>
-						<p>我的</p>
-					</a>
-				</li>
-				<li>
-					<a href="{{url('web/index')}}">
-						<div class="menu_cirle_bar">
-							<svg class="icon icon_em_18" aria-hidden="true">
-								<use xlink:href="#front_icon-icongd1"></use>
-							</svg>
-						</div>
-						<p>更多</p>
-					</a>
-				</li>
->>>>>>> cb7364888bcf5d9544493d65bf2309f0b536ade1
 			</ul>
 			<div style="clear: both;"></div>
 		</div><!--wrap-->
@@ -136,7 +40,6 @@
 	</div><!--title_bar-->
 
 	<div class="wrap">
-
 		@foreach($list as $v)
 			<div class="theme_wrap">
 				<a href="{{url("web/theme/details?id=$v->id&cate_id=$v->cate_id")}}" class="theme_img_bar">

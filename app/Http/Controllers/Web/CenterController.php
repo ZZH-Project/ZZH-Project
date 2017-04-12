@@ -8,6 +8,7 @@ use App\Models\MyQuestion;
 use App\Models\QaList;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;
+use App\models\wechatList;
 use App\Models\Wuser;
 use App\Models\WuserInfo;
 use Illuminate\Http\Request;
@@ -199,6 +200,17 @@ class CenterController extends Controller
             ->groupBy('th_id')
             ->get();
         $status = 'tm';
+        return view('web.userCenter.favTheme',compact('list','status','count'));
+    }
+
+    //微圈收藏
+    public function wechatfav() {
+        $wuid = session('wuid');
+        $list = wechatList::select('wechat_lists.*')
+            ->leftjoin('wechat_favs','wechat_favs.th_id','wechat_lists.id')
+            ->where('wechat_favs.wuser_id',$wuid)
+            ->get();
+        $status = 'wechatfav';
         return view('web.userCenter.favTheme',compact('list','status','count'));
     }
 

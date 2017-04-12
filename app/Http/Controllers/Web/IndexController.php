@@ -15,9 +15,8 @@ class IndexController extends Controller
 {
     //网站主页
     public function index(){
-        //查询前5条微圈分类
+        //查询前5条网站导航分类
         $data = NavCate::orderBy('sort_id','asc')->limit(5)->get();
-        return view('web.index', ['data' => $data]);
         //获取评论次数
         $count = ThemeComment::select(DB::raw('count(*) as num,th_id'))
             ->groupBy('th_id')
@@ -29,8 +28,6 @@ class IndexController extends Controller
             ->inRandomOrder()
             ->limit(5)
             ->get();
-        //查询前5条专题分类
-        $data = ThemeCate::orderBy('sort_id','asc')->limit(5)->get();
         return view('web.index', ['data' => $data,'count' => $count,'list' => $list]);
     }
 }

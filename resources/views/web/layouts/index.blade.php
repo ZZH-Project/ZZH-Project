@@ -55,10 +55,9 @@
     <div style="clear: both;"></div>
     <ul class="pop_menu_wrap">
         <li><a href="{{url('web/index')}}">美丽首页</a></li>
-        <li><a href="{{url('web/theme/index')}}">专题</a></li>
-        <li><a href="{{url('web/wechat/index')}}">微圈</a></li>
-        <li><a href="{{url('web/qa/index')}}">问答</a></li>
-        <li><a href="{{url('web/usercenter/index')}}">个人中心</a></li>
+        @foreach($data as $v)
+        <li><a href="{{url($v->routes)}}">{{$v->cate_name}}</a></li>
+        @endforeach
     </ul>
     <div style="clear: both;"></div>
     <a href="javascript:void(0);" class="pop_menu_close" id="pop_menu_close">

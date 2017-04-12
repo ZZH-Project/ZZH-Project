@@ -41,7 +41,11 @@
 				@else
 					<li><a href="{{url('web/center/myfav')}}" id="qa">问答</a></li>
 				@endif
-				<li><a href="#">微圈</a></li>
+                @if($status == 'wechatfav')
+                    <li><a href="{{url('web/center/wechatfav')}}" class="fav_list_select" id="qa">微圈</a></li>
+                @else
+                    <li><a href="{{url('web/center/wechatfav')}}" id="qa">微圈</a></li>
+                @endif
 			</ul>
 			<div style="clear: both;"></div>
 		</div>
@@ -124,7 +128,40 @@
 					</div><!--theme_wrap-->
 				@endforeach
 			</div><!--wrap-->
+
+        @elseif($status == 'wechatfav')
+            <div class="wrap">
+                @foreach($list as $v)
+                    <div class="webchat_wrap">
+                        <div class="webchat_img_bar">
+                            <img src="{{asset('images/web/wechat_1.png')}}"  />
+                        </div><!--webchat_img_bar-->
+                        <div class="webchat_info_bar">
+                            <a href="{{url("web/wechat/details?id=$v->id&cate_id=$v->cate_id")}}" class="title_h5">{{$v->wechat_name}}</a>
+                            <p class="content p2">{{$v->content}}</p>
+                        </div><!--webchat_info_bar-->
+                        <div style="clear: both;"></div>
+                        <div class="fun_info_bar">
+                            <a href="javascript:void(0);" class="right">
+                                <svg class="icon icon_em_25" aria-hidden="true">
+                                    <use xlink:href="#front_icon-icondianzan"></use>
+                                </svg>
+                                <span>14</span>
+                            </a>
+                            <a href="javascript:void(0);" class="right">
+                                <svg class="icon icon_em_25" aria-hidden="true">
+                                    <use xlink:href="#front_icon-pinglun"></use>
+                                </svg>
+                                <span>20</span>
+                            </a>
+                            <div style="clear: both;"></div>
+                        </div><!--fun_info_bar-->
+                    </div><!--webchat_wrap-->
+                @endforeach
+            </div><!--wrap-->
 		@endif
+
+
 	</body>
 	<script>
         //点赞

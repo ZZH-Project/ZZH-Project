@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AuserRole;
+use App\Models\NavCate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,6 +35,13 @@ class AppServiceProvider extends ServiceProvider
         // 使用基于闭包的composers...
         view()->composer('admin.layouts.Index', function ($view) use ($permissions) {
             $view->with('permissions', $permissions);
+        });
+
+        //前台主模版数据
+        //查询前5条网站导航分类
+        $data = NavCate::orderBy('sort_id','asc')->limit(5)->get();
+        view()->composer('web.layouts.index', function ($view) use ($data) {
+            $view->with('data', $data);
         });
     }
 

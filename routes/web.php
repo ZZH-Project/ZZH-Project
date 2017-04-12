@@ -322,6 +322,8 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::get('myfav','CenterController@myfav');
             //专题收藏
             Route::get('tmsc', 'CenterController@tmsc');
+            //微圈收藏
+            Route::get('wechatfav', 'CenterController@wechatfav');
             //退出登录
             Route::get('logout','CenterController@logout');
             //密保问题
@@ -441,6 +443,11 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             //提交吐槽
             Route::post('addData','DiscussController@addData');
         });
+    });
+
+    //==============地图===================
+    Route::get('map',function(){
+        return view('web.map');
     });
 });
 

@@ -62,6 +62,23 @@
 				<div style="clear: both;"></div>
 			</div><!--wrap-->
 		</div><!--comment_head-->
+		<div class="comment_head" style="border-bottom: none;border-top: none;">
+			<div class="wrap" style="padding-left: 26%;padding-top: 3%;">
+				<!-- JiaThis Button BEGIN -->
+				<div class="jiathis_style_32x32">
+					<a class="jiathis_button_qzone"></a>
+					<a class="jiathis_button_tsina"></a>
+					<a class="jiathis_button_tqq"></a>
+					<a class="jiathis_button_weixin"></a>
+					<a class="jiathis_button_renren"></a>
+					<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"></a>
+				</div>
+				<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+				<!-- JiaThis Button END -->
+				<div style="clear: both;"></div>
+			</div><!--wrap-->
+		</div><!--comment_head-->
 		@foreach($qacomment as $v)
 			@if($v->is_show == 1)
 				<div class="comment_wrap">
@@ -83,7 +100,7 @@
 				@if($v->comment_id != 0)
 						<div class="content p2"><span style="color: #AFAFAD;">回复<b></b>:{{$v->content}}</div>
 				@else
-				<div class="content p2">{{$v->content}}</div>
+					<div class="content p2">{{$v->content}}</div>
 				@endif
 				
 				<div class="fun_info_bar">

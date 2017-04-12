@@ -32,11 +32,15 @@
         @foreach($roles as $v)
             @if (in_array($v['id'],$role_ids))
             <p style="margin:5px;font-size: 14px; color: #2ca02c;text-align: center;">
+                @if($v['display_name'] != '超级管理员')
                 <lable><input style="cursor: pointer;" type="checkbox" name="role_id[]" value="{{$v['id']}}" checked>{{$v['display_name']}}</lable>
+                @endif
             </p>
             @else
             <p style="margin:5px;font-size: 14px; color: #2ca02c;text-align: center;">
+                @if($v['display_name'] != '超级管理员')
                 <lable><input style="cursor: pointer;" type="checkbox" name="role_id[]" value="{{$v['id']}}">{{$v['display_name']}}</lable>
+                @endif
             </p>
             @endif
         @endforeach

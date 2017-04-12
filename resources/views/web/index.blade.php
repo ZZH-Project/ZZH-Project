@@ -7,6 +7,11 @@
 	<div class="head">
 		<div class="wrap">
 			<h1 class="page_title">美丽联合</h1>
+            <a href="{{url("web/map")}}" id="btn_head_menu">
+                <svg class="icon icon_em_40" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#front_icon-dingwei"></use>
+                </svg>
+            </a>
 		</div><!--wrap-->
 	</div><!--head-->
 

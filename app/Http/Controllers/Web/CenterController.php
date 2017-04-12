@@ -8,7 +8,7 @@ use App\Models\MyQuestion;
 use App\Models\QaList;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;
-use App\models\wechatList;
+use App\Models\wechatList;
 use App\Models\Wuser;
 use App\Models\WuserInfo;
 use Illuminate\Http\Request;

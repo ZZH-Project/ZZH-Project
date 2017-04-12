@@ -32,7 +32,7 @@
     </div>
     <div style="text-align: center;padding: 10px 0;font-size: 16px;">用户角色统计</div>
     <canvas id="auser" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
-    <div style="text-align: center;padding: 10px 0;font-size: 16px;">专题统计</div>
+    <div style="text-align: center;padding: 10px 0;font-size: 16px;">专题浏览次数统计</div>
     <canvas id="theme" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
 @endsection
 @section('script')
@@ -124,10 +124,8 @@
             labels : tdname,
             datasets : [
                 {
-                    fillColor : "rgba(207,232,204,0.8)",
-                    strokeColor : "#b0b0b0",
-                    pointColor : "#3399ff",
-                    pointStrokeColor : "#fff",
+                    fillColor : "#3399ff",
+                    strokeColor : "#3399ff",
                     data : tcount
                 }
             ]

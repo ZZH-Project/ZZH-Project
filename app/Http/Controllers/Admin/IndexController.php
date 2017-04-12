@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Auser;
 use App\Models\Info;
+use App\Models\ThemeList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,11 @@ class IndexController extends Controller
                 ->groupBy('roles.display_name')
                 ->get();
             return $auser;
+        } elseif ($request->get('a') == 'theme') {
+            //查询数据
+            $theme = ThemeList::select('good_num','title')
+                ->get();
+            return $theme;
         }
     }
 }

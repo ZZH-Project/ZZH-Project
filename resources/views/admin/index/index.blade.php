@@ -30,7 +30,10 @@
             <input style="display: inline-block;margin: 0 0 0 10px;height: 45px;" type="submit" class="mysubmit-box1" value="搜一搜">
         </form>
     </div>
-    <canvas id="myChart" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
+    <div style="text-align: center;padding: 10px 0;font-size: 16px;">用户角色统计</div>
+    <canvas id="auser" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
+    <div style="text-align: center;padding: 10px 0;font-size: 16px;">专题统计</div>
+    <canvas id="theme" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
 @endsection
 @section('script')
     {{--图灵机器人--}}
@@ -78,12 +81,10 @@
             dataType:"json",
             async:false,
             success:function (data) {
-                console.log(data);
                 for (i = 0;i < data.length;i ++) {
                     acount.push(data[i].num);
-                    adname.push(data[i].display_name);
+                    (data[i].display_name == null) ? adname.push('无角色') :adname.push(data[i].display_name);
                 }
-                adname[0] = '无角色';
             },
         });
         var data = {
@@ -99,7 +100,40 @@
             ]
         }
         //Get the context of the canvas element we want to select
-        var ctx = document.getElementById("myChart").getContext("2d");
+        var ctx = document.getElementById("auser").getContext("2d");
         new Chart(ctx).Line(data);
+
+
+        //请求专题数据
+        var tcount = new Array;
+        var tdname = new Array;
+        $.ajax({
+            url:"{{url('admin/data')}}",
+            type:"get",
+            data:{'a':"theme"},
+            dataType:"json",
+            async:false,
+            success:function (data) {
+                for (i = 0;i < data.length;i ++) {
+                    (data[i].good_num == null) ? tcount.push(0) :tcount.push(data[i].good_num);
+                    tdname.push(data[i].title);
+                }
+            },
+        });
+        var data = {
+            labels : tdname,
+            datasets : [
+                {
+                    fillColor : "rgba(207,232,204,0.8)",
+                    strokeColor : "#b0b0b0",
+                    pointColor : "#3399ff",
+                    pointStrokeColor : "#fff",
+                    data : tcount
+                }
+            ]
+        }
+        //Get the context of the canvas element we want to select
+        var ctx = document.getElementById("theme").getContext("2d");
+        new Chart(ctx).Bar(data);
     </script>
 @endsection

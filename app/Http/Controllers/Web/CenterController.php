@@ -155,7 +155,7 @@ class CenterController extends Controller
     public function myfav(){
         $wuid = session('wuid');
         $favqas = DB::table('qa_collects')
-            ->select('qa_lists.id','qa_lists.title','qa_lists.content','qa_lists.user_id','qa_lists.cate_id','good_num','qa_lists.issue_time','qa_cates.cate_name','wuser_infos.wusername')
+            ->select('qa_lists.id','qa_lists.title','qa_lists.content','qa_lists.user_id','qa_lists.cate_id','good_num','qa_lists.issue_time','qa_cates.cate_name','wuser_infos.wusername','wuser_infos.pic')
             ->leftJoin('qa_lists','qa_collects.qa_id','=','qa_lists.id')
             ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
             ->leftJoin('wuser_infos','wuser_infos.wuid','=','qa_collects.wuser_id')

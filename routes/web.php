@@ -167,6 +167,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //================搜索回答================
             Route::any('find','QaController@finds');
         });
+        //友情链接
+        Route::group(['prefix'=>'friend'],function (){
+            //友情链接列表
+            Route::get('show','FriendController@show');
+            //添加友情链接
+            Route::get('add','FriendController@add');
+            //验证友情链接添加
+            Route::any('check','FriendController@check');
+            //修改友情链接
+            Route::any('edit/{id?}','FriendController@edit');
+            //修改友情链接
+            Route::any('checkedit','FriendController@checkedit');
+            //删除友情链接
+            Route::any('del/{id?}','FriendController@del');
+
+        });
         //微圈分类列表
         Route::group(['prefix' => 'wechatCate'], function () {
             //显示微圈分类
@@ -252,7 +268,7 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             //退出登录
             Route::get('logout','CenterController@logout');
             //密保问题
-            Route::any('qaforget/{uid}','CenterController@qaforgetPass');
+            Route::any('qaforget/{uid?}','CenterController@qaforgetPass');
             //验证密保问题
             Route::any('checkqa','CenterController@checkqa');
             //我的问题

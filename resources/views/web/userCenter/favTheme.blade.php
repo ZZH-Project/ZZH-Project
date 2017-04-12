@@ -52,7 +52,7 @@
 						<div class="comment_head_wrap">
 							<div class="left">
 								<div class="user_img_bar user_img_50 left">
-									<img src="{{asset('images/web/user_img.png')}}" />
+									<img src="{{url($favqa->pic)}}" />
 								</div>
 								<span class="user_name">{{$favqa->wusername}}</span>
 							</div>

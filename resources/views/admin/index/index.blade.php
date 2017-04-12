@@ -34,6 +34,11 @@
     <canvas id="auser" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
     <div style="text-align: center;padding: 10px 0;font-size: 16px;">专题浏览次数统计</div>
     <canvas id="theme" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
+    <div>
+        @foreach($friends as $friend)
+            <a href="http://{{$friend['friend_link']}}">{{$friend['friend_name']}}</a>
+        @endforeach
+    </div>
 @endsection
 @section('script')
     {{--图灵机器人--}}

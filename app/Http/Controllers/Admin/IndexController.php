@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Auser;
+use App\Models\Friend;
 use App\Models\Info;
 use App\Models\ThemeList;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ class IndexController extends Controller
 {
     //后台主页
     public function index() {
-        return view('admin.index.index');
+        $friends = Friend::get()->toArray();
+        return view('admin.index.index',compact('friends'));
     }
     //实时消息
     public function info(Request $request) {

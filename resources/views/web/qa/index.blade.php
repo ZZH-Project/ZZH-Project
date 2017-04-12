@@ -110,9 +110,13 @@
 				<div class="comment_head_wrap">
 					<div class="left">
 						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
+							<img src="{{$qalist->pic == null ? '' : url($qalist->pic)}}" width="50px" height="50px"/>
 						</div>
-						<span class="user_name">{{$qalist->user_id}}</span>
+						@if($qalist->wusername == null)
+						<span class="user_name">{{$qalist->username}}</span>
+						@else
+						<span class="user_name">{{$qalist->wusername}}</span>
+						@endif
 					</div>
 					<div class="right time_tip">
 						{{--<span class="qa_status_bar status_green">已回答</span>--}}

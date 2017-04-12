@@ -85,14 +85,16 @@
 					<div class="pop_wrap" id="menu_cate">
 						<div class="menu_cate_bar">
 							<ul>
-								<li><a href="javascript:void(0);">教育</a></li>
-								<li><a href="javascript:void(0);">社会</a></li>
-								<li><a href="javascript:void(0);">运动</a></li>
-								<li><a href="javascript:void(0);">职场</a></li>
-								<li><a href="javascript:void(0);">教育</a></li>
-								<li><a href="javascript:void(0);">社会</a></li>
-								<li><a href="javascript:void(0);">运动</a></li>
-								<li><a href="javascript:void(0);">职场</a></li>
+								@foreach($qacates as $qacate)
+								<li><a href="javascript:void(0);">{{$qacate['cate_name']}}</a></li>
+								@endforeach
+								{{--<li><a href="javascript:void(0);">社会</a></li>--}}
+								{{--<li><a href="javascript:void(0);">运动</a></li>--}}
+								{{--<li><a href="javascript:void(0);">职场</a></li>--}}
+								{{--<li><a href="javascript:void(0);">教育</a></li>--}}
+								{{--<li><a href="javascript:void(0);">社会</a></li>--}}
+								{{--<li><a href="javascript:void(0);">运动</a></li>--}}
+								{{--<li><a href="javascript:void(0);">职场</a></li>--}}
 							</ul>
 							<div style="clear: both;"></div>
 						</div><!--qa_cate_bar-->

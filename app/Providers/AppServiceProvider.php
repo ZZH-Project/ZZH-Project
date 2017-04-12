@@ -15,6 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+	//监听
+	/*DB::listen(function ($query) {
+             echo $query->sql;
+            // $query->bindings
+            // $query->time
+        });*/
         //查询当前登录用户有的权限
         $permissions = DB::table('auser_role')
             ->select('permissions.*','auser_role.auser_id')

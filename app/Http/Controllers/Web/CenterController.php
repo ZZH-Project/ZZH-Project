@@ -115,9 +115,9 @@ class CenterController extends Controller
             $wuid = session('wuid');
             $wz = $request->pic->getClientOriginalExtension();
 //            var_dump($wz);die;
-            $pic = $wuid.'-head'.$wz;
+            $pic = $wuid.'-head.'.$wz;
             $path = 'wuserupload'.'/'.$pic;
-            $request->pic->move(public_path().'\wuserupload',$pic);
+            $request->pic->move(public_path().'/wuserupload',$pic);
 //            var_dump($path);die;
 //            var_dump($pics);die;
            $res = WuserInfo::where('wuid', $wuid)->get()->toArray();
@@ -127,7 +127,7 @@ class CenterController extends Controller
                 return redirect('web/center/info'.'/'.$wuid);
             } else {
                 $ress = WuserInfo::where('wuid', $wuid)->update(['pic' => $path]);
-//                var_dump($ress);
+//                var_dump($ress);die;
                 return redirect('web/center/info'.'/'.$wuid);
             }
         }

@@ -15,9 +15,10 @@ class QaController extends Controller
     //============显示问答列表============
     public function show(Request $request){
         $qalists = DB::table('qa_lists')
-                        ->select('qa_lists.id','title','user_id','cate_name','good_num','good_num','issue_time','is_show')
+                        ->select('qa_lists.id','title','user_id','qa_cates.cate_name','good_num','good_num','issue_time','is_show')
                         ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
                         ->paginate(5);
+	//dd($qalists);
         return view('admin/qa/qaList',compact('qalists'));
     }
 

@@ -16,7 +16,7 @@ class FriendController extends Controller
 
     //添加友情链接
     public function add(){
-        return view('admin/friend/friendadd');
+        return view('admin/friend/friendAdd');
     }
 
     //添加友情链接验证

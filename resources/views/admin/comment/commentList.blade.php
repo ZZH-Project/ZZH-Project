@@ -29,7 +29,7 @@
                 <td>{{$qa['cate_name']}}</td>
                 <td>{{$qa['sort_id']}}</td>
                 <td>
-                    <a href="{{url('admin/comment/edit').'/'.$qa['id'].'/'.$qa['cate_name'].'/'.$page.'/'.$fv}}"><i class="fa fa-fw fa-pencil" title="修改"></i></a>
+                    <a href="{{url('admin/comment/edit').'/'.$qa['id'].'/'.$qa['cate_name'].'/'.$page}}{{$fv == null ? '' : '/'.$fv}}"><i class="fa fa-fw fa-pencil" title="修改"></i></a>
                     <a href="{{url('admin/comment/del').'/'.$qa['id']}}"><i class="fa fa-fw fa-trash" title="删除"></i></a></td>
             </tr>
             @endforeach

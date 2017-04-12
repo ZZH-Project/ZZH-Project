@@ -20,7 +20,7 @@ class IndexController extends Controller
     //实时消息
     public function info(Request $request) {
         if ($request->get('a') == 1) {
-            //查询总条数
+            //查询总条�?
             $count = Info::select(DB::raw('count(*) as num'))->get()[0];
             if ($count->num == $request->get('count')) {
                 return 5;
@@ -32,7 +32,7 @@ class IndexController extends Controller
                 ->get();
             return response()->view('admin.index.miniInfo', ['data' => $data,'count' => $count]);
         }
-        //查询总条数
+        //查询总条�?
         $count = Info::select(DB::raw('count(*) as num'))->get()[0];
         //查询数据
         $data = Info::select('infos.*','ausers.username')
@@ -41,7 +41,7 @@ class IndexController extends Controller
             ->get();
         return view('admin.index.info', ['data' => $data,'count' => $count]);
     }
-    //发送消息
+    //发送消�?
     public function send(Request $request) {
         $content = $request->get('content');
         //存入数据

@@ -30,7 +30,7 @@
                 <td>{{$v['dname']}}</td>
                 @if($v['dname'] != '超级管理员')
                 <td>
-                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}/{{$fv}}">
+                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}{{$fv == null ? '' : '/'.$fv}}">
                         <i class="fa fa-user-secret" title="修改信息"></i>
                     </a>
                     @if($v['id'] != session('auser')['id'])

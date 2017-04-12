@@ -64,7 +64,7 @@
 		</form>
 		{{--<div class="ad_login_footer">Copyright © 2006-2017 .All rights reserved.</div><!--ad_login_footer-->--}}
 	</body>
-	<script src="{{asset('js/jQuery-1.8.3.min.js')}}"></script>
+	<script src="{{asset('js/jquery-1.8.3.min.js')}}"></script>
 	<script>
 		$("#login").submit(function () {
 			$.ajax({

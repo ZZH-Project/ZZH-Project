@@ -179,6 +179,7 @@ class UserController extends Controller
                         //否则清除缓存
                     }else{
                         Cache::forget('savewuser');
+		      session(['wuid' => $id]);
                         session(['weblogin' => 1]);
                     }
                     return json_encode(['a'=>1]);

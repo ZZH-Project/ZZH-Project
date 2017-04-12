@@ -30,7 +30,7 @@ class Rbac
             ->groupBy('permissions.id')
             ->groupBy('auser_role.auser_id')
             ->get();
-        $pers = array('admin/logout','admin/index','admin/info');
+        $pers = array('admin/logout','admin/index','admin/info','admin/send','admin/data');
         foreach ($permissions as $permission) {
             $pers[] = $permission->name;
         }

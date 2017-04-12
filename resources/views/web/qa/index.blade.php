@@ -1,50 +1,49 @@
-<!DOCTYPE html>
-<html id="html">
-	<head>
-		<meta charset="UTF-8">
-		<title>问答</title>
-		<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
-		<link href="{{asset('admin/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/base.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/public.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/icon_font.css')}}" type="text/css" rel="stylesheet" />
-		<link href="{{asset('css/web/qa_zl.css')}}" type="text/css" rel="stylesheet" />
-		<script src="{{asset('js/jquery_2_1_4.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/iconfont.js')}}" type="text/javascript"></script>
-		<script src="{{asset('admin/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/stickUp.min.js')}}" type="text/javascript"></script>
-		<script src="{{asset('js/public_zl.js')}}" type="text/javascript"></script>
-		<script type="text/javascript">
-			$(function(){
-				//菜单选择效果
-				$('.sub_menu_bar ul li a').click(function(){
-					$(this).parent().parent().find("a").removeClass('sub_menu_select');
-					$(this).addClass('sub_menu_select');
-				});
-				//下拉菜单
-				$('.btn_menu_down').click(function(){
-					$val = $("#sub_menu").css("position");
-		     		if( $val == "fixed"){
-		     			$("#menu_cate").css("top","79px");
-		     		} else {
-		     			$("#menu_cate").css("top","168px");
-		     		}
-					$('body').toggleClass("qa_hidden");
-					$('#menu_cate').slideToggle();
-					//禁止页面在手机上滑动
-					$('.pop_wrap').bind("touchmove",function(e){
-						e.preventDefault();
-					});
-				});
-				//取消下拉菜单
-				$('.sub_menu_bar ul li a,.menu_cate_bar ul li a,#menu_cate').click(function(){
-					$('body').css('overflow', 'auto');
-					$('#menu_cate').slideUp();
-				});
-			});
-		</script>
-	</head>
-	<body class="body">
+@extends('web.layouts.index')
+@section('title','问答')
+@section('bootstrap_style')
+	<link href="{{asset('admin/bootstrap/css/bootstrap.min.css')}}" type="text/css" rel="stylesheet" />
+@endsection
+@section('style')
+	<link href="{{asset('css/web/qa_zl.css')}}" type="text/css" rel="stylesheet" />
+@endsection
+@section('bootstrap_script')
+	<script src="{{asset('admin/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
+@endsection
+@section('script')
+	<script src="{{asset('js/stickUp.min.js')}}" type="text/javascript"></script>
+	<script type="text/javascript">
+        $(function(){
+            //菜单选择效果
+            $('.sub_menu_bar ul li a').click(function(){
+                $(this).parent().parent().find("a").removeClass('sub_menu_select');
+                $(this).addClass('sub_menu_select');
+            });
+            //下拉菜单
+            $('.btn_menu_down').click(function(){
+                $val = $("#sub_menu").css("position");
+                if( $val == "fixed"){
+                    $("#menu_cate").css("top","79px");
+                } else {
+                    $("#menu_cate").css("top","168px");
+                }
+                $('body').toggleClass("qa_hidden");
+                $('#menu_cate').slideToggle();
+                //禁止页面在手机上滑动
+                $('.pop_wrap').bind("touchmove",function(e){
+                    e.preventDefault();
+                });
+            });
+            //取消下拉菜单
+            $('.sub_menu_bar ul li a,.menu_cate_bar ul li a,#menu_cate').click(function(){
+                $('body').css('overflow', 'auto');
+                $('#menu_cate').slideUp();
+            });
+        });
+	</script>
+@endsection
+
+@section('body')
+
 {{--		{{var_dump($qalists)}}--}}
 		<div class="head">
 			<div class="wrap">
@@ -86,14 +85,16 @@
 					<div class="pop_wrap" id="menu_cate">
 						<div class="menu_cate_bar">
 							<ul>
-								<li><a href="javascript:void(0);">教育</a></li>
-								<li><a href="javascript:void(0);">社会</a></li>
-								<li><a href="javascript:void(0);">运动</a></li>
-								<li><a href="javascript:void(0);">职场</a></li>
-								<li><a href="javascript:void(0);">教育</a></li>
-								<li><a href="javascript:void(0);">社会</a></li>
-								<li><a href="javascript:void(0);">运动</a></li>
-								<li><a href="javascript:void(0);">职场</a></li>
+								@foreach($qacates as $qacate)
+								<li><a href="javascript:void(0);">{{$qacate['cate_name']}}</a></li>
+								@endforeach
+								{{--<li><a href="javascript:void(0);">社会</a></li>--}}
+								{{--<li><a href="javascript:void(0);">运动</a></li>--}}
+								{{--<li><a href="javascript:void(0);">职场</a></li>--}}
+								{{--<li><a href="javascript:void(0);">教育</a></li>--}}
+								{{--<li><a href="javascript:void(0);">社会</a></li>--}}
+								{{--<li><a href="javascript:void(0);">运动</a></li>--}}
+								{{--<li><a href="javascript:void(0);">职场</a></li>--}}
 							</ul>
 							<div style="clear: both;"></div>
 						</div><!--qa_cate_bar-->
@@ -111,9 +112,13 @@
 				<div class="comment_head_wrap">
 					<div class="left">
 						<div class="user_img_bar user_img_50 left">
-							<img src="{{asset('images/web/user_img.png')}}" />
+							<img src="{{$qalist->pic == null ? '' : url($qalist->pic)}}" width="50px" height="50px"/>
 						</div>
-						<span class="user_name">{{$qalist->user_id}}</span>
+						@if($qalist->wusername == null)
+						<span class="user_name">{{$qalist->username}}</span>
+						@else
+						<span class="user_name">{{$qalist->wusername}}</span>
+						@endif
 					</div>
 					<div class="right time_tip">
 						{{--<span class="qa_status_bar status_green">已回答</span>--}}
@@ -213,7 +218,6 @@
         			</div><!--btn_ask_bar-->
 			</a>
 		</div><!--footer_fixed-->
-	</body>
 	<script>
 		//页面定位
 		jQuery(function($) {
@@ -269,4 +273,4 @@
 			}
 		}
 	</script>
-</html>
+	@endsection

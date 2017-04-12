@@ -25,9 +25,17 @@
 					<div class="comment_head_wrap">
 						<div class="left">
 							<div class="user_img_bar user_img_50 left">
-								<img src="{{asset('images/web/user_img.png')}}" />
+								@if($v->pic != null)
+									<img src="{{asset("$v->pic")}}" />
+								@else
+									<img src="{{asset('images/web/user_img.png')}}" />
+								@endif
 							</div>
-							<span class="user_name">{{$v->username}}</span>
+							@if($v->wusername == null)
+								<span class="user_name">{{str_replace(substr($v->username,3,4),'****',$v->username)}}</span>
+							@else
+								<span class="user_name">{{$v->wusername}}</span>
+							@endif
 						</div>
 						<div class="right time_tip">{{$v->created_at}}</div>
 						<div style="clear: both;"></div>

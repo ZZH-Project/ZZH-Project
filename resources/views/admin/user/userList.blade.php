@@ -28,14 +28,22 @@
                 <td>{{$v['username']}}</td>
                 <td>{{$v['email'] != null ? $v['email'] : '无'}}</td>
                 <td>{{$v['dname']}}</td>
+                @if($v['dname'] != '超级管理员')
                 <td>
-                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}/{{$fv}}">
+                    <a class="active" href="{{url('admin/user/edit').'/'.$v['id']}}/{{isset($_GET['page']) ? $_GET['page'] : 1}}{{$fv == null ? '' : '/'.$fv}}">
                         <i class="fa fa-user-secret" title="修改信息"></i>
                     </a>
+                    @if($v['id'] != session('auser')['id'])
                     <a class="active" href="{{url('admin/user/del').'/'.$v['id']}}">
                         <i class="fa fa-user-times" title="删除用户"></i>
                     </a>
+                    @endif
                 </td>
+                @else
+                <td>
+
+                </td>
+                @endif
             </tr>
             @endforeach
             <tr>

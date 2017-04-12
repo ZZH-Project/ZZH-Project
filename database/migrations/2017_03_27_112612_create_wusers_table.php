@@ -19,6 +19,7 @@ class CreateWusersTable extends Migration
             $table->string('password');
             $table->string('deadline');
             $table->string('captcha');
+            $table->tinyInteger('is_load');
         });
     }
 

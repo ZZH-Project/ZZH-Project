@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\MyQuestion;
 use App\Models\RTResule;
 use App\Models\Wuser;
 use App\Tool\SMS\SendTemplateSMS;
@@ -129,14 +130,14 @@ class UserController extends Controller
         $roles = [
             'username' => 'required|digits_between:11,11',
             'password' => 'required|between:6,12|alpha_dash',
-            'captcha' => 'required|captcha',
+//            'captcha' => 'required|captcha',
         ];
         //自定义的错误信息
         $msg = [
             'required' => '* :Attribute不能为空',
             'digits_between'=>'* :Attribute必须是数字并且在:min和:max之间',
             'between' => '* :Attribute必须在:min和:max之间',
-            'captcha' => '* 验证码不正确',
+//            'captcha' => '* 验证码不正确',
             'alpha_dash' => '* :Attribute必须是字母数字下划线'
         ];
         //验证数据
@@ -159,24 +160,32 @@ class UserController extends Controller
 //        var_dump($result);
         //如果账号密码正确返回1
         if($result){
-           $id =  $wuser::select('id')
-                ->where('username',$username)->get()->toArray();
-           $id = $id[0]['id'];
-//           dd($id);
-            //如果多选框选中
-            if($is_save == 1){
-                //将用户存进缓存中
-                Cache::forever('savewuser',['username'=>$username,'password'=>$password]);
-                session(['wuid' => $id]);
-                session(['weblogin' => 1]);
-            //否则清除缓存
+            $is_load = $wuser::select('is_load')->where('username',$username)->get()->toArray();
+            $is_load = $is_load[0]['is_load'];
+//            var_dump($is_load);die;
+            if($is_load == 0){
+                return json_encode(['a'=>9]);
             }else{
-                Cache::forget('savewuser');
-                session(['weblogin' => 1]);
-            }
-            return json_encode(['a'=>1]);
-        //如果账号密码不正确返回2
-        }else{
+                    $id =  $wuser::select('id')
+                        ->where('username',$username)->get()->toArray();
+                    $id = $id[0]['id'];
+    //              dd($id);
+                    //如果多选框选中
+                    if($is_save == 1){
+                        //将用户存进缓存中
+                        Cache::forever('savewuser',['username'=>$username,'password'=>$password]);
+                        session(['wuid' => $id]);
+                        session(['weblogin' => 1]);
+                        //否则清除缓存
+                    }else{
+                        Cache::forget('savewuser');
+		      session(['wuid' => $id]);
+                        session(['weblogin' => 1]);
+                    }
+                    return json_encode(['a'=>1]);
+                    //如果账号密码不正确返回2
+                 }
+            }else{
             return json_encode(['a'=>2]);
         }
     }
@@ -247,6 +256,63 @@ class UserController extends Controller
                         ->where('username',$phone)
                         ->update(['password'=>md5($password)]);
             return json_encode(['a'=> 0]);
+        }
+    }
+
+    //密码问题找回密码
+    public function question(){
+        $status = '';
+        return view('web/login/question',compact('status'));
+    }
+
+    //获取问题
+    public function getquestion(Request $request){
+        $username = $request->username;
+        $uid = Wuser::select('id')->where('username',$username)->get()->toArray();
+        if(empty($uid)){
+            $status = 0;
+            return view('web/login/question',compact('status'));
+        }else{
+            $status = '';
+            $uid = $uid[0]['id'];
+//            var_dump($uid);die;
+            $question = MyQuestion::where('wuid',$uid)->get()->toArray();
+            if(empty($question)){
+                $status = 1;
+                return view('web/login/question',compact('status'));
+            }
+            $question = $question[0];
+//            var_dump($question);
+            return view('web/login/answer',compact('question','status'));
+        }
+    }
+
+    //回答问题页面
+    public function answerval(Request $request){
+        $questions = $request->question;
+        $uid = $request->wuid;
+        $question = MyQuestion::where('wuid',$uid)->get()->toArray();
+        $question = $question[0];
+        $answer = $request->answer;
+        $password = $request->password;
+        if($password == '' || $answer == ''){
+            $status = 1;
+            return view('web/login/answer',compact('status','question'));
+        }
+//        var_dump($questions,$answer);die;
+        $res = MyQuestion::where('question',$questions)
+            ->where('answer',$answer)
+            ->get()->toArray();
+//        var_dump($res);die;
+        if(empty($res)){
+            $status = 2;
+            return view('web/login/answer',compact('status','question'));
+        }else{
+            $res = $res[0];
+            $uid = $res['wuid'];
+            Wuser::where('id',$uid)->update(['password'=>md5($password)]);
+//            var_dump($uid);die;
+            return redirect('web/user/login');
         }
     }
 }

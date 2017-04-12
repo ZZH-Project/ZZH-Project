@@ -31,6 +31,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('index','IndexController@index');
         //后台实时消息
         Route::get('info', 'IndexController@info');
+        //发送实时消息
+        Route::get('send', 'IndexController@send');
+        //图表数据
+        Route::get('data', 'IndexController@data');
         //用户组
         Route::group(['prefix' => 'user'], function () {
             //用户显示
@@ -119,6 +123,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //专题评论是否下线
             Route::get('is/{id}', 'ThemeCommentController@is');
         });
+        //会员管理组
+        Route::group(['prefix' => 'member'],function(){
+            //显示会员列表
+            Route::any('show','MemberController@show');
+            //禁止会员登录
+            Route::any('isLoad/{wuid}/{isload}','MemberController@isload');
+        });
         //问答分类组
         Route::group(['prefix'=>'comment'],function (){
              //问答分类显示
@@ -157,6 +168,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             Route::get('switch/{id}/{status}','QaController@switchshows');
             //================搜索回答================
             Route::any('find','QaController@finds');
+        });
+        //友情链接
+        Route::group(['prefix'=>'friend'],function (){
+            //友情链接列表
+            Route::get('show','FriendController@show');
+            //添加友情链接
+            Route::get('add','FriendController@add');
+            //验证友情链接添加
+            Route::any('check','FriendController@check');
+            //修改友情链接
+            Route::any('edit/{id?}','FriendController@edit');
+            //修改友情链接
+            Route::any('checkedit','FriendController@checkedit');
+            //删除友情链接
+            Route::any('del/{id?}','FriendController@del');
+
         });
         //微圈分类列表
         Route::group(['prefix' => 'wechatCate'], function () {
@@ -240,7 +267,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
 //前台路由
 Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
     //==============主页===================
-    Route::get('index','indexController@index');
+    Route::get('index','IndexController@index');
 
     //==============用户组===================
     Route::group(['prefix'=>'user'],function(){
@@ -260,23 +287,52 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('sendSMS','UserController@sendSMS');
         //忘记密码-》重置密码
         Route::any('resetpass','UserController@resetpass');
-    }); //==需要登录的路由,中间件分组==
+        //密码问题找回密码
+        Route::any('question','UserController@question');
+        //获取问题
+        Route::any('getquestion','UserController@getquestion');
+        //回答验证
+        Route::any('answerval','UserController@answerval');
+        //
+    });
 
     //==============个人中心===================
     Route::group(['prefix'=>'center'],function(){
         //个人中心主页
         Route::get('index','CenterController@index');
-        //个人信息
-        Route::get('info','CenterController@info');
-        //个人信息修改
-        Route::get('infoEdit','CenterController@infoEdit');
-        //个人头像修改
-        Route::get('imgEdit','CenterController@imgEdit');
-        //密码修改
-        Route::get('passEdit','CenterController@passEdit');
-        //我的收藏
-        Route::get('favTheme','CenterController@favTheme');
+        ///==需要登录的路由,中间件分组==
+        Route::group(['middleware'=>'webLogin'],function(){
+            //个人信息
+            Route::get('info/{wuid?}','CenterController@info');
+            //个人信息修改
+            Route::get('infoEdit/{wuid?}','CenterController@infoEdit');
+            //个人头像修改
+            Route::get('imgEdit/{wuid?}','CenterController@imgEdit');
+            //密码修改
+            Route::get('passEdit','CenterController@passEdit');
+            //我的收藏
+            Route::get('favTheme','CenterController@favTheme');
+            //个人信息修改验证
+            Route::get('infoEditval','CenterController@infoEditval');
+            //个人头像修改验证
+            Route::any('imgEditval','CenterController@imgEditval');
+            //修改密码验证
+            Route::get('passEditval','CenterController@passEditval');
+            //问答收藏
+            Route::get('myfav','CenterController@myfav');
+            //专题收藏
+            Route::get('tmsc', 'CenterController@tmsc');
+            //退出登录
+            Route::get('logout','CenterController@logout');
+            //密保问题
+            Route::any('qaforget/{uid?}','CenterController@qaforgetPass');
+            //验证密保问题
+            Route::any('checkqa','CenterController@checkqa');
+            //我的问题
+            Route::get('myquestion/{uid}','CenterController@myquestion');
+        });
     });
+
 
     Route::group(['middleware'=>'webLogin'],function(){
         //==============意见反馈===================
@@ -288,9 +344,9 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         });
     });
 
-
     //问答列表
     Route::get('qa/index/{catename?}','QaController@qaList');
+//    ==需要登录的路由,中间件分组==
     Route::group(['middleware'=>'webLogin'],function(){
         //==============问答===================
         Route::group(['prefix'=>'qa'],function(){
@@ -312,6 +368,10 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             Route::any('cdgoodadd','QaController@cdgoodadd');
             //子回答取消赞
             Route::any('cdgoodmin','QaController@cdgoodmin');
+            //问答收藏
+            Route::any('collectadd','QaController@collectadd');
+            //取消问答收藏
+            Route::any('collectmin','QaController@collectmin');
         });
 
         //==============微圈===================

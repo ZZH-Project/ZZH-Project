@@ -84,11 +84,11 @@
                             $("#hc").html('问答详情：');
                             $("#hc").css({'color':'#333333'});
                             if(data.a==1){
-								alert('提交成功');
-//                                $(".tip_bar").html('提交成功')
+//                                $(".tip_bar").html('提交成功');
+				location.href = "{{url('web/qa/index')}}";
 							}else if(data.a==2){
-                                alert('提交失败');
 //                                $(".tip_bar").html('提交失败');
+				location.href = "{{url('web/qa/index')}}";
 							}
                         },
                         error:function(msg){

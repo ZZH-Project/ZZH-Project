@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\QaCate;
+use App\Models\QaCollect;
 use App\Models\QaComment;
 use App\Models\QaList;
 use Illuminate\Http\Request;
@@ -21,18 +22,22 @@ class QaController extends Controller
             $cid = Qacate::select('id')->where(['cate_name'=>$catename])->get()->toArray();
 //            var_dump($cid[0]['id']);
             $qalists = DB::table('qa_lists')
-                        ->select('qa_lists.id','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
+                        ->select('qa_lists.id','wusers.username','wuser_infos.wusername','wuser_infos.pic','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
                         ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+                        ->leftJoin('wusers','wusers.id','=','qa_lists.user_id')
+                        ->leftJoin('wuser_infos','wuser_infos.wuid','=','wusers.id')
                         ->where('qa_cates.id',$cid)
                         ->get()->toArray();
-//            var_dump($qalists);die;
             return view('web.qa.index',compact('qacates','qalists'));
         }
         $qacates = QaCate::orderBy('sort_id','asc')->get()->toArray();
         $qalists = DB::table('qa_lists')
-                    ->select('qa_lists.id','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
+                    ->select('qa_lists.id','wusers.username','wuser_infos.wusername','wuser_infos.pic','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
                     ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+                    ->leftJoin('wusers','wusers.id','=','qa_lists.user_id')
+                    ->leftJoin('wuser_infos','wuser_infos.wuid','=','wusers.id')
                     ->get()->toArray();
+//        var_dump($qalists);die;
         return view('web.qa.index',compact('qacates','qalists'));
     }
     //===================提问页面===================
@@ -42,18 +47,36 @@ class QaController extends Controller
     }
     //==================回答首页==================
     public function qaDetails(Request $request){
+        $wuid = session('wuid');
         $qalistid = $request->qalistid;
 //        var_dump($qalistid);
         $qa = DB::table('qa_lists')
-            ->select('qa_lists.id','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
+            ->select('qa_lists.id','wusers.username','wuser_infos.wusername','wuser_infos.pic','title','content','user_id','cate_name','good_num','good_num','issue_time','is_show')
             ->leftJoin('qa_cates','qa_cates.id','=','qa_lists.cate_id')
+            ->leftJoin('wusers','wusers.id','=','qa_lists.user_id')
+            ->leftJoin('wuser_infos','wuser_infos.wuid','=','wusers.id')
             ->where('qa_lists.id',$qalistid)
             ->get()->toArray();
         $qa = $qa[0];
 //        var_dump($qa);die;
-        $qacomment = QaComment::where('qa_id',$qalistid)->get();
+        $qacomment = DB::table('qa_comments')
+                    ->select('qa_comments.id','qa_comments.qa_id','qa_comments.user_id','qa_comments.comment_id','qa_comments.content','qa_comments.good_num','qa_comments.is_show','qa_comments.issue_time','wusers.username','wuser_infos.wusername','wuser_infos.pic')
+                    ->leftJoin('wusers','wusers.id','=','qa_comments.user_id')
+                    ->leftJoin('wuser_infos','wuser_infos.wuid','=','qa_comments.user_id')
+                    ->where('qa_id',$qalistid)->get();
+//        var_dump($qacomment);die;
         $qacomment = (object)Tree($qacomment);
-        return view('web.qa.details',compact('qa','qacomment'));
+        $qacollect = QaCollect::where(["wuser_id"=>$wuid,"qa_id"=>$qalistid])->get()->toArray();
+        if(!empty($qacollect)){
+            $qacollect = $qacollect[0];
+            return view('web.qa.details',compact('qa','qacomment','qacollect'));
+        }else{
+            $qacollect = [''];
+            $qacollect = $qacollect[0];
+//        var_dump($qacollect);die;
+            return view('web.qa.details',compact('qa','qacomment','qacollect'));
+        }
+
     }
 
     //================验证提问信息================
@@ -175,5 +198,27 @@ class QaController extends Controller
         QaComment::where('id',$qaid)->update(['good_num'=>$goodnum]);
 //        var_dump($qaid,$goodnum);die;
         return $goodnum;
+    }
+
+    //=====================问答收藏=====================
+    public function collectadd(Request $request){
+        $qaid = $request->qaid;
+        $wuid = $request->wuid;
+//        var_dump($qaid,$wuid);
+        $res = QaCollect::create(['qa_id'=>$qaid,'wuser_id'=>$wuid]);
+        if($res){
+            return json_encode(['a'=>1]);
+        }
+    }
+
+    //=====================问答收藏=====================
+    public function collectmin(Request $request){
+        $qaid = $request->qaid;
+        $wuid = $request->wuid;
+//        var_dump($qaid,$wuid);
+        $res = QaCollect::where(['qa_id'=>$qaid,'wuser_id'=>$wuid])->delete();
+        if($res){
+            return json_encode(['a'=>1]);
+        }
     }
 }

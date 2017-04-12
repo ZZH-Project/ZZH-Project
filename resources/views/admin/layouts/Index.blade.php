@@ -20,6 +20,25 @@
       opacity: 1;
       padding: 15px;
     }
+    #show{
+      position: absolute;
+      text-indent: 20px;
+      margin: auto;
+      top:0;
+      left:0;
+      right:0;
+      bottom:300px;
+      width:400px;
+      max-height:280px;
+      padding:10px;
+      overflow-y: auto;
+      display: none;
+      font-size: 16px;
+      color: white;
+      background: #9cbf91;
+      box-shadow: 0px 0px 5px 1px #9cbf91;
+      z-index: 9999999;
+    }
   </style>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -76,88 +95,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">你有一条信息</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        开发团队
-                        <small><i class="fa fa-clock-o"></i> 5分钟前</small>
-                      </h4>
-                      <p>一条信息</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                </ul>
-              </li>
-              <li class="footer"><a href="#">查看全部</a></li>
-            </ul>
-          </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">你有一条消息</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5分钟后开会
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">查看全部</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">你有一条项目</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        进度
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">查看全部</a>
-              </li>
-            </ul>
-          </li>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -217,7 +154,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url($v->name.'/show')}}"><i class="fa fa-circle-o"></i> {{$v->display_name}}列表</a></li>
+	  @if(!in_array($v->id,[50]))
             <li><a href="{{url($v->name.'/add')}}"><i class="fa fa-circle-o"></i> 添加{{$v->display_name}}</a></li>
+	  @endif
           </ul>
         </li>
           @endif
@@ -234,8 +173,9 @@
 
   <!-- 右侧主体，用于显示后台功能 -->
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="position: relative">
     <div class="alt"></div>
+    <div id="show"></div>
     <section class="content-header">
       <h1>
         @yield('title-first')
@@ -262,7 +202,7 @@
 <!-- ./wrapper -->
 
 <!--  jQuery 1.8.3 -->
-<script src="{{asset('js/jQuery-1.8.3.min.js')}}"></script>
+<script src="{{asset('js/jquery-1.8.3.min.js')}}"></script>
 <!-- jQuery 2.2.3 -->
 <script src="{{asset('admin/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->

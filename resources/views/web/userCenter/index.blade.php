@@ -121,7 +121,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="{{url('web/center/feedback')}}">
 					<div class="user_c_icon">
 						<svg class="icon icon_em_17" aria-hidden="true">
 							<use xlink:href="#front_icon-youjian1"></use>
@@ -144,11 +144,4 @@
 			</li>
 		</ul>
 	</div><!--user_c_list-->
-	<div class="website_menu" >
-		<a href="#" id="website_menu">
-			<svg class="icon icon_em_30" aria-hidden="true">
-				<use xlink:href="#front_icon-11"></use>
-			</svg>
-		</a>
-	</div><!--website_menu-->
 @endsection

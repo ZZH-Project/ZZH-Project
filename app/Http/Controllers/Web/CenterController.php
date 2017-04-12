@@ -2,11 +2,31 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class CenterController extends Controller
 {
+    //意见反馈
+    public function feedback(){
+        return view('web.userCenter.feedback');
+    }
+    //提交意见反馈
+    public function feedbackAdd(Request $request){
+        $user_id = $request->user_id;
+        $title = $request->title;
+        $content = $request->content;
+
+        $res = Feedback::create([
+            'user_id'=>$user_id,
+            'title'=>$title,
+            'content'=>$content,
+        ]);
+
+        return redirect('web/center/index');
+    }
+
     //个人中心主页
     public function index(){
         return view('web.userCenter.index');

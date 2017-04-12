@@ -24,30 +24,20 @@
 					<use xlink:href="#front_icon-fanhui1"></use>
 				</svg>
 			</a>
-			<a href="#" class="btn_head_submit">提交</a>
 		</div><!--wrap-->
 	</div><!--head-->
 
+    <form action="{{url('web/wechat/addData')}}" method="post">
+    {{csrf_field()}}
+    <input type="hidden" value="{{session('wuid')}}" name="user_id" />
 	<div class="wrap">
 		<ul class="submint_list">
 			<li>
 				<span>分类：</span>
-				<select class="form-control">
-					<option>美食</option>
-					<option>教育</option>
-					<option>培训</option>
-				</select>
-				<div class="icon_more">
-					<svg class="icon icon_em_25" aria-hidden="true">
-						<use xlink:href="#front_icon-fanhui1-copy"></use>
-					</svg>
-				</div><!--icon_more-->
-			</li>
-			<li>
-				<span>微信类别：</span>
-				<select class="form-control">
-					<option>个人号</option>
-					<option>公众号</option>
+				<select class="form-control" name="cate_id">
+					@foreach($data as $val)
+					<option value="{{$val['id']}}">{{$val->cate_name}}</option>
+					@endforeach
 				</select>
 				<div class="icon_more">
 					<svg class="icon icon_em_25" aria-hidden="true">
@@ -57,42 +47,19 @@
 			</li>
 			<li>
 				<span>微信名：</span>
-				<input  class="form-control"/>
+				<input  class="form-control" name="wechat_name"/>
 			</li>
 			<li>
 				<span>微信号：</span>
-				<input  class="form-control"/>
-			</li>
-			<li>
-				<span>联系方式：</span>
-				<input  class="form-control"/>
-			</li>
-			<li>
-				<span>头像：</span>
-				<div class="file_upload">
-					<input type="file" />
-					<b>上传</b>
-				</div><!--file_upload-->
-			</li>
-			<li>
-				<span>微信二维码：</span>
-				<div class="file_upload">
-					<input type="file" />
-					<b>上传</b>
-				</div><!--file_upload-->
-			</li>
-			<li>
-				<span>图片资料：</span>
-				<div class="file_upload">
-					<input type="file" />
-					<b>上传</b>
-				</div><!--file_upload-->
+				<input  class="form-control" name="wechat_id"/>
 			</li>
 			<li class="textarea_li">
 				<span>简介：</span>
-				<textarea class="form-control"></textarea>
+				<textarea class="form-control" name="content"></textarea>
 			</li>
 		</ul>
+        <input type="submit" class="btn_add_content" value="提    交" id="wechatSubmit" />
 	</div><!--wrap-->
+    </form>
 </body>
 </html>

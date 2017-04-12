@@ -173,10 +173,65 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
             //重名验证
             Route::get('nameCheck/{id?}', 'WechatCateController@nameCheck');
         });
+
         //微圈内容列表
         Route::group(['prefix' => 'wechatList'], function () {
             //显示微圈内容列表
             Route::any('show', 'WechatListController@show');
+            //删除微圈内容
+            Route::get('del/{id}', 'WechatListController@del');
+        });
+
+        //微圈评论组
+        Route::group(['prefix' => 'wechatComment'], function () {
+            //显示微圈评论
+            Route::any('show', 'WechatCommentController@show');
+            //专题评论是否下线
+            Route::get('is/{id}', 'WechatCommentController@is');
+        });
+
+        //意见反馈列表
+        Route::group(['prefix' => 'feedback'], function () {
+            //显示微圈内容列表
+            Route::any('show', 'feedbackController@show');
+            //删除微圈内容
+            Route::get('del/{id}', 'feedbackController@del');
+        });
+
+        //网站导航列表
+        Route::group(['prefix' => 'navCate'], function () {
+            //显示微圈分类
+            Route::any('show', 'NavCateController@show');
+            //添加微圈分类
+            Route::any('add', 'NavCateController@add');
+            //删除微圈分类
+            Route::get('del/{id}', 'NavCateController@del');
+            //修改微圈分类
+            Route::any('edit/{id}', 'NavCateController@edit');
+            //不为空验证
+            Route::get('check', 'NavCateController@check');
+            //重名验证
+            Route::get('nameCheck/{id?}', 'NavCateController@nameCheck');
+        });
+
+        //吐槽内容列表
+        Route::group(['prefix' => 'discuss'], function () {
+            //显示吐槽内容列表
+            Route::any('show', 'DiscussController@show');
+            //删除吐槽内容
+            Route::get('del/{id}', 'DiscussController@del');
+        });
+
+        //广告内容列表
+        Route::group(['prefix' => 'banner'], function () {
+            //显示吐槽内容列表
+            Route::any('show', 'BannerController@show');
+            //删除吐槽内容
+            Route::get('del/{id}', 'BannerController@del');
+            //添加微圈分类
+            Route::any('add', 'BannerController@add');
+            //修改广告
+            Route::any('edit/{id}', 'BannerController@edit');
         });
 
     });
@@ -223,6 +278,17 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('favTheme','CenterController@favTheme');
     });
 
+    Route::group(['middleware'=>'webLogin'],function(){
+        //==============意见反馈===================
+        Route::group(['prefix'=>'center'],function(){
+            //意见反馈
+            Route::get('feedback','CenterController@feedback');
+            //提交意见反馈
+            Route::post('feedbackAdd','CenterController@feedbackAdd');
+        });
+    });
+
+
     //问答列表
     Route::get('qa/index/{catename?}','QaController@qaList');
     Route::group(['middleware'=>'webLogin'],function(){
@@ -247,6 +313,12 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
             //子回答取消赞
             Route::any('cdgoodmin','QaController@cdgoodmin');
         });
+
+        //==============微圈===================
+        Route::group(['prefix'=>'wechat'],function(){
+            //加入微圈
+            Route::any('add','WeChatController@add');
+        });
     });
     //==============专题===================
     Route::group(['prefix'=>'theme'],function(){
@@ -264,18 +336,51 @@ Route::group(['prefix' => 'web', 'namespace' => 'Web'], function (){
         Route::get('sc', 'ThemeController@sc');
     });
 
+
     //==============微圈===================
+
     Route::group(['prefix'=>'wechat'],function(){
         //微圈主页
         Route::get('index','WeChatController@index');
         //微圈分类列表
-        Route::get('list','WeChatController@list');
+        Route::get('show','WeChatController@show');
         //微圈详情
-        Route::get('details','WeChatController@details');
+        Route::any('details','WeChatController@details');
         //微圈评论
         Route::any('comment','WeChatController@comment');
-        //加入微圈
-        Route::any('add','WeChatController@add');
+        //提交评论
+        Route::get('submit/{th_id}/{cate_id}', 'WeChatController@submit');
+        //收藏专题
+        Route::get('sc', 'WeChatController@sc');
+
+    });
+
+    Route::group(['middleware'=>'webLogin'],function(){
+        //==============微圈===================
+        Route::group(['prefix'=>'wechat'],function(){
+            //加入微圈
+            Route::get('add','WeChatController@add');
+            //加入微圈
+            Route::post('addData','WeChatController@addData');
+        });
+    });
+
+
+    //==============吐槽===================
+
+    Route::group(['prefix'=>'discuss'],function(){
+        //吐槽主页
+        Route::get('index','DiscussController@index');
+    });
+
+    Route::group(['middleware'=>'webLogin'],function(){
+        //==============吐槽===================
+        Route::group(['prefix'=>'discuss'],function(){
+            //添加吐槽
+            Route::get('add','DiscussController@add');
+            //提交吐槽
+            Route::post('addData','DiscussController@addData');
+        });
     });
 });
 

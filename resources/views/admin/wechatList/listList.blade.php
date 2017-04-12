@@ -18,28 +18,26 @@
                 <th style="border-left: 1px solid #3399ff;">ID</th>
                 <th>分类名称</th>
                 <th>用户ID</th>
-                <th>专题标题</th>
-                <th>专题大图片</th>
-                <th>专题文章内容</th>
-                <th>点赞数</th>
+                <th>微信名</th>
+                <th>微信号</th>
+                <th>简介</th>
                 <th style="border-right: 1px solid #3399ff;">操作</th>
             </tr>
-           {{-- @foreach($data as $v)
+            @foreach($data as $v)
                 <tr class="trd">
                     <td style="border-left: 1px solid #e5e5e5;">{{$v->id}}</td>
-                    <td>{{$v->sort_id}}</td>
-                    <td>{{$v->cate_name}}</td>
-                    <td>{{$v->cate_img}}</td>
+                    <td>{{$v->user_id}}</td>
+                    <td>{{$v->cate_id}}</td>
+                    <td>{{$v->wechat_name}}</td>
+                    <td>{{$v->wechat_id}}</td>
+                    <td>{{$v->content}}</td>
                     <td>
-                        <a class="active" href="{{url('admin/themeCate/edit').'/'.$v->id}}">
-                            <i class="fa fa-wrench" title="修改分类"></i>
-                        </a>
                         <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
                             <i class="fa fa-trash" title="删除分类"></i>
                         </a>
                     </td>
                 </tr>
-            @endforeach--}}
+            @endforeach
         </table>
     </div>
 @endsection
@@ -59,7 +57,7 @@
             //获取点击的id
             var id = $(this).attr("name");
             $.ajax({
-                url:"{{url('admin/wechatCate/del')}}/"+id,
+                url:"{{url('admin/wechatList/del')}}/"+id,
                 type:"get",
                 data:{"id":id},
                 dataType:"string",
@@ -80,7 +78,7 @@
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/wechatCate/show')}}",
+                url:"{{url('admin/wechatList/show')}}",
                 type:"post",
                 data:{"fv":fv,"_token":token,'a':1},
                 dataType:"string",

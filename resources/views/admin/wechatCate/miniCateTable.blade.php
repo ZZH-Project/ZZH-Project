@@ -12,7 +12,7 @@
         <td>{{$v->cate_name}}</td>
         <td>{{$v->cate_img}}</td>
         <td>
-            <a class="active" href="{{url('admin/themeCate/edit').'/'.$v->id}}">
+            <a class="active" href="{{url('admin/wechatCate/edit').'/'.$v->id}}">
                 <i class="fa fa-wrench" title="修改分类"></i>
             </a>
             <a class="active del" href="javascript:void(0)" name="{{$v->id}}">
@@ -36,7 +36,7 @@
         //获取点击的id
         var id = $(this).attr("name");
         $.ajax({
-            url:"{{url('admin/themeCate/del')}}/"+id,
+            url:"{{url('admin/wechatCate/del')}}/"+id,
             type:"get",
             data:{"id":id},
             dataType:"string",

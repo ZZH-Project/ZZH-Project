@@ -18,7 +18,7 @@ class wechatCateController extends Controller
             return view('admin.wechatCate.cateList', ['data' => $data]);
         } else {
             $data = WechatCate::where('cate_name','like','%'.$fv.'%')->orderBy('sort_id','asc')->get();
-            return response()->view('admin.wechatCate.cateList', ['data' => $data]);
+            return response()->view('admin.wechatCate.miniCateTable', ['data' => $data]);
         }
     }
 

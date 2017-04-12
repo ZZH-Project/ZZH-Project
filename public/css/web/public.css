@@ -53,11 +53,15 @@
 	top: 20px;
 	right: 0;
 }
-.head a.btn_head_submit{
+.head .btn_head_submit{
+	position: absolute;
+	color: #4b4b4b;
 	top: 25px;
 	right: 0;
 	font-size: 30px;
 	color: #e74478;
+	background: none;
+	border: none;
 }
 
 /*----------横幅广告----------*/

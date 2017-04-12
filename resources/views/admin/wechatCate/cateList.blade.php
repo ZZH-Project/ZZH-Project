@@ -80,7 +80,7 @@
             var fv = $("#uf").val();
             var token = $(".token").val();
             $.ajax({
-                url:"{{url('admin/themeCate/show')}}",
+                url:"{{url('admin/wechatCate/show')}}",
                 type:"post",
                 data:{"fv":fv,"_token":token,'a':1},
                 dataType:"string",

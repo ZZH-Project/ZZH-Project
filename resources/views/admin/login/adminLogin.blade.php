@@ -42,18 +42,18 @@
 						<span></span>
 					</div><!--ad_error_bar-->
 				</li>
-				<li>
+				{{--<li>
 					<div class="ad_input_wrap">
 						<img src="{{asset('images/admin/icon_validate.png')}}" class="ad_login_icon" />
 						<input type="text" name="captcha" value="" placeholder="请输入验证码" class="ad_input_text special" />
 						<div class="ad_validate"><img id="codeImg" style="cursor:pointer;" src="{{captcha_src('flat')}}" onclick="this.src=this.src+'?'+(new Date()).getTime();"/></div>
 					</div><!--ad_input_text-->
-				</li>
-				<li>
+				</li>--}}
+				{{--<li>
 					<div id="error3" class="ad_error_bar">
 						<span></span>
 					</div><!--ad_error_bar-->
-				</li>
+				</li>--}}
 				<li>
 					<input type="checkbox" class="ad_input_checkbox" />
 					<span class="ad_span">记住密码</span>
@@ -79,13 +79,13 @@
                         $("#error0").css({"display":"block"});
                         $("#error1").css({"display":"none"});
                         $("#error2").css({"display":"none"});
-                        $("#error3").css({"display":"none"});
+//                        $("#error3").css({"display":"none"});
                         $("#codeImg").click();
                     } else if (flag.a == 2) {
                         $("#error0").css({"display":"none"});
                         $("#error1").css({"display":"none"});
                         $("#error2").css({"display":"none"});
-                        $("#error3").css({"display":"none"});
+//                        $("#error3").css({"display":"none"});
 						location.href='go';
                     }
 				},
@@ -97,8 +97,8 @@
                     if(json.username != null){
                         $("#error1 span").html(json.username);
                         $("#error1").css({"display":"block"});
-						//换掉验证码的图片
-                        $("#codeImg").click();
+						/*//换掉验证码的图片
+                        $("#codeImg").click();*/
                     } else if(json.username == null){
                         $("#error1").css({"display":"none"});
                     }
@@ -106,12 +106,12 @@
                     if(json.password != null){
                         $("#error2 span").html(json.password);
                         $("#error2").css({"display":"block"});
-                        //换掉验证码的图片
-                        $("#codeImg").click();
+                        /*//换掉验证码的图片
+                        $("#codeImg").click();*/
                     } else if(json.password == null){
                         $("#error2").css({"display":"none"});
                     }
-                    //显示验证码的错误框
+                    /*//显示验证码的错误框
                     if(json.captcha != null){
                         $("#error3 span").html(json.captcha);
                         $("#error3").css({"display":"block"});
@@ -119,7 +119,7 @@
 						$("#codeImg").click();
                     } else if(json.captcha == null){
                         $("#error3").css({"display":"none"});
-                    }
+                    }*/
 				}
 			});
 			return false;

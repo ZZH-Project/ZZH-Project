@@ -34,9 +34,10 @@
     <canvas id="auser" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
     <div style="text-align: center;padding: 10px 0;font-size: 16px;">专题浏览次数统计</div>
     <canvas id="theme" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
-    <div>
+    <div style="text-align: center;margin-top: 25px;font-size: 16px;">友情连接 :)</div>
+    <div style="padding: 5px 0;text-align: center;">
         @foreach($friends as $friend)
-            <a href="http://{{$friend['friend_link']}}">{{$friend['friend_name']}}</a>
+            <a href="http://{{$friend['friend_link']}}" target="_blank">{{$friend['friend_name']}}</a>
         @endforeach
     </div>
 @endsection
@@ -60,7 +61,7 @@
                     if (data.url == null) {
                         $("#show").html(data.text).show(1000);
                     } else {
-                        location.href=data.url;
+                        $("#show").html("您搜索的结果可能包含路径，请搜一搜其他的内容吧。").show(1000);
                     }
                 },
             });

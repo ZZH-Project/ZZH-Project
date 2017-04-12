@@ -25,15 +25,15 @@ class UserController extends Controller
         $roles = [
             'username' => 'required|between:3,12',
             'password' => 'required',
-            'captcha' => 'required|captcha',
+            //'captcha' => 'required|captcha',
         ];
         //自定义的错误信息
         $msg = [
             'username.required' => '用户名不能为空',
             'password.required' => '密码不能为空',
-            'captcha.required' => '验证码不能为空',
+            //'captcha.required' => '验证码不能为空',
             'username.between' => '用户名必须在:min到:max位之间',
-            'captcha' => '验证码不正确',
+            //'captcha' => '验证码不正确',
         ];
         //进行验证
         $this->validate($request,$roles,$msg);

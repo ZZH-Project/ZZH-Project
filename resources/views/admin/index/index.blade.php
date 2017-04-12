@@ -20,6 +20,7 @@
             overflow: hidden;
         }
     </style>
+    <script src="{{asset('js/Chart.js-1.1.1/Chart.js')}}" type="text/javascript"></script>
 @endsection
 @section('main')
     <div style="padding:10px 0;">
@@ -29,8 +30,10 @@
             <input style="display: inline-block;margin: 0 0 0 10px;height: 45px;" type="submit" class="mysubmit-box1" value="搜一搜">
         </form>
     </div>
+    <canvas id="myChart" height="300" width="1089" style="margin: 0 auto;display: block;"></canvas>
 @endsection
 @section('script')
+    {{--图灵机器人--}}
     <script>
         $("#af").submit(function () {
             //获取ID
@@ -62,5 +65,41 @@
             });
             $("#show").hide();
         });
+    </script>
+    {{--图表--}}
+    <script>
+        //请求用户数据
+        var acount = new Array;
+        var adname = new Array;
+        $.ajax({
+            url:"{{url('admin/data')}}",
+            type:"get",
+            data:{'a':"auser"},
+            dataType:"json",
+            async:false,
+            success:function (data) {
+                console.log(data);
+                for (i = 0;i < data.length;i ++) {
+                    acount.push(data[i].num);
+                    adname.push(data[i].display_name);
+                }
+                adname[0] = '无角色';
+            },
+        });
+        var data = {
+            labels : adname,
+            datasets : [
+                {
+                    fillColor : "rgba(207,232,204,0.8)",
+                    strokeColor : "#b0b0b0",
+                    pointColor : "#3399ff",
+                    pointStrokeColor : "#fff",
+                    data : acount
+                }
+            ]
+        }
+        //Get the context of the canvas element we want to select
+        var ctx = document.getElementById("myChart").getContext("2d");
+        new Chart(ctx).Line(data);
     </script>
 @endsection

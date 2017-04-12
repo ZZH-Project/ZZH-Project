@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::get('info', 'IndexController@info');
         //发送实时消息
         Route::get('send', 'IndexController@send');
+        //图表数据
+        Route::get('data', 'IndexController@data');
         //用户组
         Route::group(['prefix' => 'user'], function () {
             //用户显示

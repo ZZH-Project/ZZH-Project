@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Auser;
 use App\Models\Info;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,5 +47,17 @@ class IndexController extends Controller
         $info->content = $request->get('content');
         $info->save();
         return 1;
+    }
+    //图表数据
+    public function data(Request $request) {
+        if ($request->get('a') == 'auser') {
+            //查询数据
+            $auser = Auser::select(DB::raw('count(*) as num,roles.display_name'))
+                ->leftjoin('auser_role','auser_role.auser_id','ausers.id')
+                ->leftjoin('roles','roles.id','auser_role.role_id')
+                ->groupBy('roles.display_name')
+                ->get();
+            return $auser;
+        }
     }
 }

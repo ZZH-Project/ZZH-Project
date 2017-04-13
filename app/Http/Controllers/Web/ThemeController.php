@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Models\Banner;
 use App\Models\ThemeCate;
 use App\Models\ThemeComment;
 use App\Models\ThemeList;

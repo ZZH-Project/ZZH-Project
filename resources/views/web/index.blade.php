@@ -26,7 +26,7 @@
 			<ul class="menu_cirle">
                 @foreach($data as $v)
                     <li>
-                        <a href="{{url($v->routes)}}?nav_id={{$v->id}}">
+                        <a href="{{url($v->routes)}}">
                             <div class="menu_cirle_bar">
                                 <svg class="icon icon_em_18" aria-hidden="true">
                                     <use xlink:href="{{$v->cate_img}}"></use>

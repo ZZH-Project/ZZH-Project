@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 
+use App\Models\Banner;
 use App\Models\NavCate;
 use App\Models\ThemeCate;
 use App\Models\ThemeComment;

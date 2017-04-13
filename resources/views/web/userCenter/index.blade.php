@@ -5,6 +5,7 @@
 @endsection
 @section('body')
 	{{--{{var_dump($wuinfo)}}--}}
+{{--dd($wuinfo)--}}
 	<div class="center_head">
 		<div class="user_img_wrap">
 			<div class="user_img">
@@ -27,7 +28,7 @@
 	<div class="user_c_list">
 		<ul>
 			<li>
-				<a href="{{url('web/center/info').'/'.$wuinfo['wuid']}}">
+				<a href="{{url('web/center/info')}}{{$wuinfo['wuid']==null ? '' :'/'.$wuinfo['wuid']}}">
 					<div class="user_c_icon">
 						<svg class="icon icon_em_18" aria-hidden="true">
 							<use xlink:href="#front_icon-information"></use>
@@ -61,7 +62,7 @@
 	<div class="user_c_list">
 		<ul>
 			<li>
-				<a href="{{url('web/center/qaforget').'/'.$wuinfo['wuid']}}">
+				<a href="{{url('web/center/qaforget')}}{{$wuinfo['wuid']==null ? '' :'/'.$wuinfo['wuid']}}">
 					<div class="user_c_icon">
 						<svg class="icon icon_em_16" aria-hidden="true">
 							<use xlink:href="#front_icon-wenda1"></use>

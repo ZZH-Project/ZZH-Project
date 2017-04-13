@@ -53,6 +53,13 @@
 				<span>微信号：</span>
 				<input  class="form-control" name="wechat_id"/>
 			</li>
+            <li>
+                <span>微信二维码：</span>
+                <div class="file_upload">
+                    <input type="file" />
+                    <b>上传</b>
+                </div><!--file_upload-->
+            </li>
 			<li class="textarea_li">
 				<span>简介：</span>
 				<textarea class="form-control" name="content"></textarea>

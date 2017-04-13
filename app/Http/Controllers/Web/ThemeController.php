@@ -28,7 +28,15 @@ class ThemeController extends Controller
             ->get();
         //查询前5条专题分类
         $data = ThemeCate::orderBy('sort_id','asc')->limit(5)->get();
-        return view('web.theme.index', ['data' => $data,'count' => $count,'list' => $list]);
+
+        //获取导航类别ID
+        $nav_id = '2';
+        //获取banner
+        $banner_img = Banner::select('banners.*')
+            ->where('cate_id',$nav_id)
+            ->get();
+
+        return view('web.theme.index', ['data' => $data,'count' => $count,'list' => $list,'banner_img' => $banner_img]);
     }
     //专题分类列表
     public function show(){

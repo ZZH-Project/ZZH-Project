@@ -1,6 +1,5 @@
 /*----------公共容器----------*/
 .body{
-	width: 640px;
 	margin: 0 auto;
 }
 .wrap{
@@ -65,6 +64,9 @@
 }
 
 /*----------横幅广告----------*/
+.banner_wrap{
+    width: 100%;
+}
 .banner_wrap img{
 	display: block;
 	width: 100%;

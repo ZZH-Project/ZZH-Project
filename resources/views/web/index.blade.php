@@ -15,16 +15,18 @@
 		</div><!--wrap-->
 	</div><!--head-->
 
-	<div class="banner_wrap">
-		<img src="{{asset('images/web/banner.jpg')}}"  />
-	</div><!--banner_wrap-->
+    <div class="banner_wrap">
+        @foreach($banner_img as $v)
+            <img src='{{asset("upload/images/$v->banner_img")}}'  />
+        @endforeach
+    </div><!--banner_wrap-->
 
 	<div class="menu_wrap">
 		<div class="wrap">
 			<ul class="menu_cirle">
                 @foreach($data as $v)
                     <li>
-                        <a href="{{url($v->routes)}}">
+                        <a href="{{url($v->routes)}}?nav_id={{$v->id}}">
                             <div class="menu_cirle_bar">
                                 <svg class="icon icon_em_18" aria-hidden="true">
                                     <use xlink:href="{{$v->cate_img}}"></use>

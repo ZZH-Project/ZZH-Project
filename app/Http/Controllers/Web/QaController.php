@@ -38,6 +38,7 @@ class QaController extends Controller
                     ->leftJoin('wuser_infos','wuser_infos.wuid','=','wusers.id')
                     ->get()->toArray();
 //        var_dump($qalists);die;
+
         return view('web.qa.index',compact('qacates','qalists'));
     }
     //===================提问页面===================

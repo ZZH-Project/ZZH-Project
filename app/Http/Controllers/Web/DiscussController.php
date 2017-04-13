@@ -14,7 +14,15 @@ class DiscussController extends Controller
               ->leftJoin('wusers', 'discusses.user_id', '=', 'wusers.id' )
               ->orderBy('created_at', 'desc')
               ->get();
-        return view('web.discuss.index', ['data' => $data]);
+
+        //获取导航类别ID
+        $nav_id = '2';
+        //获取banner
+        $banner_img = Banner::select('banners.*')
+            ->where('cate_id',$nav_id)
+            ->get();
+
+        return view('web.discuss.index', ['data' => $data,'banner_img' => $banner_img]);
     }
     //添加吐槽
     public function add(){

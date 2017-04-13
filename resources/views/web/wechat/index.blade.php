@@ -13,7 +13,9 @@
 	</div><!--head-->
 
 	<div class="banner_wrap">
-		<img src="{{asset('images/web/banner.jpg')}}"  />
+        @foreach($banner_img as $v)
+            <img src='{{asset("upload/images/$v->banner_img")}}'  />
+        @endforeach
 	</div><!--banner_wrap-->
 
 	<div class="menu_wrap">

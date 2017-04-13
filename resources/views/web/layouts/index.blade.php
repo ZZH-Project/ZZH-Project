@@ -56,7 +56,7 @@
     <ul class="pop_menu_wrap">
         <li><a href="{{url('web/index')}}">美丽首页</a></li>
         @foreach($data as $v)
-        <li><a href="{{url($v->routes)}}">{{$v->cate_name}}</a></li>
+        <li><a href="{{url($v->routes)}}?nav_id={{$v->id}}">{{$v->cate_name}}</a></li>
         @endforeach
     </ul>
     <div style="clear: both;"></div>

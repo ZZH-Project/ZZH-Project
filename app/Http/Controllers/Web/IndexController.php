@@ -28,6 +28,14 @@ class IndexController extends Controller
             ->inRandomOrder()
             ->limit(5)
             ->get();
-        return view('web.index', ['data' => $data,'count' => $count,'list' => $list]);
+
+        //获取导航类别ID
+        $nav_id = '2';
+        //获取banner
+        $banner_img = Banner::select('banners.*')
+            ->where('cate_id',$nav_id)
+            ->get();
+
+        return view('web.index', ['data' => $data,'count' => $count,'list' => $list,'banner_img' => $banner_img]);
     }
 }

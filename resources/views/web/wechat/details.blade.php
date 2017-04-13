@@ -26,15 +26,15 @@
 	<div class="wrap">
 		<div class="article_wrap webchat_article_wrap">
 			<p>{{$v->content}}</p>
-			<ul class="webchat_img_list">
-				<li><a href="#"><img src="{{asset('images/web/img_1.jpg')}}" /></a></li>
-				<li><a href="#"><img src="{{asset('images/web/img_2.jpg')}}" /></a></li>
-				<li><a href="#"><img src="{{asset('images/web/img_3.jpg')}}" /></a></li>
-				<li><a href="#"><img src="{{asset('images/web/img_4.jpg')}}" /></a></li>
-				<li><a href="#"><img src="{{asset('images/web/img_1.jpg')}}" /></a></li>
-				<li><a href="#"><img src="{{asset('images/web/img_2.jpg')}}" /></a></li>
-				<li><a href="#"><img src="{{asset('images/web/img_3.jpg')}}" /></a></li>
-			</ul>
+			{{--<ul class="webchat_img_list">--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_1.jpg')}}" /></a></li>--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_2.jpg')}}" /></a></li>--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_3.jpg')}}" /></a></li>--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_4.jpg')}}" /></a></li>--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_1.jpg')}}" /></a></li>--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_2.jpg')}}" /></a></li>--}}
+				{{--<li><a href="#"><img src="{{asset('images/web/img_3.jpg')}}" /></a></li>--}}
+			{{--</ul>--}}
 			<div style="clear: both;"></div>
 		</div><!--article_wrap-->
 		<div class="crcode_wrap">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Models\Banner;
 use App\models\wechatCate;
 use App\Models\WechatComment;
 use App\Models\WechatFav;
@@ -21,7 +22,15 @@ class WeChatController extends Controller
             ->get();
         //查询前5条微圈分类
         $data = wechatCate::orderBy('sort_id','asc')->limit(5)->get();
-        return view('web.wechat.index', ['data' => $data,'list' => $list]);
+
+        //获取导航类别ID
+        $nav_id = '2';
+        //获取banner
+        $banner_img = Banner::select('banners.*')
+            ->where('cate_id',$nav_id)
+            ->get();
+
+        return view('web.wechat.index', ['data' => $data,'list' => $list,'banner_img' => $banner_img]);
 
     }
     //微圈列表页

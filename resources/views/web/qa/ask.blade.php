@@ -67,7 +67,8 @@
 //			console.log($("a[class=ask_cate_select]")[0]);
 			$("#form").submit(function(){
 			    if($("a[class=ask_cate_select]")[0] == undefined){
-					alert('请选择问答分类');
+					$(".tip_bar").html('请选择问答分类');
+				location.href = "{{url('web/qa/ask')}}";
 				}else {
 			        var cateid = ($("a[class=ask_cate_select]")[0]).name;
 			        console.log(cateid);

@@ -2,62 +2,60 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\NavCate;
+use App\Models\wechatCate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class NavCateController extends Controller
+class wechatCateController extends Controller
 {
-    //显示网站导航分类
+    //显示微圈分类
     public function show(){
         $a = isset($_POST['a']) ? $_POST['a'] : 2;
         $fv = isset($_POST['fv']) ? $_POST['fv'] : '';
         if ($fv == null && $a == 2) {
-            //查询出所有网站导航分类
-            $data = NavCate::orderBy('sort_id','asc')->get();
-            return view('admin.navCate.cateList', ['data' => $data]);
+            //查询出所有专题分类
+            $data = wechatCate::orderBy('sort_id','asc')->get();
+            return view('admin.wechatCate.cateList', ['data' => $data]);
         } else {
-            $data = NavCate::where('cate_name','like','%'.$fv.'%')->orderBy('sort_id','asc')->get();
-            return response()->view('admin.navCate.miniCateTable', ['data' => $data]);
+            $data = WechatCate::where('cate_name','like','%'.$fv.'%')->orderBy('sort_id','asc')->get();
+            return response()->view('admin.wechatCate.miniCateTable', ['data' => $data]);
         }
     }
 
-    //添加网站导航分类
+    //添加微圈分类
     public function add(Request $request) {
         if ($request->isMethod('get')) {
-            return view('admin.navCate.cateAdd');
+            return view('admin.wechatCate.cateAdd');
         } elseif ($request->isMethod('post')) {
-            $tc = new navCate();
+            $tc = new wechatCate();
             $tc->sort_id = $request->get('sort_id');
             $tc->cate_name = $request->get('cate_name');
             $tc->cate_img = $request->get('cate_img');
-            $tc->routes = $request->get('routes');
             $tc->save();
-            return redirect('admin/navCate/show');
+            return redirect('admin/wechatCate/show');
         }
     }
 
-    //删除网站导航分类
+    //删除微圈分类
     public function del(Request $request,$id) {
         //删除数据库的数据
-        NavCate::where('id',$id)->delete();
+        weChatCate::where('id',$id)->delete();
         return 2;
     }
-    //修改网站导航分类
+    //修改专题分类
     public function edit(Request $request,$id) {
         if ($request->isMethod('get')) {
             //查询当前ID的数据
-            $data = NavCate::where('id',$id)->get()[0];
-            return view('admin.navCate.cateEdit', ['data' => $data]);
+            $data = wechatCate::where('id',$id)->get()[0];
+            return view('admin.wechatCate.cateEdit', ['data' => $data]);
         } elseif ($request->isMethod('post')) {
             //更新数据
-            NavCate::where('id',$id)->update([
+            wechatCate::where('id',$id)->update([
                 'sort_id' => $request->get('sort_id'),
                 'cate_name' => $request->get('cate_name'),
-                'cate_img' => $request->get('cate_img'),
-                'routes' => $request->get('routes')
+                'cate_img' => $request->get('cate_img')
             ]);
-            return redirect('admin/navCate/show');
+            return redirect('admin/wechatCate/show');
         }
     }
 
@@ -76,7 +74,7 @@ class NavCateController extends Controller
         if ($id == 0) {
             //数据库验证
             $name = $_GET['cate_name'];
-            $query = NavCate::where('cate_name',$name)->get()->toArray();
+            $query = wechatCate::where('cate_name',$name)->get()->toArray();
             //判断是否匹配到
             if ($query == null) {
                 return json_encode(['a' => 1]);
@@ -85,7 +83,7 @@ class NavCateController extends Controller
             }
         } else {
             //查询当前id的角色标识
-            $rname = NavCate::where('id',$id)->get()[0];
+            $rname = wechatCate::where('id',$id)->get()[0];
             $rname = $rname->cate_name;
             //数据库验证
             $name = $_GET['cate_name'];
@@ -93,7 +91,7 @@ class NavCateController extends Controller
             if ($rname == $name) {
                 $query = '';
             } else {
-                $query = NavCate::where('cate_name',$name)->get()->toArray();
+                $query = wechatCate::where('cate_name',$name)->get()->toArray();
             }
             //判断是否匹配到
             if ($query == null) {

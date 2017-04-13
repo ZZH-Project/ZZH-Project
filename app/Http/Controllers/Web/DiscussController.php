@@ -17,7 +17,7 @@ class DiscussController extends Controller
               ->get();
 
         //获取导航类别ID
-        $nav_id = '2';
+        $nav_id = '7';
         //获取banner
         $banner_img = Banner::select('banners.*')
             ->where('cate_id',$nav_id)

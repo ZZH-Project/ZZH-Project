@@ -154,7 +154,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url($v->name.'/show')}}"><i class="fa fa-circle-o"></i> {{$v->display_name}}列表</a></li>
-	  @if(!in_array($v->id,[50]))
+	  @if(!in_array($v->id,[50,43,44,45,52,53,56,57]))
             <li><a href="{{url($v->name.'/add')}}"><i class="fa fa-circle-o"></i> 添加{{$v->display_name}}</a></li>
 	  @endif
           </ul>

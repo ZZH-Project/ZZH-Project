@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\web;
 
 use App\Models\Banner;
-use App\models\wechatCate;
+use App\Models\wechatCate;
 use App\Models\WechatComment;
 use App\Models\WechatFav;
-use App\models\wechatList;
+use App\Models\wechatList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -20,11 +20,11 @@ class WeChatController extends Controller
         $list = wechatList::select('wechat_lists.*')
             ->limit(5)
             ->get();
-        //查询前5条微圈分类
+        //查询�?条微圈分�?
         $data = wechatCate::orderBy('sort_id','asc')->limit(5)->get();
 
         //获取导航类别ID
-        $nav_id = '2';
+        $nav_id = '4';
         //获取banner
         $banner_img = Banner::select('banners.*')
             ->where('cate_id',$nav_id)
@@ -33,7 +33,7 @@ class WeChatController extends Controller
         return view('web.wechat.index', ['data' => $data,'list' => $list,'banner_img' => $banner_img]);
 
     }
-    //微圈列表页
+    //微圈列表�?
     public function list(){
         return view('web.wechat.list');
     }
@@ -64,11 +64,11 @@ class WeChatController extends Controller
 
     //专题分类列表
     public function show(){
-        //查询前5条专题分类
+        //查询�?条专题分�?
         $data = wechatCate::orderBy('sort_id','asc')->limit(5)->get();
         //获取分类ID
         $cate_id = $_GET['id'];
-        //查询此分类下的专题
+        //查询此分类下的专�?
         $list = wechatList::where('cate_id',$cate_id)->get();
         //获取当前分类
         $cate = wechatCate::where('id',$cate_id)->get()[0];

@@ -27,7 +27,7 @@ class ThemeController extends Controller
             ->inRandomOrder()
             ->limit(5)
             ->get();
-        //查询前5条专题分类
+        //查询�?条专题分�?
         $data = ThemeCate::orderBy('sort_id','asc')->limit(5)->get();
 
         //获取导航类别ID
@@ -41,11 +41,11 @@ class ThemeController extends Controller
     }
     //专题分类列表
     public function show(){
-        //查询前5条专题分类
+        //查询�?条专题分�?
         $data = ThemeCate::orderBy('sort_id','asc')->limit(5)->get();
         //获取分类ID
         $cate_id = $_GET['id'];
-        //查询此分类下的专题
+        //查询此分类下的专�?
         $list = ThemeList::where('cate_id',$cate_id)->where('is_show',1)->get();
         //获取当前分类
         $cate = ThemeCate::where('id',$cate_id)->get()[0];
@@ -63,9 +63,9 @@ class ThemeController extends Controller
         $cate = ThemeCate::where('id',$cate_id)->get()[0];
         //获取专题ID
         $id = $_GET['id'];
-        //获取当前专题的浏览次数
+        //获取当前专题的浏览次�?
         $num = ThemeList::where('id',$id)->get()[0]->good_num;
-        //当前专题的浏览次数+1
+        //当前专题的浏览次�?1
         ThemeList::where('id',$id)->update([
             'good_num' => $num + 1
         ]);

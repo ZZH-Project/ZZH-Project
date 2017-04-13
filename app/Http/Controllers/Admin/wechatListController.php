@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\models\wechatList;
+use App\Models\wechatList;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
